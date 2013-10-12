@@ -1,0 +1,69 @@
+*.ide
+
+#OS junk files
+[Tt]humbs.db
+*.DS_Store
+
+#Visual Studio files
+*.[Oo]bj
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.[Cc]ache
+*.ilk
+*.log
+*.lib
+*.sbr
+*.sdf
+*.docstates
+ipch/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+
+#Tooling
+_ReSharper*/
+*.resharper
+[Tt]est[Rr]esult*
+*.Tests.VisualState.xml
+*.vs10x
+
+#Project and build files
+[Bb]uild/Packages/
+Temp/
+
+#Subversion files
+.svn
+
+# Office Temp Files
+~$*
+
+# WCF diagnostic files
+*.svclog
+
+# DB Professional files
+*.dbmdl
+
+# Include the DebugReleaseImplementations folder which would be ignored by the above
+!*DebugReleaseImplementations/
+
+# Files added by the Visual Studio Productivity Power Tools extension
+*.docstates
+
+# Files created by the git mergetool
+*.orig
+
+
+#
+# CUSTOM PROJECT IGNORE
+#
