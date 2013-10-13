@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinmdToTypeScript", "WinmdT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinmdToTypeScript.Tests", "WinmdToTypeScript.Tests\WinmdToTypeScript.Tests.csproj", "{7539E4F5-4829-4D53-90B3-6FBA87878F38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinmdToTypeScript.Core", "WinmdToTypeScript.Core\WinmdToTypeScript.Core.csproj", "{FEA71855-6F65-45CB-97C4-51F1891904F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{7539E4F5-4829-4D53-90B3-6FBA87878F38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7539E4F5-4829-4D53-90B3-6FBA87878F38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7539E4F5-4829-4D53-90B3-6FBA87878F38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEA71855-6F65-45CB-97C4-51F1891904F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA71855-6F65-45CB-97C4-51F1891904F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEA71855-6F65-45CB-97C4-51F1891904F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEA71855-6F65-45CB-97C4-51F1891904F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

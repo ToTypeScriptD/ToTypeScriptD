@@ -1,0 +1,12 @@
+﻿declare module Windows.Networking.NetworkOperators {
+    enum NetworkDeviceStatus{
+        DeviceNotReady = 0
+        DeviceReady = 1
+        SimNotInserted = 2
+        BadSim = 3
+        DeviceHardwareFailure = 4
+        AccountNotActivated = 5
+        DeviceLocked = 6
+        DeviceBlocked = 7
+    }
+}
