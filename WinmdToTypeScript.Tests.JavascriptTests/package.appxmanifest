@@ -2,7 +2,7 @@
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
 
   <Identity
-    Name="d38263da-ecc3-4351-825c-2a9997c905c4"
+    Name="WinmdToTypeScript.Tests.JavascriptTests"
     Version="1.0.0.0"
     Publisher="CN=jason" />
 
