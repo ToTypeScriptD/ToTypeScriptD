@@ -1,36 +1,30 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ApprovalTests;
+﻿using ApprovalTests;
 using ApprovalTests.Reporters;
 using Mono.Cecil;
+using NUnit.Framework;
+using System.Text;
 using WinmdToTypeScript.TypeWriters;
 
 namespace WinmdToTypeScript.Tests
 {
-    [UseReporter(typeof(ApprovalTests.Reporters.VisualStudioReporter))]
-    [TestFixture]
-    public class Spike
-    {
-        Mono.Cecil.ModuleDefinition mainModule;
 
-        [SetUp]
-        public void setup()
+    [TestFixture]
+    public class Spike : TestBase
+    {
+        [Test]
+        public void SpikeIt()
         {
-            var winMD = @"C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral\Windows.winmd";
-            Mono.Cecil.AssemblyDefinition assemblyDefninition = Mono.Cecil.AssemblyDefinition.ReadAssembly(winMD);
-            mainModule = assemblyDefninition.MainModule;
+            //Approvals.Verify(result);
         }
 
+    }
+
+    public class TypeTests : TestBase
+    {
         [Test]
         public void EnumType()
         {
-            var type = mainModule.Types.Where(s => s.FullName == "Windows.Networking.NetworkOperators.NetworkDeviceStatus").Single();
-            var result = (new g()).Generate(type);
-
+            var result = GetNativeType("SampleEnum").ToTypeScript();
             Approvals.Verify(result);
         }
     }
@@ -48,6 +42,15 @@ namespace WinmdToTypeScript.Tests
             var sb = new StringBuilder();
             typeWriter.Write(sb);
             return sb.ToString();
+        }
+    }
+
+
+    public static class Extensions
+    {
+        public static string ToTypeScript(this TypeDefinition value)
+        {
+            return new g().Generate(value);
         }
     }
 

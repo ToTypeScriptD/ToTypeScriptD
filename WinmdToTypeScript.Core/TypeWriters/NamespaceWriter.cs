@@ -33,10 +33,12 @@ namespace WinmdToTypeScript.TypeWriters
             {
                 ++IndentCount;
                 sb.AppendLine(Indent + "enum " + TypeDefinition.Name + "{");
-                foreach (var item in TypeDefinition.Fields)
+                for (int i = 0; i < TypeDefinition.Fields.Count; i++)
                 {
+                    var item = TypeDefinition.Fields[i];
                     if (item.Name == "value__") continue;
-                    sb.AppendLine(Indent + Indent + item.Name + " = " + item.Constant);
+                    sb.Append(Indent + Indent + item.Name + " = " + item.Constant);
+                    sb.AppendLine(i == TypeDefinition.Fields.Count - 1 ? "" : ",");
                 }
                 sb.AppendLine(Indent + "}");
             });
