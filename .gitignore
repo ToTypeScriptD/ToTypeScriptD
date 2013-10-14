@@ -1,3 +1,4 @@
+*.received.txt
 *.ide
 
 #OS junk files
