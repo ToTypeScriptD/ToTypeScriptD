@@ -1,5 +1,5 @@
 ﻿
-namespace WinmdToTypeScript.TypeWriters
+namespace WinmdToTypeScript.Core.TypeWriters
 {
     public class TypeWriterConfig
     {

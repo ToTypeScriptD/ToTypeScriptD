@@ -52,6 +52,7 @@
     <Compile Include="TypeWriters\NamespaceWriter.cs" />
     <Compile Include="TypeWriters\TypeWriterBase.cs" />
     <Compile Include="TypeWriters\TypeWriterConfig.cs" />
+    <Compile Include="TypeWriters\TypeWriterGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

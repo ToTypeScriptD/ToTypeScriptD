@@ -2,7 +2,7 @@
 using System;
 using System.Text;
 
-namespace WinmdToTypeScript.TypeWriters
+namespace WinmdToTypeScript.Core.TypeWriters
 {
     public abstract class TypeWriterBase //: ITypeWriter
     {

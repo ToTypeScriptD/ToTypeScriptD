@@ -3,7 +3,7 @@ using ApprovalTests.Reporters;
 using Mono.Cecil;
 using NUnit.Framework;
 using System.Text;
-using WinmdToTypeScript.TypeWriters;
+using WinmdToTypeScript.Core.TypeWriters;
 
 namespace WinmdToTypeScript.Tests
 {
@@ -36,28 +36,11 @@ namespace WinmdToTypeScript.Tests
         }
     }
 
-
-    public class g
-    {
-        public string Generate(Mono.Cecil.TypeDefinition td)
-        {
-            TypeWriterBase typeWriter = null;
-            if (td.IsEnum)
-            {
-                typeWriter = new EnumWriter(td, 0);
-            }
-            var sb = new StringBuilder();
-            typeWriter.Write(sb);
-            return sb.ToString();
-        }
-    }
-
-
     public static class Extensions
     {
         public static string ToTypeScript(this TypeDefinition value)
         {
-            return new g().Generate(value);
+            return new TypeWriterGenerator().Generate(value);
         }
     }
 
