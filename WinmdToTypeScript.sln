@@ -10,6 +10,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinmdToTypeScript.Native", "WinmdToTypeScript.Native\WinmdToTypeScript.Native.vcxproj", "{2A7F284B-49F4-4BD0-AF46-F0C33D90AE89}"
 EndProject
 Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "WinmdToTypeScript.Tests.JavascriptTests", "WinmdToTypeScript.Tests.JavascriptTests\WinmdToTypeScript.Tests.JavascriptTests.jsproj", "{D38263DA-ECC3-4351-825C-2A9997C905C4}"
+	ProjectSection(ProjectDependencies) = postProject
+		{128A58CF-D911-4C50-B20F-3AFA6D75CAE8} = {128A58CF-D911-4C50-B20F-3AFA6D75CAE8}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -54,12 +54,29 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="default.html" />
+    <Content Include="definitions.ts" />
+    <Content Include="helpers\helperSmoke.js" />
     <Content Include="images\logo.png" />
     <Content Include="images\smalllogo.png" />
     <Content Include="images\splashscreen.png" />
     <Content Include="images\storelogo.png" />
+    <Content Include="js\chai.js" />
     <Content Include="js\default.js" />
     <Content Include="css\default.css" />
+    <Content Include="packages.config" />
+    <Content Include="Scripts\typings\chai\chai-assert.d.ts" />
+    <Content Include="Scripts\typings\chai\chai.d.ts" />
+    <Content Include="Scripts\typings\mocha\mocha.d.ts" />
+    <Content Include="Scripts\typings\WinmdToTypeScript.Native\WinmdToTypeScript.Native.d.ts" />
+    <Content Include="specs\spec.ClassWithEventHandler.js" />
+    <Content Include="specs\spec.ClassWithEventHandler.ts" />
+    <Content Include="specs\spec.smoke.js" />
+    <Content Include="TestInfrastructure\default.css" />
+    <Content Include="TestInfrastructure\default.js" />
+    <Content Include="TestInfrastructure\lib\mocha.css" />
+    <Content Include="TestInfrastructure\lib\mocha.js" />
+    <Content Include="TestInfrastructure\lib\readme.txt" />
+    <Content Include="TestInfrastructure\specRunner.js" />
     <None Include="WinmdToTypeScript.Tests.JavascriptTests_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -80,4 +97,7 @@
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
   -->
+  <Target Name="BeforeBuild">
+    <Exec Command="$(SolutionDir)bin\WinmdToTypeScript.exe $(SolutionDir)bin\WinmdToTypeScript.Native.winmd &gt; $(ProjectDir)\Scripts\typings\WinmdToTypeScript.Native\WinmdToTypeScript.Native.d.ts" />
+  </Target>
 </Project>

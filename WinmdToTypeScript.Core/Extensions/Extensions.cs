@@ -9,5 +9,10 @@ namespace WinmdToTypeScript
         {
             return string.Join("", Enumerable.Range(0, count).Select(s => value));
         }
+
+        public static string ToTypeScriptType(this Mono.Cecil.TypeReference typeReference)
+        {
+            return typeReference.Name;
+        }
     }
 }

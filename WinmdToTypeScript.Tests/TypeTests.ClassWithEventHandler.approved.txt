@@ -1,0 +1,9 @@
+﻿declare module WinmdToTypeScript.Native {
+    export class ClassWithEventHandler{
+        addEventListener(type: string, listener: EventListener): void;
+        removeEventListener(type: string, listener: EventListener): void;
+        onsomethinghappened(ev: any);
+        constructor();
+        DoSomething();
+    }
+}

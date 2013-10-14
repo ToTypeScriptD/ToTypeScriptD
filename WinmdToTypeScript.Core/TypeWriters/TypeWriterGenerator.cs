@@ -9,16 +9,25 @@ namespace WinmdToTypeScript.Core.TypeWriters
 {
     public class TypeWriterGenerator
     {
-        public string Generate(Mono.Cecil.TypeDefinition td)
+        public void Generate(Mono.Cecil.TypeDefinition td, StringBuilder sb)
         {
+            var indentCount = 0;
             TypeWriterBase typeWriter = null;
             if (td.IsEnum)
             {
-                typeWriter = new EnumWriter(td, 0);
+                typeWriter = new EnumWriter(td, indentCount);
             }
-            var sb = new StringBuilder();
+            else if (td.IsClass)
+            {
+                typeWriter = new ClassWriter(td, indentCount);
+            }
+
+            if (typeWriter == null)
+            {
+                throw new NotImplementedException("Could not get a type to generate for:" + td.FullName);
+            }
+
             typeWriter.Write(sb);
-            return sb.ToString();
         }
     }
 }

@@ -30,5 +30,8 @@
         // args.setPromise().
     };
 
+    var x = new WinmdToTypeScript.Native.ClassWithEventHandler();
+    x.onsomethinghappened
+
     app.start();
 })();

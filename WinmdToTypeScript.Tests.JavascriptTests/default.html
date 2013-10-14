@@ -9,11 +9,25 @@
     <script src="//Microsoft.WinJS.1.0/js/base.js"></script>
     <script src="//Microsoft.WinJS.1.0/js/ui.js"></script>
 
-    <!-- WinmdToTypeScript.Tests.JavascriptTests references -->
-    <link href="/css/default.css" rel="stylesheet" />
-    <script src="/js/default.js"></script>
+    <!-- WinmdToTypeScript.Tests.JavascriptTests references -->    <link rel="stylesheet" type="text/css" href="TestInfrastructure/default.css" />
+    <link rel="stylesheet" type="text/css" href="TestInfrastructure/lib/mocha.css">
+
+    <script src="js/chai.js"></script>
+    <script src="TestInfrastructure/lib/mocha.js"></script>
+    <script src="TestInfrastructure/specRunner.js"></script>
+    <script src="TestInfrastructure/default.js"></script>
 </head>
 <body>
-    <p>Content goes here</p>
+    <div id="mocha">
+        <!-- This div is a hook for the test harness. -->
+    </div>
+
+    <div id="errors">
+        <h1>Error Running The Test Suite</h1>
+        <p>
+            Errors have occurred outside of the test runner. Please correct the follow items and re-run
+            the test suite.
+        </p>
+    </div>
 </body>
 </html>

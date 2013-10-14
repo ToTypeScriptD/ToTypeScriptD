@@ -34,13 +34,29 @@ namespace WinmdToTypeScript.Tests
             var result = GetNativeType("SampleEnumNumbered").ToTypeScript();
             Approvals.Verify(result);
         }
+
+        [Test]
+        public void ClassWithEventHandler()
+        {
+            var result = GetNativeType("ClassWithEventHandler").ToTypeScript();
+            Approvals.Verify(result);
+        }
+
+        [Test]
+        public void FullAssembly()
+        {
+            var result = WinmdToTypeScript.Render.FullAssembly(base.NativeComponentPath);
+            Approvals.Verify(result);
+        }
     }
 
     public static class Extensions
     {
         public static string ToTypeScript(this TypeDefinition value)
         {
-            return new TypeWriterGenerator().Generate(value);
+            var sb = new StringBuilder();
+            new TypeWriterGenerator().Generate(value, sb);
+            return sb.ToString();
         }
     }
 
