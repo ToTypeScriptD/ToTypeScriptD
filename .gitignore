@@ -1,5 +1,6 @@
 *.received.txt
 *.ide
+*.opensdf
 
 #OS junk files
 [Tt]humbs.db
