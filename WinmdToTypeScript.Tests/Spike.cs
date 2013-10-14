@@ -27,6 +27,13 @@ namespace WinmdToTypeScript.Tests
             var result = GetNativeType("SampleEnum").ToTypeScript();
             Approvals.Verify(result);
         }
+
+        [Test]
+        public void EnumTypeWithExplicitValues()
+        {
+            var result = GetNativeType("SampleEnumNumbered").ToTypeScript();
+            Approvals.Verify(result);
+        }
     }
 
 
