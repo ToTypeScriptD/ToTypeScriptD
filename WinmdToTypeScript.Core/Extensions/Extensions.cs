@@ -14,8 +14,21 @@ namespace WinmdToTypeScript
 
         public static string ToTypeScriptType(this Mono.Cecil.TypeReference typeReference)
         {
-            return typeReference.Name;
+            switch (typeReference.Name)
+            {
+                case "String": return "string";
+                case "DateTime": return "Date";
+                case "Void": return "void";
+                    
+                default:
+                    return typeReference.Name;
+            }
         }
+        public static string ToTypeScriptName(this string name)
+        {
+            return Char.ToLowerInvariant(name[0]) + name.Substring(1);
+        }
+
         /// <summary>
         /// For iterator extension method that also includes a bool with the 'isLastItem' value.
         /// </summary>
@@ -48,6 +61,10 @@ namespace WinmdToTypeScript
                     action(item);
                 }
             }
+        }
+        public static string FormatWith(this string format, params object[] args)
+        {
+            return string.Format(System.Globalization.CultureInfo.CurrentCulture, format, args);
         }
     }
 }

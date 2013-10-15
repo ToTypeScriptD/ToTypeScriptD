@@ -6,8 +6,8 @@ namespace WinmdToTypeScript.Core.TypeWriters
 {
     public class NamespaceWriter : TypeWriterBase
     {
-        public NamespaceWriter(TypeDefinition typeDefinition, int indentCount)
-            : base(typeDefinition, indentCount)
+        public NamespaceWriter(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection)
+            : base(typeDefinition, indentCount, typeCollection)
         {
         }
 
@@ -22,13 +22,13 @@ namespace WinmdToTypeScript.Core.TypeWriters
 
     public class EnumWriter : TypeWriterBase
     {
-        public EnumWriter(TypeDefinition typeDefinition, int indentCount)
-            : base(typeDefinition, indentCount)
+        public EnumWriter(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection)
+            : base(typeDefinition, indentCount, typeCollection)
         { }
 
         public override void Write(StringBuilder sb)
         {
-            var namespaceWriter = new NamespaceWriter(TypeDefinition, IndentCount);
+            var namespaceWriter = new NamespaceWriter(TypeDefinition, IndentCount, this.TypeCollection);
             namespaceWriter.Write(sb, () =>
             {
                 ++IndentCount;

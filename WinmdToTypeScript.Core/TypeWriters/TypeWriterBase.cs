@@ -8,6 +8,7 @@ namespace WinmdToTypeScript.Core.TypeWriters
     {
         public TypeDefinition TypeDefinition { get; set; }
         public int IndentCount { get; set; }
+        public TypeCollection TypeCollection { get; set; }
 
         public static TypeWriterConfig config;
         public static TypeWriterConfig Config
@@ -16,10 +17,11 @@ namespace WinmdToTypeScript.Core.TypeWriters
             set { config = value; }
         }
 
-        public TypeWriterBase(TypeDefinition typeDefinition, int indentCount)
+        public TypeWriterBase(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection)
         {
             this.TypeDefinition = typeDefinition;
             this.IndentCount = indentCount;
+            this.TypeCollection = typeCollection;
         }
 
         public virtual void Write(StringBuilder sb, Action midWrite)
@@ -36,5 +38,6 @@ namespace WinmdToTypeScript.Core.TypeWriters
         {
             get { return Config.Indentation.Dup(IndentCount); }
         }
+
     }
 }

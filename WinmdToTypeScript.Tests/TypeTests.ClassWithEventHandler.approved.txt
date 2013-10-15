@@ -4,6 +4,6 @@
         removeEventListener(type: string, listener: EventListener): void;
         onsomethinghappened(ev: any);
         constructor();
-        doSomething();
+        doSomething(): void;
     }
 }

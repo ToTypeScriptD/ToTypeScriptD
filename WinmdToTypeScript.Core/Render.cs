@@ -12,8 +12,7 @@ namespace WinmdToTypeScript
         public static string FullAssembly(string assemblyPath)
         {
             var assembly = Mono.Cecil.AssemblyDefinition.ReadAssembly(assemblyPath);
-            StringBuilder sb = new StringBuilder();
-
+            var typeCollection = new TypeCollection();
             var typeWriterGenerator = new TypeWriterGenerator();
             foreach (var item in assembly.MainModule.Types)
             {
@@ -33,10 +32,10 @@ namespace WinmdToTypeScript
                 }
 
 
-                typeWriterGenerator.Generate(item, sb);
+                typeWriterGenerator.Generate(item, typeCollection);
             }
 
-            return sb.ToString();
+            return typeCollection.Render();
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Mono.Cecil;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace WinmdToTypeScript.Core.TypeWriters
 {
@@ -8,8 +10,8 @@ namespace WinmdToTypeScript.Core.TypeWriters
         private TypeDefinition typeDefinition;
         private int indentCount;
 
-        public ClassWriter(Mono.Cecil.TypeDefinition typeDefinition, int indentCount)
-            : base(typeDefinition, indentCount)
+        public ClassWriter(Mono.Cecil.TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection)
+            : base(typeDefinition, indentCount, typeCollection)
         {
             this.typeDefinition = typeDefinition;
             this.indentCount = indentCount;
@@ -17,71 +19,37 @@ namespace WinmdToTypeScript.Core.TypeWriters
 
         public override void Write(System.Text.StringBuilder sb)
         {
-            var namespaceWriter = new NamespaceWriter(TypeDefinition, IndentCount);
+            Action step = () => { sb.Append(Indent); };
+            var namespaceWriter = new NamespaceWriter(TypeDefinition, IndentCount, this.TypeCollection);
             namespaceWriter.Write(sb, () =>
             {
                 ++IndentCount;
 
-                /*
-                    export interface IUriRuntimeClass {
-                        absoluteUri: string;
-                        displayUri: string;
-                        domain: string;
-                        extension: string;
-                        fragment: string;
-                        host: string;
-                        password: string;
-                        path: string;
-                        port: number;
-                        query: string;
-                        queryParsed: Windows.Foundation.WwwFormUrlDecoder;
-                        rawUri: string;
-                        schemeName: string;
-                        suspicious: bool;
-                        userName: string;
-                        equals(pUri: Windows.Foundation.Uri): bool;
-                        combineUri(relativeUri: string): Windows.Foundation.Uri;
-                    }
-                    export class Uri implements Windows.Foundation.IUriRuntimeClass, Windows.Foundation.IUriRuntimeClassWithAbsoluteCanonicalUri {
-                        constructor (uri: string);
-                        absoluteUri: string;
-                        displayUri: string;
-                        domain: string;
-                        extension: string;
-                        fragment: string;
-                        host: string;
-                        password: string;
-                        path: string;
-                        port: number;
-                        query: string;
-                        queryParsed: Windows.Foundation.WwwFormUrlDecoder;
-                        rawUri: string;
-                        schemeName: string;
-                        suspicious: bool;
-                        userName: string;
-                        absoluteCanonicalUri: string;
-                        displayIri: string;
-                        equals(pUri: Windows.Foundation.Uri): bool;
-                        combineUri(relativeUri: string): Windows.Foundation.Uri;
-                        static new(baseUri: string, relativeUri: string): Uri;
-                        static unescapeComponent(toUnescape: string): string;
-                        static escapeComponent(toEscape: string): string;
-                    }
-                 */
+
+
                 sb.AppendLine(Indent + "export class " + TypeDefinition.Name + "{");
 
                 // TODO: get specific types of EventListener types?
                 if (TypeDefinition.HasEvents)
                 {
-                    sb.Append(Indent); sb.Append(Indent); sb.AppendLine("addEventListener(type: string, listener: EventListener): void;");
-                    sb.Append(Indent); sb.Append(Indent); sb.AppendLine("removeEventListener(type: string, listener: EventListener): void;");
+                    step(); step(); sb.AppendLine("addEventListener(type: string, listener: EventListener): void;");
+                    step(); step(); sb.AppendLine("removeEventListener(type: string, listener: EventListener): void;");
 
                     TypeDefinition.Events.For((item, i, isLast) =>
                     {
                         // TODO: events with multiple return types???
-                        sb.Append(Indent); sb.Append(Indent); sb.AppendLine("on" + item.Name.ToLower() + "(ev: any);");
+                        step(); step(); sb.AppendLine("on" + item.Name.ToLower() + "(ev: any);");
                     });
                 }
+
+                var propNames = new HashSet<string>();
+                TypeDefinition.Properties.Each(prop =>
+                {
+                    var propName = prop.Name.ToTypeScriptName();
+                    propNames.Add(propName);
+                    step(); step(); sb.AppendFormat("{0}: {1};", propName, prop.PropertyType.ToTypeScriptType());
+                    sb.AppendLine();
+                });
 
                 foreach (var method in TypeDefinition.Methods)
                 {
@@ -93,18 +61,22 @@ namespace WinmdToTypeScript.Core.TypeWriters
                         (methodName.StartsWith("add_") || methodName.StartsWith("remove_")))
                         continue;
 
+                    // already handled properties
+                    if (method.IsGetter || method.IsSetter)
+                        continue;
+
                     // translate the constructor function
-                    if (methodName == ".ctor")
+                    if (method.IsConstructor)
                     {
                         methodName = "constructor";
                     }
 
                     // Lowercase first char of the method
-                    methodName = Char.ToLowerInvariant(methodName[0]) + methodName.Substring(1);
+                    methodName = methodName.ToTypeScriptName();
 
-                    sb.Append(Indent); sb.Append(Indent); sb.Append(methodName);
+                    step(); step(); sb.Append(methodName);
+
                     sb.Append("(");
-
                     method.Parameters.For((parameter, i, isLast) =>
                     {
                         sb.Append(parameter.Name);
@@ -112,13 +84,63 @@ namespace WinmdToTypeScript.Core.TypeWriters
                         sb.Append(parameter.ParameterType.ToTypeScriptType());
                         if (isLast) sb.Append(", ");
                     });
+                    sb.Append(")");
 
-                    sb.Append(");");
-                    sb.AppendLine();
+                    // constructors don't have return types.
+                    if (!method.IsConstructor)
+                    {
+                        sb.AppendFormat(": {0}", method.ReturnType.ToTypeScriptType());
+                    }
+                    sb.AppendLine(";");
                 }
 
                 sb.AppendLine(Indent + "}");
             });
+        }
+    }
+
+    public class TypeCollection : IEnumerable<string>
+    {
+        Dictionary<string, string> types = new Dictionary<string, string>();
+
+        public bool Contains(string name)
+        {
+            return types.ContainsKey(name);
+        }
+
+        public void Add(string name, string body)
+        {
+            if (types.ContainsKey(name))
+            {
+                if (types[name] != body)
+                {
+                    throw new ArgumentException(
+                        "Duplicate type [{0}] with different bodies {1}{2}{2}{3}"
+                        .FormatWith(name, Environment.NewLine, body, types[name]));
+                }
+            }
+            else
+            {
+                types.Add(name, body);
+            }
+        }
+
+        public IEnumerator<string> GetEnumerator()
+        {
+            return this.types.Values.GetEnumerator();
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+
+        public string Render()
+        {
+            var items = from t in types
+                        orderby t.Key
+                        select t.Value;
+            return string.Join(Environment.NewLine, items);
         }
     }
 }

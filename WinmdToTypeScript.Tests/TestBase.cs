@@ -28,5 +28,10 @@ namespace WinmdToTypeScript.Tests
         {
             return NativeModule.Types.Where(s => s.FullName == "WinmdToTypeScript.Native." + name).Single();
         }
+
+        protected TypeDefinition GetWinNativeType(string name)
+        {
+            return WindowsModule.Types.Where(s => s.FullName == name).Single();
+        }
     }
 }

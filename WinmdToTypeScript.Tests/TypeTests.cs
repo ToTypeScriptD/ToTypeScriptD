@@ -38,5 +38,12 @@ namespace WinmdToTypeScript.Tests
             var result = WinmdToTypeScript.Render.FullAssembly(base.NativeComponentPath);
             Approvals.Verify(result);
         }
+
+        [Test]
+        public void WindowsStorageClass()
+        {
+            var result = GetWinNativeType("Windows.Storage.StorageFile").ToTypeScript();
+            Approvals.Verify(result);
+        }
     }
 }

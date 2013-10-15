@@ -24,9 +24,9 @@ namespace WinmdToTypeScript.Tests
     {
         public static string ToTypeScript(this TypeDefinition value)
         {
-            var sb = new StringBuilder();
-            new TypeWriterGenerator().Generate(value, sb);
-            return sb.ToString();
+            var typeCollection = new TypeCollection();
+            new TypeWriterGenerator().Generate(value, typeCollection);
+            return typeCollection.Render();
         }
     }
 

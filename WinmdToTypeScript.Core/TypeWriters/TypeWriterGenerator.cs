@@ -9,17 +9,23 @@ namespace WinmdToTypeScript.Core.TypeWriters
 {
     public class TypeWriterGenerator
     {
-        public void Generate(Mono.Cecil.TypeDefinition td, StringBuilder sb)
+        public void Generate(Mono.Cecil.TypeDefinition td, TypeCollection typeCollection)
         {
+            // don't duplicate types
+            if (typeCollection.Contains(td.FullName))
+            {
+                return;
+            }
+            StringBuilder sb = new StringBuilder();
             var indentCount = 0;
             TypeWriterBase typeWriter = null;
             if (td.IsEnum)
             {
-                typeWriter = new EnumWriter(td, indentCount);
+                typeWriter = new EnumWriter(td, indentCount, typeCollection);
             }
             else if (td.IsClass)
             {
-                typeWriter = new ClassWriter(td, indentCount);
+                typeWriter = new ClassWriter(td, indentCount, typeCollection);
             }
 
             if (typeWriter == null)
@@ -28,6 +34,7 @@ namespace WinmdToTypeScript.Core.TypeWriters
             }
 
             typeWriter.Write(sb);
+            typeCollection.Add(td.FullName, sb.ToString());
         }
     }
 }
