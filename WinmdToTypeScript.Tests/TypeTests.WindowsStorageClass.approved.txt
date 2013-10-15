@@ -1,25 +1,5 @@
 ﻿declare module Windows.Storage {
 
-    export IInputStreamReference {
-        IAsyncOperation<IInputStream> OpenSequentialReadAsync();
-    }
-    export IRandomAccessStreamReference {
-        IAsyncOperation<IRandomAccessStreamWithContentType> OpenReadAsync();
-    }
-
-    export IStorageItem {
-        attributes: FileAttributes;
-        dateCreated: Date;
-        name: string;
-        path: string;
-        deleteAsync(): IAsyncAction;
-        deleteAsync(option: StorageDeleteOption, ): IAsyncAction;
-        renameAsync(desiredName: string, ): IAsyncAction;
-        renameAsync(desiredName: stringoption: NameCollisionOption, ): IAsyncAction;
-        getBasicPropertiesAsync(): IAsyncOperation`1;
-        isOfType(type: StorageItemTypes, ): Boolean;
-    }
-
     interface IStorageFile extends IStorageItem, IRandomAccessStreamReference, IInputStreamReference {
         contentType: string;
         fileType: string;
@@ -33,6 +13,19 @@
         moveAsync(destinationFolder: IStorageFolderdesiredNewName: string, ): IAsyncAction;
         moveAsync(destinationFolder: IStorageFolderdesiredNewName: stringoption: NameCollisionOption, ): IAsyncAction;
         moveAndReplaceAsync(fileToReplace: IStorageFile, ): IAsyncAction;
+    }
+
+    export IStorageItem {
+        attributes: FileAttributes;
+        dateCreated: Date;
+        name: string;
+        path: string;
+        deleteAsync(): IAsyncAction;
+        deleteAsync(option: StorageDeleteOption, ): IAsyncAction;
+        renameAsync(desiredName: string, ): IAsyncAction;
+        renameAsync(desiredName: stringoption: NameCollisionOption, ): IAsyncAction;
+        getBasicPropertiesAsync(): IAsyncOperation`1;
+        isOfType(type: StorageItemTypes, ): Boolean;
     }
 
     export class StorageFile extends IStorageFile, IStorageItem, IRandomAccessStreamReference, IInputStreamReference{
@@ -52,4 +45,19 @@
         createStreamedFileFromUriAsync(displayNameWithExtension: stringuri: Urithumbnail: IRandomAccessStreamReference, ): IAsyncOperation`1;
         replaceWithStreamedFileFromUriAsync(fileToReplace: IStorageFileuri: Urithumbnail: IRandomAccessStreamReference, ): IAsyncOperation`1;
     }
+
 }
+
+declare module Windows.Storage.Streams {
+
+    interface IInputStreamReference {
+        IAsyncOperation<IInputStream> OpenSequentialReadAsync();
+    }
+
+    interface IRandomAccessStreamReference {
+        (TODO: Promise objects?)
+        IAsyncOperation<IRandomAccessStreamWithContentType> OpenReadAsync();
+    }
+
+}
+

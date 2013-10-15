@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mono.Cecil;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,25 +17,39 @@ namespace WinmdToTypeScript.Core.TypeWriters
             {
                 return;
             }
+
             StringBuilder sb = new StringBuilder();
             var indentCount = 0;
-            TypeWriterBase typeWriter = null;
+            ITypeWriter typeWriter = PickTypeWriter(td, indentCount, typeCollection);
+
+            td.Interfaces.Each(item =>
+            {
+                var itemWriter = new InterfaceWriter(item, indentCount, typeCollection);
+                typeCollection.Add(item.Namespace, item.Name, itemWriter);
+            });
+
+            typeCollection.Add(td.Namespace, td.Name, typeWriter);
+        }
+
+        ITypeWriter PickTypeWriter(TypeDefinition td, int indentCount, TypeCollection typeCollection)
+        {
             if (td.IsEnum)
             {
-                typeWriter = new EnumWriter(td, indentCount, typeCollection);
-            }
-            else if (td.IsClass)
-            {
-                typeWriter = new ClassWriter(td, indentCount, typeCollection);
+                return new EnumWriter(td, indentCount, typeCollection);
             }
 
-            if (typeWriter == null)
+            if (td.IsInterface)
             {
-                throw new NotImplementedException("Could not get a type to generate for:" + td.FullName);
+                return new InterfaceWriter(td, indentCount, typeCollection);
             }
 
-            typeWriter.Write(sb);
-            typeCollection.Add(td.FullName, sb.ToString());
+            if (td.IsClass)
+            {
+                return new ClassWriter(td, indentCount, typeCollection);
+            }
+
+            throw new NotImplementedException("Could not get a type to generate for:" + td.FullName);
         }
+
     }
 }

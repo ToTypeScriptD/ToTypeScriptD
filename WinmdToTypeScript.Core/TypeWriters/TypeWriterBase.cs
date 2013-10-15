@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WinmdToTypeScript.Core.TypeWriters
 {
-    public abstract class TypeWriterBase //: ITypeWriter
+    public abstract class TypeWriterBase: ITypeWriter
     {
         public TypeDefinition TypeDefinition { get; set; }
         public int IndentCount { get; set; }
@@ -39,5 +39,9 @@ namespace WinmdToTypeScript.Core.TypeWriters
             get { return Config.Indentation.Dup(IndentCount); }
         }
 
+        public void step(StringBuilder sb)
+        {
+            sb.Append(Indent);
+        }
     }
 }

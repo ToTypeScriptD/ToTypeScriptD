@@ -8,32 +8,26 @@ namespace WinmdToTypeScript.Core.TypeWriters
 {
     public class ClassWriter : TypeWriterBase
     {
-        private TypeDefinition typeDefinition;
-        private int indentCount;
-
         public ClassWriter(Mono.Cecil.TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection)
             : base(typeDefinition, indentCount, typeCollection)
         {
-            this.typeDefinition = typeDefinition;
-            this.indentCount = indentCount;
         }
 
         public override void Write(System.Text.StringBuilder sb)
         {
-            Action step = () => { sb.Append(Indent); };
             ++IndentCount;
             sb.AppendLine(Indent + "export class " + TypeDefinition.Name + " {");
 
             // TODO: get specific types of EventListener types?
             if (TypeDefinition.HasEvents)
             {
-                step(); step(); sb.AppendLine("addEventListener(type: string, listener: EventListener): void;");
-                step(); step(); sb.AppendLine("removeEventListener(type: string, listener: EventListener): void;");
+                step(sb); step(sb); sb.AppendLine("addEventListener(type: string, listener: EventListener): void;");
+                step(sb); step(sb); sb.AppendLine("removeEventListener(type: string, listener: EventListener): void;");
 
                 TypeDefinition.Events.For((item, i, isLast) =>
                 {
                     // TODO: events with multiple return types???
-                    step(); step(); sb.AppendLine("on" + item.Name.ToLower() + "(ev: any);");
+                    step(sb); step(sb); sb.AppendLine("on" + item.Name.ToLower() + "(ev: any);");
                 });
             }
 
@@ -42,7 +36,7 @@ namespace WinmdToTypeScript.Core.TypeWriters
             {
                 var propName = prop.Name.ToTypeScriptName();
                 propNames.Add(propName);
-                step(); step(); sb.AppendFormat("{0}: {1};", propName, prop.PropertyType.ToTypeScriptType());
+                step(sb); step(sb); sb.AppendFormat("{0}: {1};", propName, prop.PropertyType.ToTypeScriptType());
                 sb.AppendLine();
             });
 
@@ -69,7 +63,7 @@ namespace WinmdToTypeScript.Core.TypeWriters
                 // Lowercase first char of the method
                 methodName = methodName.ToTypeScriptName();
 
-                step(); step(); sb.Append(methodName);
+                step(sb); step(sb); sb.Append(methodName);
 
                 sb.Append("(");
                 method.Parameters.For((parameter, i, isLast) =>
@@ -93,40 +87,32 @@ namespace WinmdToTypeScript.Core.TypeWriters
         }
     }
 
-    public class TypeCollection : IEnumerable<string>
+    public class TypeCollection
     {
-        Dictionary<string, string> types = new Dictionary<string, string>();
+        Dictionary<string, ITypeWriter> types = new Dictionary<string, ITypeWriter>();
 
         public bool Contains(string name)
         {
             return types.ContainsKey(name);
         }
 
-        public void Add(string name, string body)
+        public void Add(string @namespace, string name, ITypeWriter typeWriterBase)
         {
-            if (types.ContainsKey(name))
-            {
-                if (types[name] != body)
-                {
-                    throw new ArgumentException(
-                        "Duplicate type [{0}] with different bodies {1}{2}{2}{3}"
-                        .FormatWith(name, Environment.NewLine, body, types[name]));
-                }
-            }
-            else
-            {
-                types.Add(name, body);
-            }
-        }
+            if (name == "<Module>")
+                return;
 
-        public IEnumerator<string> GetEnumerator()
-        {
-            return this.types.Values.GetEnumerator();
-        }
+            if (name.StartsWith("__I") && name.EndsWith("PublicNonVirtuals"))
+                return;
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
+            if (name.StartsWith("__I") && name.EndsWith("ProtectedNonVirtuals"))
+                return;
+
+            var fullname = @namespace + "." + name;
+
+            if (!types.ContainsKey(fullname))
+            {
+                types.Add(fullname, typeWriterBase);
+            }
         }
 
         public string Render()
@@ -150,10 +136,12 @@ namespace WinmdToTypeScript.Core.TypeWriters
 
                 foreach (var type in ns)
                 {
-                    sb.AppendLine(type.Value);
+                    type.Value.Write(sb);
+                    sb.AppendLine();
                 }
 
                 sb.AppendLine("}");
+                sb.AppendLine();
             }
             return sb.ToString();
         }

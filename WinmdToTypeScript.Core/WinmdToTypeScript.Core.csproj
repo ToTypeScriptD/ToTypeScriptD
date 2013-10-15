@@ -51,6 +51,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Render.cs" />
     <Compile Include="TypeWriters\ClassWriter.cs" />
+    <Compile Include="TypeWriters\InterfaceWriter.cs" />
+    <Compile Include="TypeWriters\ITypeWriter.cs" />
     <Compile Include="TypeWriters\NamespaceWriter.cs" />
     <Compile Include="TypeWriters\TypeWriterBase.cs" />
     <Compile Include="TypeWriters\TypeWriterConfig.cs" />

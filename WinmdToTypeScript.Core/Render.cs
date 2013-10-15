@@ -16,22 +16,6 @@ namespace WinmdToTypeScript
             var typeWriterGenerator = new TypeWriterGenerator();
             foreach (var item in assembly.MainModule.Types)
             {
-                if (item.Name == "<Module>")
-                {
-                    continue;
-                }
-
-                if (item.Name.StartsWith("__I") && item.Name.EndsWith("PublicNonVirtuals"))
-                {
-                    continue;
-                }
-
-                if (item.Name.StartsWith("__I") && item.Name.EndsWith("ProtectedNonVirtuals"))
-                {
-                    continue;
-                }
-
-
                 typeWriterGenerator.Generate(item, typeCollection);
             }
 
