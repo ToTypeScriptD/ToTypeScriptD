@@ -1,4 +1,5 @@
 ﻿using Mono.Cecil;
+using System;
 
 namespace WinmdToTypeScript.Core.TypeWriters
 {
@@ -95,6 +96,8 @@ namespace WinmdToTypeScript.Core.TypeWriters
                     {
                         methodName = "constructor";
                     }
+
+                    methodName = Char.ToLowerInvariant(methodName[0]) + methodName.Substring(1);
 
                     sb.Append(Indent); sb.Append(Indent); sb.Append(methodName);
                     sb.Append("(");

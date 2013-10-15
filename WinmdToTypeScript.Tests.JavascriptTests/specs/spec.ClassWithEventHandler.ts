@@ -7,9 +7,11 @@ describe('ClassWithEventHandler', function () {
     it("when calling onsomethinghappened it should raise the event.", function (done) {
         var item = new WinmdToTypeScript.Native.ClassWithEventHandler();
 
-        item.onsomethinghappened = function () {
+        item.onsomethinghappened = function (ev) {
             done();
-        }
+        };
+
+        item.doSomething();
 
     });
 

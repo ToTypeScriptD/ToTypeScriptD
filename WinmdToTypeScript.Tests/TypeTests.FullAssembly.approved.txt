@@ -8,7 +8,7 @@ declare module WinmdToTypeScript.Native {
         removeEventListener(type: string, listener: EventListener): void;
         onsomethinghappened(ev: any);
         constructor();
-        DoSomething();
+        doSomething();
     }
 }
 declare module WinmdToTypeScript.Native {
