@@ -28,20 +28,16 @@ namespace WinmdToTypeScript.Core.TypeWriters
 
         public override void Write(StringBuilder sb)
         {
-            var namespaceWriter = new NamespaceWriter(TypeDefinition, IndentCount, this.TypeCollection);
-            namespaceWriter.Write(sb, () =>
+            ++IndentCount;
+            sb.AppendLine(Indent + "enum " + TypeDefinition.Name + " {");
+            for (int i = 0; i < TypeDefinition.Fields.Count; i++)
             {
-                ++IndentCount;
-                sb.AppendLine(Indent + "enum " + TypeDefinition.Name + "{");
-                for (int i = 0; i < TypeDefinition.Fields.Count; i++)
-                {
-                    var item = TypeDefinition.Fields[i];
-                    if (item.Name == "value__") continue;
-                    sb.Append(Indent + Indent + item.Name + " = " + item.Constant);
-                    sb.AppendLine(i == TypeDefinition.Fields.Count - 1 ? "" : ",");
-                }
-                sb.AppendLine(Indent + "}");
-            });
+                var item = TypeDefinition.Fields[i];
+                if (item.Name == "value__") continue;
+                sb.Append(Indent + Indent + item.Name + " = " + item.Constant);
+                sb.AppendLine(i == TypeDefinition.Fields.Count - 1 ? "" : ",");
+            }
+            sb.AppendLine(Indent + "}");
         }
     }
 }
