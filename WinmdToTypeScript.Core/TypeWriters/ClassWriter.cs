@@ -76,42 +76,43 @@ namespace WinmdToTypeScript.Core.TypeWriters
                     sb.Append(Indent); sb.Append(Indent); sb.AppendLine("addEventListener(type: string, listener: EventListener): void;");
                     sb.Append(Indent); sb.Append(Indent); sb.AppendLine("removeEventListener(type: string, listener: EventListener): void;");
 
-                    for (int i = 0; i < TypeDefinition.Events.Count; i++)
+                    TypeDefinition.Events.For((item, i, isLast) =>
                     {
-                        var item = TypeDefinition.Events[i];
+                        // TODO: events with multiple return types???
                         sb.Append(Indent); sb.Append(Indent); sb.AppendLine("on" + item.Name.ToLower() + "(ev: any);");
-                    }
+                    });
                 }
 
                 foreach (var method in TypeDefinition.Methods)
                 {
                     var methodName = method.Name;
 
-                    if (methodName.StartsWith("add_") && method.HasParameters && method.Parameters[0].Name.StartsWith("__param0"))
-                        continue;
-                    if (methodName.StartsWith("remove_") && method.HasParameters && method.Parameters[0].Name.StartsWith("__param0"))
+                    // ignore special event handler methods
+                    if (method.HasParameters &&
+                        method.Parameters[0].Name.StartsWith("__param0") &&
+                        (methodName.StartsWith("add_") || methodName.StartsWith("remove_")))
                         continue;
 
+                    // translate the constructor function
                     if (methodName == ".ctor")
                     {
                         methodName = "constructor";
                     }
 
+                    // Lowercase first char of the method
                     methodName = Char.ToLowerInvariant(methodName[0]) + methodName.Substring(1);
 
                     sb.Append(Indent); sb.Append(Indent); sb.Append(methodName);
                     sb.Append("(");
-                    for (int iparameter = 0; iparameter < method.Parameters.Count; iparameter++)
+
+                    method.Parameters.For((parameter, i, isLast) =>
                     {
-                        var parameter = method.Parameters[iparameter];
                         sb.Append(parameter.Name);
                         sb.Append(": ");
                         sb.Append(parameter.ParameterType.ToTypeScriptType());
-                        if (iparameter < method.Parameters.Count - 1)
-                        {
-                            sb.Append(", ");
-                        }
-                    }
+                        if (isLast) sb.Append(", ");
+                    });
+
                     sb.Append(");");
                     sb.AppendLine();
                 }
