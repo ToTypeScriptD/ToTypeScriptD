@@ -1,13 +1,13 @@
 ﻿declare module Windows.Storage {
 
-    interface IStorageFile extends IStorageItem, IRandomAccessStreamReference, IInputStreamReference {
+    interface IStorageFile extends  Windows.Storage.IStorageItem,  Windows.Storage.Streams.IRandomAccessStreamReference,  Windows.Storage.Streams.IInputStreamReference {
         contentType: string;
         fileType: string;
-        openAsync(accessMode: FileAccessMode, ): IAsyncOperation`1;
-        openTransactedWriteAsync(): IAsyncOperation`1;
-        copyAsync(destinationFolder: IStorageFolder, ): IAsyncOperation`1;
-        copyAsync(destinationFolder: IStorageFolderdesiredNewName: string, ): IAsyncOperation`1;
-        copyAsync(destinationFolder: IStorageFolderdesiredNewName: stringoption: NameCollisionOption, ): IAsyncOperation`1;
+        openAsync(accessMode: FileAccessMode, ): WinJS.Promise<Windows.Storage.Streams.IRandomAccessStream>;
+        openTransactedWriteAsync(): WinJS.Promise<Windows.Storage.StorageStreamTransaction>;
+        copyAsync(destinationFolder: IStorageFolder, ): WinJS.Promise<Windows.Storage.StorageFile>;
+        copyAsync(destinationFolder: IStorageFolderdesiredNewName: string, ): WinJS.Promise<Windows.Storage.StorageFile>;
+        copyAsync(destinationFolder: IStorageFolderdesiredNewName: stringoption: NameCollisionOption, ): WinJS.Promise<Windows.Storage.StorageFile>;
         copyAndReplaceAsync(fileToReplace: IStorageFile, ): IAsyncAction;
         moveAsync(destinationFolder: IStorageFolder, ): IAsyncAction;
         moveAsync(destinationFolder: IStorageFolderdesiredNewName: string, ): IAsyncAction;
@@ -15,17 +15,27 @@
         moveAndReplaceAsync(fileToReplace: IStorageFile, ): IAsyncAction;
     }
 
-    export IStorageItem {
+    interface IStorageItem {
         attributes: FileAttributes;
         dateCreated: Date;
         name: string;
         path: string;
-        deleteAsync(): IAsyncAction;
-        deleteAsync(option: StorageDeleteOption, ): IAsyncAction;
         renameAsync(desiredName: string, ): IAsyncAction;
         renameAsync(desiredName: stringoption: NameCollisionOption, ): IAsyncAction;
-        getBasicPropertiesAsync(): IAsyncOperation`1;
+        deleteAsync(): IAsyncAction;
+        deleteAsync(option: StorageDeleteOption, ): IAsyncAction;
+        getBasicPropertiesAsync(): WinJS.Promise<Windows.Storage.FileProperties.BasicProperties>;
         isOfType(type: StorageItemTypes, ): Boolean;
+    }
+
+    interface IStorageItemProperties {
+        displayName: string;
+        displayType: string;
+        folderRelativeId: string;
+        properties: StorageItemContentProperties;
+        getThumbnailAsync(mode: ThumbnailMode, ): WinJS.Promise<Windows.Storage.FileProperties.StorageItemThumbnail>;
+        getThumbnailAsync(mode: ThumbnailModerequestedSize: UInt32, ): WinJS.Promise<Windows.Storage.FileProperties.StorageItemThumbnail>;
+        getThumbnailAsync(mode: ThumbnailModerequestedSize: UInt32options: ThumbnailOptions, ): WinJS.Promise<Windows.Storage.FileProperties.StorageItemThumbnail>;
     }
 
     export class StorageFile extends IStorageFile, IStorageItem, IRandomAccessStreamReference, IInputStreamReference{
@@ -47,17 +57,14 @@
     }
 
 }
-
 declare module Windows.Storage.Streams {
 
     interface IInputStreamReference {
-        IAsyncOperation<IInputStream> OpenSequentialReadAsync();
+        openSequentialReadAsync(): WinJS.Promise<Windows.Storage.Streams.IInputStream>;
     }
 
     interface IRandomAccessStreamReference {
-        (TODO: Promise objects?)
-        IAsyncOperation<IRandomAccessStreamWithContentType> OpenReadAsync();
+        openReadAsync(): WinJS.Promise<Windows.Storage.Streams.IRandomAccessStreamWithContentType>;
     }
 
 }
-

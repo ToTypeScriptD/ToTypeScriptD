@@ -24,8 +24,15 @@ namespace WinmdToTypeScript.Core.TypeWriters
 
             td.Interfaces.Each(item =>
             {
-                var itemWriter = new InterfaceWriter(item, indentCount, typeCollection);
-                typeCollection.Add(item.Namespace, item.Name, itemWriter);
+                var foundType = item.Module.Types.SingleOrDefault(w => w.FullName == item.FullName);
+                if (foundType == null)
+                {
+                    throw new Exception("Could not find type: " + item.FullName);
+                }
+
+                var itemWriter = new InterfaceWriter(foundType, indentCount, typeCollection);
+                typeCollection.Add(foundType.Namespace, foundType.Name, itemWriter);
+
             });
 
             typeCollection.Add(td.Namespace, td.Name, typeWriter);

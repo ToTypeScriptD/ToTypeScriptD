@@ -19,7 +19,20 @@ namespace WinmdToTypeScript
                 case "String": return "string";
                 case "DateTime": return "Date";
                 case "Void": return "void";
-                    
+                case "IAsyncOperation`1":
+                    var pre = "WinJS.Promise";
+                    var genericInstanceType = typeReference as Mono.Cecil.GenericInstanceType;
+                    //(new System.Linq.SystemCore_EnumerableDebugView<Mono.Cecil.TypeReference>(((Mono.Cecil.GenericInstanceType)(typeReference)).GenericArguments)).Items[0].FullName
+                    if (genericInstanceType.GenericArguments.Any())
+                    {
+                        if (genericInstanceType.GenericArguments.Count != 1)
+                        {
+                            // is this possible?
+                            throw new Exception("IAsyncOperation`1 with more than one generic argument on type:" + typeReference.FullName);
+                        }
+                        return pre + "<" + genericInstanceType.GenericArguments.First().FullName + ">";
+                    }
+                    return pre;
                 default:
                     return typeReference.Name;
             }
