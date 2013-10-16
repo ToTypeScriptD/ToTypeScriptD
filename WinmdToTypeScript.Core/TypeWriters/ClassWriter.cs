@@ -141,7 +141,6 @@ namespace WinmdToTypeScript.Core.TypeWriters
                 }
 
                 sb.AppendLine("}");
-                sb.AppendLine();
             }
             return sb.ToString();
         }
