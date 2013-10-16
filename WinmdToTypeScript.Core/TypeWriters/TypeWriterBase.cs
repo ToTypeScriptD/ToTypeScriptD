@@ -5,7 +5,7 @@ using System.Text;
 
 namespace WinmdToTypeScript.Core.TypeWriters
 {
-    public abstract class TypeWriterBase: ITypeWriter
+    public abstract class TypeWriterBase : ITypeWriter
     {
         public TypeDefinition TypeDefinition { get; set; }
         public int IndentCount { get; set; }
@@ -96,15 +96,21 @@ namespace WinmdToTypeScript.Core.TypeWriters
                 // Lowercase first char of the method
                 methodName = methodName.ToTypeScriptName();
 
-                step(sb); step(sb); sb.Append(methodName);
+                step(sb); step(sb);
+                if (method.IsStatic)
+                {
+                    sb.Append("static ");
+                }
+                sb.Append(methodName);
 
                 sb.Append("(");
                 method.Parameters.For((parameter, i, isLast) =>
                 {
+                    sb.Append(i == 0 ? "" : " ");
                     sb.Append(parameter.Name);
                     sb.Append(": ");
                     sb.Append(parameter.ParameterType.ToTypeScriptType());
-                    if (isLast) sb.Append(", ");
+                    sb.Append(isLast ? "" : ",");
                 });
                 sb.Append(")");
 

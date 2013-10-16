@@ -14,27 +14,21 @@ namespace WinmdToTypeScript
 
         public static string ToTypeScriptType(this Mono.Cecil.TypeReference typeReference)
         {
-            switch (typeReference.Name)
+            switch (typeReference.FullName)
             {
-                case "String": return "string";
-                case "DateTime": return "Date";
-                case "Void": return "void";
-                case "IAsyncOperation`1":
-                    var pre = "WinJS.Promise";
-                    var genericInstanceType = typeReference as Mono.Cecil.GenericInstanceType;
-                    //(new System.Linq.SystemCore_EnumerableDebugView<Mono.Cecil.TypeReference>(((Mono.Cecil.GenericInstanceType)(typeReference)).GenericArguments)).Items[0].FullName
-                    if (genericInstanceType.GenericArguments.Any())
-                    {
-                        if (genericInstanceType.GenericArguments.Count != 1)
-                        {
-                            // is this possible?
-                            throw new Exception("IAsyncOperation`1 with more than one generic argument on type:" + typeReference.FullName);
-                        }
-                        return pre + "<" + genericInstanceType.GenericArguments.First().FullName + ">";
-                    }
-                    return pre;
+                case "System.String": return "string";
+                case "Windows.Foundation.DateTime": return "Date";
+                case "System.Int16":
+                case "System.Int32":
+                case "System.Int64":
+                case "System.UInt16":
+                case "System.UInt32":
+                case "System.UInt64":
+                    return "number";
+                case "System.Void": return "void";
+                case "System.Boolean": return "boolean";
                 default:
-                    return typeReference.Name;
+                    return typeReference.FullName.Replace("`1", "");
             }
         }
         public static string ToTypeScriptName(this string name)

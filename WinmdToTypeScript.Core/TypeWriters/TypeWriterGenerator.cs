@@ -27,7 +27,9 @@ namespace WinmdToTypeScript.Core.TypeWriters
                 var foundType = item.Module.Types.SingleOrDefault(w => w.FullName == item.FullName);
                 if (foundType == null)
                 {
-                    throw new Exception("Could not find type: " + item.FullName);
+                    Console.Error.WriteLine("Could not find type: " + item.FullName);
+                    //throw new Exception("Could not find type: " + item.FullName);
+                    return;
                 }
 
                 var itemWriter = new InterfaceWriter(foundType, indentCount, typeCollection);

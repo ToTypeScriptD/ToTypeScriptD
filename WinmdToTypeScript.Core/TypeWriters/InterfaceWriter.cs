@@ -19,10 +19,10 @@ namespace WinmdToTypeScript.Core.TypeWriters
 
             if (TypeDefinition.Interfaces.Any())
             {
-                sb.Append("extends ");
+                sb.Append("extends");
                 TypeDefinition.Interfaces.For((item, i, isLast) =>
                 {
-                    sb.AppendFormat(" {0}{1} ", item.FullName, isLast ? "" : ",");
+                    sb.AppendFormat(" {0}{1}", item.FullName, isLast ? " " : ",");
                 });
             }
             sb.AppendLine("{");

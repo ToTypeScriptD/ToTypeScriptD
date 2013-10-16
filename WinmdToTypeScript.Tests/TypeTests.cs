@@ -33,7 +33,7 @@ namespace WinmdToTypeScript.Tests
         }
 
         [Test]
-        public void FullAssembly()
+        public void FullSampleAssembly()
         {
             var result = WinmdToTypeScript.Render.FullAssembly(base.NativeComponentPath);
             Approvals.Verify(result);
@@ -45,5 +45,13 @@ namespace WinmdToTypeScript.Tests
             var result = GetWinNativeType("Windows.Storage.StorageFile").ToTypeScript();
             Approvals.Verify(result);
         }
+
+        //[Test]
+        //public void FullWindowsAssembly()
+        //{
+        //    var file = @"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd";
+        //    var result = WinmdToTypeScript.Render.FullAssembly(file);
+        //    Approvals.Verify(result);
+        //}
     }
 }
