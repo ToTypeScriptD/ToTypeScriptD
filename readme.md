@@ -9,3 +9,8 @@ http://msdn.microsoft.com/en-us/library/dn449396(v=winembedded.82).aspx
 http://msdn.microsoft.com/en-us/library/jj979322(v=winembedded.81).aspx
 http://msdn.microsoft.com/en-us/library/jj979538(v=winembedded.81).aspx
 
+
+TODO:
+
+- [ ] Update typings such that Task<T> acts/looks like a promise
+- [ ] 
