@@ -19,25 +19,4 @@ namespace WinmdToTypeScript.Core.TypeWriters
             sb.Append(Indent); sb.AppendLine("}");
         }
     }
-
-    public class EnumWriter : TypeWriterBase
-    {
-        public EnumWriter(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection)
-            : base(typeDefinition, indentCount, typeCollection)
-        { }
-
-        public override void Write(StringBuilder sb)
-        {
-            ++IndentCount;
-            sb.AppendLine(Indent + "enum " + TypeDefinition.Name + " {");
-            for (int i = 0; i < TypeDefinition.Fields.Count; i++)
-            {
-                var item = TypeDefinition.Fields[i];
-                if (item.Name == "value__") continue;
-                sb.Append(Indent + Indent + item.Name + " = " + item.Constant);
-                sb.AppendLine(i == TypeDefinition.Fields.Count - 1 ? "" : ",");
-            }
-            sb.AppendLine(Indent + "}");
-        }
-    }
 }

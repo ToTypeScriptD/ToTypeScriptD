@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Mono.Cecil;
 using ApprovalTests.Reporters;
+using System.Collections.Generic;
 
 namespace WinmdToTypeScript.Tests
 {
@@ -32,6 +33,11 @@ namespace WinmdToTypeScript.Tests
         protected TypeDefinition GetWinNativeType(string name)
         {
             return WindowsModule.Types.Where(s => s.FullName == name).Single();
+        }
+
+        protected IEnumerable<TypeDefinition> GetWinNativeTypes(string name)
+        {
+            return WindowsModule.Types.Where(s => s.FullName.StartsWith(name));
         }
     }
 }

@@ -10,6 +10,13 @@ namespace WinmdToTypeScript.Core.TypeWriters
 {
     public class TypeWriterGenerator
     {
+        public void Generate(IEnumerable<Mono.Cecil.TypeDefinition> tds, TypeCollection typeCollection)
+        {
+            foreach (var item in tds)
+            {
+                Generate(item, typeCollection);
+            }
+        }
         public void Generate(Mono.Cecil.TypeDefinition td, TypeCollection typeCollection)
         {
             // don't duplicate types
