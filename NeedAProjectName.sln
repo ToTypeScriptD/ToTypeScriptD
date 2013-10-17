@@ -17,6 +17,8 @@ Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "NeedAProjectName.Tests.Java
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeedAProjectName.TestAssembly.CSharp", "NeedAProjectName.TestAssembly.CSharp\NeedAProjectName.TestAssembly.CSharp.csproj", "{C7F85246-C5D8-44B0-A125-E526E24F900B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedItems", "SharedItems", "{A9C25E8C-8B6E-44E2-932B-A95F7EF232A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
