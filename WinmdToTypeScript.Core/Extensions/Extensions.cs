@@ -12,25 +12,57 @@ namespace WinmdToTypeScript
             return string.Join("", Enumerable.Range(0, count).Select(s => value));
         }
 
+        static Dictionary<string, string> typeMap = new Dictionary<string, string>{
+                { "System.String",               "string"},
+                { "System.Int16",                "number"},
+                { "System.Int32",                "number"},
+                { "System.Int64",                "number"},
+                { "System.UInt16",               "number"},
+                { "System.UInt32",               "number"},
+                { "System.UInt64",               "number"},
+                { "Windows.Foundation.DateTime", "Date"},
+                { "System.Void",                 "void"},
+                { "System.Boolean",              "boolean"},
+            };
+        static Dictionary<string, string> genericTypeMap = null;
+
         public static string ToTypeScriptType(this Mono.Cecil.TypeReference typeReference)
         {
-            switch (typeReference.FullName)
+            if (genericTypeMap == null)
             {
-                case "System.String": return "string";
-                case "Windows.Foundation.DateTime": return "Date";
-                case "System.Int16":
-                case "System.Int32":
-                case "System.Int64":
-                case "System.UInt16":
-                case "System.UInt32":
-                case "System.UInt64":
-                    return "number";
-                case "System.Void": return "void";
-                case "System.Boolean": return "boolean";
-                default:
-                    return typeReference.FullName.Replace("`1", "");
+                genericTypeMap = typeMap.ToDictionary(item => "<" + item.Key + ">", item => "<" + item.Value + ">");
             }
+
+            var fromName = typeReference.FullName;
+
+            if (typeMap.ContainsKey(fromName))
+            {
+                return typeMap[fromName];
+            }
+
+            var genericType = genericTypeMap.FirstOrDefault(x => fromName.Contains(x.Key));
+            if (!genericType.Equals(default(System.Collections.Generic.KeyValuePair<string, string>)))
+            {
+                fromName = fromName.Replace(genericType.Key, genericType.Value);
+            }
+
+            // remove the generic bit
+            return fromName.Replace("`1", "");
         }
+
+        public static HashSet<T> ToHashSet<T>(this IEnumerable<T> items)
+        {
+            var hashset = new HashSet<T>();
+            if (items != null)
+            {
+                foreach (var item in items)
+                {
+                    hashset.Add(item);
+                }
+            }
+            return hashset;
+        }
+
         public static string ToTypeScriptName(this string name)
         {
             return Char.ToLowerInvariant(name[0]) + name.Substring(1);

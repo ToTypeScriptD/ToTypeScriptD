@@ -45,7 +45,13 @@ namespace WinmdToTypeScript.Tests
             var result = GetWinNativeType("Windows.Storage.StorageFile").ToTypeScript();
             Approvals.Verify(result);
         }
-
+        [Test]
+        public void WindowsSystemUserProfileGlobalizationPreferencesClass()
+        {
+            var result = GetWinNativeType("Windows.System.UserProfile.GlobalizationPreferences").ToTypeScript();
+            Approvals.Verify(result);
+        }
+        
         //[Test]
         //public void FullWindowsAssembly()
         //{
