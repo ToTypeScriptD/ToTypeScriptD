@@ -1,6 +1,7 @@
 ﻿using Mono.Cecil;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace WinmdToTypeScript.Core.TypeWriters
@@ -45,8 +46,31 @@ namespace WinmdToTypeScript.Core.TypeWriters
             sb.Append(Indent);
         }
 
-        internal void WriteOutMethodSignatures(StringBuilder sb)
+        internal void WriteOutMethodSignatures(StringBuilder sb, string exportType, string inheriterString)
         {
+            step(sb); sb.AppendFormat("export {0} {1}", exportType, TypeDefinition.Name.StripGenericTick());
+
+            if (TypeDefinition.HasGenericParameters)
+            {
+                sb.Append("<");
+                TypeDefinition.GenericParameters.For((genericParameter, i, isLastItem) =>
+                {
+                    sb.AppendFormat("{0}{1}", genericParameter.Name, isLastItem ? "" : ",");
+                });
+                sb.Append(">");
+            }
+
+            sb.Append(" ");
+            if (TypeDefinition.Interfaces.Any())
+            {
+                sb.Append(inheriterString);
+                TypeDefinition.Interfaces.For((item, i, isLast) =>
+                {
+                    sb.AppendFormat(" {0}{1}", item.FullName.StripGenericTick(), isLast ? " " : ",");
+                });
+            }
+            sb.AppendLine("{");
+
             // TODO: get specific types of EventListener types?
             if (TypeDefinition.HasEvents)
             {

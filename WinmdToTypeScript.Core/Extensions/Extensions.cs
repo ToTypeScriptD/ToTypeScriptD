@@ -47,7 +47,7 @@ namespace WinmdToTypeScript
             }
 
             // remove the generic bit
-            return fromName.Replace("`1", "");
+            return fromName.StripGenericTick();
         }
 
         public static HashSet<T> ToHashSet<T>(this IEnumerable<T> items)
@@ -90,6 +90,10 @@ namespace WinmdToTypeScript
                 }
             }
         }
+        public static IEnumerable<int> Times(this int value)
+        {
+            return Enumerable.Range(0, value);
+        }
 
         public static void Each<T>(this IEnumerable<T> items, Action<T> action)
         {
@@ -104,6 +108,15 @@ namespace WinmdToTypeScript
         public static string FormatWith(this string format, params object[] args)
         {
             return string.Format(System.Globalization.CultureInfo.CurrentCulture, format, args);
+        }
+
+        public static string StripGenericTick(this string value)
+        {
+            4.Times().Each(x =>
+            {
+                value = value.Replace("`" + x, "");
+            });
+            return value;
         }
     }
 }

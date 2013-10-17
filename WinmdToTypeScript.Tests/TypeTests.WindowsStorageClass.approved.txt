@@ -1,6 +1,6 @@
 ﻿declare module Windows.Storage {
 
-    interface IStorageFile extends Windows.Storage.IStorageItem, Windows.Storage.Streams.IRandomAccessStreamReference, Windows.Storage.Streams.IInputStreamReference {
+    export interface IStorageFile extends Windows.Storage.IStorageItem, Windows.Storage.Streams.IRandomAccessStreamReference, Windows.Storage.Streams.IInputStreamReference {
         contentType: string;
         fileType: string;
         openAsync(accessMode: Windows.Storage.FileAccessMode): Windows.Foundation.IAsyncOperation<Windows.Storage.Streams.IRandomAccessStream>;
@@ -15,7 +15,7 @@
         moveAndReplaceAsync(fileToReplace: Windows.Storage.IStorageFile): Windows.Foundation.IAsyncAction;
     }
 
-    interface IStorageItem {
+    export interface IStorageItem {
         attributes: Windows.Storage.FileAttributes;
         dateCreated: Date;
         name: string;
@@ -28,7 +28,7 @@
         isOfType(type: Windows.Storage.StorageItemTypes): boolean;
     }
 
-    interface IStorageItemProperties {
+    export interface IStorageItemProperties {
         displayName: string;
         displayType: string;
         folderRelativeId: string;
@@ -81,11 +81,11 @@
 }
 declare module Windows.Storage.Streams {
 
-    interface IInputStreamReference {
+    export interface IInputStreamReference {
         openSequentialReadAsync(): Windows.Foundation.IAsyncOperation<Windows.Storage.Streams.IInputStream>;
     }
 
-    interface IRandomAccessStreamReference {
+    export interface IRandomAccessStreamReference {
         openReadAsync(): Windows.Foundation.IAsyncOperation<Windows.Storage.Streams.IRandomAccessStreamWithContentType>;
     }
 

@@ -16,19 +16,7 @@ namespace WinmdToTypeScript.Core.TypeWriters
         public override void Write(System.Text.StringBuilder sb)
         {
             ++IndentCount;
-            step(sb); sb.Append("export class " + TypeDefinition.Name + " ");
-
-            if (TypeDefinition.Interfaces.Any())
-            {
-                sb.Append("implements");
-                TypeDefinition.Interfaces.For((item, i, isLast) =>
-                {
-                    sb.AppendFormat(" {0}{1}", item.FullName, isLast ? " " : ",");
-                });
-            }
-            sb.AppendLine("{");
-
-            base.WriteOutMethodSignatures(sb);
+            base.WriteOutMethodSignatures(sb, "class", "implements");
             step(sb); sb.AppendLine("}");
         }
     }
