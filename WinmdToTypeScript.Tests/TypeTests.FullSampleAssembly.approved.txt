@@ -13,17 +13,17 @@
     }
 
     enum SampleEnum {
-        A,
-        B,
-        C,
-        D
+        a,
+        b,
+        c,
+        d
     }
 
     enum SampleEnumNumbered {
-        A,
-        B,
-        C,
-        D
+        a,
+        b,
+        c,
+        d
     }
 
     export class SomethingHappenedEventHandler {

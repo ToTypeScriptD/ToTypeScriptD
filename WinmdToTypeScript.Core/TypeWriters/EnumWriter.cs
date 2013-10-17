@@ -17,7 +17,7 @@ namespace WinmdToTypeScript.Core.TypeWriters
             TypeDefinition.Fields.For((item, i, isLast) =>
             {
                 if (item.Name == "value__") return;
-                sb.AppendFormat("{0}{1}", Indent, item.Name);
+                sb.AppendFormat("{0}{1}", Indent, item.Name.ToTypeScriptName());
                 sb.AppendLine(isLast ? "" : ",");
             });
             --IndentCount;

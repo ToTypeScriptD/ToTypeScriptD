@@ -1,10 +1,10 @@
 ﻿declare module WinmdToTypeScript.Native {
 
     enum SampleEnumNumbered {
-        A,
-        B,
-        C,
-        D
+        a,
+        b,
+        c,
+        d
     }
 
 }
