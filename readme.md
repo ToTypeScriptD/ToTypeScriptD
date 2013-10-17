@@ -14,3 +14,6 @@ TODO:
 
 - [ ] Update typings such that Task<T> acts/looks like a promise
 - [ ] javascript test project not setup nicely to compile *.ts files
+- [ ] C.I. (build scripts)
+- [ ] FX cop for release build?
+- [ ] Editor Config
