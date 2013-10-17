@@ -1,0 +1,10 @@
+﻿declare module NeedAProjectName.Native {
+
+    enum SampleEnum {
+        a,
+        b,
+        c,
+        d
+    }
+
+}
