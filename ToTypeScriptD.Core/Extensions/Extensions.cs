@@ -27,6 +27,20 @@ namespace ToTypeScriptD
             };
         static Dictionary<string, string> genericTypeMap = null;
 
+        public static bool ShouldIgnoreType(this string name)
+        {
+            if (name == "<Module>")
+                return true;
+
+            if (name.StartsWith("__I") && name.EndsWith("PublicNonVirtuals"))
+                return true;
+
+            if (name.StartsWith("__I") && name.EndsWith("ProtectedNonVirtuals"))
+                return true;
+
+            return false;
+        }
+
         public static string ToTypeScriptType(this Mono.Cecil.TypeReference typeReference)
         {
             if (genericTypeMap == null)

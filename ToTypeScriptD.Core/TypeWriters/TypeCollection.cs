@@ -16,13 +16,7 @@ namespace ToTypeScriptD.Core.TypeWriters
 
         public void Add(string @namespace, string name, ITypeWriter typeWriterBase)
         {
-            if (name == "<Module>")
-                return;
-
-            if (name.StartsWith("__I") && name.EndsWith("PublicNonVirtuals"))
-                return;
-
-            if (name.StartsWith("__I") && name.EndsWith("ProtectedNonVirtuals"))
+            if (name.ShouldIgnoreType())
                 return;
 
             var fullname = @namespace + "." + name;

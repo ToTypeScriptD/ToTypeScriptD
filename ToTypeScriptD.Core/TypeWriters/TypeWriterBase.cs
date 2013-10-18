@@ -63,11 +63,15 @@ namespace ToTypeScriptD.Core.TypeWriters
             sb.Append(" ");
             if (TypeDefinition.Interfaces.Any())
             {
-                sb.Append(inheriterString);
-                TypeDefinition.Interfaces.For((item, i, isLast) =>
+                var interfaceTypes = TypeDefinition.Interfaces.Where(w => !w.Name.ShouldIgnoreType());
+                if (interfaceTypes.Any())
                 {
-                    sb.AppendFormat(" {0}{1}", item.FullName.StripGenericTick(), isLast ? " " : ",");
-                });
+                    sb.Append(inheriterString);
+                    interfaceTypes.For((item, i, isLast) =>
+                    {
+                        sb.AppendFormat(" {0}{1}", item.FullName.StripGenericTick(), isLast ? " " : ",");
+                    });
+                }
             }
             sb.AppendLine("{");
 
