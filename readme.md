@@ -1,4 +1,4 @@
-Welcome to `NeedAProjectName`
+Welcome to `ToTypeScriptD`
 ====
 
 The project is intended to give you a tool that can read in a `*.dll` or `*.winmd` file and generate a `*.d.ts` set of [TypeScript](http://typescriptlang.org) definitions.

@@ -1,0 +1,10 @@
+﻿declare module ToTypeScriptD.Native {
+
+    enum SampleEnumNumbered {
+        a,
+        b,
+        c,
+        d
+    }
+
+}

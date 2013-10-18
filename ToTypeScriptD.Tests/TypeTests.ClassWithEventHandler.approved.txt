@@ -1,0 +1,11 @@
+﻿declare module ToTypeScriptD.Native {
+
+    export class ClassWithEventHandler implements ToTypeScriptD.Native.__IClassWithEventHandlerPublicNonVirtuals, ToTypeScriptD.Native.__IClassWithEventHandlerProtectedNonVirtuals {
+        addEventListener(type: string, listener: EventListener): void;
+        removeEventListener(type: string, listener: EventListener): void;
+        onsomethinghappened(ev: any);
+        constructor();
+        doSomething(): void;
+    }
+
+}

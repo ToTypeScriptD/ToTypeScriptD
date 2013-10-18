@@ -2,8 +2,8 @@
 *.ide
 *.opensdf
 packages/
-NeedAProjectName.Tests.JavascriptTests/Scripts/typings/NeedAProjectName.Native/NeedAProjectName.Native.d.ts
-NeedAProjectName.Tests.JavascriptTests/specs/*.js
+ToTypeScriptD.Tests.JavascriptTests/Scripts/typings/ToTypeScriptD.Native/ToTypeScriptD.Native.d.ts
+ToTypeScriptD.Tests.JavascriptTests/specs/*.js
 
 #OS junk files
 [Tt]humbs.db
