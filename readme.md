@@ -10,14 +10,16 @@ applications with all the type safety and benifits of [TypeScript](http://typesc
 
 I know of two main scenarios where I think this could be useful.
 
-1. If you build a Windows 8 `WinJS` Modern (come on we call it Metro still) 
- application and want to leverage `TypeScript` wouldn't it be nice to get 
+1. If you build a 'Modern' (come on, we still call it Metro) Windows 8 app 
+ with `WinJS` and want to leverage `TypeScript`, wouldn't it be nice to get 
  a set of TypeScript Definition files that reflect the native API's you're 
  calling in the platform without manually creating the definition files?
-2. Say your building an MVC/WebAPI server application. It would be awesome if 
- your C.I./Build system could define a set of TypeScript interfaces. This can
- provide not only useful for client side JavaScript/TypeScript libraries that 
- need to consume these objects, but could also provide a simple way to document the structure of your service API results.
+2. Say your building an MVC/WebAPI server application. It would be useful if 
+ your C.I./Build system could spit out a set of TypeScript interfaces that 
+ were based on the server objects used to render your API. This can provide
+ not only useful for client side JavaScript/TypeScript libraries that 
+ need to consume these objects, but could also provide a simple way to 
+ document the structure of your service API results.
 
 ## Install
 
@@ -30,5 +32,8 @@ TODO: give quick how-to call the commandline tool (once it's built).
 
 ## How does it work?
 
-By reading the assembly metadata with [Mono.Cecil](http://www.mono-project.com/Cecil) which can read any [Ecma 355](http://www.ecma-international.org/publications/standards/Ecma-335.htm) Common Language Infrastructure (CLI) file, we can generate a set of TypeScript definition files that allow us to project the type system from these assemblies into TypeScript.
+By loading the assembly metadata with [Mono.Cecil](http://www.mono-project.com/Cecil) 
+which can read any [Ecma 355](http://www.ecma-international.org/publications/standards/Ecma-335.htm) 
+Common Language Infrastructure (CLI) file, we can generate a set of TypeScript definition 
+files that allow us to project the type system from these assemblies into TypeScript.
 
