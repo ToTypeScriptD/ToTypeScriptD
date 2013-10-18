@@ -1,0 +1,10 @@
+﻿declare module Windows.Foundation.Metadata {
+
+    enum ThreadingModel {
+        invalidThreading,
+        sta,
+        mta,
+        both
+    }
+
+}

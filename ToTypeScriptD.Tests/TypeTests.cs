@@ -51,6 +51,13 @@ namespace ToTypeScriptD.Tests
             var result = GetWinNativeType("Windows.System.UserProfile.GlobalizationPreferences").ToTypeScript();
             Approvals.Verify(result);
         }
+
+        [Test]
+        public void IfEnumNamesAreAllCapsThenTheTranslateToAllLowerCase() {
+            var result = GetWinNativeType("Windows.Foundation.Metadata.ThreadingModel")
+                .ToTypeScript();
+            Approvals.Verify(result);
+        }
         
         //[Test]
         //public void FullWindowsAssembly()

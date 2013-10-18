@@ -19,6 +19,11 @@ namespace ToTypeScriptD.Core.TypeWriters
         }
         public void Generate(Mono.Cecil.TypeDefinition td, TypeCollection typeCollection)
         {
+            if (td.ShouldIgnoreType())
+            {
+                return;
+            }
+
             // don't duplicate types
             if (typeCollection.Contains(td.FullName))
             {

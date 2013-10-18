@@ -3,8 +3,8 @@
     enum SampleEnumNumbered {
         a,
         b,
-        c,
-        d
+        d,
+        c
     }
 
 }

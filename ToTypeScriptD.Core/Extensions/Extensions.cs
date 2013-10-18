@@ -27,6 +27,19 @@ namespace ToTypeScriptD
             };
         static Dictionary<string, string> genericTypeMap = null;
 
+        public static bool ShouldIgnoreType(this Mono.Cecil.TypeDefinition name)
+        {
+            // TODO: find a better way to detect inheritance of a specific type.
+            //var baseType = name.BaseType;
+            //while(baseType != null){
+            //    baseType = name.BaseType;
+            //}
+            //if (name.BaseType != null && name.BaseType.FullName == "System.Attribute") return false;
+
+            //return !name.IsNotPublic;
+            return false;
+        }
+        
         public static bool ShouldIgnoreTypeByName(this string name)
         {
             if (name == "<Module>")
@@ -80,6 +93,11 @@ namespace ToTypeScriptD
 
         public static string ToTypeScriptName(this string name)
         {
+            if (name.ToUpper() == name)
+            {
+                return name.ToLower();
+            }
+
             return Char.ToLowerInvariant(name[0]) + name.Substring(1);
         }
 

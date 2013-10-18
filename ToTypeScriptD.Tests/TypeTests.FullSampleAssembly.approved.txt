@@ -22,8 +22,8 @@
     enum SampleEnumNumbered {
         a,
         b,
-        c,
-        d
+        d,
+        c
     }
 
     export class SomethingHappenedEventHandler {

@@ -1,4 +1,5 @@
 ﻿using Mono.Cecil;
+using System.Linq;
 using System.Text;
 
 namespace ToTypeScriptD.Core.TypeWriters
@@ -14,7 +15,7 @@ namespace ToTypeScriptD.Core.TypeWriters
             ++IndentCount;
             sb.AppendLine(IndentValue + "enum " + TypeDefinition.Name + " {");
             ++IndentCount;
-            TypeDefinition.Fields.For((item, i, isLast) =>
+            TypeDefinition.Fields.OrderBy(ob => ob.Constant).For((item, i, isLast) =>
             {
                 if (item.Name == "value__") return;
                 sb.AppendFormat("{0}{1}", IndentValue, item.Name.ToTypeScriptName());
