@@ -12,16 +12,16 @@ namespace ToTypeScriptD.Core.TypeWriters
         public override void Write(StringBuilder sb)
         {
             ++IndentCount;
-            sb.AppendLine(Indent + "enum " + TypeDefinition.Name + " {");
+            sb.AppendLine(IndentValue + "enum " + TypeDefinition.Name + " {");
             ++IndentCount;
             TypeDefinition.Fields.For((item, i, isLast) =>
             {
                 if (item.Name == "value__") return;
-                sb.AppendFormat("{0}{1}", Indent, item.Name.ToTypeScriptName());
+                sb.AppendFormat("{0}{1}", IndentValue, item.Name.ToTypeScriptName());
                 sb.AppendLine(isLast ? "" : ",");
             });
             --IndentCount;
-            sb.AppendLine(Indent + "}");
+            sb.AppendLine(IndentValue + "}");
         }
     }
 }

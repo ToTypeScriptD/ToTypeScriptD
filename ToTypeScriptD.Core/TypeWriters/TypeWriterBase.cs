@@ -36,19 +36,19 @@ namespace ToTypeScriptD.Core.TypeWriters
         }
 
 
-        public string Indent
+        public string IndentValue
         {
             get { return Config.Indentation.Dup(IndentCount); }
         }
 
-        public void step(StringBuilder sb)
+        public void Indent(StringBuilder sb)
         {
-            sb.Append(Indent);
+            sb.Append(IndentValue);
         }
 
         internal void WriteOutMethodSignatures(StringBuilder sb, string exportType, string inheriterString)
         {
-            step(sb); sb.AppendFormat("export {0} {1}", exportType, TypeDefinition.Name.StripGenericTick());
+            Indent(sb); sb.AppendFormat("export {0} {1}", exportType, TypeDefinition.Name.StripGenericTick());
 
             if (TypeDefinition.HasGenericParameters)
             {
@@ -78,13 +78,13 @@ namespace ToTypeScriptD.Core.TypeWriters
             // TODO: get specific types of EventListener types?
             if (TypeDefinition.HasEvents)
             {
-                step(sb); step(sb); sb.AppendLine("addEventListener(type: string, listener: EventListener): void;");
-                step(sb); step(sb); sb.AppendLine("removeEventListener(type: string, listener: EventListener): void;");
+                Indent(sb); Indent(sb); sb.AppendLine("addEventListener(type: string, listener: EventListener): void;");
+                Indent(sb); Indent(sb); sb.AppendLine("removeEventListener(type: string, listener: EventListener): void;");
 
                 TypeDefinition.Events.For((item, i, isLast) =>
                 {
                     // TODO: events with multiple return types???
-                    step(sb); step(sb); sb.AppendLine("on" + item.Name.ToLower() + "(ev: any);");
+                    Indent(sb); Indent(sb); sb.AppendLine("on" + item.Name.ToLower() + "(ev: any);");
                 });
             }
 
@@ -95,7 +95,7 @@ namespace ToTypeScriptD.Core.TypeWriters
 
                 var propName = prop.Name.ToTypeScriptName();
                 propNames.Add(propName);
-                step(sb); step(sb); sb.AppendFormat("{0}: {1};", propName, prop.PropertyType.ToTypeScriptType());
+                Indent(sb); Indent(sb); sb.AppendFormat("{0}: {1};", propName, prop.PropertyType.ToTypeScriptType());
                 sb.AppendLine();
             });
 
@@ -124,7 +124,7 @@ namespace ToTypeScriptD.Core.TypeWriters
                 // Lowercase first char of the method
                 methodName = methodName.ToTypeScriptName();
 
-                step(sb); step(sb);
+                Indent(sb); Indent(sb);
                 if (method.IsStatic)
                 {
                     sb.Append("static ");
