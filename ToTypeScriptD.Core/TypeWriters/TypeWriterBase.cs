@@ -88,6 +88,13 @@ namespace ToTypeScriptD.Core.TypeWriters
                 });
             }
 
+            TypeDefinition.Fields.Each(field =>
+            {
+                var fieldName = field.Name.ToTypeScriptName();
+                Indent(sb); Indent(sb); sb.AppendFormat("{0}: {1};", fieldName, field.FieldType.ToTypeScriptType());
+                sb.AppendLine();
+            });
+
             var propNames = new HashSet<string>();
             TypeDefinition.Properties.Each(prop =>
             {

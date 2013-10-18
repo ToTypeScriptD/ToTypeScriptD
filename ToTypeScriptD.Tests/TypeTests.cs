@@ -59,12 +59,12 @@ namespace ToTypeScriptD.Tests
             Approvals.Verify(result);
         }
         
-        //[Test]
-        //public void FullWindowsAssembly()
-        //{
-        //    var file = @"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd";
-        //    var result = ToTypeScriptD.Render.FullAssembly(file);
-        //    Approvals.Verify(result);
-        //}
+        [Test]
+        public void FullWindowsAssembly()
+        {
+            var file = @"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd";
+            var result = ToTypeScriptD.Render.FullAssembly(file);
+            Approvals.Verify(result);
+        }
     }
 }
