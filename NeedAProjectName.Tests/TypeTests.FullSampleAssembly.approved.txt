@@ -27,7 +27,7 @@
     }
 
     export class SomethingHappenedEventHandler {
-        constructor(__param0: System.Object, __param1: System.IntPtr);
+        constructor(__param0: any, __param1: System.IntPtr);
         invoke(__param0: NeedAProjectName.Native.ClassWithEventHandler, __param1: string): void;
     }
 

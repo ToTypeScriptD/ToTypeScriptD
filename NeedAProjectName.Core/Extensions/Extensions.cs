@@ -20,6 +20,7 @@ namespace NeedAProjectName
                 { "System.UInt16",               "number"},
                 { "System.UInt32",               "number"},
                 { "System.UInt64",               "number"},
+                { "System.Object",               "any"},
                 { "Windows.Foundation.DateTime", "Date"},
                 { "System.Void",                 "void"},
                 { "System.Boolean",              "boolean"},
