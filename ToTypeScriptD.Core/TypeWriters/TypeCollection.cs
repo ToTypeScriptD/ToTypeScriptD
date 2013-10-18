@@ -16,7 +16,7 @@ namespace ToTypeScriptD.Core.TypeWriters
 
         public void Add(string @namespace, string name, ITypeWriter typeWriterBase)
         {
-            if (name.ShouldIgnoreType())
+            if (name.ShouldIgnoreTypeByName())
                 return;
 
             var fullname = @namespace + "." + name;

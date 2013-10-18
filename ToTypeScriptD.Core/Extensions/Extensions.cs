@@ -27,7 +27,7 @@ namespace ToTypeScriptD
             };
         static Dictionary<string, string> genericTypeMap = null;
 
-        public static bool ShouldIgnoreType(this string name)
+        public static bool ShouldIgnoreTypeByName(this string name)
         {
             if (name == "<Module>")
                 return true;

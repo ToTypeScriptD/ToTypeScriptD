@@ -63,7 +63,7 @@ namespace ToTypeScriptD.Core.TypeWriters
             sb.Append(" ");
             if (TypeDefinition.Interfaces.Any())
             {
-                var interfaceTypes = TypeDefinition.Interfaces.Where(w => !w.Name.ShouldIgnoreType());
+                var interfaceTypes = TypeDefinition.Interfaces.Where(w => !w.Name.ShouldIgnoreTypeByName());
                 if (interfaceTypes.Any())
                 {
                     sb.Append(inheriterString);
