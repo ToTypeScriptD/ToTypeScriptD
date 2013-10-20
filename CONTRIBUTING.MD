@@ -3,4 +3,13 @@
 
 ## Getting Started
 
-TODO: fill me in
+
+Install [psake]() build tool with [Chocolatey](http://chocolatey.org)
+
+    cinst psake
+
+
+# Build
+
+    psake
+
