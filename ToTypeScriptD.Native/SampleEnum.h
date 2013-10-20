@@ -2,6 +2,8 @@
 namespace ToTypeScriptD
 {
 	namespace Native{
+		
+
 		public enum class SampleEnum {
 			A,
 			B,
@@ -14,6 +16,13 @@ namespace ToTypeScriptD
 			B = 10,
 			C = 100,
 			D = 99
+		};
+
+		public ref class SampleEnumClass sealed
+		{
+		public:
+			SampleEnumClass();
+			SampleEnum MethowWithEnumParameter(SampleEnum value);
 		};
 	}
 }

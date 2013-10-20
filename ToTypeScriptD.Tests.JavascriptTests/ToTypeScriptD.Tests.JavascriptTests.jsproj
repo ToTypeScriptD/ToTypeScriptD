@@ -68,6 +68,8 @@
     <Content Include="Scripts\typings\chai\chai.d.ts" />
     <Content Include="Scripts\typings\mocha\mocha.d.ts" />
     <Content Include="Scripts\typings\ToTypeScriptD.Native\ToTypeScriptD.Native.d.ts" />
+    <Content Include="specs\spec.Enums.js" />
+    <Content Include="specs\spec.Enums.ts" />
     <Content Include="specs\spec.ClassWithEventHandler.js" />
     <Content Include="specs\spec.ClassWithEventHandler.ts" />
     <Content Include="specs\spec.smoke.js" />

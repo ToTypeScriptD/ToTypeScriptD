@@ -19,6 +19,11 @@
         d
     }
 
+    export class SampleEnumClass {
+        constructor();
+        methowWithEnumParameter(value: ToTypeScriptD.Native.SampleEnum): ToTypeScriptD.Native.SampleEnum;
+    }
+
     enum SampleEnumNumbered {
         a,
         b,
