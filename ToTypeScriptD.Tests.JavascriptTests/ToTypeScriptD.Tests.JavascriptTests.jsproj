@@ -68,6 +68,9 @@
     <Content Include="Scripts\typings\chai\chai.d.ts" />
     <Content Include="Scripts\typings\mocha\mocha.d.ts" />
     <Content Include="Scripts\typings\ToTypeScriptD.Native\ToTypeScriptD.Native.d.ts" />
+    <Content Include="Scripts\typings\Windows.Foundation.d.ts" />
+    <Content Include="specs\spec.AsyncClass.js" />
+    <Content Include="specs\spec.AsyncClass.ts" />
     <Content Include="specs\spec.Enums.js" />
     <Content Include="specs\spec.Enums.ts" />
     <Content Include="specs\spec.ClassWithEventHandler.js" />
@@ -100,6 +103,7 @@
   </PropertyGroup>
   -->
   <Target Name="BeforeBuild">
-    <Exec Command="$(SolutionDir)bin\ToTypeScriptD.exe $(SolutionDir)bin\ToTypeScriptD.Native.winmd &gt; $(ProjectDir)\Scripts\typings\ToTypeScriptD.Native\ToTypeScriptD.Native.d.ts" />
+    <Exec Command="$(SolutionDir)bin\ToTypeScriptD.exe C:\Windows\System32\WinMetadata\Windows.Foundation.winmd &gt; $(ProjectDir)\Scripts\typings\Windows.Foundation.d.ts" />
+    <Exec Command="$(SolutionDir)bin\ToTypeScriptD.exe $(SolutionDir)bin\ToTypeScriptD.Native.winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd &gt; $(ProjectDir)\Scripts\typings\ToTypeScriptD.Native\ToTypeScriptD.Native.d.ts" />
   </Target>
 </Project>

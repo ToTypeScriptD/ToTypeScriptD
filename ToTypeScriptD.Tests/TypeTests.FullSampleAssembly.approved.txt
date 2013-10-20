@@ -1,7 +1,8 @@
 ﻿declare module ToTypeScriptD.Native {
 
-    export class Class1 {
+    export class AsyncClass {
         constructor();
+        getStringAsync(value: string): Windows.Foundation.IAsyncOperation<string>;
     }
 
     export class ClassWithEventHandler {
