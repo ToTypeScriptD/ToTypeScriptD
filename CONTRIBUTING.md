@@ -1,7 +1,4 @@
-# How to contribute
-
-
-## Getting Started
+# Dev Setup, Contribution Guides, and Tips
 
 
 ### Dev Environment Setup
@@ -16,7 +13,7 @@ Get the [psake](https://github.com/psake/psake) build tool: You can install [psa
     cinst psake
 
 
-# List build tasks
+### List build tasks
 
     psake ?
 
