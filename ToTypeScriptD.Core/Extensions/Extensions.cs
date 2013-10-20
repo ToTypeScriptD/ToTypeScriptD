@@ -25,7 +25,13 @@ namespace ToTypeScriptD
                 { "System.Void",                 "void"},
                 { "System.Boolean",              "boolean"},
                 { "System.IntPtr",               "number"},
-            };
+                { "System.Byte",                 "number"}, // TODO: Confirm if this is the correct representation?
+                { "System.Single",               "number"},
+                { "System.Double",               "number"},
+                { "System.Char",                 "number"}, // TODO: should this be a string or number?
+                { "System.Guid",                 "string"}, // TODO: should this be a string or a System.Guid object?
+
+        };
         static Dictionary<string, string> genericTypeMap = null;
 
         public static bool ShouldIgnoreType(this Mono.Cecil.TypeDefinition name)
@@ -67,6 +73,12 @@ namespace ToTypeScriptD
             if (typeMap.ContainsKey(fromName))
             {
                 return typeMap[fromName];
+            }
+
+            if (fromName.Contains("&"))
+            {
+                // need to figure out out parameters
+                return "TodoOutParameters";
             }
 
             var genericType = genericTypeMap.FirstOrDefault(x => fromName.Contains(x.Key));

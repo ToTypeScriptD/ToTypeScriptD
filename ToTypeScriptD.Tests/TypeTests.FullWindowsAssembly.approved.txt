@@ -95,61 +95,61 @@
     export interface IPropertyValue {
         isNumericScalar: boolean;
         type: Windows.Foundation.PropertyType;
-        getUInt8(): System.Byte;
+        getUInt8(): number;
         getInt16(): number;
         getUInt16(): number;
         getInt32(): number;
         getUInt32(): number;
         getInt64(): number;
         getUInt64(): number;
-        getSingle(): System.Single;
-        getDouble(): System.Double;
-        getChar16(): System.Char;
+        getSingle(): number;
+        getDouble(): number;
+        getChar16(): number;
         getBoolean(): boolean;
         getString(): string;
-        getGuid(): System.Guid;
+        getGuid(): string;
         getDateTime(): Date;
         getTimeSpan(): Windows.Foundation.TimeSpan;
         getPoint(): Windows.Foundation.Point;
         getSize(): Windows.Foundation.Size;
         getRect(): Windows.Foundation.Rect;
-        getUInt8Array(value: System.Byte[]&): void;
-        getInt16Array(value: System.Int16[]&): void;
-        getUInt16Array(value: System.UInt16[]&): void;
-        getInt32Array(value: System.Int32[]&): void;
-        getUInt32Array(value: System.UInt32[]&): void;
-        getInt64Array(value: System.Int64[]&): void;
-        getUInt64Array(value: System.UInt64[]&): void;
-        getSingleArray(value: System.Single[]&): void;
-        getDoubleArray(value: System.Double[]&): void;
-        getChar16Array(value: System.Char[]&): void;
-        getBooleanArray(value: System.Boolean[]&): void;
-        getStringArray(value: System.String[]&): void;
-        getInspectableArray(value: System.Object[]&): void;
-        getGuidArray(value: System.Guid[]&): void;
-        getDateTimeArray(value: Windows.Foundation.DateTime[]&): void;
-        getTimeSpanArray(value: Windows.Foundation.TimeSpan[]&): void;
-        getPointArray(value: Windows.Foundation.Point[]&): void;
-        getSizeArray(value: Windows.Foundation.Size[]&): void;
-        getRectArray(value: Windows.Foundation.Rect[]&): void;
+        getUInt8Array(value: TodoOutParameters): void;
+        getInt16Array(value: TodoOutParameters): void;
+        getUInt16Array(value: TodoOutParameters): void;
+        getInt32Array(value: TodoOutParameters): void;
+        getUInt32Array(value: TodoOutParameters): void;
+        getInt64Array(value: TodoOutParameters): void;
+        getUInt64Array(value: TodoOutParameters): void;
+        getSingleArray(value: TodoOutParameters): void;
+        getDoubleArray(value: TodoOutParameters): void;
+        getChar16Array(value: TodoOutParameters): void;
+        getBooleanArray(value: TodoOutParameters): void;
+        getStringArray(value: TodoOutParameters): void;
+        getInspectableArray(value: TodoOutParameters): void;
+        getGuidArray(value: TodoOutParameters): void;
+        getDateTimeArray(value: TodoOutParameters): void;
+        getTimeSpanArray(value: TodoOutParameters): void;
+        getPointArray(value: TodoOutParameters): void;
+        getSizeArray(value: TodoOutParameters): void;
+        getRectArray(value: TodoOutParameters): void;
     }
 
     export interface IPropertyValueStatics {
         createEmpty(): any;
-        createUInt8(value: System.Byte): any;
+        createUInt8(value: number): any;
         createInt16(value: number): any;
         createUInt16(value: number): any;
         createInt32(value: number): any;
         createUInt32(value: number): any;
         createInt64(value: number): any;
         createUInt64(value: number): any;
-        createSingle(value: System.Single): any;
-        createDouble(value: System.Double): any;
-        createChar16(value: System.Char): any;
+        createSingle(value: number): any;
+        createDouble(value: number): any;
+        createChar16(value: number): any;
         createBoolean(value: boolean): any;
         createString(value: string): any;
         createInspectable(value: any): any;
-        createGuid(value: System.Guid): any;
+        createGuid(value: string): any;
         createDateTime(value: Date): any;
         createTimeSpan(value: Windows.Foundation.TimeSpan): any;
         createPoint(value: Windows.Foundation.Point): any;
@@ -233,8 +233,8 @@
     }
 
     export class Point {
-        x: System.Single;
-        y: System.Single;
+        x: number;
+        y: number;
     }
 
     enum PropertyType {
@@ -283,20 +283,20 @@
 
     export class PropertyValue {
         static createEmpty(): any;
-        static createUInt8(value: System.Byte): any;
+        static createUInt8(value: number): any;
         static createInt16(value: number): any;
         static createUInt16(value: number): any;
         static createInt32(value: number): any;
         static createUInt32(value: number): any;
         static createInt64(value: number): any;
         static createUInt64(value: number): any;
-        static createSingle(value: System.Single): any;
-        static createDouble(value: System.Double): any;
-        static createChar16(value: System.Char): any;
+        static createSingle(value: number): any;
+        static createDouble(value: number): any;
+        static createChar16(value: number): any;
         static createBoolean(value: boolean): any;
         static createString(value: string): any;
         static createInspectable(value: any): any;
-        static createGuid(value: System.Guid): any;
+        static createGuid(value: string): any;
         static createDateTime(value: Date): any;
         static createTimeSpan(value: Windows.Foundation.TimeSpan): any;
         static createPoint(value: Windows.Foundation.Point): any;
@@ -324,15 +324,15 @@
     }
 
     export class Rect {
-        x: System.Single;
-        y: System.Single;
-        width: System.Single;
-        height: System.Single;
+        x: number;
+        y: number;
+        width: number;
+        height: number;
     }
 
     export class Size {
-        width: System.Single;
-        height: System.Single;
+        width: number;
+        height: number;
     }
 
     export class TimeSpan {
@@ -376,7 +376,7 @@
         getFirstValueByName(name: string): string;
         first(): Windows.Foundation.Collections.IIterator<Windows.Foundation.IWwwFormUrlDecoderEntry>;
         getAt(index: number): Windows.Foundation.IWwwFormUrlDecoderEntry;
-        indexOf(value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: System.UInt32&): boolean;
+        indexOf(value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: TodoOutParameters): boolean;
         getMany(startIndex: number, items: Windows.Foundation.IWwwFormUrlDecoderEntry[]): number;
     }
 
@@ -425,7 +425,7 @@ declare module Windows.Foundation.Collections {
         size: number;
         lookup(key: K): V;
         hasKey(key: K): boolean;
-        split(first: Windows.Foundation.Collections.IMapView<K,V>&, second: Windows.Foundation.Collections.IMapView<K,V>&): void;
+        split(first: TodoOutParameters, second: TodoOutParameters): void;
     }
 
     export interface IObservableMap<K,V> extends Windows.Foundation.Collections.IMap<K,V> {
@@ -451,7 +451,7 @@ declare module Windows.Foundation.Collections {
         size: number;
         getAt(index: number): T;
         getView(): Windows.Foundation.Collections.IVectorView<T>;
-        indexOf(value: T, index: System.UInt32&): boolean;
+        indexOf(value: T, index: TodoOutParameters): boolean;
         setAt(index: number, value: T): void;
         insertAt(index: number, value: T): void;
         removeAt(index: number): void;
@@ -470,7 +470,7 @@ declare module Windows.Foundation.Collections {
     export interface IVectorView<T> extends Windows.Foundation.Collections.IIterable<T> {
         size: number;
         getAt(index: number): T;
-        indexOf(value: T, index: System.UInt32&): boolean;
+        indexOf(value: T, index: TodoOutParameters): boolean;
         getMany(startIndex: number, items: T[]): number;
     }
 
@@ -592,7 +592,7 @@ declare module Windows.Foundation.Metadata {
     }
 
     export class GuidAttribute {
-        constructor(a: number, b: number, c: number, d: System.Byte, e: System.Byte, f: System.Byte, g: System.Byte, h: System.Byte, i: System.Byte, j: System.Byte, k: System.Byte);
+        constructor(a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number, i: number, j: number, k: number);
     }
 
     export class HasVariantAttribute {
