@@ -1,19 +1,21 @@
 properties {
   $cleanMessage = 'Executed Clean!'
+  $msbuildConfiguration = "Debug"
+  $msbuildPlatform = "Any CPU"
 }
 
 task default -depends Test
 
 task Test -depends Compile, Clean { 
-  $testMessage
+  # TODO:
 }
 
 task Compile -depends Clean { 
-  msbuild ToTypeScriptD.sln /p:Configuration=Debug /p:Platform="Any CPU"
+  msbuild ToTypeScriptD.sln /p:Platform="$msbuildPlatform" /p:Configuration=$msbuildConfiguration /verbosity:quiet /nologo
 }
 
 task Clean { 
-  $cleanMessage
+  # TODO:
 }
 
 task ? -Description "Helper to display task info" {
