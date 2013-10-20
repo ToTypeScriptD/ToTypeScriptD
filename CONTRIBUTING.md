@@ -4,14 +4,14 @@
 ## Getting Started
 
 
-### Environment Setup
+### Dev Environment Setup
 
-Get the code
+Get the code:
 
     git clone https://github.com/staxmanade/ToTypeScriptD.git
     cd ToTypeScriptD
 
-Install [psake](https://github.com/psake/psake) build tool with [Chocolatey](http://chocolatey.org)
+Get the [psake](https://github.com/psake/psake) build tool: You can install [psake](https://github.com/psake/psake) easily with [Chocolatey](http://chocolatey.org)
 
     cinst psake
 
