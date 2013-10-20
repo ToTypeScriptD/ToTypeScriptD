@@ -5,7 +5,6 @@ using System.Collections.Generic;
 
 namespace ToTypeScriptD.Tests
 {
-    [UseReporter(typeof(ApprovalTests.Reporters.VisualStudioReporter))]
     public class TestBase
     {
         private AssemblyDefinition _nativeAssemblyDefinition;

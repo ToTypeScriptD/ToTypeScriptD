@@ -1,3 +1,4 @@
+
 declare module Windows.Foundation {
 
     export class AsyncActionCompletedHandler {
