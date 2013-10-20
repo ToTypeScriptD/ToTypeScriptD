@@ -32,7 +32,7 @@
     }
 
     export class SomethingHappenedEventHandler {
-        constructor(__param0: any, __param1: System.IntPtr);
+        constructor(__param0: any, __param1: number);
         invoke(__param0: ToTypeScriptD.Native.ClassWithEventHandler, __param1: string): void;
     }
 

@@ -24,6 +24,7 @@ namespace ToTypeScriptD
                 { "Windows.Foundation.DateTime", "Date"},
                 { "System.Void",                 "void"},
                 { "System.Boolean",              "boolean"},
+                { "System.IntPtr",               "number"},
             };
         static Dictionary<string, string> genericTypeMap = null;
 

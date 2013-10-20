@@ -1,32 +1,32 @@
 ﻿declare module Windows.Foundation {
 
     export class AsyncActionCompletedHandler {
-        constructor(object: any, method: System.IntPtr);
+        constructor(object: any, method: number);
         invoke(asyncInfo: Windows.Foundation.IAsyncAction, asyncStatus: Windows.Foundation.AsyncStatus): void;
     }
 
     export class AsyncActionProgressHandler<TProgress> {
-        constructor(object: any, method: System.IntPtr);
+        constructor(object: any, method: number);
         invoke(asyncInfo: Windows.Foundation.IAsyncActionWithProgress<TProgress>, progressInfo: TProgress): void;
     }
 
     export class AsyncActionWithProgressCompletedHandler<TProgress> {
-        constructor(object: any, method: System.IntPtr);
+        constructor(object: any, method: number);
         invoke(asyncInfo: Windows.Foundation.IAsyncActionWithProgress<TProgress>, asyncStatus: Windows.Foundation.AsyncStatus): void;
     }
 
     export class AsyncOperationCompletedHandler<TResult> {
-        constructor(object: any, method: System.IntPtr);
+        constructor(object: any, method: number);
         invoke(asyncInfo: Windows.Foundation.IAsyncOperation<TResult>, asyncStatus: Windows.Foundation.AsyncStatus): void;
     }
 
     export class AsyncOperationProgressHandler<TResult,TProgress> {
-        constructor(object: any, method: System.IntPtr);
+        constructor(object: any, method: number);
         invoke(asyncInfo: Windows.Foundation.IAsyncOperationWithProgress<TResult,TProgress>, progressInfo: TProgress): void;
     }
 
     export class AsyncOperationWithProgressCompletedHandler<TResult,TProgress> {
-        constructor(object: any, method: System.IntPtr);
+        constructor(object: any, method: number);
         invoke(asyncInfo: Windows.Foundation.IAsyncOperationWithProgress<TResult,TProgress>, asyncStatus: Windows.Foundation.AsyncStatus): void;
     }
 
@@ -42,7 +42,7 @@
     }
 
     export class EventHandler<T> {
-        constructor(object: any, method: System.IntPtr);
+        constructor(object: any, method: number);
         invoke(sender: any, args: T): void;
     }
 
@@ -340,7 +340,7 @@
     }
 
     export class TypedEventHandler<TSender,TResult> {
-        constructor(object: any, method: System.IntPtr);
+        constructor(object: any, method: number);
         invoke(sender: TSender, args: TResult): void;
     }
 
@@ -475,7 +475,7 @@ declare module Windows.Foundation.Collections {
     }
 
     export class MapChangedEventHandler<K,V> {
-        constructor(object: any, method: System.IntPtr);
+        constructor(object: any, method: number);
         invoke(sender: Windows.Foundation.Collections.IObservableMap<K,V>, event: Windows.Foundation.Collections.IMapChangedEventArgs<K>): void;
     }
 
@@ -497,7 +497,7 @@ declare module Windows.Foundation.Collections {
     }
 
     export class VectorChangedEventHandler<T> {
-        constructor(object: any, method: System.IntPtr);
+        constructor(object: any, method: number);
         invoke(sender: Windows.Foundation.Collections.IObservableVector<T>, event: Windows.Foundation.Collections.IVectorChangedEventArgs): void;
     }
 
