@@ -1,8 +1,7 @@
 ﻿ToTypeScriptD 1.0.0.0
 Copyright c  2013
 
-  -s, --specialTypes    (Default: True) Writes the ToTypeScriptD special types 
-                        to standard out
+  -s, --specialTypes    Writes the ToTypeScriptD special types to standard out
 
   --help                Display this help screen.
 

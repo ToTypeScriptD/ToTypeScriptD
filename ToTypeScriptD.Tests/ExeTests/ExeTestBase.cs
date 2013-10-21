@@ -11,42 +11,38 @@ namespace ToTypeScriptD.Tests.ExeTests
     {
         string TypeScriptDExePath = @"../../../bin/ToTypeScriptD.exe";
 
-        public async Task<ExeProcessResult> Execute(string args)
+        public ExeProcessResult Execute(string args)
         {
-            return await Execute(new[] { args });
+            return Execute(new[] { args });
         }
 
-        public Task<ExeProcessResult> Execute(IEnumerable<string> args)
+        public ExeProcessResult Execute(IEnumerable<string> args)
         {
-            var processStartInfo = new ProcessStartInfo
-            {
-                FileName = TypeScriptDExePath,
-                Arguments = string.Join(" ", args),
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                UseShellExecute = false
-            };
-
-            var process = Process.Start(processStartInfo);
-            var stdOut = process.StandardOutput.ReadToEnd();
-            var stdErr = process.StandardError.ReadToEnd();
-
             var tcs = new TaskCompletionSource<ExeProcessResult>();
 
-            process.Exited += (sender, argsX) =>
+            var process = new Process
             {
-                tcs.SetResult(new ExeProcessResult
+                StartInfo = new ProcessStartInfo
                 {
-                    StdErr = stdErr,
-                    StdOut = stdOut,
-                    ExitCode = process.ExitCode,
-                });
-                process.Dispose();
+                    FileName = TypeScriptDExePath,
+                    Arguments = string.Join(" ", args),
+                    RedirectStandardOutput = true,
+                    UseShellExecute = false
+                }
             };
 
             process.Start();
 
-            return tcs.Task;
+            var stdOut = process.StandardOutput.ReadToEnd();
+
+            process.WaitForExit();
+
+
+            return new ExeProcessResult
+                {
+                    StdOut = stdOut,
+                    ExitCode = process.ExitCode,
+                };
         }
     }
 }

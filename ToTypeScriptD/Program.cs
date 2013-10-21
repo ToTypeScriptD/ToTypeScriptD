@@ -12,9 +12,17 @@ namespace ToTypeScriptD
 
             if (CommandLine.Parser.Default.ParseArguments(args, options))
             {
+                bool wroteAnyTypes = false;
+                if (options.IncludeSpecialTypeDefinitions)
+                {
+                    wroteAnyTypes = true;
+                    WriteOutSpecialTypes();
+                }
+
                 var filesAlreadyProcessed = new HashSet<string>(new IgnoreCaseStringEqualityComparer());
                 if (options.Files.Any())
                 {
+                    wroteAnyTypes = true;
                     // Values are available here
                     //if (options.Verbose) Console.WriteLine("Filename: {0}", options.InputFile);
 
@@ -25,27 +33,34 @@ namespace ToTypeScriptD
 
                         filesAlreadyProcessed.Add(file);
                         var x = ToTypeScriptD.Render.FullAssembly(file);
-                        System.Diagnostics.Debug.WriteLine(x);
                         Console.WriteLine("");
                         Console.WriteLine(x);
                     });
                 }
-                else
+                if (!wroteAnyTypes)
                 {
-                    Console.Error.WriteLine(options.GetUsage());
-                    Environment.Exit(1);
+                    Console.WriteLine(options.GetUsage());
+                    Environment.ExitCode = 1;
                 }
             }
             else
             {
-                Console.Error.WriteLine(options.GetUsage());
-                Environment.Exit(1);
+                Console.WriteLine(options.GetUsage());
+                Environment.ExitCode = 1;
             }
+        }
+
+        private static void WriteOutSpecialTypes()
+        {
+            Console.WriteLine("");
+            Console.WriteLine(Resources.ToTypeScriptDSpecialTypes_d);
+            Console.WriteLine("");
+            Console.WriteLine("");
         }
     }
 
 
-    public class IgnoreCaseStringEqualityComparer: EqualityComparer<string>
+    public class IgnoreCaseStringEqualityComparer : EqualityComparer<string>
     {
 
         public override bool Equals(string x, string y)

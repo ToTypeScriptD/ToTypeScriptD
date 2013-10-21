@@ -9,7 +9,7 @@ namespace ToTypeScriptD
         [ValueList(typeof(List<string>))]
         public IList<string> Files { get; set; }
 
-        [Option('s', "specialTypes", DefaultValue = true, HelpText = "Writes the ToTypeScriptD special types to standard out")]
+        [Option('s', "specialTypes", HelpText = "Writes the ToTypeScriptD special types to standard out")]
         public bool IncludeSpecialTypeDefinitions { get; set; }
 
         //[Option('v', "verbose", DefaultValue = true, HelpText = "Prints all messages to standard output.")]

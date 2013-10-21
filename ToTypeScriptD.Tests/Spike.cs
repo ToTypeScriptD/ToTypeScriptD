@@ -35,6 +35,11 @@ namespace ToTypeScriptD.Tests
             new TypeWriterGenerator().Generate(value, typeCollection);
             return typeCollection.Render();
         }
+
+        public static void Verify<T>(this T item)
+        {
+            Approvals.Verify(item);
+        }
     }
 
 }

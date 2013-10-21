@@ -3,37 +3,45 @@ using Xunit;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace ToTypeScriptD.Tests.ExeTests
 {
     public class CommandLineArgTests : ExeTestBase
     {
-        [Fact(Timeout=3000)]
-        public async void ExeShouldGenerateHelpOnEmptyInput()
+        [Fact]
+        public void ExeShouldGenerateHelpOnEmptyInput()
         {
-            var result = await Execute("");
+            var result = Execute("");
 
-            //Assert.IsEmpty(result.StdOut);
-            Approvals.Verify(result.StdErr);
+            Approvals.Verify(result.StdOut);
         }
 
-        [Fact(Timeout = 3000)]
-        public async void ExeShouldGenerateOutputForMultipleWinmdFiles()
+        [Fact]
+        public void ExeShouldGenerateOutputForMultipleWinmdFiles()
         {
-            var result = await Execute(@"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Networking.winmd");
-
-            Assert.Empty(result.StdErr);
+            var result = Execute(@"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Networking.winmd");
 
             (result.StdOut.Length > 100).ShouldBeTrue(result.StdOut.Length + " should be greater than 100");
         }
 
-        [Fact(Timeout=3000)]
-        public async void ExeDuplicateAssemblyShouldStillOnlyGenerateOne()
+        [Fact]
+        public void ExeDuplicateAssemblyShouldStillOnlyGenerateOne()
         {
-            var resultDup = await Execute(@"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd");
-            var resultNonDup = await Execute(@"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd");
+            var resultDup = Execute(@"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd");
+            var resultNonDup = Execute(@"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd");
 
-            resultNonDup.ShouldEqual(resultDup);
+            // TODO: this test needs a good way to leverage the power of approvals diff capability (but it's not yet supported)
+
+            resultNonDup.StdOut.Trim().ShouldEqual(resultDup.StdOut.Trim());
+        }
+
+        [Fact]
+        public void ExeShouldBeAbleToGenerateSpecialTypes()
+        {
+            var resultDup = Execute("--specialTypes");
+
+            resultDup.Verify();
         }
     }
 }
