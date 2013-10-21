@@ -28,8 +28,8 @@ namespace ToTypeScriptD.Tests.ExeTests
             };
 
             var process = Process.Start(processStartInfo);
-            var stdErr = process.StandardOutput.ReadToEnd();
-            var stdOut = process.StandardError.ReadToEnd();
+            var stdOut = process.StandardOutput.ReadToEnd();
+            var stdErr = process.StandardError.ReadToEnd();
 
             var tcs = new TaskCompletionSource<ExeProcessResult>();
 
@@ -47,7 +47,6 @@ namespace ToTypeScriptD.Tests.ExeTests
             process.Start();
 
             return tcs.Task;
-
         }
     }
 }
