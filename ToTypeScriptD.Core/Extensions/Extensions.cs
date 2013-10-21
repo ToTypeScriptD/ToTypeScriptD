@@ -29,7 +29,7 @@ namespace ToTypeScriptD
                 { "System.Single",               "number"},
                 { "System.Double",               "number"},
                 { "System.Char",                 "number"}, // TODO: should this be a string or number?
-                { "System.Guid",                 "string"}, // TODO: should this be a string or a System.Guid object?
+                { "System.Guid",                 "string"},
 
         };
         static Dictionary<string, string> genericTypeMap = null;

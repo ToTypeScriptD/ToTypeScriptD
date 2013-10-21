@@ -71,6 +71,8 @@
     <Content Include="Scripts\typings\Windows.Foundation.d.ts" />
     <Content Include="specs\spec.AsyncClass.js" />
     <Content Include="specs\spec.AsyncClass.ts" />
+    <Content Include="specs\spec.CXReturnTypes.js" />
+    <Content Include="specs\spec.CXReturnTypes.ts" />
     <Content Include="specs\spec.Enums.js" />
     <Content Include="specs\spec.Enums.ts" />
     <Content Include="specs\spec.ClassWithEventHandler.js" />
