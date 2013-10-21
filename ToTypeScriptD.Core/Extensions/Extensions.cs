@@ -36,6 +36,9 @@ namespace ToTypeScriptD
 
         public static bool ShouldIgnoreType(this Mono.Cecil.TypeDefinition name)
         {
+            if (!name.IsPublic)
+                return true;
+
             // TODO: find a better way to detect inheritance of a specific type.
             //var baseType = name.BaseType;
             //while(baseType != null){

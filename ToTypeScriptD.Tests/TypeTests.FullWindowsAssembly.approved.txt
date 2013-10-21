@@ -134,59 +134,12 @@
         getRectArray(value: TodoOutParameters): void;
     }
 
-    export interface IPropertyValueStatics {
-        createEmpty(): any;
-        createUInt8(value: number): any;
-        createInt16(value: number): any;
-        createUInt16(value: number): any;
-        createInt32(value: number): any;
-        createUInt32(value: number): any;
-        createInt64(value: number): any;
-        createUInt64(value: number): any;
-        createSingle(value: number): any;
-        createDouble(value: number): any;
-        createChar16(value: number): any;
-        createBoolean(value: boolean): any;
-        createString(value: string): any;
-        createInspectable(value: any): any;
-        createGuid(value: string): any;
-        createDateTime(value: Date): any;
-        createTimeSpan(value: Windows.Foundation.TimeSpan): any;
-        createPoint(value: Windows.Foundation.Point): any;
-        createSize(value: Windows.Foundation.Size): any;
-        createRect(value: Windows.Foundation.Rect): any;
-        createUInt8Array(value: System.Byte[]): any;
-        createInt16Array(value: System.Int16[]): any;
-        createUInt16Array(value: System.UInt16[]): any;
-        createInt32Array(value: System.Int32[]): any;
-        createUInt32Array(value: System.UInt32[]): any;
-        createInt64Array(value: System.Int64[]): any;
-        createUInt64Array(value: System.UInt64[]): any;
-        createSingleArray(value: System.Single[]): any;
-        createDoubleArray(value: System.Double[]): any;
-        createChar16Array(value: System.Char[]): any;
-        createBooleanArray(value: System.Boolean[]): any;
-        createStringArray(value: System.String[]): any;
-        createInspectableArray(value: System.Object[]): any;
-        createGuidArray(value: System.Guid[]): any;
-        createDateTimeArray(value: Windows.Foundation.DateTime[]): any;
-        createTimeSpanArray(value: Windows.Foundation.TimeSpan[]): any;
-        createPointArray(value: Windows.Foundation.Point[]): any;
-        createSizeArray(value: Windows.Foundation.Size[]): any;
-        createRectArray(value: Windows.Foundation.Rect[]): any;
-    }
-
     export interface IReference<T> extends Windows.Foundation.IPropertyValue {
         value: T;
     }
 
     export interface IReferenceArray<T> extends Windows.Foundation.IPropertyValue {
         value: T[];
-    }
-
-    export interface IUriEscapeStatics {
-        unescapeComponent(toUnescape: string): string;
-        escapeComponent(toEscape: string): string;
     }
 
     export interface IUriRuntimeClass {
@@ -209,11 +162,6 @@
         combineUri(relativeUri: string): Windows.Foundation.Uri;
     }
 
-    export interface IUriRuntimeClassFactory {
-        createUri(uri: string): Windows.Foundation.Uri;
-        createUri(baseUri: string, relativeUri: string): Windows.Foundation.Uri;
-    }
-
     export interface IUriRuntimeClassWithAbsoluteCanonicalUri {
         absoluteCanonicalUri: string;
         displayIri: string;
@@ -226,10 +174,6 @@
 
     export interface IWwwFormUrlDecoderRuntimeClass extends Windows.Foundation.Collections.IIterable<Windows.Foundation.IWwwFormUrlDecoderEntry>, Windows.Foundation.Collections.IVectorView<Windows.Foundation.IWwwFormUrlDecoderEntry> {
         getFirstValueByName(name: string): string;
-    }
-
-    export interface IWwwFormUrlDecoderRuntimeClassFactory {
-        createWwwFormUrlDecoder(query: string): Windows.Foundation.WwwFormUrlDecoder;
     }
 
     export class Point {
