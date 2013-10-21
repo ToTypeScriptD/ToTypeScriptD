@@ -7,7 +7,7 @@ properties {
 task default -depends Test
 
 task Test -depends Compile, Clean { 
-  # TODO:
+  & (ls ".\packages\xunit.runners*\tools\xunit.console.clr4.exe") ".\ToTypeScriptD.Tests\bin\$msbuildConfiguration\ToTypeScriptD.Tests.dll"
 }
 
 task Compile -depends Clean { 
