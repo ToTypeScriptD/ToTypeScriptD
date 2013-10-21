@@ -664,3 +664,4 @@ declare module Windows.Foundation.Metadata {
     }
 
 }
+

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ToTypeScriptD.Tests.ExeTests
 {
@@ -10,12 +11,12 @@ namespace ToTypeScriptD.Tests.ExeTests
     {
         string TypeScriptDExePath = @"../../../bin/ToTypeScriptD.exe";
 
-        public ExeProcessResult Execute(string args)
+        public async Task<ExeProcessResult> Execute(string args)
         {
-            return Execute(new[] { args });
+            return await Execute(new[] { args });
         }
 
-        public ExeProcessResult Execute(IEnumerable<string> args)
+        public Task<ExeProcessResult> Execute(IEnumerable<string> args)
         {
             var processStartInfo = new ProcessStartInfo
             {
@@ -27,16 +28,26 @@ namespace ToTypeScriptD.Tests.ExeTests
             };
 
             var process = Process.Start(processStartInfo);
-            var stdErr = process.StandardError.ReadToEnd();
+            var stdErr = process.StandardOutput.ReadToEnd();
             var stdOut = process.StandardError.ReadToEnd();
-            process.WaitForExit();
 
-            return new ExeProcessResult
+            var tcs = new TaskCompletionSource<ExeProcessResult>();
+
+            process.Exited += (sender, argsX) =>
             {
-                StdErr = stdErr,
-                StdOut = stdOut,
-                ExitCode = process.ExitCode,
+                tcs.SetResult(new ExeProcessResult
+                {
+                    StdErr = stdErr,
+                    StdOut = stdOut,
+                    ExitCode = process.ExitCode,
+                });
+                process.Dispose();
             };
+
+            process.Start();
+
+            return tcs.Task;
+
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using ApprovalTests;
 using ApprovalTests.Reporters;
 using Mono.Cecil;
-using NUnit.Framework;
+using Xunit;
 using System.Collections.Generic;
 using System.Text;
 using ToTypeScriptD.Core.TypeWriters;
@@ -9,10 +9,9 @@ using ToTypeScriptD.Core.TypeWriters;
 namespace ToTypeScriptD.Tests
 {
 
-    [TestFixture]
     public class Spike : TestBase
     {
-        [Test]
+        [Fact]
         public void SpikeIt()
         {
             //Approvals.Verify(result);
