@@ -13,6 +13,11 @@ declare module ToTypeScriptD.WinRT {
         then<U>(success?: (value: T) => IPromise<U>, error?: (error: any) => U, progress?: (progress: any) => void): IPromise<U>;
         then<U>(success?: (value: T) => U, error?: (error: any) => IPromise<U>, progress?: (progress: any) => void): IPromise<U>;
         then<U>(success?: (value: T) => U, error?: (error: any) => U, progress?: (progress: any) => void): IPromise<U>;
+
         done? <U>(success?: (value: T) => any, error?: (error: any) => any, progress?: (progress: any) => void): void;
+
+        cancel(): void;
+
+        operation: Windows.Foundation.IAsyncOperation<T>;
     }
 }

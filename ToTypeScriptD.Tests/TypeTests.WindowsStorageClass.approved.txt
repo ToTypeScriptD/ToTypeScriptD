@@ -3,11 +3,11 @@
     export interface IStorageFile extends Windows.Storage.IStorageItem, Windows.Storage.Streams.IRandomAccessStreamReference, Windows.Storage.Streams.IInputStreamReference {
         contentType: string;
         fileType: string;
-        openAsync(accessMode: Windows.Storage.FileAccessMode): Windows.Foundation.IAsyncOperation<Windows.Storage.Streams.IRandomAccessStream>;
-        openTransactedWriteAsync(): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageStreamTransaction>;
-        copyAsync(destinationFolder: Windows.Storage.IStorageFolder): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
-        copyAsync(destinationFolder: Windows.Storage.IStorageFolder, desiredNewName: string): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
-        copyAsync(destinationFolder: Windows.Storage.IStorageFolder, desiredNewName: string, option: Windows.Storage.NameCollisionOption): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
+        openAsync(accessMode: Windows.Storage.FileAccessMode): ToTypeScriptD.WinRT.IPromise<Windows.Storage.Streams.IRandomAccessStream>;
+        openTransactedWriteAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Storage.StorageStreamTransaction>;
+        copyAsync(destinationFolder: Windows.Storage.IStorageFolder): ToTypeScriptD.WinRT.IPromise<Windows.Storage.StorageFile>;
+        copyAsync(destinationFolder: Windows.Storage.IStorageFolder, desiredNewName: string): ToTypeScriptD.WinRT.IPromise<Windows.Storage.StorageFile>;
+        copyAsync(destinationFolder: Windows.Storage.IStorageFolder, desiredNewName: string, option: Windows.Storage.NameCollisionOption): ToTypeScriptD.WinRT.IPromise<Windows.Storage.StorageFile>;
         copyAndReplaceAsync(fileToReplace: Windows.Storage.IStorageFile): Windows.Foundation.IAsyncAction;
         moveAsync(destinationFolder: Windows.Storage.IStorageFolder): Windows.Foundation.IAsyncAction;
         moveAsync(destinationFolder: Windows.Storage.IStorageFolder, desiredNewName: string): Windows.Foundation.IAsyncAction;
@@ -24,7 +24,7 @@
         renameAsync(desiredName: string, option: Windows.Storage.NameCollisionOption): Windows.Foundation.IAsyncAction;
         deleteAsync(): Windows.Foundation.IAsyncAction;
         deleteAsync(option: Windows.Storage.StorageDeleteOption): Windows.Foundation.IAsyncAction;
-        getBasicPropertiesAsync(): Windows.Foundation.IAsyncOperation<Windows.Storage.FileProperties.BasicProperties>;
+        getBasicPropertiesAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Storage.FileProperties.BasicProperties>;
         isOfType(type: Windows.Storage.StorageItemTypes): boolean;
     }
 
@@ -33,9 +33,9 @@
         displayType: string;
         folderRelativeId: string;
         properties: Windows.Storage.FileProperties.StorageItemContentProperties;
-        getThumbnailAsync(mode: Windows.Storage.FileProperties.ThumbnailMode): Windows.Foundation.IAsyncOperation<Windows.Storage.FileProperties.StorageItemThumbnail>;
-        getThumbnailAsync(mode: Windows.Storage.FileProperties.ThumbnailMode, requestedSize: number): Windows.Foundation.IAsyncOperation<Windows.Storage.FileProperties.StorageItemThumbnail>;
-        getThumbnailAsync(mode: Windows.Storage.FileProperties.ThumbnailMode, requestedSize: number, options: Windows.Storage.FileProperties.ThumbnailOptions): Windows.Foundation.IAsyncOperation<Windows.Storage.FileProperties.StorageItemThumbnail>;
+        getThumbnailAsync(mode: Windows.Storage.FileProperties.ThumbnailMode): ToTypeScriptD.WinRT.IPromise<Windows.Storage.FileProperties.StorageItemThumbnail>;
+        getThumbnailAsync(mode: Windows.Storage.FileProperties.ThumbnailMode, requestedSize: number): ToTypeScriptD.WinRT.IPromise<Windows.Storage.FileProperties.StorageItemThumbnail>;
+        getThumbnailAsync(mode: Windows.Storage.FileProperties.ThumbnailMode, requestedSize: number, options: Windows.Storage.FileProperties.ThumbnailOptions): ToTypeScriptD.WinRT.IPromise<Windows.Storage.FileProperties.StorageItemThumbnail>;
     }
 
     export class StorageFile implements Windows.Storage.IStorageFile, Windows.Storage.IStorageItem, Windows.Storage.Streams.IRandomAccessStreamReference, Windows.Storage.Streams.IInputStreamReference, Windows.Storage.IStorageItemProperties {
@@ -49,11 +49,11 @@
         displayType: string;
         folderRelativeId: string;
         properties: Windows.Storage.FileProperties.StorageItemContentProperties;
-        openAsync(accessMode: Windows.Storage.FileAccessMode): Windows.Foundation.IAsyncOperation<Windows.Storage.Streams.IRandomAccessStream>;
-        openTransactedWriteAsync(): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageStreamTransaction>;
-        copyAsync(destinationFolder: Windows.Storage.IStorageFolder): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
-        copyAsync(destinationFolder: Windows.Storage.IStorageFolder, desiredNewName: string): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
-        copyAsync(destinationFolder: Windows.Storage.IStorageFolder, desiredNewName: string, option: Windows.Storage.NameCollisionOption): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
+        openAsync(accessMode: Windows.Storage.FileAccessMode): ToTypeScriptD.WinRT.IPromise<Windows.Storage.Streams.IRandomAccessStream>;
+        openTransactedWriteAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Storage.StorageStreamTransaction>;
+        copyAsync(destinationFolder: Windows.Storage.IStorageFolder): ToTypeScriptD.WinRT.IPromise<Windows.Storage.StorageFile>;
+        copyAsync(destinationFolder: Windows.Storage.IStorageFolder, desiredNewName: string): ToTypeScriptD.WinRT.IPromise<Windows.Storage.StorageFile>;
+        copyAsync(destinationFolder: Windows.Storage.IStorageFolder, desiredNewName: string, option: Windows.Storage.NameCollisionOption): ToTypeScriptD.WinRT.IPromise<Windows.Storage.StorageFile>;
         copyAndReplaceAsync(fileToReplace: Windows.Storage.IStorageFile): Windows.Foundation.IAsyncAction;
         moveAsync(destinationFolder: Windows.Storage.IStorageFolder): Windows.Foundation.IAsyncAction;
         moveAsync(destinationFolder: Windows.Storage.IStorageFolder, desiredNewName: string): Windows.Foundation.IAsyncAction;
@@ -63,30 +63,30 @@
         renameAsync(desiredName: string, option: Windows.Storage.NameCollisionOption): Windows.Foundation.IAsyncAction;
         deleteAsync(): Windows.Foundation.IAsyncAction;
         deleteAsync(option: Windows.Storage.StorageDeleteOption): Windows.Foundation.IAsyncAction;
-        getBasicPropertiesAsync(): Windows.Foundation.IAsyncOperation<Windows.Storage.FileProperties.BasicProperties>;
+        getBasicPropertiesAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Storage.FileProperties.BasicProperties>;
         isOfType(type: Windows.Storage.StorageItemTypes): boolean;
-        openReadAsync(): Windows.Foundation.IAsyncOperation<Windows.Storage.Streams.IRandomAccessStreamWithContentType>;
-        openSequentialReadAsync(): Windows.Foundation.IAsyncOperation<Windows.Storage.Streams.IInputStream>;
-        getThumbnailAsync(mode: Windows.Storage.FileProperties.ThumbnailMode): Windows.Foundation.IAsyncOperation<Windows.Storage.FileProperties.StorageItemThumbnail>;
-        getThumbnailAsync(mode: Windows.Storage.FileProperties.ThumbnailMode, requestedSize: number): Windows.Foundation.IAsyncOperation<Windows.Storage.FileProperties.StorageItemThumbnail>;
-        getThumbnailAsync(mode: Windows.Storage.FileProperties.ThumbnailMode, requestedSize: number, options: Windows.Storage.FileProperties.ThumbnailOptions): Windows.Foundation.IAsyncOperation<Windows.Storage.FileProperties.StorageItemThumbnail>;
-        static getFileFromPathAsync(path: string): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
-        static getFileFromApplicationUriAsync(uri: Windows.Foundation.Uri): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
-        static createStreamedFileAsync(displayNameWithExtension: string, dataRequested: Windows.Storage.StreamedFileDataRequestedHandler, thumbnail: Windows.Storage.Streams.IRandomAccessStreamReference): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
-        static replaceWithStreamedFileAsync(fileToReplace: Windows.Storage.IStorageFile, dataRequested: Windows.Storage.StreamedFileDataRequestedHandler, thumbnail: Windows.Storage.Streams.IRandomAccessStreamReference): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
-        static createStreamedFileFromUriAsync(displayNameWithExtension: string, uri: Windows.Foundation.Uri, thumbnail: Windows.Storage.Streams.IRandomAccessStreamReference): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
-        static replaceWithStreamedFileFromUriAsync(fileToReplace: Windows.Storage.IStorageFile, uri: Windows.Foundation.Uri, thumbnail: Windows.Storage.Streams.IRandomAccessStreamReference): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
+        openReadAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Storage.Streams.IRandomAccessStreamWithContentType>;
+        openSequentialReadAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Storage.Streams.IInputStream>;
+        getThumbnailAsync(mode: Windows.Storage.FileProperties.ThumbnailMode): ToTypeScriptD.WinRT.IPromise<Windows.Storage.FileProperties.StorageItemThumbnail>;
+        getThumbnailAsync(mode: Windows.Storage.FileProperties.ThumbnailMode, requestedSize: number): ToTypeScriptD.WinRT.IPromise<Windows.Storage.FileProperties.StorageItemThumbnail>;
+        getThumbnailAsync(mode: Windows.Storage.FileProperties.ThumbnailMode, requestedSize: number, options: Windows.Storage.FileProperties.ThumbnailOptions): ToTypeScriptD.WinRT.IPromise<Windows.Storage.FileProperties.StorageItemThumbnail>;
+        static getFileFromPathAsync(path: string): ToTypeScriptD.WinRT.IPromise<Windows.Storage.StorageFile>;
+        static getFileFromApplicationUriAsync(uri: Windows.Foundation.Uri): ToTypeScriptD.WinRT.IPromise<Windows.Storage.StorageFile>;
+        static createStreamedFileAsync(displayNameWithExtension: string, dataRequested: Windows.Storage.StreamedFileDataRequestedHandler, thumbnail: Windows.Storage.Streams.IRandomAccessStreamReference): ToTypeScriptD.WinRT.IPromise<Windows.Storage.StorageFile>;
+        static replaceWithStreamedFileAsync(fileToReplace: Windows.Storage.IStorageFile, dataRequested: Windows.Storage.StreamedFileDataRequestedHandler, thumbnail: Windows.Storage.Streams.IRandomAccessStreamReference): ToTypeScriptD.WinRT.IPromise<Windows.Storage.StorageFile>;
+        static createStreamedFileFromUriAsync(displayNameWithExtension: string, uri: Windows.Foundation.Uri, thumbnail: Windows.Storage.Streams.IRandomAccessStreamReference): ToTypeScriptD.WinRT.IPromise<Windows.Storage.StorageFile>;
+        static replaceWithStreamedFileFromUriAsync(fileToReplace: Windows.Storage.IStorageFile, uri: Windows.Foundation.Uri, thumbnail: Windows.Storage.Streams.IRandomAccessStreamReference): ToTypeScriptD.WinRT.IPromise<Windows.Storage.StorageFile>;
     }
 
 }
 declare module Windows.Storage.Streams {
 
     export interface IInputStreamReference {
-        openSequentialReadAsync(): Windows.Foundation.IAsyncOperation<Windows.Storage.Streams.IInputStream>;
+        openSequentialReadAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Storage.Streams.IInputStream>;
     }
 
     export interface IRandomAccessStreamReference {
-        openReadAsync(): Windows.Foundation.IAsyncOperation<Windows.Storage.Streams.IRandomAccessStreamWithContentType>;
+        openReadAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Storage.Streams.IRandomAccessStreamWithContentType>;
     }
 
 }

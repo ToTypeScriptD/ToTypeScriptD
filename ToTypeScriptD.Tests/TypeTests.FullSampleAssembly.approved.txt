@@ -2,7 +2,7 @@
 
     export class AsyncClass {
         constructor();
-        getStringAsync(value: string): Windows.Foundation.IAsyncOperation<string>;
+        getStringAsync(value: string): ToTypeScriptD.WinRT.IPromise<string>;
     }
 
     export class ClassWithEventHandler {
@@ -11,6 +11,17 @@
         onsomethinghappened(ev: any);
         constructor();
         doSomething(): void;
+    }
+
+    export class CXReturnTypes {
+        constructor();
+        getString(): string;
+        getInt32(): number;
+        getUInt32(): number;
+        getGuid(): string;
+        getByte(): number;
+        getBytes(): System.Byte[];
+        getBoolean(): boolean;
     }
 
     enum SampleEnum {

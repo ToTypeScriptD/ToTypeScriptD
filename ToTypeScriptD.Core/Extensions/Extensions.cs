@@ -90,8 +90,17 @@ namespace ToTypeScriptD
                 fromName = fromName.Replace(genericType.Key, genericType.Value);
             }
 
+            fromName = fromName.StripGenericTick();
+
+            // hack the async type with a custom promise definition
+            if (fromName.StartsWith("Windows.Foundation.IAsyncOperation<"))
+            {
+                fromName = fromName.Replace("Windows.Foundation.IAsyncOperation<", "ToTypeScriptD.WinRT.IPromise<");
+            }
+
+            
             // remove the generic bit
-            return fromName.StripGenericTick();
+            return fromName;
         }
 
         public static HashSet<T> ToHashSet<T>(this IEnumerable<T> items)

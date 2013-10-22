@@ -17,7 +17,7 @@
 
     export class AsyncOperationCompletedHandler<TResult> {
         constructor(object: any, method: number);
-        invoke(asyncInfo: Windows.Foundation.IAsyncOperation<TResult>, asyncStatus: Windows.Foundation.AsyncStatus): void;
+        invoke(asyncInfo: ToTypeScriptD.WinRT.IPromise<TResult>, asyncStatus: Windows.Foundation.AsyncStatus): void;
     }
 
     export class AsyncOperationProgressHandler<TResult,TProgress> {
