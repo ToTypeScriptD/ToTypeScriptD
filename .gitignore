@@ -8,6 +8,8 @@ ToTypeScriptD.Tests.JavascriptTests/Scripts/typings/Windows.Foundation.d.ts
 ToTypeScriptD.Tests.JavascriptTests/specs/*.js
 ToTypeScriptD.Tests.JavascriptTests/AppPackages
 
+*.js.map
+
 #OS junk files
 [Tt]humbs.db
 *.DS_Store
