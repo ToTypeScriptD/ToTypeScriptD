@@ -3,6 +3,7 @@
 *.opensdf
 packages/
 ToTypeScriptD.Tests.JavascriptTests/Scripts/typings/ToTypeScriptD.Native/ToTypeScriptD.Native.d.ts
+ToTypeScriptD.Tests.JavascriptTests/Scripts/typings/ToTypeScriptD.specialTypes.d.ts
 ToTypeScriptD.Tests.JavascriptTests/Scripts/typings/Windows.Foundation.d.ts
 ToTypeScriptD.Tests.JavascriptTests/specs/*.js
 ToTypeScriptD.Tests.JavascriptTests/AppPackages

@@ -68,6 +68,7 @@
     <Content Include="Scripts\typings\chai\chai.d.ts" />
     <Content Include="Scripts\typings\mocha\mocha.d.ts" />
     <Content Include="Scripts\typings\ToTypeScriptD.Native\ToTypeScriptD.Native.d.ts" />
+    <Content Include="Scripts\typings\ToTypeScriptD.specialTypes.d.ts" />
     <Content Include="Scripts\typings\Windows.Foundation.d.ts" />
     <Content Include="specs\spec.AsyncClass.js" />
     <Content Include="specs\spec.AsyncClass.ts" />
@@ -105,6 +106,7 @@
   </PropertyGroup>
   -->
   <Target Name="BeforeBuild">
+    <Exec Command="$(SolutionDir)bin\ToTypeScriptD.exe --specialTypes &gt; $(ProjectDir)\Scripts\typings\ToTypeScriptD.specialTypes.d.ts" />
     <Exec Command="$(SolutionDir)bin\ToTypeScriptD.exe C:\Windows\System32\WinMetadata\Windows.Foundation.winmd &gt; $(ProjectDir)\Scripts\typings\Windows.Foundation.d.ts" />
     <Exec Command="$(SolutionDir)bin\ToTypeScriptD.exe $(SolutionDir)bin\ToTypeScriptD.Native.winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd &gt; $(ProjectDir)\Scripts\typings\ToTypeScriptD.Native\ToTypeScriptD.Native.d.ts" />
   </Target>

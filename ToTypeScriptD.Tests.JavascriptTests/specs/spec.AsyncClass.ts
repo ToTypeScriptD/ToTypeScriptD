@@ -12,8 +12,7 @@ describe('AsyncClass', function () {
         });
 
         it("should return a string asynchronously", function (done) {
-
-            sut.getStringAsync("hello world").done(function (result) {
+            sut.getStringAsync("hello world").done(function (result: string) {
                 expect(result).to.eq("hello world");
                 done();
             });
