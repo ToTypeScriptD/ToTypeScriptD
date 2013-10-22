@@ -20,7 +20,7 @@
         getUInt32(): number;
         getGuid(): string;
         getByte(): number;
-        getBytes(): System.Byte[];
+        getBytes(): any;
         getBoolean(): boolean;
     }
 

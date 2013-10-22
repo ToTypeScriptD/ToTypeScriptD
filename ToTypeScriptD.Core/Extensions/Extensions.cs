@@ -30,7 +30,7 @@ namespace ToTypeScriptD
                 { "System.Double",               "number"},
                 { "System.Char",                 "number"}, // TODO: should this be a string or number?
                 { "System.Guid",                 "string"},
-
+                { "System.Byte[]",               "any"},
         };
         static Dictionary<string, string> genericTypeMap = null;
 
@@ -68,7 +68,12 @@ namespace ToTypeScriptD
         {
             if (genericTypeMap == null)
             {
-                genericTypeMap = typeMap.ToDictionary(item => "<" + item.Key + ">", item => "<" + item.Value + ">");
+                genericTypeMap = typeMap
+                    .ToDictionary(item => "<" + item.Key + ">", item => "<" + item.Value + ">");
+
+                typeMap
+                    .ToDictionary(item => item.Key + "[]", item => item.Value + "[]")
+                    .Each(x => genericTypeMap.Add(x.Key, x.Value));
             }
 
             var fromName = typeReference.FullName;
