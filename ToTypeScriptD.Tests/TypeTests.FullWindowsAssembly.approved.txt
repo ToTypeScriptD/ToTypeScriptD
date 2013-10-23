@@ -135,97 +135,78 @@
     }
 
     interface IPropertyValue_getUInt8Array_OUT {
-        __returnValue: void;
         value: number[];
     }
 
     interface IPropertyValue_getInt16Array_OUT {
-        __returnValue: void;
         value: number[];
     }
 
     interface IPropertyValue_getUInt16Array_OUT {
-        __returnValue: void;
         value: number[];
     }
 
     interface IPropertyValue_getInt32Array_OUT {
-        __returnValue: void;
         value: number[];
     }
 
     interface IPropertyValue_getUInt32Array_OUT {
-        __returnValue: void;
         value: number[];
     }
 
     interface IPropertyValue_getInt64Array_OUT {
-        __returnValue: void;
         value: number[];
     }
 
     interface IPropertyValue_getUInt64Array_OUT {
-        __returnValue: void;
         value: number[];
     }
 
     interface IPropertyValue_getSingleArray_OUT {
-        __returnValue: void;
         value: number[];
     }
 
     interface IPropertyValue_getDoubleArray_OUT {
-        __returnValue: void;
         value: number[];
     }
 
     interface IPropertyValue_getChar16Array_OUT {
-        __returnValue: void;
         value: number[];
     }
 
     interface IPropertyValue_getBooleanArray_OUT {
-        __returnValue: void;
         value: boolean[];
     }
 
     interface IPropertyValue_getStringArray_OUT {
-        __returnValue: void;
         value: string[];
     }
 
     interface IPropertyValue_getInspectableArray_OUT {
-        __returnValue: void;
         value: any[];
     }
 
     interface IPropertyValue_getGuidArray_OUT {
-        __returnValue: void;
         value: string[];
     }
 
     interface IPropertyValue_getDateTimeArray_OUT {
-        __returnValue: void;
         value: Date[];
     }
 
     interface IPropertyValue_getTimeSpanArray_OUT {
-        __returnValue: void;
         value: Windows.Foundation.TimeSpan[];
     }
 
     interface IPropertyValue_getPointArray_OUT {
-        __returnValue: void;
         value: Windows.Foundation.Point[];
     }
 
     interface IPropertyValue_getSizeArray_OUT {
-        __returnValue: void;
         value: Windows.Foundation.Size[];
     }
 
     interface IPropertyValue_getRectArray_OUT {
-        __returnValue: void;
         value: Windows.Foundation.Rect[];
     }
 
@@ -483,7 +464,6 @@ declare module Windows.Foundation.Collections {
     }
 
     interface IMapView_split_OUT {
-        __returnValue: void;
         first: Windows.Foundation.Collections.IMapView<K,V>;
         second: Windows.Foundation.Collections.IMapView<K,V>;
     }

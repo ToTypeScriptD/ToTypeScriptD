@@ -23,10 +23,17 @@
         getBytes(): any;
         getBoolean(): boolean;
         methodWithSomeOutParameters(in1: number, in2: string): CXReturnTypes_methodWithSomeOutParameters_OUT;
+        methodWithSomeOutParametersButVoidResult(in1: number, in2: string): CXReturnTypes_methodWithSomeOutParametersButVoidResult_OUT;
     }
 
     interface CXReturnTypes_methodWithSomeOutParameters_OUT {
         __returnValue: number;
+        out1: number;
+        out2: string;
+        out3: number[];
+    }
+
+    interface CXReturnTypes_methodWithSomeOutParametersButVoidResult_OUT {
         out1: number;
         out2: string;
         out3: number[];

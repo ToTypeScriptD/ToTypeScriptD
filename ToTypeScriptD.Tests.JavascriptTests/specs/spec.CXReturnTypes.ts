@@ -55,7 +55,7 @@ describe('CXReturnTypes', function () {
         });
 
 
-        it("Should return a set of out parameters", function () {
+        it("Should return a set of out parameters with an int return type", function () {
             var result = sut.methodWithSomeOutParameters(1, "hello");
 
             var __returnValue: number = result.__returnValue;
@@ -65,6 +65,20 @@ describe('CXReturnTypes', function () {
 
 
             expect(__returnValue).to.equal(10);
+            expect(out1).to.equal(1);
+            expect(out2).to.equal("hello");
+            expect(JSON.stringify(out3)).to.equal(JSON.stringify({ "0": 0, "1": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9 }));
+        });
+
+
+        it("Should return a set of out parameters with a void return type", function () {
+            var result = sut.methodWithSomeOutParametersButVoidResult(1, "hello");
+
+            var out1: number = result.out1;
+            var out2: string = result.out2;
+            var out3: any = result.out3;
+
+
             expect(out1).to.equal(1);
             expect(out2).to.equal("hello");
             expect(JSON.stringify(out3)).to.equal(JSON.stringify({ "0": 0, "1": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9 }));

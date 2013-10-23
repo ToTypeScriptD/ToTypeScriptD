@@ -62,3 +62,16 @@ int CXReturnTypes::MethodWithSomeOutParameters(int in1, Platform::String^ in2, i
 
 	return 10;
 }
+
+void CXReturnTypes::MethodWithSomeOutParametersButVoidResult(int in1, Platform::String^ in2, int* out1, Platform::String^* out2, Platform::Array<int>^* out3)
+{
+	auto temp = ref new Array<int>(10);
+	for(unsigned int i = 0; i < temp->Length; i++)
+	{
+		temp[i] = i;
+	}
+
+	*out2 = in2;
+	*out1 = in1;
+	*out3 = temp;
+}

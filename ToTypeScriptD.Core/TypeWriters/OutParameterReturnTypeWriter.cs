@@ -35,7 +35,10 @@ namespace ToTypeScriptD.Core.TypeWriters
             IndentCount++;
 
             // return type
-            sb.AppendFormat("{0}__returnValue: {1};{2}", IndentValue, ReturnTypeReference.ToTypeScriptType(), Environment.NewLine);
+            if (!(ReturnTypeReference.FullName == "System.Void"))
+            {
+                sb.AppendFormat("{0}__returnValue: {1};{2}", IndentValue, ReturnTypeReference.ToTypeScriptType(), Environment.NewLine);
+            }
 
             // out parameter values
             OutTypes.Each(item =>

@@ -16,6 +16,7 @@ namespace ToTypeScriptD
 			Platform::Boolean GetBoolean();
 
 			int MethodWithSomeOutParameters(int in1, Platform::String^ in2, int* out1, Platform::String^* out2, Platform::Array<int>^* out3);
+			void MethodWithSomeOutParametersButVoidResult(int in1, Platform::String^ in2, int* out1, Platform::String^* out2, Platform::Array<int>^* out3);
 		};
 	}
 }
