@@ -415,8 +415,8 @@
         getFirstValueByName(name: string): string;
         first(): Windows.Foundation.Collections.IIterator<Windows.Foundation.IWwwFormUrlDecoderEntry>;
         getAt(index: number): Windows.Foundation.IWwwFormUrlDecoderEntry;
-        indexOf(value: Windows.Foundation.IWwwFormUrlDecoderEntry,): WwwFormUrlDecoder_indexOf_OUT;
-        getMany(startIndex: number,): WwwFormUrlDecoder_getMany_OUT;
+        indexOf(value: Windows.Foundation.IWwwFormUrlDecoderEntry): WwwFormUrlDecoder_indexOf_OUT;
+        getMany(startIndex: number): WwwFormUrlDecoder_getMany_OUT;
     }
 
     interface WwwFormUrlDecoder_indexOf_OUT {
@@ -511,14 +511,14 @@ declare module Windows.Foundation.Collections {
         size: number;
         getAt(index: number): T;
         getView(): Windows.Foundation.Collections.IVectorView<T>;
-        indexOf(value: T,): IVector_indexOf_OUT;
+        indexOf(value: T): IVector_indexOf_OUT;
         setAt(index: number, value: T): void;
         insertAt(index: number, value: T): void;
         removeAt(index: number): void;
         append(value: T): void;
         removeAtEnd(): void;
         clear(): void;
-        getMany(startIndex: number,): IVector_getMany_OUT;
+        getMany(startIndex: number): IVector_getMany_OUT;
         replaceAll(items: T[]): void;
     }
 
@@ -540,8 +540,8 @@ declare module Windows.Foundation.Collections {
     export interface IVectorView<T> extends Windows.Foundation.Collections.IIterable<T> {
         size: number;
         getAt(index: number): T;
-        indexOf(value: T,): IVectorView_indexOf_OUT;
-        getMany(startIndex: number,): IVectorView_getMany_OUT;
+        indexOf(value: T): IVectorView_indexOf_OUT;
+        getMany(startIndex: number): IVectorView_getMany_OUT;
     }
 
     interface IVectorView_indexOf_OUT {
