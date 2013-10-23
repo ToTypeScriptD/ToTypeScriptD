@@ -22,7 +22,7 @@
         getByte(): number;
         getBytes(): any;
         getBoolean(): boolean;
-        methodWithSomeOutParameters(in1: number, in2: string,): CXReturnTypes_methodWithSomeOutParameters_OUT;
+        methodWithSomeOutParameters(in1: number, in2: string): CXReturnTypes_methodWithSomeOutParameters_OUT;
     }
 
     interface CXReturnTypes_methodWithSomeOutParameters_OUT {

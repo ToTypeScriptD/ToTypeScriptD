@@ -142,15 +142,9 @@ namespace ToTypeScriptD.Core.TypeWriters
                 var outTypes = new List<ParameterDefinition>();
 
                 sb.Append("(");
-                method.Parameters.For((parameter, i, isLast) =>
+                method.Parameters.Where(w => w.IsOut).Each(e => outTypes.Add(e));
+                method.Parameters.Where(w => !w.IsOut).For((parameter, i, isLast) =>
                 {
-
-                    if (parameter.IsOut)
-                    {
-                        outTypes.Add(parameter);
-                        return;
-                    }
-
                     sb.Append(i == 0 ? "" : " ");
                     sb.Append(parameter.Name);
                     sb.Append(": ");
