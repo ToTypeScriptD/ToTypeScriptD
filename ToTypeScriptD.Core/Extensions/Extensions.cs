@@ -49,7 +49,7 @@ namespace ToTypeScriptD
             //return !name.IsNotPublic;
             return false;
         }
-        
+
         public static bool ShouldIgnoreTypeByName(this string name)
         {
             if (name == "<Module>")
@@ -103,7 +103,19 @@ namespace ToTypeScriptD
                 fromName = fromName.Replace("Windows.Foundation.IAsyncOperation<", "ToTypeScriptD.WinRT.IPromise<");
             }
 
-            
+            // To lazy to figure out the Mono.Cecil way (or if there is a way), but do 
+            // some string search/replace on types for example:
+            //
+            // turn
+            //      Windows.Foundation.Collections.IMapView<System.String,System.Object>;
+            // into
+            //      Windows.Foundation.Collections.IMapView<string,any>;
+            // 
+            typeMap.Each(item =>
+            {
+                fromName = fromName.Replace(item.Key, item.Value);
+            });
+
             // remove the generic bit
             return fromName;
         }

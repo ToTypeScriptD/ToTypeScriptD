@@ -55,7 +55,7 @@ namespace ToTypeScriptD.Core.TypeWriters
                 sb.Append("<");
                 TypeDefinition.GenericParameters.For((genericParameter, i, isLastItem) =>
                 {
-                    sb.AppendFormat("{0}{1}", genericParameter.Name, isLastItem ? "" : ",");
+                    sb.AppendFormat("{0}{1}", genericParameter.ToTypeScriptType(), isLastItem ? "" : ",");
                 });
                 sb.Append(">");
             }
@@ -69,7 +69,7 @@ namespace ToTypeScriptD.Core.TypeWriters
                     sb.Append(inheriterString);
                     interfaceTypes.For((item, i, isLast) =>
                     {
-                        sb.AppendFormat(" {0}{1}", item.FullName.StripGenericTick(), isLast ? " " : ",");
+                        sb.AppendFormat(" {0}{1}", item.ToTypeScriptType(), isLast ? " " : ",");
                     });
                 }
             }
