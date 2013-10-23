@@ -113,25 +113,120 @@
         getPoint(): Windows.Foundation.Point;
         getSize(): Windows.Foundation.Size;
         getRect(): Windows.Foundation.Rect;
-        getUInt8Array(value: TodoOutParameters): void;
-        getInt16Array(value: TodoOutParameters): void;
-        getUInt16Array(value: TodoOutParameters): void;
-        getInt32Array(value: TodoOutParameters): void;
-        getUInt32Array(value: TodoOutParameters): void;
-        getInt64Array(value: TodoOutParameters): void;
-        getUInt64Array(value: TodoOutParameters): void;
-        getSingleArray(value: TodoOutParameters): void;
-        getDoubleArray(value: TodoOutParameters): void;
-        getChar16Array(value: TodoOutParameters): void;
-        getBooleanArray(value: TodoOutParameters): void;
-        getStringArray(value: TodoOutParameters): void;
-        getInspectableArray(value: TodoOutParameters): void;
-        getGuidArray(value: TodoOutParameters): void;
-        getDateTimeArray(value: TodoOutParameters): void;
-        getTimeSpanArray(value: TodoOutParameters): void;
-        getPointArray(value: TodoOutParameters): void;
-        getSizeArray(value: TodoOutParameters): void;
-        getRectArray(value: TodoOutParameters): void;
+        getUInt8Array(): IPropertyValue_getUInt8Array_OUT;
+        getInt16Array(): IPropertyValue_getInt16Array_OUT;
+        getUInt16Array(): IPropertyValue_getUInt16Array_OUT;
+        getInt32Array(): IPropertyValue_getInt32Array_OUT;
+        getUInt32Array(): IPropertyValue_getUInt32Array_OUT;
+        getInt64Array(): IPropertyValue_getInt64Array_OUT;
+        getUInt64Array(): IPropertyValue_getUInt64Array_OUT;
+        getSingleArray(): IPropertyValue_getSingleArray_OUT;
+        getDoubleArray(): IPropertyValue_getDoubleArray_OUT;
+        getChar16Array(): IPropertyValue_getChar16Array_OUT;
+        getBooleanArray(): IPropertyValue_getBooleanArray_OUT;
+        getStringArray(): IPropertyValue_getStringArray_OUT;
+        getInspectableArray(): IPropertyValue_getInspectableArray_OUT;
+        getGuidArray(): IPropertyValue_getGuidArray_OUT;
+        getDateTimeArray(): IPropertyValue_getDateTimeArray_OUT;
+        getTimeSpanArray(): IPropertyValue_getTimeSpanArray_OUT;
+        getPointArray(): IPropertyValue_getPointArray_OUT;
+        getSizeArray(): IPropertyValue_getSizeArray_OUT;
+        getRectArray(): IPropertyValue_getRectArray_OUT;
+    }
+
+    interface IPropertyValue_getUInt8Array_OUT {
+        __returnValue: void;
+        value: number[];
+    }
+
+    interface IPropertyValue_getInt16Array_OUT {
+        __returnValue: void;
+        value: number[];
+    }
+
+    interface IPropertyValue_getUInt16Array_OUT {
+        __returnValue: void;
+        value: number[];
+    }
+
+    interface IPropertyValue_getInt32Array_OUT {
+        __returnValue: void;
+        value: number[];
+    }
+
+    interface IPropertyValue_getUInt32Array_OUT {
+        __returnValue: void;
+        value: number[];
+    }
+
+    interface IPropertyValue_getInt64Array_OUT {
+        __returnValue: void;
+        value: number[];
+    }
+
+    interface IPropertyValue_getUInt64Array_OUT {
+        __returnValue: void;
+        value: number[];
+    }
+
+    interface IPropertyValue_getSingleArray_OUT {
+        __returnValue: void;
+        value: number[];
+    }
+
+    interface IPropertyValue_getDoubleArray_OUT {
+        __returnValue: void;
+        value: number[];
+    }
+
+    interface IPropertyValue_getChar16Array_OUT {
+        __returnValue: void;
+        value: number[];
+    }
+
+    interface IPropertyValue_getBooleanArray_OUT {
+        __returnValue: void;
+        value: boolean[];
+    }
+
+    interface IPropertyValue_getStringArray_OUT {
+        __returnValue: void;
+        value: string[];
+    }
+
+    interface IPropertyValue_getInspectableArray_OUT {
+        __returnValue: void;
+        value: any[];
+    }
+
+    interface IPropertyValue_getGuidArray_OUT {
+        __returnValue: void;
+        value: string[];
+    }
+
+    interface IPropertyValue_getDateTimeArray_OUT {
+        __returnValue: void;
+        value: Date[];
+    }
+
+    interface IPropertyValue_getTimeSpanArray_OUT {
+        __returnValue: void;
+        value: Windows.Foundation.TimeSpan[];
+    }
+
+    interface IPropertyValue_getPointArray_OUT {
+        __returnValue: void;
+        value: Windows.Foundation.Point[];
+    }
+
+    interface IPropertyValue_getSizeArray_OUT {
+        __returnValue: void;
+        value: Windows.Foundation.Size[];
+    }
+
+    interface IPropertyValue_getRectArray_OUT {
+        __returnValue: void;
+        value: Windows.Foundation.Rect[];
     }
 
     export interface IReference<T> extends Windows.Foundation.IPropertyValue {
@@ -320,8 +415,18 @@
         getFirstValueByName(name: string): string;
         first(): Windows.Foundation.Collections.IIterator<Windows.Foundation.IWwwFormUrlDecoderEntry>;
         getAt(index: number): Windows.Foundation.IWwwFormUrlDecoderEntry;
-        indexOf(value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: TodoOutParameters): boolean;
-        getMany(startIndex: number, items: Windows.Foundation.IWwwFormUrlDecoderEntry[]): number;
+        indexOf(value: Windows.Foundation.IWwwFormUrlDecoderEntry,): WwwFormUrlDecoder_indexOf_OUT;
+        getMany(startIndex: number,): WwwFormUrlDecoder_getMany_OUT;
+    }
+
+    interface WwwFormUrlDecoder_indexOf_OUT {
+        __returnValue: boolean;
+        index: number;
+    }
+
+    interface WwwFormUrlDecoder_getMany_OUT {
+        __returnValue: number;
+        items: Windows.Foundation.IWwwFormUrlDecoderEntry[];
     }
 
 }
@@ -342,7 +447,12 @@ declare module Windows.Foundation.Collections {
         current: T;
         hasCurrent: boolean;
         moveNext(): boolean;
-        getMany(items: T[]): number;
+        getMany(): IIterator_getMany_OUT;
+    }
+
+    interface IIterator_getMany_OUT {
+        __returnValue: number;
+        items: T[];
     }
 
     export interface IKeyValuePair<K,V> {
@@ -369,7 +479,13 @@ declare module Windows.Foundation.Collections {
         size: number;
         lookup(key: K): V;
         hasKey(key: K): boolean;
-        split(first: TodoOutParameters, second: TodoOutParameters): void;
+        split(): IMapView_split_OUT;
+    }
+
+    interface IMapView_split_OUT {
+        __returnValue: void;
+        first: Windows.Foundation.Collections.IMapView<K,V>;
+        second: Windows.Foundation.Collections.IMapView<K,V>;
     }
 
     export interface IObservableMap<K,V> extends Windows.Foundation.Collections.IMap<K,V> {
@@ -395,15 +511,25 @@ declare module Windows.Foundation.Collections {
         size: number;
         getAt(index: number): T;
         getView(): Windows.Foundation.Collections.IVectorView<T>;
-        indexOf(value: T, index: TodoOutParameters): boolean;
+        indexOf(value: T,): IVector_indexOf_OUT;
         setAt(index: number, value: T): void;
         insertAt(index: number, value: T): void;
         removeAt(index: number): void;
         append(value: T): void;
         removeAtEnd(): void;
         clear(): void;
-        getMany(startIndex: number, items: T[]): number;
+        getMany(startIndex: number,): IVector_getMany_OUT;
         replaceAll(items: T[]): void;
+    }
+
+    interface IVector_indexOf_OUT {
+        __returnValue: boolean;
+        index: number;
+    }
+
+    interface IVector_getMany_OUT {
+        __returnValue: number;
+        items: T[];
     }
 
     export interface IVectorChangedEventArgs {
@@ -414,8 +540,18 @@ declare module Windows.Foundation.Collections {
     export interface IVectorView<T> extends Windows.Foundation.Collections.IIterable<T> {
         size: number;
         getAt(index: number): T;
-        indexOf(value: T, index: TodoOutParameters): boolean;
-        getMany(startIndex: number, items: T[]): number;
+        indexOf(value: T,): IVectorView_indexOf_OUT;
+        getMany(startIndex: number,): IVectorView_getMany_OUT;
+    }
+
+    interface IVectorView_indexOf_OUT {
+        __returnValue: boolean;
+        index: number;
+    }
+
+    interface IVectorView_getMany_OUT {
+        __returnValue: number;
+        items: T[];
     }
 
     export class MapChangedEventHandler<K,V> {

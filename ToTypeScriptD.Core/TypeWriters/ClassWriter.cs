@@ -17,7 +17,6 @@ namespace ToTypeScriptD.Core.TypeWriters
         {
             ++IndentCount;
             base.WriteOutMethodSignatures(sb, "class", "implements");
-            Indent(sb); sb.AppendLine("}");
         }
     }
 }

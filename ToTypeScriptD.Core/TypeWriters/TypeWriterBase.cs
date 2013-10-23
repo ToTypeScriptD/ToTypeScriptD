@@ -48,6 +48,7 @@ namespace ToTypeScriptD.Core.TypeWriters
 
         internal void WriteOutMethodSignatures(StringBuilder sb, string exportType, string inheriterString)
         {
+            List<ITypeWriter> extendedTypes = new List<ITypeWriter>();
             Indent(sb); sb.AppendFormat("export {0} {1}", exportType, TypeDefinition.Name.StripGenericTick());
 
             if (TypeDefinition.HasGenericParameters)
@@ -138,9 +139,18 @@ namespace ToTypeScriptD.Core.TypeWriters
                 }
                 sb.Append(methodName);
 
+                var outTypes = new List<ParameterDefinition>();
+
                 sb.Append("(");
                 method.Parameters.For((parameter, i, isLast) =>
                 {
+
+                    if (parameter.IsOut)
+                    {
+                        outTypes.Add(parameter);
+                        return;
+                    }
+
                     sb.Append(i == 0 ? "" : " ");
                     sb.Append(parameter.Name);
                     sb.Append(": ");
@@ -152,10 +162,27 @@ namespace ToTypeScriptD.Core.TypeWriters
                 // constructors don't have return types.
                 if (!method.IsConstructor)
                 {
-                    sb.AppendFormat(": {0}", method.ReturnType.ToTypeScriptType());
+                    string returnType;
+                    if (outTypes.Any())
+                    {
+                        var outWriter = new OutParameterReturnTypeWriter(IndentCount, TypeDefinition, methodName, method.ReturnType, outTypes);
+                        extendedTypes.Add(outWriter);
+                        //TypeCollection.Add(TypeDefinition.Namespace, outWriter.TypeName, outWriter);
+                        returnType = outWriter.TypeName;
+                    }
+                    else
+                    {
+                        returnType = method.ReturnType.ToTypeScriptType();
+                    }
+
+                    sb.AppendFormat(": {0}", returnType);
                 }
                 sb.AppendLine(";");
             }
+
+            Indent(sb); sb.AppendLine("}");
+
+            extendedTypes.Each(item => item.Write(sb));
         }
     }
 }

@@ -39,14 +39,6 @@ namespace ToTypeScriptD
             if (!name.IsPublic)
                 return true;
 
-            // TODO: find a better way to detect inheritance of a specific type.
-            //var baseType = name.BaseType;
-            //while(baseType != null){
-            //    baseType = name.BaseType;
-            //}
-            //if (name.BaseType != null && name.BaseType.FullName == "System.Attribute") return false;
-
-            //return !name.IsNotPublic;
             return false;
         }
 
@@ -83,19 +75,15 @@ namespace ToTypeScriptD
                 return typeMap[fromName];
             }
 
-            if (fromName.Contains("&"))
-            {
-                // need to figure out out parameters
-                return "TodoOutParameters";
-            }
-
             var genericType = genericTypeMap.FirstOrDefault(x => fromName.Contains(x.Key));
             if (!genericType.Equals(default(System.Collections.Generic.KeyValuePair<string, string>)))
             {
                 fromName = fromName.Replace(genericType.Key, genericType.Value);
             }
 
-            fromName = fromName.StripGenericTick();
+            fromName = fromName
+                .StripGenericTick()
+                .StripOutParamSymbol();
 
             // hack the async type with a custom promise definition
             if (fromName.StartsWith("Windows.Foundation.IAsyncOperation<"))
@@ -185,6 +173,11 @@ namespace ToTypeScriptD
             return string.Format(System.Globalization.CultureInfo.CurrentCulture, format, args);
         }
 
+        public static string StripOutParamSymbol(this string value)
+        {
+            return value.Replace("&", "");
+        }
+        
         public static string StripGenericTick(this string value)
         {
             4.Times().Each(x =>
