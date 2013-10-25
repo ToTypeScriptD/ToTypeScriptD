@@ -9,12 +9,11 @@ using ToTypeScriptD.Core.TypeWriters;
 namespace ToTypeScriptD.Tests
 {
 
-    public class Spike : TestBase
+    public class Spike : WinmdTestBase
     {
         [Fact]
         public void SpikeIt()
         {
-            //Approvals.Verify(result);
         }
 
     }

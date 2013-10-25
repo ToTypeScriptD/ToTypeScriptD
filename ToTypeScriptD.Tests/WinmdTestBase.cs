@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ToTypeScriptD.Tests
 {
-    public class TestBase
+    public class WinmdTestBase
     {
         private AssemblyDefinition _nativeAssemblyDefinition;
         public string NativeComponentPath { get { return @"ToTypeScriptD.Native.winmd"; } }

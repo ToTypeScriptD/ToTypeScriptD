@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace ToTypeScriptD.Tests
 {
 
-    public class TypeTests : TestBase
+    public class WinmdTypeTests : WinmdTestBase
     {
         [Fact]
         public void EnumType()
