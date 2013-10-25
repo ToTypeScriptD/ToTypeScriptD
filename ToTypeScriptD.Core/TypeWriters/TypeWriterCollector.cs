@@ -8,16 +8,16 @@ using ToTypeScriptD.Core.TypeWriters;
 
 namespace ToTypeScriptD.Core.TypeWriters
 {
-    public class TypeWriterGenerator
+    public class TypeWriterCollector
     {
-        public void Generate(IEnumerable<Mono.Cecil.TypeDefinition> tds, TypeCollection typeCollection)
+        public void Collect(IEnumerable<Mono.Cecil.TypeDefinition> tds, TypeCollection typeCollection)
         {
             foreach (var item in tds)
             {
-                Generate(item, typeCollection);
+                Collect(item, typeCollection);
             }
         }
-        public void Generate(Mono.Cecil.TypeDefinition td, TypeCollection typeCollection)
+        public void Collect(Mono.Cecil.TypeDefinition td, TypeCollection typeCollection)
         {
             if (td.ShouldIgnoreType())
             {

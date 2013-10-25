@@ -25,14 +25,14 @@ namespace ToTypeScriptD.Tests
         public static string ToTypeScript(this TypeDefinition value)
         {
             var typeCollection = new TypeCollection();
-            new TypeWriterGenerator().Generate(value, typeCollection);
+            new TypeWriterCollector().Collect(value, typeCollection);
             return typeCollection.Render();
         }
 
         public static string ToTypeScript(this IEnumerable<TypeDefinition> value)
         {
             var typeCollection = new TypeCollection();
-            new TypeWriterGenerator().Generate(value, typeCollection);
+            new TypeWriterCollector().Collect(value, typeCollection);
             return typeCollection.Render();
         }
 

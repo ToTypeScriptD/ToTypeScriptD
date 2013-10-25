@@ -62,7 +62,7 @@
     <Compile Include="TypeWriters\TypeCollection.cs" />
     <Compile Include="TypeWriters\TypeWriterBase.cs" />
     <Compile Include="TypeWriters\TypeWriterConfig.cs" />
-    <Compile Include="TypeWriters\TypeWriterGenerator.cs" />
+    <Compile Include="TypeWriters\TypeWriterCollector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
