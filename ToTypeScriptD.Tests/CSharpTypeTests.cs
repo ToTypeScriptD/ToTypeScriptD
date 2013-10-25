@@ -14,10 +14,9 @@ namespace ToTypeScriptD.Tests
         [Fact]
         public void GenerateFullAssembly()
         {
-
-            //base.CSharpAssembly.ModuleDefinition
-
-            //result.Verify();
+            var path = base.CSharpAssembly.ComponentPath;
+            var result = ToTypeScriptD.Render.FullAssembly(path);
+            Approvals.Verify(result);
         }
     }
 }
