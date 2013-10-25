@@ -5,12 +5,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mono.Cecil;
 
 namespace ToTypeScriptD.Tests
 {
 
     public class WinmdTypeTests : WinmdTestBase
     {
+        private TypeDefinition GetNativeType(string postfix)
+        {
+            return base.NativeAssembly.GetNativeType("ToTypeScriptD.Native." + postfix);
+        }
+
+        private TypeDefinition GetWinNativeType(string type)
+        {
+            return base.WindowsAssembly.GetNativeType(type);
+        }
+
         [Fact]
         public void EnumType()
         {
@@ -35,7 +46,7 @@ namespace ToTypeScriptD.Tests
         [Fact]
         public void FullSampleAssembly()
         {
-            var result = ToTypeScriptD.Render.FullAssembly(base.NativeComponentPath);
+            var result = ToTypeScriptD.Render.FullAssembly(base.NativeAssembly.ComponentPath);
             Approvals.Verify(result);
         }
 

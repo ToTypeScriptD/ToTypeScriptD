@@ -9,8 +9,15 @@ using System.Threading.Tasks;
 namespace ToTypeScriptD.Tests
 {
 
-    public class CSharpTypeTests : WinmdTestBase
+    public class CSharpTypeTests : CSharpTestBase
     {
+        [Fact]
+        public void GenerateFullAssembly()
+        {
 
+            //base.CSharpAssembly.ModuleDefinition
+
+            //result.Verify();
+        }
     }
 }

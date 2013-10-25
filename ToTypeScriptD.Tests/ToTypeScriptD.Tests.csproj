@@ -60,6 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CSharpTestBase.cs" />
     <Compile Include="CSharpTypeTests.cs" />
     <Compile Include="ExeTests\CommandLineArgTests.cs" />
     <Compile Include="ExeTests\ExeProcessResult.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="..\SharedItems\AssemblyInfo.Common.cs">
       <Link>Properties\AssemblyInfo.Common.cs</Link>
     </Compile>
+    <Compile Include="TestAssembly.cs" />
     <Compile Include="WinmdTestBase.cs" />
     <Compile Include="WinmdTypeTests.cs" />
   </ItemGroup>
@@ -80,6 +82,10 @@
     <ProjectReference Include="..\ToTypeScriptD.Core\ToTypeScriptD.Core.csproj">
       <Project>{fea71855-6f65-45cb-97c4-51f1891904f6}</Project>
       <Name>ToTypeScriptD.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToTypeScriptD.TestAssembly.CSharp\ToTypeScriptD.TestAssembly.CSharp.csproj">
+      <Project>{c7f85246-c5d8-44b0-a125-e526e24f900b}</Project>
+      <Name>ToTypeScriptD.TestAssembly.CSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
