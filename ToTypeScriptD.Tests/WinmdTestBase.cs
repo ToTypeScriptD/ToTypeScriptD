@@ -1,8 +1,4 @@
-﻿using System.Linq;
-using Mono.Cecil;
-using ApprovalTests.Reporters;
-using System.Collections.Generic;
-
+﻿
 namespace ToTypeScriptD.Tests
 {
     public class WinmdTestBase

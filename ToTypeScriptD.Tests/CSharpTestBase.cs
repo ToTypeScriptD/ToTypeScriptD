@@ -1,9 +1,4 @@
-﻿using System.Linq;
-using System.IO;
-using Mono.Cecil;
-using ApprovalTests.Reporters;
-using System.Collections.Generic;
-using Xunit;
+﻿using System.IO;
 
 namespace ToTypeScriptD.Tests
 {

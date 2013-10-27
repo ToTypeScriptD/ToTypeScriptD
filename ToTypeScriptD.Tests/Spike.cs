@@ -1,10 +1,8 @@
 ﻿using ApprovalTests;
-using ApprovalTests.Reporters;
 using Mono.Cecil;
-using Xunit;
 using System.Collections.Generic;
-using System.Text;
 using ToTypeScriptD.Core.TypeWriters;
+using Xunit;
 
 namespace ToTypeScriptD.Tests
 {
