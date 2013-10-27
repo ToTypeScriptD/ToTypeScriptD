@@ -11,40 +11,47 @@ namespace ToTypeScriptD
 {
     public class Render
     {
-        public static bool AllAssemblies(IEnumerable<string> assemblyPaths, bool includeSpecialTypes, TextWriter textWriter)
+        public static bool AllAssemblies(IEnumerable<string> assemblyPaths, bool includeSpecialTypes, TextWriter w)
         {
-            if (assemblyPaths == null) assemblyPaths = new string[0];
-           var wroteAnyTypes = false;
+            if (assemblyPaths == null)
+                assemblyPaths = new string[0];
 
-           if (includeSpecialTypes)
-           {
-               wroteAnyTypes = true;
-               textWriter.WriteLine("");
-               textWriter.WriteLine(Resources.ToTypeScriptDSpecialTypes_d);
-               textWriter.WriteLine("");
-               textWriter.WriteLine("");
-           }
+            var wroteAnyTypes = WriteSpecialTypes(includeSpecialTypes, w);
+            wroteAnyTypes |= WriteFiles(assemblyPaths, w);
+            return  wroteAnyTypes;
+        }
 
-
+        private static bool WriteFiles(IEnumerable<string> assemblyPaths, TextWriter w)
+        {
             var filesAlreadyProcessed = new HashSet<string>(new IgnoreCaseStringEqualityComparer());
-            if (assemblyPaths.Any())
+            if (!assemblyPaths.Any())
+                return false;
+
+            assemblyPaths.Each(file =>
             {
-                wroteAnyTypes = true;
+                if (filesAlreadyProcessed.Contains(file))
+                    return;
 
-                assemblyPaths.Each(file =>
-                {
-                    if (filesAlreadyProcessed.Contains(file))
-                        return;
+                filesAlreadyProcessed.Add(file);
+                var x = ToTypeScriptD.Render.FullAssembly(file);
 
-                    filesAlreadyProcessed.Add(file);
-                    var x = ToTypeScriptD.Render.FullAssembly(file);
+                w.NewLine();
+                w.WriteLine(x);
+            });
 
-                    textWriter.WriteLine("");
-                    textWriter.WriteLine(x);
-                });
-            }
+            return true;
+        }
 
-            return wroteAnyTypes;
+        private static bool WriteSpecialTypes(bool includeSpecialTypes, TextWriter w)
+        {
+            if (!includeSpecialTypes)
+                return false;
+
+            w.NewLine();
+            w.WriteLine(Resources.ToTypeScriptDSpecialTypes_d);
+            w.NewLine();
+            w.NewLine();
+            return true;
         }
 
         public static string FullAssembly(string assemblyPath)
@@ -77,4 +84,5 @@ namespace ToTypeScriptD
             return obj.GetHashCode();
         }
     }
+
 }

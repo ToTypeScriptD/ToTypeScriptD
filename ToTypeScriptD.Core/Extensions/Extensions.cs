@@ -186,5 +186,10 @@ namespace ToTypeScriptD
             });
             return value;
         }
+
+        public static void NewLine(this System.IO.TextWriter textWriter)
+        {
+            textWriter.WriteLine("");
+        }
     }
 }
