@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ToTypeScriptD.Core;
 using ToTypeScriptD.Core.TypeWriters;
 
@@ -67,22 +64,4 @@ namespace ToTypeScriptD
             return typeCollection.Render();
         }
     }
-
-
-    public class IgnoreCaseStringEqualityComparer : EqualityComparer<string>
-    {
-
-        public override bool Equals(string x, string y)
-        {
-            if (x == null && y == null) return true;
-            if (x == null) return false;
-            return x.Equals(y);
-        }
-
-        public override int GetHashCode(string obj)
-        {
-            return obj.GetHashCode();
-        }
-    }
-
 }
