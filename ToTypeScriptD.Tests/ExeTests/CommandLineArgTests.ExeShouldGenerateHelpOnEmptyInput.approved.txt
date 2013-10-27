@@ -1,5 +1,7 @@
-﻿ToTypeScriptD 1.0.0.0
-Copyright c  2013
+﻿ToTypeScriptD 0.0.*
+Copyright (C) 2013 Jason Jarrett
+ 
+Usage: TypeScriptD.exe [--specialTypes] [<file1.winmd> ...<fileN.winmd>]
 
   -s, --specialTypes    Writes the ToTypeScriptD special types to standard out
 

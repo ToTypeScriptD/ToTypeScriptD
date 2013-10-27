@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace ToTypeScriptD.Tests.ExeTests
 {
@@ -12,9 +13,9 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldGenerateHelpOnEmptyInput()
         {
-            var result = Execute("");
-
-            Approvals.Verify(result.StdOut);
+            var result = Execute("").StdOut;
+            result = Regex.Replace(result, "ToTypeScriptD 0.0.(.*)", "ToTypeScriptD 0.0.*");
+            Approvals.Verify(result);
         }
 
         [Fact]

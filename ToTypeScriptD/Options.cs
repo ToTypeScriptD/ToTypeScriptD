@@ -21,7 +21,13 @@ namespace ToTypeScriptD
         [HelpOption]
         public string GetUsage()
         {
-            return HelpText.AutoBuild(this, current => HelpText.DefaultParsingErrorsHandler(this, current));
+            return HelpText.AutoBuild(this, current => {
+
+                current.AddPreOptionsLine(" "); // blank line
+                current.AddPreOptionsLine("Usage: TypeScriptD.exe [--specialTypes] [<file1.winmd> ...<fileN.winmd>]");
+
+                HelpText.DefaultParsingErrorsHandler(this, current);
+            });
         }
     }
 }
