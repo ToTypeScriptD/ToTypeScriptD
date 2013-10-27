@@ -12,14 +12,7 @@ namespace ToTypeScriptD
 
             if (CommandLine.Parser.Default.ParseArguments(args, options))
             {
-                bool wroteAnyTypes = false;
-                if (options.IncludeSpecialTypeDefinitions)
-                {
-                    wroteAnyTypes = true;
-                    WriteOutSpecialTypes();
-                }
-
-                ToTypeScriptD.Render.AllAssemblies(options.Files, Console.Out);
+                bool wroteAnyTypes = ToTypeScriptD.Render.AllAssemblies(options.Files, options.IncludeSpecialTypeDefinitions, Console.Out);
 
                 if (!wroteAnyTypes)
                 {
@@ -32,14 +25,6 @@ namespace ToTypeScriptD
                 Console.WriteLine(options.GetUsage());
                 Environment.ExitCode = 1;
             }
-        }
-
-        private static void WriteOutSpecialTypes()
-        {
-            Console.WriteLine("");
-            Console.WriteLine(Resources.ToTypeScriptDSpecialTypes_d);
-            Console.WriteLine("");
-            Console.WriteLine("");
         }
     }
 

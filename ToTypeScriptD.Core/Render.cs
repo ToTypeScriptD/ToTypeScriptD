@@ -4,16 +4,27 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToTypeScriptD.Core;
 using ToTypeScriptD.Core.TypeWriters;
 
 namespace ToTypeScriptD
 {
     public class Render
     {
-        public static bool AllAssemblies(IEnumerable<string> assemblyPaths, TextWriter textWriter)
+        public static bool AllAssemblies(IEnumerable<string> assemblyPaths, bool includeSpecialTypes, TextWriter textWriter)
         {
             if (assemblyPaths == null) assemblyPaths = new string[0];
            var wroteAnyTypes = false;
+
+           if (includeSpecialTypes)
+           {
+               wroteAnyTypes = true;
+               textWriter.WriteLine("");
+               textWriter.WriteLine(Resources.ToTypeScriptDSpecialTypes_d);
+               textWriter.WriteLine("");
+               textWriter.WriteLine("");
+           }
+
 
             var filesAlreadyProcessed = new HashSet<string>(new IgnoreCaseStringEqualityComparer());
             if (assemblyPaths.Any())
