@@ -64,18 +64,30 @@ namespace ToTypeScriptD.Tests
         }
 
         [Fact]
-        public void IfEnumNamesAreAllCapsThenTheTranslateToAllLowerCase() {
+        public void IfEnumNamesAreAllCapsThenTheTranslateToAllLowerCase()
+        {
             var result = GetWinNativeType("Windows.Foundation.Metadata.ThreadingModel")
                 .ToTypeScript();
             Approvals.Verify(result);
         }
-        
+
         [Fact]
         public void FullWindowsAssembly()
         {
             var file = @"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd";
             var result = ToTypeScriptD.Render.FullAssembly(file);
             Approvals.Verify(result);
+        }
+
+        [Fact]
+        public void AllWinmdFilesInWinMetadata()
+        {
+
+            var allFiles = System.IO.Directory.GetFiles(@"C:\Windows\System32\WinMetadata\", "*.winmd");
+
+            var result = allFiles;
+            Approvals.VerifyAll(result, "File: ");
+            //.Verify();
         }
     }
 }

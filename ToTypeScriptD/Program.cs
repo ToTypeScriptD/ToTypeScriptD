@@ -19,24 +19,8 @@ namespace ToTypeScriptD
                     WriteOutSpecialTypes();
                 }
 
-                var filesAlreadyProcessed = new HashSet<string>(new IgnoreCaseStringEqualityComparer());
-                if (options.Files.Any())
-                {
-                    wroteAnyTypes = true;
-                    // Values are available here
-                    //if (options.Verbose) Console.WriteLine("Filename: {0}", options.InputFile);
+                ToTypeScriptD.Render.AllAssemblies(options.Files, Console.Out);
 
-                    options.Files.Each(file =>
-                    {
-                        if (filesAlreadyProcessed.Contains(file))
-                            return;
-
-                        filesAlreadyProcessed.Add(file);
-                        var x = ToTypeScriptD.Render.FullAssembly(file);
-                        Console.WriteLine("");
-                        Console.WriteLine(x);
-                    });
-                }
                 if (!wroteAnyTypes)
                 {
                     Console.WriteLine(options.GetUsage());
@@ -60,19 +44,4 @@ namespace ToTypeScriptD
     }
 
 
-    public class IgnoreCaseStringEqualityComparer : EqualityComparer<string>
-    {
-
-        public override bool Equals(string x, string y)
-        {
-            if (x == null && y == null) return true;
-            if (x == null) return false;
-            return x.Equals(y);
-        }
-
-        public override int GetHashCode(string obj)
-        {
-            return obj.GetHashCode();
-        }
-    }
 }
