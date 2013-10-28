@@ -6,11 +6,11 @@ properties {
 
 task default -depends Test
 
-task Test -depends Compile, Clean { 
+task Test -depends Compile { 
     & (ls ".\packages\xunit.runners*\tools\xunit.console.clr4.exe") ".\ToTypeScriptD.Tests\bin\$msbuildConfiguration\ToTypeScriptD.Tests.dll"
 }
 
-task Compile -depends Clean { 
+task Compile -depends Clean, Create-VersionInfo { 
     msbuild ToTypeScriptD.sln /p:Platform="$msbuildPlatform" /p:Configuration=$msbuildConfiguration /verbosity:quiet /nologo
 }
 
