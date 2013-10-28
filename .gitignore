@@ -1,6 +1,7 @@
 *.received.txt
 *.ide
 *.opensdf
+*.nupkg
 packages/
 ToTypeScriptD.Tests.JavascriptTests/Scripts/typings/ToTypeScriptD.Native/ToTypeScriptD.Native.d.ts
 ToTypeScriptD.Tests.JavascriptTests/Scripts/typings/ToTypeScriptD.specialTypes.d.ts

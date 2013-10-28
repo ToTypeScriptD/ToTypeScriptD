@@ -7,9 +7,9 @@
     <authors>Jason Jarrett</authors>
     <owners>Jason Jarrett</owners>
     <summary>ToTypeScriptD can help you generate TypeScript Definition files from your .net or .winmd assembly files.</summary>
-    <description></description>
+    <description>You can now generate TypeScript definition (*.d.ts) files from either .Net or .winmd assembly files. Allowing you to leverage these libraries in your TypeScript/JavaScript WinJS or other client side software applications with all the type safety and benefits of TypeScript.</description>
     <projectUrl>https://github.com/staxmanade/ToTypeScriptD</projectUrl>
-    <tags>TypeScript Definitions automation admin</tags>
+    <tags>TypeScript Definitions d.ts .ts WinRT MVC WebAPI WinJS Automation</tags>
     <copyright>Jaosn Jarrett</copyright>
     <licenseUrl>https://github.com/staxmanade/ToTypeScriptD/blob/master/LICENSE.md</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -20,6 +20,6 @@
     <releaseNotes></releaseNotes>
   </metadata>
   <files>
-    <file src="..\bin\ToTypeScriptD\*" target="tools" />
+    <file src="ToTypeScriptD\*" target="tools" />
   </files>
 </package>

@@ -12,13 +12,20 @@ task Test -depends Compile {
 }
 
 task Compile -depends Clean, Create-VersionInfo { 
-    msbuild ToTypeScriptD.sln /p:Platform="$msbuildPlatform" /p:Configuration=$msbuildConfiguration /verbosity:quiet /nologo
+
+    # the p:/VisualStudioEdition=v11.0 property is just to remove a warning when compiling the javascript tests project
+    # http://www.interact-sw.co.uk/iangblog/2013/07/29/fix-appx2102
+
+    msbuild ToTypeScriptD.sln /p:Platform="$msbuildPlatform" /p:Configuration=$msbuildConfiguration /verbosity:quiet /nologo /p:VisualStudioEdition=v11.0
 }
 
 task Package -depends Compile {
 
     # 1. Get Assembly Version #
     # 2. Zip Release Files
+
+
+    $version = get-formatted-assembly-version "$buildFolder\ToTypeScriptD.exe"
 
     mkdir $packageFolder -Force
     copy "$buildFolder\CommandLine.dll"          $packageFolder -Force
@@ -30,7 +37,17 @@ task Package -depends Compile {
     copy "$buildFolder\ToTypeScriptD.exe.config" $packageFolder -Force
     copy "$buildFolder\ToTypeScriptD.pdb"        $packageFolder -Force
 
-    Zip-Folder "$buildFolder\ToTypeScriptD" ((pwd).Path + "\bin\ToTypeScriptD.$version.zip")
+    #Zip-Folder "$buildFolder\ToTypeScriptD" ((pwd).Path + "\bin\ToTypeScriptD.$version.zip")
+
+    $nuspecFile = "$buildFolder\ToTypeScriptD.nuspec";
+    cp .\chocolatey\ToTypeScriptD.nuspec $nuspecFile
+
+    [xml](cat $nuspecFile)
+    $nuspec = [xml](cat $nuspecFile)
+    $nuspec.package.metadata.version = $version
+    $nuspec.Save((get-item $nuspecFile))
+
+    chocolatey pack "$buildFolder\ToTypeScriptD.nuspec"
 }
 
 task Publish -depends Package {
@@ -95,7 +112,7 @@ function get-formatted-assembly-version() {
         param([string] $file)
         
         $version = get-assembly-version $file
-        "v$($version.Major).$($version.Minor).$($version.Build).$($version.Revision)"
+        "$($version.Major).$($version.Minor).$($version.Build).$($version.Revision)"
 }
 
 
