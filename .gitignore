@@ -11,6 +11,8 @@ ToTypeScriptD.Tests.JavascriptTests/AppPackages
 ToTypeScriptD.Tests.JavascriptTests/definitions.js
 ToTypeScriptD.Tests.JavascriptTests/specs/*.js
 
+SharedItems/VersionInfo.cs
+
 *.js.map
 
 #OS junk files

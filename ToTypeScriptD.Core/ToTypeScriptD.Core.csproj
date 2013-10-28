@@ -53,6 +53,9 @@
     <Compile Include="..\SharedItems\AssemblyInfo.Common.cs">
       <Link>Properties\AssemblyInfo.Common.cs</Link>
     </Compile>
+    <Compile Include="..\SharedItems\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="Render.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>

@@ -14,7 +14,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         public void ExeShouldGenerateHelpOnEmptyInput()
         {
             var result = Execute("").StdOut;
-            result = Regex.Replace(result, "ToTypeScriptD 0.0.(.*)", "ToTypeScriptD 0.0.*");
+            result = Regex.Replace(result, "^ToTypeScriptD [a-zA-Z0-9]{0,7}", "ToTypeScriptD 0.0.*");
             Approvals.Verify(result);
         }
 
