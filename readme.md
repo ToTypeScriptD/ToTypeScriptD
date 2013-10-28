@@ -4,7 +4,7 @@ Welcome to `ToTypeScriptD`
 You can now generate [TypeScript](http://typescriptlang.org) definition (`*.d.ts`) 
 files from either `.Net` or `.winmd` assembly files. Allowing you to leverage these 
 libraries in your TypeScript/JavaScript `WinJS` or other client side software 
-applications with all the type safety and benifits of [TypeScript](http://typescriptlang.org).
+applications with all the type safety and benefits of [TypeScript](http://typescriptlang.org).
 
 ## Can you tell me why I would use this?
 
