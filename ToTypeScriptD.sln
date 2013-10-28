@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToTypeScriptD", "ToTypeScriptD\ToTypeScriptD.csproj", "{128A58CF-D911-4C50-B20F-3AFA6D75CAE8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToTypeScriptD.Tests", "ToTypeScriptD.Tests\ToTypeScriptD.Tests.csproj", "{7539E4F5-4829-4D53-90B3-6FBA87878F38}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2A7F284B-49F4-4BD0-AF46-F0C33D90AE89} = {2A7F284B-49F4-4BD0-AF46-F0C33D90AE89}
+		{128A58CF-D911-4C50-B20F-3AFA6D75CAE8} = {128A58CF-D911-4C50-B20F-3AFA6D75CAE8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToTypeScriptD.Core", "ToTypeScriptD.Core\ToTypeScriptD.Core.csproj", "{FEA71855-6F65-45CB-97C4-51F1891904F6}"
 EndProject
@@ -31,6 +35,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{A17DA2E2
 		metroPS.ps1 = metroPS.ps1
 		notes.md = notes.md
 		readme.md = readme.md
+		chocolatey\ToTypeScriptD.nuspec = chocolatey\ToTypeScriptD.nuspec
 	EndProjectSection
 EndProject
 Global

@@ -103,8 +103,10 @@
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
   -->
+  <Target Name="AfterResolveReferences">
+      <Exec Command="$(SolutionDir)bin\ToTypeScriptD.exe --specialTypes $(SolutionDir)bin\ToTypeScriptD.Native.winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd &gt; $(ProjectDir)\Scripts\typings\ToTypeScriptD.Native\ToTypeScriptD.Native.d.ts" />
+  </Target>
   <Target Name="BeforeBuild">
-    <Exec Command="$(SolutionDir)bin\ToTypeScriptD.exe --specialTypes $(SolutionDir)bin\ToTypeScriptD.Native.winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd &gt; $(ProjectDir)\Scripts\typings\ToTypeScriptD.Native\ToTypeScriptD.Native.d.ts" />
   </Target>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.VisualStudio.$(WMSJSProject).targets" />
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
