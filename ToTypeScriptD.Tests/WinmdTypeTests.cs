@@ -84,5 +84,15 @@ namespace ToTypeScriptD.Tests
             Approvals.VerifyAll(result, "File: ");
             //.Verify();
         }
+
+        // Some types in Windows.winmd are duplicated in Windows.Foundation.winmd (huh?)
+        //[Fact]
+        //public void DumpFullWindowsWinmd()
+        //{
+        //    var file = @"C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral\Windows.winmd";
+        //    var result = ToTypeScriptD.Render.FullAssembly(file);
+        //    Approvals.Verify(result);
+        //}
+
     }
 }
