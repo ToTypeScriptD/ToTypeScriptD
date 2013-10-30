@@ -25,13 +25,28 @@ I know of two main scenarios where I think this could be useful.
 
 Install via [Chocolatey](http://chocolatey.org)
 
-    > cinst ToTypeScriptD
+> `cinst ToTypeScriptD`
 
 You can see the Chocolatey package here: [ToTypeScriptD package](https://chocolatey.org/packages/ToTypeScriptD)
 
 ## How to use?
 
-TODO: give quick how-to call the commandline tool (once it's built).
+
+Short and sweet command line arguments: 
+
+> `ToTypeScript --help`
+
+Generate types from Windows.winmd file:
+
+> `ToTypeScriptD "C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral\Windows.winmd"`
+
+Generate types from other Windows `.winmd` files:
+
+> `ToTypeScriptD C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Networking.winmd`
+
+Include the special types for WinJS apps
+
+> `ToTypeScriptD --specialTypes C:\Windows\System32\WinMetadata\Windows.Foundation.winmd`
 
 
 ## How does it work?
