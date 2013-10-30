@@ -7,8 +7,7 @@ namespace ToTypeScriptD
         static void Main(string[] args)
         {
             var options = new Options();
-
-            if (CommandLine.Parser.Default.ParseArguments(args, options))
+            if (CommandLine.Parser.Default.ParseArgumentsStrict(args, options))
             {
                 bool wroteAnyTypes = ToTypeScriptD.Render.AllAssemblies(options.Files, options.IncludeSpecialTypeDefinitions, Console.Out);
 
@@ -17,11 +16,6 @@ namespace ToTypeScriptD
                     Console.WriteLine(options.GetUsage());
                     Environment.ExitCode = 1;
                 }
-            }
-            else
-            {
-                Console.WriteLine(options.GetUsage());
-                Environment.ExitCode = 1;
             }
         }
     }

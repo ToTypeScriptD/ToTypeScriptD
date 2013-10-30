@@ -13,8 +13,14 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldGenerateHelpOnEmptyInput()
         {
-            var result = Execute("").StdOut;
-            result = Regex.Replace(result, "^ToTypeScriptD [a-zA-Z0-9]{0,7}", "ToTypeScriptD 0.0.*");
+            var result = Execute("").StdOut.StripVersionFromOutput();
+            Approvals.Verify(result);
+        }
+
+        [Fact]
+        public void ExeShouldGenerateHelpWithHelpArgs()
+        {
+            var result = Execute("--help").StdOut.StripVersionFromOutput();
             Approvals.Verify(result);
         }
 
@@ -43,6 +49,14 @@ namespace ToTypeScriptD.Tests.ExeTests
             var resultDup = Execute("--specialTypes");
 
             resultDup.Verify();
+        }
+    }
+
+    public static class Extensions
+    {
+        public static string StripVersionFromOutput(this string value)
+        {
+            return Regex.Replace(value, "^ToTypeScriptD [a-zA-Z0-9]{0,7}", "ToTypeScriptD XXX_VERSION_XXX");
         }
     }
 }

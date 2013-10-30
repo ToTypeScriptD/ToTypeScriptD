@@ -27,6 +27,7 @@ namespace ToTypeScriptD.Tests.ExeTests
                     FileName = TypeScriptDExePath,
                     Arguments = string.Join(" ", args),
                     RedirectStandardOutput = true,
+                    RedirectStandardError = true,
                     UseShellExecute = false
                 }
             };
@@ -34,6 +35,13 @@ namespace ToTypeScriptD.Tests.ExeTests
             process.Start();
 
             var stdOut = process.StandardOutput.ReadToEnd();
+            var stdError = process.StandardError.ReadToEnd();
+
+            // this is a bit of a hack - but adding standard error to the final result;
+            if (!string.IsNullOrEmpty(stdError))
+            {
+                stdOut += stdError;
+            }
 
             process.WaitForExit();
 
