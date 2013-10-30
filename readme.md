@@ -23,7 +23,11 @@ I know of two main scenarios where I think this could be useful.
 
 ## Install
 
-TODO: probably [Chocolatey.org](http://chocolatey.org) or maybe an `npm` package.
+Install via [Chocolatey](http://chocolatey.org)
+
+    > cinst ToTypeScriptD
+
+You can see the Chocolatey package here: [ToTypeScriptD package](https://chocolatey.org/packages/ToTypeScriptD)
 
 ## How to use?
 
