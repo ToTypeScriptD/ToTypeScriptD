@@ -41,8 +41,10 @@ namespace ToTypeScriptD.Tests
         [Fact]
         public void FullSampleAssembly()
         {
-            var result = ToTypeScriptD.Render.FullAssembly(base.NativeAssembly.ComponentPath);
-            Approvals.Verify(result);
+            var file = base.NativeAssembly.ComponentPath;
+            var errors = new StringBuilderTypeNotFoundErrorHandler();
+            var result = ToTypeScriptD.Render.FullAssembly(file, errors);
+            Approvals.Verify(errors + result);
         }
 
         [Fact]
@@ -70,8 +72,9 @@ namespace ToTypeScriptD.Tests
         public void FullWindowsAssembly()
         {
             var file = @"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd";
-            var result = ToTypeScriptD.Render.FullAssembly(file);
-            Approvals.Verify(result);
+            var errors = new StringBuilderTypeNotFoundErrorHandler();
+            var result = ToTypeScriptD.Render.FullAssembly(file, errors);
+            Approvals.Verify(errors + result);
         }
 
         [Fact]

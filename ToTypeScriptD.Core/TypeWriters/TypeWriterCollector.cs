@@ -8,8 +8,19 @@ using ToTypeScriptD.Core.TypeWriters;
 
 namespace ToTypeScriptD.Core.TypeWriters
 {
+    public interface ITypeNotFoundErrorHandler
+    {
+        void Handle(TypeReference typeReference);
+    }
+
     public class TypeWriterCollector
     {
+        private ITypeNotFoundErrorHandler typeNotFoundErrorHandler;
+
+        public TypeWriterCollector(ITypeNotFoundErrorHandler typeNotFoundErrorHandler)
+        {
+            this.typeNotFoundErrorHandler = typeNotFoundErrorHandler;
+        }
         public void Collect(IEnumerable<Mono.Cecil.TypeDefinition> tds, TypeCollection typeCollection)
         {
             foreach (var item in tds)
@@ -36,11 +47,15 @@ namespace ToTypeScriptD.Core.TypeWriters
 
             td.Interfaces.Each(item =>
             {
-                var foundType = item.Module.Types.SingleOrDefault(w => w.FullName == item.FullName);
+                string lookupName = item.FullName;
+                if (item.IsGenericInstance)
+                {
+                    lookupName = item.GetElementType().FullName;
+                }
+                var foundType = item.Module.Types.SingleOrDefault(w => w.FullName == lookupName);
                 if (foundType == null)
                 {
-                    Console.Error.WriteLine("Could not find type: " + item.FullName);
-                    //throw new Exception("Could not find type: " + item.FullName);
+                    typeNotFoundErrorHandler.Handle(item);
                     return;
                 }
 

@@ -9,7 +9,7 @@ namespace ToTypeScriptD
             var options = new Options();
             if (CommandLine.Parser.Default.ParseArgumentsStrict(args, options))
             {
-                bool wroteAnyTypes = ToTypeScriptD.Render.AllAssemblies(options.Files, options.IncludeSpecialTypeDefinitions, Console.Out);
+                bool wroteAnyTypes = ToTypeScriptD.Render.AllAssemblies(options.Files, options.IncludeSpecialTypeDefinitions, Console.Out, new ConsoleErrorTypeNotFoundErrorHandler());
 
                 if (!wroteAnyTypes)
                 {
@@ -19,6 +19,4 @@ namespace ToTypeScriptD
             }
         }
     }
-
-
 }

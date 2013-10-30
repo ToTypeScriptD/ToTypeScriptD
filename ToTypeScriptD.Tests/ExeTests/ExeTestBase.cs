@@ -40,7 +40,7 @@ namespace ToTypeScriptD.Tests.ExeTests
             // this is a bit of a hack - but adding standard error to the final result;
             if (!string.IsNullOrEmpty(stdError))
             {
-                stdOut += stdError;
+                stdOut = stdError + stdOut;
             }
 
             process.WaitForExit();

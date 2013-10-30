@@ -62,6 +62,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="StringBuilderTypeNotFoundErrorHandler.cs" />
     <Compile Include="TypeWriters\ClassWriter.cs" />
     <Compile Include="TypeWriters\EnumWriter.cs" />
     <Compile Include="TypeWriters\InterfaceWriter.cs" />

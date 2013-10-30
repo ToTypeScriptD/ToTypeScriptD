@@ -10,8 +10,9 @@ namespace ToTypeScriptD.Tests
         public void GenerateFullAssembly()
         {
             var path = base.CSharpAssembly.ComponentPath;
-            var result = ToTypeScriptD.Render.FullAssembly(path);
-            Approvals.Verify(result);
+            var errors = new StringBuilderTypeNotFoundErrorHandler();
+            var result = ToTypeScriptD.Render.FullAssembly(path, errors);
+            Approvals.Verify(errors + result);
         }
     }
 }

@@ -33,6 +33,14 @@ namespace ToTypeScriptD.Tests.ExeTests
         }
 
         [Fact]
+        public void VerifyExeGeneratedOutputForMultipleWinmdFiles()
+        {
+            var result = Execute(@"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Networking.winmd");
+
+            result.StdOut.Verify();
+        }
+
+        [Fact]
         public void ExeDuplicateAssemblyShouldStillOnlyGenerateOne()
         {
             var resultDup = Execute(@"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd");

@@ -90,13 +90,15 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="AfterResolveReferences">
-      <Exec Command="copy $(SolutionDir)bin\ToTypeScriptD.Native.winmd $(TargetDir)ToTypeScriptD.Native.winmd" />
+    <Exec Command="copy $(SolutionDir)bin\ToTypeScriptD.Native.winmd $(TargetDir)ToTypeScriptD.Native.winmd" />
   </Target>
   <PropertyGroup>
-    <PreBuildEvent></PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent></PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
