@@ -51,12 +51,34 @@ task Package -depends Compile {
 }
 
 task Publish -depends Package {
-    
+
+
+    $choices = [System.Management.Automation.Host.ChoiceDescription[]](
+        (New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", ""),
+        (New-Object System.Management.Automation.Host.ChoiceDescription "&No", "")
+    )
+
+    $result = $Host.UI.PromptForChoice("","Are you sure you want to publish?", $choices, 0)
+
+    if($result -eq 0) {
+        ls *.nupkg | %{
+            ""
+            Write-Host -Foreground Green "Publishing... $_"
+            ""
+            chocolatey push $_
+        }
+    } else {
+        ""
+        Write-Host -Foreground Yellow "Skipped publishing..."
+        ""
+    }
 }
 
 task Clean { 
 
+    rm *.nupkg
     rm -force -ErrorAction SilentlyContinue bin\*.zip
+
 # For some reason the msbuild step above won't compile the native assembly? (we'll come back to that)
 #    msbuild ToTypeScriptD.sln /target:clean /p:Platform="$msbuildPlatform" /p:Configuration=$msbuildConfiguration /verbosity:quiet /nologo
 #
