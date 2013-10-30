@@ -1,5 +1,4 @@
-﻿Warning: Don't seem to have this type lying around: Windows.ApplicationModel.Background.IBackgroundTask
-
+﻿
 declare module Windows.Foundation {
 
     export class AsyncActionCompletedHandler {
@@ -727,1525 +726,375 @@ declare module Windows.Foundation.Metadata {
 }
 
 
-declare module Windows.Networking.BackgroundTransfer {
+declare module Windows.System.Display {
 
-    export class BackgroundDownloader implements Windows.Networking.BackgroundTransfer.IBackgroundDownloader, Windows.Networking.BackgroundTransfer.IBackgroundTransferBase {
-        costPolicy: Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy;
-        group: string;
-        method: string;
-        proxyCredential: Windows.Security.Credentials.PasswordCredential;
-        serverCredential: Windows.Security.Credentials.PasswordCredential;
+    export class DisplayRequest implements Windows.System.Display.IDisplayRequest {
         constructor();
-        createDownload(uri: Windows.Foundation.Uri, resultFile: Windows.Storage.IStorageFile): Windows.Networking.BackgroundTransfer.DownloadOperation;
-        createDownload(uri: Windows.Foundation.Uri, resultFile: Windows.Storage.IStorageFile, requestBodyFile: Windows.Storage.IStorageFile): Windows.Networking.BackgroundTransfer.DownloadOperation;
-        createDownloadAsync(uri: Windows.Foundation.Uri, resultFile: Windows.Storage.IStorageFile, requestBodyStream: Windows.Storage.Streams.IInputStream): ToTypeScriptD.WinRT.IPromise<Windows.Networking.BackgroundTransfer.DownloadOperation>;
-        setRequestHeader(headerName: string, headerValue: string): void;
-        static getCurrentDownloadsAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Foundation.Collections.IVectorView<Windows.Networking.BackgroundTransfer.DownloadOperation>>;
-        static getCurrentDownloadsAsync(group: string): ToTypeScriptD.WinRT.IPromise<Windows.Foundation.Collections.IVectorView<Windows.Networking.BackgroundTransfer.DownloadOperation>>;
+        requestActive(): void;
+        requestRelease(): void;
     }
 
-    export class BackgroundDownloadProgress {
-        bytesReceived: number;
-        totalBytesToReceive: number;
-        status: Windows.Networking.BackgroundTransfer.BackgroundTransferStatus;
-        hasResponseChanged: boolean;
-        hasRestarted: boolean;
-    }
-
-    export class BackgroundTransferContentPart implements Windows.Networking.BackgroundTransfer.IBackgroundTransferContentPart {
-        constructor(name: string);
-        constructor(name: string, fileName: string);
-        constructor();
-        setHeader(headerName: string, headerValue: string): void;
-        setText(value: string): void;
-        setFile(value: Windows.Storage.IStorageFile): void;
-    }
-
-    enum BackgroundTransferCostPolicy {
-        default,
-        unrestrictedOnly,
-        always
-    }
-
-    export class BackgroundTransferError {
-        static getStatus(hresult: number): Windows.Web.WebErrorStatus;
-    }
-
-    enum BackgroundTransferStatus {
-        idle,
-        running,
-        pausedByApplication,
-        pausedCostedNetwork,
-        pausedNoNetwork,
-        completed,
-        canceled,
-        error
-    }
-
-    export class BackgroundUploader implements Windows.Networking.BackgroundTransfer.IBackgroundUploader, Windows.Networking.BackgroundTransfer.IBackgroundTransferBase {
-        costPolicy: Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy;
-        group: string;
-        method: string;
-        proxyCredential: Windows.Security.Credentials.PasswordCredential;
-        serverCredential: Windows.Security.Credentials.PasswordCredential;
-        constructor();
-        createUpload(uri: Windows.Foundation.Uri, sourceFile: Windows.Storage.IStorageFile): Windows.Networking.BackgroundTransfer.UploadOperation;
-        createUploadFromStreamAsync(uri: Windows.Foundation.Uri, sourceStream: Windows.Storage.Streams.IInputStream): ToTypeScriptD.WinRT.IPromise<Windows.Networking.BackgroundTransfer.UploadOperation>;
-        createUploadAsync(uri: Windows.Foundation.Uri, parts: Windows.Foundation.Collections.IIterable<Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart>): ToTypeScriptD.WinRT.IPromise<Windows.Networking.BackgroundTransfer.UploadOperation>;
-        createUploadAsync(uri: Windows.Foundation.Uri, parts: Windows.Foundation.Collections.IIterable<Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart>, subType: string): ToTypeScriptD.WinRT.IPromise<Windows.Networking.BackgroundTransfer.UploadOperation>;
-        createUploadAsync(uri: Windows.Foundation.Uri, parts: Windows.Foundation.Collections.IIterable<Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart>, subType: string, boundary: string): ToTypeScriptD.WinRT.IPromise<Windows.Networking.BackgroundTransfer.UploadOperation>;
-        setRequestHeader(headerName: string, headerValue: string): void;
-        static getCurrentUploadsAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Foundation.Collections.IVectorView<Windows.Networking.BackgroundTransfer.UploadOperation>>;
-        static getCurrentUploadsAsync(group: string): ToTypeScriptD.WinRT.IPromise<Windows.Foundation.Collections.IVectorView<Windows.Networking.BackgroundTransfer.UploadOperation>>;
-    }
-
-    export class BackgroundUploadProgress {
-        bytesReceived: number;
-        bytesSent: number;
-        totalBytesToReceive: number;
-        totalBytesToSend: number;
-        status: Windows.Networking.BackgroundTransfer.BackgroundTransferStatus;
-        hasResponseChanged: boolean;
-        hasRestarted: boolean;
-    }
-
-    export class DownloadOperation implements Windows.Networking.BackgroundTransfer.IDownloadOperation, Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation {
-        progress: Windows.Networking.BackgroundTransfer.BackgroundDownloadProgress;
-        resultFile: Windows.Storage.IStorageFile;
-        costPolicy: Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy;
-        group: string;
-        guid: string;
-        method: string;
-        requestedUri: Windows.Foundation.Uri;
-        startAsync(): Windows.Foundation.IAsyncOperationWithProgress<Windows.Networking.BackgroundTransfer.DownloadOperation,Windows.Networking.BackgroundTransfer.DownloadOperation>;
-        attachAsync(): Windows.Foundation.IAsyncOperationWithProgress<Windows.Networking.BackgroundTransfer.DownloadOperation,Windows.Networking.BackgroundTransfer.DownloadOperation>;
-        pause(): void;
-        resume(): void;
-        getResultStreamAt(position: number): Windows.Storage.Streams.IInputStream;
-        getResponseInformation(): Windows.Networking.BackgroundTransfer.ResponseInformation;
-    }
-
-    export interface IBackgroundDownloader extends Windows.Networking.BackgroundTransfer.IBackgroundTransferBase {
-        createDownload(uri: Windows.Foundation.Uri, resultFile: Windows.Storage.IStorageFile): Windows.Networking.BackgroundTransfer.DownloadOperation;
-        createDownload(uri: Windows.Foundation.Uri, resultFile: Windows.Storage.IStorageFile, requestBodyFile: Windows.Storage.IStorageFile): Windows.Networking.BackgroundTransfer.DownloadOperation;
-        createDownloadAsync(uri: Windows.Foundation.Uri, resultFile: Windows.Storage.IStorageFile, requestBodyStream: Windows.Storage.Streams.IInputStream): ToTypeScriptD.WinRT.IPromise<Windows.Networking.BackgroundTransfer.DownloadOperation>;
-    }
-
-    export interface IBackgroundTransferBase {
-        costPolicy: Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy;
-        group: string;
-        method: string;
-        proxyCredential: Windows.Security.Credentials.PasswordCredential;
-        serverCredential: Windows.Security.Credentials.PasswordCredential;
-        setRequestHeader(headerName: string, headerValue: string): void;
-    }
-
-    export interface IBackgroundTransferContentPart {
-        setHeader(headerName: string, headerValue: string): void;
-        setText(value: string): void;
-        setFile(value: Windows.Storage.IStorageFile): void;
-    }
-
-    export interface IBackgroundTransferContentPartFactory {
-        createWithName(name: string): Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart;
-        createWithNameAndFileName(name: string, fileName: string): Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart;
-    }
-
-    export interface IBackgroundTransferOperation {
-        costPolicy: Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy;
-        group: string;
-        guid: string;
-        method: string;
-        requestedUri: Windows.Foundation.Uri;
-        getResultStreamAt(position: number): Windows.Storage.Streams.IInputStream;
-        getResponseInformation(): Windows.Networking.BackgroundTransfer.ResponseInformation;
-    }
-
-    export interface IBackgroundUploader extends Windows.Networking.BackgroundTransfer.IBackgroundTransferBase {
-        createUpload(uri: Windows.Foundation.Uri, sourceFile: Windows.Storage.IStorageFile): Windows.Networking.BackgroundTransfer.UploadOperation;
-        createUploadFromStreamAsync(uri: Windows.Foundation.Uri, sourceStream: Windows.Storage.Streams.IInputStream): ToTypeScriptD.WinRT.IPromise<Windows.Networking.BackgroundTransfer.UploadOperation>;
-        createUploadAsync(uri: Windows.Foundation.Uri, parts: Windows.Foundation.Collections.IIterable<Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart>): ToTypeScriptD.WinRT.IPromise<Windows.Networking.BackgroundTransfer.UploadOperation>;
-        createUploadAsync(uri: Windows.Foundation.Uri, parts: Windows.Foundation.Collections.IIterable<Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart>, subType: string): ToTypeScriptD.WinRT.IPromise<Windows.Networking.BackgroundTransfer.UploadOperation>;
-        createUploadAsync(uri: Windows.Foundation.Uri, parts: Windows.Foundation.Collections.IIterable<Windows.Networking.BackgroundTransfer.BackgroundTransferContentPart>, subType: string, boundary: string): ToTypeScriptD.WinRT.IPromise<Windows.Networking.BackgroundTransfer.UploadOperation>;
-    }
-
-    export interface IDownloadOperation extends Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation {
-        progress: Windows.Networking.BackgroundTransfer.BackgroundDownloadProgress;
-        resultFile: Windows.Storage.IStorageFile;
-        startAsync(): Windows.Foundation.IAsyncOperationWithProgress<Windows.Networking.BackgroundTransfer.DownloadOperation,Windows.Networking.BackgroundTransfer.DownloadOperation>;
-        attachAsync(): Windows.Foundation.IAsyncOperationWithProgress<Windows.Networking.BackgroundTransfer.DownloadOperation,Windows.Networking.BackgroundTransfer.DownloadOperation>;
-        pause(): void;
-        resume(): void;
-    }
-
-    export interface IResponseInformation {
-        actualUri: Windows.Foundation.Uri;
-        headers: Windows.Foundation.Collections.IMapView<string,string>;
-        isResumable: boolean;
-        statusCode: number;
-    }
-
-    export interface IUploadOperation extends Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation {
-        progress: Windows.Networking.BackgroundTransfer.BackgroundUploadProgress;
-        sourceFile: Windows.Storage.IStorageFile;
-        startAsync(): Windows.Foundation.IAsyncOperationWithProgress<Windows.Networking.BackgroundTransfer.UploadOperation,Windows.Networking.BackgroundTransfer.UploadOperation>;
-        attachAsync(): Windows.Foundation.IAsyncOperationWithProgress<Windows.Networking.BackgroundTransfer.UploadOperation,Windows.Networking.BackgroundTransfer.UploadOperation>;
-    }
-
-    export class ResponseInformation implements Windows.Networking.BackgroundTransfer.IResponseInformation {
-        actualUri: Windows.Foundation.Uri;
-        headers: Windows.Foundation.Collections.IMapView<string,string>;
-        isResumable: boolean;
-        statusCode: number;
-    }
-
-    export class UploadOperation implements Windows.Networking.BackgroundTransfer.IUploadOperation, Windows.Networking.BackgroundTransfer.IBackgroundTransferOperation {
-        progress: Windows.Networking.BackgroundTransfer.BackgroundUploadProgress;
-        sourceFile: Windows.Storage.IStorageFile;
-        costPolicy: Windows.Networking.BackgroundTransfer.BackgroundTransferCostPolicy;
-        group: string;
-        guid: string;
-        method: string;
-        requestedUri: Windows.Foundation.Uri;
-        startAsync(): Windows.Foundation.IAsyncOperationWithProgress<Windows.Networking.BackgroundTransfer.UploadOperation,Windows.Networking.BackgroundTransfer.UploadOperation>;
-        attachAsync(): Windows.Foundation.IAsyncOperationWithProgress<Windows.Networking.BackgroundTransfer.UploadOperation,Windows.Networking.BackgroundTransfer.UploadOperation>;
-        getResultStreamAt(position: number): Windows.Storage.Streams.IInputStream;
-        getResponseInformation(): Windows.Networking.BackgroundTransfer.ResponseInformation;
+    export interface IDisplayRequest {
+        requestActive(): void;
+        requestRelease(): void;
     }
 
 }
-declare module Windows.Networking.Connectivity {
+declare module Windows.System {
 
-    export class ConnectionCost implements Windows.Networking.Connectivity.IConnectionCost {
-        approachingDataLimit: boolean;
-        networkCostType: Windows.Networking.Connectivity.NetworkCostType;
-        overDataLimit: boolean;
-        roaming: boolean;
+    export interface ILauncherOptions {
+        contentType: string;
+        displayApplicationPicker: boolean;
+        fallbackUri: Windows.Foundation.Uri;
+        preferredApplicationDisplayName: string;
+        preferredApplicationPackageFamilyName: string;
+        treatAsUntrusted: boolean;
+        ui: Windows.System.LauncherUIOptions;
     }
 
-    export class ConnectionProfile implements Windows.Networking.Connectivity.IConnectionProfile {
-        networkAdapter: Windows.Networking.Connectivity.NetworkAdapter;
-        networkSecuritySettings: Windows.Networking.Connectivity.NetworkSecuritySettings;
-        profileName: string;
-        getNetworkConnectivityLevel(): Windows.Networking.Connectivity.NetworkConnectivityLevel;
-        getNetworkNames(): Windows.Foundation.Collections.IVectorView<string>;
-        getConnectionCost(): Windows.Networking.Connectivity.ConnectionCost;
-        getDataPlanStatus(): Windows.Networking.Connectivity.DataPlanStatus;
-        getLocalUsage(StartTime: Date, EndTime: Date): Windows.Networking.Connectivity.DataUsage;
-        getLocalUsage(StartTime: Date, EndTime: Date, States: Windows.Networking.Connectivity.RoamingStates): Windows.Networking.Connectivity.DataUsage;
+    export interface ILauncherUIOptions {
+        invocationPoint: Windows.Foundation.IReference<Windows.Foundation.Point>;
+        preferredPlacement: Windows.UI.Popups.Placement;
+        selectionRect: Windows.Foundation.IReference<Windows.Foundation.Rect>;
     }
 
-    export class DataPlanStatus implements Windows.Networking.Connectivity.IDataPlanStatus {
-        dataLimitInMegabytes: Windows.Foundation.IReference<number>;
-        dataPlanUsage: Windows.Networking.Connectivity.DataPlanUsage;
-        inboundBitsPerSecond: Windows.Foundation.IReference<number>;
-        maxTransferSizeInMegabytes: Windows.Foundation.IReference<number>;
-        nextBillingCycle: Windows.Foundation.IReference<Date>;
-        outboundBitsPerSecond: Windows.Foundation.IReference<number>;
+    export class Launcher {
+        static launchFileAsync(file: Windows.Storage.IStorageFile): ToTypeScriptD.WinRT.IPromise<boolean>;
+        static launchFileAsync(file: Windows.Storage.IStorageFile, options: Windows.System.LauncherOptions): ToTypeScriptD.WinRT.IPromise<boolean>;
+        static launchUriAsync(uri: Windows.Foundation.Uri): ToTypeScriptD.WinRT.IPromise<boolean>;
+        static launchUriAsync(uri: Windows.Foundation.Uri, options: Windows.System.LauncherOptions): ToTypeScriptD.WinRT.IPromise<boolean>;
     }
 
-    export class DataPlanUsage implements Windows.Networking.Connectivity.IDataPlanUsage {
-        lastSyncTime: Date;
-        megabytesUsed: number;
-    }
-
-    export class DataUsage implements Windows.Networking.Connectivity.IDataUsage {
-        bytesReceived: number;
-        bytesSent: number;
-    }
-
-    export interface IConnectionCost {
-        approachingDataLimit: boolean;
-        networkCostType: Windows.Networking.Connectivity.NetworkCostType;
-        overDataLimit: boolean;
-        roaming: boolean;
-    }
-
-    export interface IConnectionProfile {
-        networkAdapter: Windows.Networking.Connectivity.NetworkAdapter;
-        networkSecuritySettings: Windows.Networking.Connectivity.NetworkSecuritySettings;
-        profileName: string;
-        getNetworkConnectivityLevel(): Windows.Networking.Connectivity.NetworkConnectivityLevel;
-        getNetworkNames(): Windows.Foundation.Collections.IVectorView<string>;
-        getConnectionCost(): Windows.Networking.Connectivity.ConnectionCost;
-        getDataPlanStatus(): Windows.Networking.Connectivity.DataPlanStatus;
-        getLocalUsage(StartTime: Date, EndTime: Date): Windows.Networking.Connectivity.DataUsage;
-        getLocalUsage(StartTime: Date, EndTime: Date, States: Windows.Networking.Connectivity.RoamingStates): Windows.Networking.Connectivity.DataUsage;
-    }
-
-    export interface IDataPlanStatus {
-        dataLimitInMegabytes: Windows.Foundation.IReference<number>;
-        dataPlanUsage: Windows.Networking.Connectivity.DataPlanUsage;
-        inboundBitsPerSecond: Windows.Foundation.IReference<number>;
-        maxTransferSizeInMegabytes: Windows.Foundation.IReference<number>;
-        nextBillingCycle: Windows.Foundation.IReference<Date>;
-        outboundBitsPerSecond: Windows.Foundation.IReference<number>;
-    }
-
-    export interface IDataPlanUsage {
-        lastSyncTime: Date;
-        megabytesUsed: number;
-    }
-
-    export interface IDataUsage {
-        bytesReceived: number;
-        bytesSent: number;
-    }
-
-    export interface IIPInformation {
-        networkAdapter: Windows.Networking.Connectivity.NetworkAdapter;
-        prefixLength: Windows.Foundation.IReference<number>;
-    }
-
-    export interface ILanIdentifier {
-        infrastructureId: Windows.Networking.Connectivity.LanIdentifierData;
-        networkAdapterId: string;
-        portId: Windows.Networking.Connectivity.LanIdentifierData;
-    }
-
-    export interface ILanIdentifierData {
-        type: number;
-        value: Windows.Foundation.Collections.IVectorView<number>;
-    }
-
-    export interface INetworkAdapter {
-        ianaInterfaceType: number;
-        inboundMaxBitsPerSecond: number;
-        networkAdapterId: string;
-        networkItem: Windows.Networking.Connectivity.NetworkItem;
-        outboundMaxBitsPerSecond: number;
-        getConnectedProfileAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Networking.Connectivity.ConnectionProfile>;
-    }
-
-    export interface INetworkItem {
-        networkId: string;
-        getNetworkTypes(): Windows.Networking.Connectivity.NetworkTypes;
-    }
-
-    export interface INetworkSecuritySettings {
-        networkAuthenticationType: Windows.Networking.Connectivity.NetworkAuthenticationType;
-        networkEncryptionType: Windows.Networking.Connectivity.NetworkEncryptionType;
-    }
-
-    export class IPInformation implements Windows.Networking.Connectivity.IIPInformation {
-        networkAdapter: Windows.Networking.Connectivity.NetworkAdapter;
-        prefixLength: Windows.Foundation.IReference<number>;
-    }
-
-    export interface IProxyConfiguration {
-        canConnectDirectly: boolean;
-        proxyUris: Windows.Foundation.Collections.IVectorView<Windows.Foundation.Uri>;
-    }
-
-    export class LanIdentifier implements Windows.Networking.Connectivity.ILanIdentifier {
-        infrastructureId: Windows.Networking.Connectivity.LanIdentifierData;
-        networkAdapterId: string;
-        portId: Windows.Networking.Connectivity.LanIdentifierData;
-    }
-
-    export class LanIdentifierData implements Windows.Networking.Connectivity.ILanIdentifierData {
-        type: number;
-        value: Windows.Foundation.Collections.IVectorView<number>;
-    }
-
-    export class NetworkAdapter implements Windows.Networking.Connectivity.INetworkAdapter {
-        ianaInterfaceType: number;
-        inboundMaxBitsPerSecond: number;
-        networkAdapterId: string;
-        networkItem: Windows.Networking.Connectivity.NetworkItem;
-        outboundMaxBitsPerSecond: number;
-        getConnectedProfileAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Networking.Connectivity.ConnectionProfile>;
-    }
-
-    enum NetworkAuthenticationType {
-        none,
-        unknown,
-        open80211,
-        sharedKey80211,
-        wpa,
-        wpaPsk,
-        wpaNone,
-        rsna,
-        rsnaPsk,
-        ihv
-    }
-
-    enum NetworkConnectivityLevel {
-        none,
-        localAccess,
-        constrainedInternetAccess,
-        internetAccess
-    }
-
-    enum NetworkCostType {
-        unknown,
-        unrestricted,
-        fixed,
-        variable
-    }
-
-    enum NetworkEncryptionType {
-        none,
-        unknown,
-        wep,
-        wep40,
-        wep104,
-        tkip,
-        ccmp,
-        wpaUseGroup,
-        rsnUseGroup,
-        ihv
-    }
-
-    export class NetworkInformation {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onnetworkstatuschanged(ev: any);
-        static getConnectionProfiles(): Windows.Foundation.Collections.IVectorView<Windows.Networking.Connectivity.ConnectionProfile>;
-        static getInternetConnectionProfile(): Windows.Networking.Connectivity.ConnectionProfile;
-        static getLanIdentifiers(): Windows.Foundation.Collections.IVectorView<Windows.Networking.Connectivity.LanIdentifier>;
-        static getHostNames(): Windows.Foundation.Collections.IVectorView<Windows.Networking.HostName>;
-        static getProxyConfigurationAsync(uri: Windows.Foundation.Uri): ToTypeScriptD.WinRT.IPromise<Windows.Networking.Connectivity.ProxyConfiguration>;
-        static getSortedEndpointPairs(destinationList: Windows.Foundation.Collections.IIterable<Windows.Networking.EndpointPair>, sortOptions: Windows.Networking.HostNameSortOptions): Windows.Foundation.Collections.IVectorView<Windows.Networking.EndpointPair>;
-        static add_NetworkStatusChanged(networkStatusHandler: Windows.Networking.Connectivity.NetworkStatusChangedEventHandler): Windows.Foundation.EventRegistrationToken;
-        static remove_NetworkStatusChanged(eventCookie: Windows.Foundation.EventRegistrationToken): void;
-    }
-
-    export class NetworkItem implements Windows.Networking.Connectivity.INetworkItem {
-        networkId: string;
-        getNetworkTypes(): Windows.Networking.Connectivity.NetworkTypes;
-    }
-
-    export class NetworkSecuritySettings implements Windows.Networking.Connectivity.INetworkSecuritySettings {
-        networkAuthenticationType: Windows.Networking.Connectivity.NetworkAuthenticationType;
-        networkEncryptionType: Windows.Networking.Connectivity.NetworkEncryptionType;
-    }
-
-    export class NetworkStatusChangedEventHandler {
-        constructor(object: any, method: number);
-        invoke(sender: any): void;
-    }
-
-    enum NetworkTypes {
-        none,
-        internet,
-        privateNetwork
-    }
-
-    export class ProxyConfiguration implements Windows.Networking.Connectivity.IProxyConfiguration {
-        canConnectDirectly: boolean;
-        proxyUris: Windows.Foundation.Collections.IVectorView<Windows.Foundation.Uri>;
-    }
-
-    enum RoamingStates {
-        none,
-        notRoaming,
-        roaming
-    }
-
-}
-declare module Windows.Networking {
-
-    export class EndpointPair implements Windows.Networking.IEndpointPair {
-        localHostName: Windows.Networking.HostName;
-        localServiceName: string;
-        remoteHostName: Windows.Networking.HostName;
-        remoteServiceName: string;
-        constructor(localHostName: Windows.Networking.HostName, localServiceName: string, remoteHostName: Windows.Networking.HostName, remoteServiceName: string);
-    }
-
-    export class HostName implements Windows.Networking.IHostName {
-        canonicalName: string;
-        displayName: string;
-        iPInformation: Windows.Networking.Connectivity.IPInformation;
-        rawName: string;
-        type: Windows.Networking.HostNameType;
-        constructor(hostName: string);
-        isEqual(hostName: Windows.Networking.HostName): boolean;
-        static compare(value1: string, value2: string): number;
-    }
-
-    enum HostNameSortOptions {
-        none,
-        optimizeForLongConnections
-    }
-
-    enum HostNameType {
-        domainName,
-        ipv4,
-        ipv6,
-        bluetooth
-    }
-
-    export interface IEndpointPair {
-        localHostName: Windows.Networking.HostName;
-        localServiceName: string;
-        remoteHostName: Windows.Networking.HostName;
-        remoteServiceName: string;
-    }
-
-    export interface IHostName {
-        canonicalName: string;
-        displayName: string;
-        iPInformation: Windows.Networking.Connectivity.IPInformation;
-        rawName: string;
-        type: Windows.Networking.HostNameType;
-        isEqual(hostName: Windows.Networking.HostName): boolean;
-    }
-
-}
-declare module Windows.Networking.NetworkOperators {
-
-    enum DataClasses {
-        none,
-        gprs,
-        edge,
-        umts,
-        hsdpa,
-        hsupa,
-        lteAdvanced,
-        cdma1xRtt,
-        cdma1xEvdo,
-        cdma1xEvdoRevA,
-        cdma1xEvdv,
-        cdma3xRtt,
-        cdma1xEvdoRevB,
-        cdmaUmb,
-        custom
-    }
-
-    export class HotspotAuthenticationContext implements Windows.Networking.NetworkOperators.IHotspotAuthenticationContext {
-        authenticationUrl: Windows.Foundation.Uri;
-        networkAdapter: Windows.Networking.Connectivity.NetworkAdapter;
-        redirectMessageUrl: Windows.Foundation.Uri;
-        redirectMessageXml: Windows.Data.Xml.Dom.XmlDocument;
-        wirelessNetworkId: any;
-        issueCredentials(userName: string, password: string, extraParameters: string, markAsManualConnectOnFailure: boolean): void;
-        abortAuthentication(markAsManual: boolean): void;
-        skipAuthentication(): void;
-        triggerAttentionRequired(packageRelativeApplicationId: string, applicationParameters: string): void;
-        static tryGetAuthenticationContext(evenToken: string): HotspotAuthenticationContext_tryGetAuthenticationContext_OUT;
-    }
-
-    interface HotspotAuthenticationContext_tryGetAuthenticationContext_OUT {
-        __returnValue: boolean;
-        context: Windows.Networking.NetworkOperators.HotspotAuthenticationContext;
-    }
-
-    export class HotspotAuthenticationEventDetails implements Windows.Networking.NetworkOperators.IHotspotAuthenticationEventDetails {
-        eventToken: string;
-    }
-
-    export interface IHotspotAuthenticationContext {
-        authenticationUrl: Windows.Foundation.Uri;
-        networkAdapter: Windows.Networking.Connectivity.NetworkAdapter;
-        redirectMessageUrl: Windows.Foundation.Uri;
-        redirectMessageXml: Windows.Data.Xml.Dom.XmlDocument;
-        wirelessNetworkId: any;
-        issueCredentials(userName: string, password: string, extraParameters: string, markAsManualConnectOnFailure: boolean): void;
-        abortAuthentication(markAsManual: boolean): void;
-        skipAuthentication(): void;
-        triggerAttentionRequired(packageRelativeApplicationId: string, applicationParameters: string): void;
-    }
-
-    export interface IHotspotAuthenticationEventDetails {
-        eventToken: string;
-    }
-
-    export interface IMobileBroadbandAccount {
-        currentDeviceInformation: Windows.Networking.NetworkOperators.MobileBroadbandDeviceInformation;
-        currentNetwork: Windows.Networking.NetworkOperators.MobileBroadbandNetwork;
-        networkAccountId: string;
-        serviceProviderGuid: string;
-        serviceProviderName: string;
-    }
-
-    export interface IMobileBroadbandAccountEventArgs {
-        networkAccountId: string;
-    }
-
-    export interface IMobileBroadbandAccountUpdatedEventArgs {
-        hasDeviceInformationChanged: boolean;
-        hasNetworkChanged: boolean;
-        networkAccountId: string;
-    }
-
-    export interface IMobileBroadbandAccountWatcher {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onaccountadded(ev: any);
-        onaccountremoved(ev: any);
-        onaccountupdated(ev: any);
-        onenumerationcompleted(ev: any);
-        onstopped(ev: any);
-        status: Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcherStatus;
-        add_AccountAdded(handler: Windows.Foundation.TypedEventHandler<Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcher,Windows.Networking.NetworkOperators.MobileBroadbandAccountEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_AccountAdded(cookie: Windows.Foundation.EventRegistrationToken): void;
-        add_AccountUpdated(handler: Windows.Foundation.TypedEventHandler<Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcher,Windows.Networking.NetworkOperators.MobileBroadbandAccountUpdatedEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_AccountUpdated(cookie: Windows.Foundation.EventRegistrationToken): void;
-        add_AccountRemoved(handler: Windows.Foundation.TypedEventHandler<Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcher,Windows.Networking.NetworkOperators.MobileBroadbandAccountEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_AccountRemoved(cookie: Windows.Foundation.EventRegistrationToken): void;
-        add_EnumerationCompleted(handler: Windows.Foundation.TypedEventHandler<Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcher,any>): Windows.Foundation.EventRegistrationToken;
-        remove_EnumerationCompleted(cookie: Windows.Foundation.EventRegistrationToken): void;
-        add_Stopped(handler: Windows.Foundation.TypedEventHandler<Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcher,any>): Windows.Foundation.EventRegistrationToken;
-        remove_Stopped(cookie: Windows.Foundation.EventRegistrationToken): void;
-        start(): void;
-        stop(): void;
-    }
-
-    export interface IMobileBroadbandDeviceInformation {
-        cellularClass: Windows.Devices.Sms.CellularClass;
-        currentRadioState: Windows.Networking.NetworkOperators.MobileBroadbandRadioState;
-        customDataClass: string;
-        dataClasses: Windows.Networking.NetworkOperators.DataClasses;
-        deviceId: string;
-        deviceType: Windows.Networking.NetworkOperators.MobileBroadbandDeviceType;
-        firmwareInformation: string;
-        manufacturer: string;
-        mobileEquipmentId: string;
-        model: string;
-        networkDeviceStatus: Windows.Networking.NetworkOperators.NetworkDeviceStatus;
-        simIccId: string;
-        subscriberId: string;
-        telephoneNumbers: Windows.Foundation.Collections.IVectorView<string>;
-    }
-
-    export interface IMobileBroadbandNetwork {
-        accessPointName: string;
-        activationNetworkError: number;
-        networkAdapter: Windows.Networking.Connectivity.NetworkAdapter;
-        networkRegistrationState: Windows.Networking.NetworkOperators.NetworkRegistrationState;
-        packetAttachNetworkError: number;
-        registeredDataClass: Windows.Networking.NetworkOperators.DataClasses;
-        registeredProviderId: string;
-        registeredProviderName: string;
-        registrationNetworkError: number;
-        showConnectionUI(): void;
-    }
-
-    export interface INetworkOperatorNotificationEventDetails {
-        encodingType: number;
-        message: string;
-        networkAccountId: string;
-        notificationType: Windows.Networking.NetworkOperators.NetworkOperatorEventMessageType;
-        ruleId: string;
-        smsMessage: Windows.Devices.Sms.ISmsMessage;
-    }
-
-    export interface IProvisionedProfile {
-        updateCost(value: Windows.Networking.Connectivity.NetworkCostType): void;
-        updateUsage(value: Windows.Networking.NetworkOperators.ProfileUsage): void;
-    }
-
-    export interface IProvisionFromXmlDocumentResults {
-        allElementsProvisioned: boolean;
-        provisionResultsXml: string;
-    }
-
-    export interface IProvisioningAgent {
-        provisionFromXmlDocumentAsync(provisioningXmlDocument: string): ToTypeScriptD.WinRT.IPromise<Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults>;
-        getProvisionedProfile(mediaType: Windows.Networking.NetworkOperators.ProfileMediaType, profileName: string): Windows.Networking.NetworkOperators.ProvisionedProfile;
-    }
-
-    export interface IUssdMessage {
-        dataCodingScheme: number;
-        payloadAsText: string;
-        getPayload(): any;
-        setPayload(value: any): void;
-    }
-
-    export interface IUssdReply {
-        message: Windows.Networking.NetworkOperators.UssdMessage;
-        resultCode: Windows.Networking.NetworkOperators.UssdResultCode;
-    }
-
-    export interface IUssdSession {
-        sendMessageAndGetReplyAsync(message: Windows.Networking.NetworkOperators.UssdMessage): ToTypeScriptD.WinRT.IPromise<Windows.Networking.NetworkOperators.UssdReply>;
-        close(): void;
-    }
-
-    export class MobileBroadbandAccount implements Windows.Networking.NetworkOperators.IMobileBroadbandAccount {
-        currentDeviceInformation: Windows.Networking.NetworkOperators.MobileBroadbandDeviceInformation;
-        currentNetwork: Windows.Networking.NetworkOperators.MobileBroadbandNetwork;
-        networkAccountId: string;
-        serviceProviderGuid: string;
-        serviceProviderName: string;
-        availableNetworkAccountIds: Windows.Foundation.Collections.IVectorView<string>;
-        static createFromNetworkAccountId(networkAccountId: string): Windows.Networking.NetworkOperators.MobileBroadbandAccount;
-    }
-
-    export class MobileBroadbandAccountEventArgs implements Windows.Networking.NetworkOperators.IMobileBroadbandAccountEventArgs {
-        networkAccountId: string;
-    }
-
-    export class MobileBroadbandAccountUpdatedEventArgs implements Windows.Networking.NetworkOperators.IMobileBroadbandAccountUpdatedEventArgs {
-        hasDeviceInformationChanged: boolean;
-        hasNetworkChanged: boolean;
-        networkAccountId: string;
-    }
-
-    export class MobileBroadbandAccountWatcher implements Windows.Networking.NetworkOperators.IMobileBroadbandAccountWatcher {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onaccountadded(ev: any);
-        onaccountremoved(ev: any);
-        onaccountupdated(ev: any);
-        onenumerationcompleted(ev: any);
-        onstopped(ev: any);
-        status: Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcherStatus;
+    export class LauncherOptions implements Windows.System.ILauncherOptions {
+        contentType: string;
+        displayApplicationPicker: boolean;
+        fallbackUri: Windows.Foundation.Uri;
+        preferredApplicationDisplayName: string;
+        preferredApplicationPackageFamilyName: string;
+        treatAsUntrusted: boolean;
+        ui: Windows.System.LauncherUIOptions;
         constructor();
-        add_AccountAdded(handler: Windows.Foundation.TypedEventHandler<Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcher,Windows.Networking.NetworkOperators.MobileBroadbandAccountEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_AccountAdded(cookie: Windows.Foundation.EventRegistrationToken): void;
-        add_AccountUpdated(handler: Windows.Foundation.TypedEventHandler<Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcher,Windows.Networking.NetworkOperators.MobileBroadbandAccountUpdatedEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_AccountUpdated(cookie: Windows.Foundation.EventRegistrationToken): void;
-        add_AccountRemoved(handler: Windows.Foundation.TypedEventHandler<Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcher,Windows.Networking.NetworkOperators.MobileBroadbandAccountEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_AccountRemoved(cookie: Windows.Foundation.EventRegistrationToken): void;
-        add_EnumerationCompleted(handler: Windows.Foundation.TypedEventHandler<Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcher,any>): Windows.Foundation.EventRegistrationToken;
-        remove_EnumerationCompleted(cookie: Windows.Foundation.EventRegistrationToken): void;
-        add_Stopped(handler: Windows.Foundation.TypedEventHandler<Windows.Networking.NetworkOperators.MobileBroadbandAccountWatcher,any>): Windows.Foundation.EventRegistrationToken;
-        remove_Stopped(cookie: Windows.Foundation.EventRegistrationToken): void;
-        start(): void;
-        stop(): void;
     }
 
-    enum MobileBroadbandAccountWatcherStatus {
-        created,
-        started,
-        enumerationCompleted,
-        stopped,
-        aborted
+    export class LauncherUIOptions implements Windows.System.ILauncherUIOptions {
+        invocationPoint: Windows.Foundation.IReference<Windows.Foundation.Point>;
+        preferredPlacement: Windows.UI.Popups.Placement;
+        selectionRect: Windows.Foundation.IReference<Windows.Foundation.Rect>;
     }
 
-    export class MobileBroadbandDeviceInformation implements Windows.Networking.NetworkOperators.IMobileBroadbandDeviceInformation {
-        cellularClass: Windows.Devices.Sms.CellularClass;
-        currentRadioState: Windows.Networking.NetworkOperators.MobileBroadbandRadioState;
-        customDataClass: string;
-        dataClasses: Windows.Networking.NetworkOperators.DataClasses;
-        deviceId: string;
-        deviceType: Windows.Networking.NetworkOperators.MobileBroadbandDeviceType;
-        firmwareInformation: string;
-        manufacturer: string;
-        mobileEquipmentId: string;
-        model: string;
-        networkDeviceStatus: Windows.Networking.NetworkOperators.NetworkDeviceStatus;
-        simIccId: string;
-        subscriberId: string;
-        telephoneNumbers: Windows.Foundation.Collections.IVectorView<string>;
+    enum ProcessorArchitecture {
+        x86,
+        arm,
+        x64,
+        neutral,
+        unknown
     }
 
-    enum MobileBroadbandDeviceType {
-        unknown,
-        embedded,
-        removable,
-        remote
-    }
-
-    export class MobileBroadbandNetwork implements Windows.Networking.NetworkOperators.IMobileBroadbandNetwork {
-        accessPointName: string;
-        activationNetworkError: number;
-        networkAdapter: Windows.Networking.Connectivity.NetworkAdapter;
-        networkRegistrationState: Windows.Networking.NetworkOperators.NetworkRegistrationState;
-        packetAttachNetworkError: number;
-        registeredDataClass: Windows.Networking.NetworkOperators.DataClasses;
-        registeredProviderId: string;
-        registeredProviderName: string;
-        registrationNetworkError: number;
-        showConnectionUI(): void;
-    }
-
-    enum MobileBroadbandRadioState {
-        off,
-        on
-    }
-
-    enum NetworkDeviceStatus {
-        deviceNotReady,
-        deviceReady,
-        simNotInserted,
-        badSim,
-        deviceHardwareFailure,
-        accountNotActivated,
-        deviceLocked,
-        deviceBlocked
-    }
-
-    enum NetworkOperatorEventMessageType {
-        gsm,
-        cdma,
-        ussd,
-        dataPlanThresholdReached,
-        dataPlanReset,
-        dataPlanDeleted,
-        profileConnected,
-        profileDisconnected,
-        registeredRoaming,
-        registeredHome
-    }
-
-    export class NetworkOperatorNotificationEventDetails implements Windows.Networking.NetworkOperators.INetworkOperatorNotificationEventDetails {
-        encodingType: number;
-        message: string;
-        networkAccountId: string;
-        notificationType: Windows.Networking.NetworkOperators.NetworkOperatorEventMessageType;
-        ruleId: string;
-        smsMessage: Windows.Devices.Sms.ISmsMessage;
-    }
-
-    enum NetworkRegistrationState {
+    enum VirtualKey {
         none,
-        deregistered,
-        searching,
+        leftButton,
+        rightButton,
+        cancel,
+        middleButton,
+        xButton1,
+        xButton2,
+        back,
+        tab,
+        clear,
+        enter,
+        shift,
+        control,
+        menu,
+        pause,
+        capitalLock,
+        kana,
+        hangul,
+        junja,
+        final,
+        hanja,
+        kanji,
+        escape,
+        convert,
+        nonConvert,
+        accept,
+        modeChange,
+        space,
+        pageUp,
+        pageDown,
+        end,
         home,
-        roaming,
-        partner,
-        denied
+        left,
+        up,
+        right,
+        down,
+        select,
+        print,
+        execute,
+        snapshot,
+        insert,
+        delete,
+        help,
+        number0,
+        number1,
+        number2,
+        number3,
+        number4,
+        number5,
+        number6,
+        number7,
+        number8,
+        number9,
+        a,
+        b,
+        c,
+        d,
+        e,
+        f,
+        g,
+        h,
+        i,
+        j,
+        k,
+        l,
+        m,
+        n,
+        o,
+        p,
+        q,
+        r,
+        s,
+        t,
+        u,
+        v,
+        w,
+        x,
+        y,
+        z,
+        leftWindows,
+        rightWindows,
+        application,
+        sleep,
+        numberPad0,
+        numberPad1,
+        numberPad2,
+        numberPad3,
+        numberPad4,
+        numberPad5,
+        numberPad6,
+        numberPad7,
+        numberPad8,
+        numberPad9,
+        multiply,
+        add,
+        separator,
+        subtract,
+        decimal,
+        divide,
+        f1,
+        f2,
+        f3,
+        f4,
+        f5,
+        f6,
+        f7,
+        f8,
+        f9,
+        f10,
+        f11,
+        f12,
+        f13,
+        f14,
+        f15,
+        f16,
+        f17,
+        f18,
+        f19,
+        f20,
+        f21,
+        f22,
+        f23,
+        f24,
+        numberKeyLock,
+        scroll,
+        leftShift,
+        rightShift,
+        leftControl,
+        rightControl,
+        leftMenu,
+        rightMenu
     }
 
-    enum ProfileMediaType {
-        wlan,
-        wwan
-    }
-
-    export class ProfileUsage {
-        usageInMegabytes: number;
-        lastSyncTime: Date;
-    }
-
-    export class ProvisionedProfile implements Windows.Networking.NetworkOperators.IProvisionedProfile {
-        updateCost(value: Windows.Networking.Connectivity.NetworkCostType): void;
-        updateUsage(value: Windows.Networking.NetworkOperators.ProfileUsage): void;
-    }
-
-    export class ProvisionFromXmlDocumentResults implements Windows.Networking.NetworkOperators.IProvisionFromXmlDocumentResults {
-        allElementsProvisioned: boolean;
-        provisionResultsXml: string;
-    }
-
-    export class ProvisioningAgent implements Windows.Networking.NetworkOperators.IProvisioningAgent {
-        constructor();
-        provisionFromXmlDocumentAsync(provisioningXmlDocument: string): ToTypeScriptD.WinRT.IPromise<Windows.Networking.NetworkOperators.ProvisionFromXmlDocumentResults>;
-        getProvisionedProfile(mediaType: Windows.Networking.NetworkOperators.ProfileMediaType, profileName: string): Windows.Networking.NetworkOperators.ProvisionedProfile;
-        static createFromNetworkAccountId(networkAccountId: string): Windows.Networking.NetworkOperators.ProvisioningAgent;
-    }
-
-    export class UssdMessage implements Windows.Networking.NetworkOperators.IUssdMessage {
-        dataCodingScheme: number;
-        payloadAsText: string;
-        constructor(messageText: string);
-        getPayload(): any;
-        setPayload(value: any): void;
-    }
-
-    export class UssdReply implements Windows.Networking.NetworkOperators.IUssdReply {
-        message: Windows.Networking.NetworkOperators.UssdMessage;
-        resultCode: Windows.Networking.NetworkOperators.UssdResultCode;
-    }
-
-    enum UssdResultCode {
-        noActionRequired,
-        actionRequired,
-        terminated,
-        otherLocalClient,
-        operationNotSupported,
-        networkTimeout
-    }
-
-    export class UssdSession implements Windows.Networking.NetworkOperators.IUssdSession {
-        sendMessageAndGetReplyAsync(message: Windows.Networking.NetworkOperators.UssdMessage): ToTypeScriptD.WinRT.IPromise<Windows.Networking.NetworkOperators.UssdReply>;
-        close(): void;
-        static createFromNetworkAccountId(networkAccountId: string): Windows.Networking.NetworkOperators.UssdSession;
-        static createFromNetworkInterfaceId(networkInterfaceId: string): Windows.Networking.NetworkOperators.UssdSession;
-    }
-
-}
-declare module Windows.Networking.Proximity {
-
-    export class ConnectionRequestedEventArgs implements Windows.Networking.Proximity.IConnectionRequestedEventArgs {
-        peerInformation: Windows.Networking.Proximity.PeerInformation;
-    }
-
-    export class DeviceArrivedEventHandler {
-        constructor(object: any, method: number);
-        invoke(sender: Windows.Networking.Proximity.ProximityDevice): void;
-    }
-
-    export class DeviceDepartedEventHandler {
-        constructor(object: any, method: number);
-        invoke(sender: Windows.Networking.Proximity.ProximityDevice): void;
-    }
-
-    export interface IConnectionRequestedEventArgs {
-        peerInformation: Windows.Networking.Proximity.PeerInformation;
-    }
-
-    export interface IPeerInformation {
-        displayName: string;
-    }
-
-    export interface IProximityDevice {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        ondevicearrived(ev: any);
-        ondevicedeparted(ev: any);
-        bitsPerSecond: number;
-        deviceId: string;
-        maxMessageBytes: number;
-        subscribeForMessage(messageType: string, messageReceivedHandler: Windows.Networking.Proximity.MessageReceivedHandler): number;
-        publishMessage(messageType: string, message: string): number;
-        publishMessage(messageType: string, message: string, messageTransmittedHandler: Windows.Networking.Proximity.MessageTransmittedHandler): number;
-        publishBinaryMessage(messageType: string, message: Windows.Storage.Streams.IBuffer): number;
-        publishBinaryMessage(messageType: string, message: Windows.Storage.Streams.IBuffer, messageTransmittedHandler: Windows.Networking.Proximity.MessageTransmittedHandler): number;
-        publishUriMessage(message: Windows.Foundation.Uri): number;
-        publishUriMessage(message: Windows.Foundation.Uri, messageTransmittedHandler: Windows.Networking.Proximity.MessageTransmittedHandler): number;
-        stopSubscribingForMessage(subscriptionId: number): void;
-        stopPublishingMessage(messageId: number): void;
-        add_DeviceArrived(arrivedHandler: Windows.Networking.Proximity.DeviceArrivedEventHandler): Windows.Foundation.EventRegistrationToken;
-        remove_DeviceArrived(cookie: Windows.Foundation.EventRegistrationToken): void;
-        add_DeviceDeparted(departedHandler: Windows.Networking.Proximity.DeviceDepartedEventHandler): Windows.Foundation.EventRegistrationToken;
-        remove_DeviceDeparted(cookie: Windows.Foundation.EventRegistrationToken): void;
-    }
-
-    export interface IProximityMessage {
-        data: Windows.Storage.Streams.IBuffer;
-        dataAsString: string;
-        messageType: string;
-        subscriptionId: number;
-    }
-
-    export interface ITriggeredConnectionStateChangedEventArgs {
-        id: number;
-        socket: Windows.Networking.Sockets.StreamSocket;
-        state: Windows.Networking.Proximity.TriggeredConnectState;
-    }
-
-    export class MessageReceivedHandler {
-        constructor(object: any, method: number);
-        invoke(sender: Windows.Networking.Proximity.ProximityDevice, message: Windows.Networking.Proximity.ProximityMessage): void;
-    }
-
-    export class MessageTransmittedHandler {
-        constructor(object: any, method: number);
-        invoke(sender: Windows.Networking.Proximity.ProximityDevice, messageId: number): void;
-    }
-
-    enum PeerDiscoveryTypes {
+    enum VirtualKeyModifiers {
         none,
-        browse,
-        triggered
-    }
-
-    export class PeerFinder {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onconnectionrequested(ev: any);
-        ontriggeredconnectionstatechanged(ev: any);
-        allowBluetooth: boolean;
-        allowInfrastructure: boolean;
-        allowWiFiDirect: boolean;
-        alternateIdentities: Windows.Foundation.Collections.IMap<string,string>;
-        displayName: string;
-        supportedDiscoveryTypes: Windows.Networking.Proximity.PeerDiscoveryTypes;
-        static start(): void;
-        static start(peerMessage: string): void;
-        static stop(): void;
-        static add_TriggeredConnectionStateChanged(handler: Windows.Foundation.TypedEventHandler<any,Windows.Networking.Proximity.TriggeredConnectionStateChangedEventArgs>): Windows.Foundation.EventRegistrationToken;
-        static remove_TriggeredConnectionStateChanged(cookie: Windows.Foundation.EventRegistrationToken): void;
-        static add_ConnectionRequested(handler: Windows.Foundation.TypedEventHandler<any,Windows.Networking.Proximity.ConnectionRequestedEventArgs>): Windows.Foundation.EventRegistrationToken;
-        static remove_ConnectionRequested(cookie: Windows.Foundation.EventRegistrationToken): void;
-        static findAllPeersAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Foundation.Collections.IVectorView<Windows.Networking.Proximity.PeerInformation>>;
-        static connectAsync(peerInformation: Windows.Networking.Proximity.PeerInformation): ToTypeScriptD.WinRT.IPromise<Windows.Networking.Sockets.StreamSocket>;
-    }
-
-    export class PeerInformation implements Windows.Networking.Proximity.IPeerInformation {
-        displayName: string;
-    }
-
-    export class ProximityDevice implements Windows.Networking.Proximity.IProximityDevice {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        ondevicearrived(ev: any);
-        ondevicedeparted(ev: any);
-        bitsPerSecond: number;
-        deviceId: string;
-        maxMessageBytes: number;
-        subscribeForMessage(messageType: string, messageReceivedHandler: Windows.Networking.Proximity.MessageReceivedHandler): number;
-        publishMessage(messageType: string, message: string): number;
-        publishMessage(messageType: string, message: string, messageTransmittedHandler: Windows.Networking.Proximity.MessageTransmittedHandler): number;
-        publishBinaryMessage(messageType: string, message: Windows.Storage.Streams.IBuffer): number;
-        publishBinaryMessage(messageType: string, message: Windows.Storage.Streams.IBuffer, messageTransmittedHandler: Windows.Networking.Proximity.MessageTransmittedHandler): number;
-        publishUriMessage(message: Windows.Foundation.Uri): number;
-        publishUriMessage(message: Windows.Foundation.Uri, messageTransmittedHandler: Windows.Networking.Proximity.MessageTransmittedHandler): number;
-        stopSubscribingForMessage(subscriptionId: number): void;
-        stopPublishingMessage(messageId: number): void;
-        add_DeviceArrived(arrivedHandler: Windows.Networking.Proximity.DeviceArrivedEventHandler): Windows.Foundation.EventRegistrationToken;
-        remove_DeviceArrived(cookie: Windows.Foundation.EventRegistrationToken): void;
-        add_DeviceDeparted(departedHandler: Windows.Networking.Proximity.DeviceDepartedEventHandler): Windows.Foundation.EventRegistrationToken;
-        remove_DeviceDeparted(cookie: Windows.Foundation.EventRegistrationToken): void;
-        static getDeviceSelector(): string;
-        static getDefault(): Windows.Networking.Proximity.ProximityDevice;
-        static fromId(deviceInterfaceId: string): Windows.Networking.Proximity.ProximityDevice;
-    }
-
-    export class ProximityMessage implements Windows.Networking.Proximity.IProximityMessage {
-        data: Windows.Storage.Streams.IBuffer;
-        dataAsString: string;
-        messageType: string;
-        subscriptionId: number;
-    }
-
-    export class TriggeredConnectionStateChangedEventArgs implements Windows.Networking.Proximity.ITriggeredConnectionStateChangedEventArgs {
-        id: number;
-        socket: Windows.Networking.Sockets.StreamSocket;
-        state: Windows.Networking.Proximity.TriggeredConnectState;
-    }
-
-    enum TriggeredConnectState {
-        peerFound,
-        listening,
-        connecting,
-        completed,
-        canceled,
-        failed
+        control,
+        menu,
+        shift,
+        windows
     }
 
 }
-declare module Windows.Networking.PushNotifications {
+declare module Windows.System.Profile {
 
-    export interface IPushNotificationChannel {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onpushnotificationreceived(ev: any);
-        expirationTime: Date;
-        uri: string;
-        close(): void;
-        add_PushNotificationReceived(handler: Windows.Foundation.TypedEventHandler<Windows.Networking.PushNotifications.PushNotificationChannel,Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_PushNotificationReceived(token: Windows.Foundation.EventRegistrationToken): void;
+    export class HardwareIdentification {
+        static getPackageSpecificToken(nonce: Windows.Storage.Streams.IBuffer): Windows.System.Profile.HardwareToken;
     }
 
-    export interface IPushNotificationReceivedEventArgs {
-        badgeNotification: Windows.UI.Notifications.BadgeNotification;
-        cancel: boolean;
-        notificationType: Windows.Networking.PushNotifications.PushNotificationType;
-        rawNotification: Windows.Networking.PushNotifications.RawNotification;
-        tileNotification: Windows.UI.Notifications.TileNotification;
-        toastNotification: Windows.UI.Notifications.ToastNotification;
+    export class HardwareToken implements Windows.System.Profile.IHardwareToken {
+        certificate: Windows.Storage.Streams.IBuffer;
+        id: Windows.Storage.Streams.IBuffer;
+        signature: Windows.Storage.Streams.IBuffer;
     }
 
-    export interface IRawNotification {
-        content: string;
-    }
-
-    export class PushNotificationChannel implements Windows.Networking.PushNotifications.IPushNotificationChannel {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onpushnotificationreceived(ev: any);
-        expirationTime: Date;
-        uri: string;
-        close(): void;
-        add_PushNotificationReceived(handler: Windows.Foundation.TypedEventHandler<Windows.Networking.PushNotifications.PushNotificationChannel,Windows.Networking.PushNotifications.PushNotificationReceivedEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_PushNotificationReceived(token: Windows.Foundation.EventRegistrationToken): void;
-    }
-
-    export class PushNotificationChannelManager {
-        static createPushNotificationChannelForApplicationAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Networking.PushNotifications.PushNotificationChannel>;
-        static createPushNotificationChannelForApplicationAsync(applicationId: string): ToTypeScriptD.WinRT.IPromise<Windows.Networking.PushNotifications.PushNotificationChannel>;
-        static createPushNotificationChannelForSecondaryTileAsync(tileId: string): ToTypeScriptD.WinRT.IPromise<Windows.Networking.PushNotifications.PushNotificationChannel>;
-    }
-
-    export class PushNotificationReceivedEventArgs implements Windows.Networking.PushNotifications.IPushNotificationReceivedEventArgs {
-        badgeNotification: Windows.UI.Notifications.BadgeNotification;
-        cancel: boolean;
-        notificationType: Windows.Networking.PushNotifications.PushNotificationType;
-        rawNotification: Windows.Networking.PushNotifications.RawNotification;
-        tileNotification: Windows.UI.Notifications.TileNotification;
-        toastNotification: Windows.UI.Notifications.ToastNotification;
-    }
-
-    enum PushNotificationType {
-        toast,
-        tile,
-        badge,
-        raw
-    }
-
-    export class RawNotification implements Windows.Networking.PushNotifications.IRawNotification {
-        content: string;
+    export interface IHardwareToken {
+        certificate: Windows.Storage.Streams.IBuffer;
+        id: Windows.Storage.Streams.IBuffer;
+        signature: Windows.Storage.Streams.IBuffer;
     }
 
 }
-declare module Windows.Networking.Sockets {
+declare module Windows.System.RemoteDesktop {
 
-    export class BandwidthStatistics {
-        outboundBitsPerSecond: number;
-        inboundBitsPerSecond: number;
-        outboundBitsPerSecondInstability: number;
-        inboundBitsPerSecondInstability: number;
-        outboundBandwidthPeaked: boolean;
-        inboundBandwidthPeaked: boolean;
+    export class InteractiveSession {
+        isRemote: boolean;
     }
 
-    export class ControlChannelTrigger implements Windows.Networking.Sockets.IControlChannelTrigger, Windows.Foundation.IClosable {
-        controlChannelTriggerId: string;
-        currentKeepAliveIntervalInMinutes: number;
-        keepAliveTrigger: Windows.ApplicationModel.Background.IBackgroundTrigger;
-        pushNotificationTrigger: Windows.ApplicationModel.Background.IBackgroundTrigger;
-        serverKeepAliveIntervalInMinutes: number;
-        transportObject: any;
-        constructor(channelId: string, serverKeepAliveIntervalInMinutes: number);
-        constructor(channelId: string, serverKeepAliveIntervalInMinutes: number, resourceRequestType: Windows.Networking.Sockets.ControlChannelTriggerResourceType);
-        usingTransport(transport: any): void;
-        waitForPushEnabled(): Windows.Networking.Sockets.ControlChannelTriggerStatus;
-        decreaseNetworkKeepAliveInterval(): void;
-        flushTransport(): void;
-        close(): void;
+}
+declare module Windows.System.Threading.Core {
+
+    export interface IPreallocatedWorkItem {
+        runAsync(): Windows.Foundation.IAsyncAction;
     }
 
-    enum ControlChannelTriggerResetReason {
-        fastUserSwitched,
-        lowPowerExit
+    export interface ISignalNotifier {
+        enable(): void;
+        terminate(): void;
     }
 
-    enum ControlChannelTriggerResourceType {
-        requestSoftwareSlot,
-        requestHardwareSlot
+    export class PreallocatedWorkItem implements Windows.System.Threading.Core.IPreallocatedWorkItem {
+        constructor(handler: Windows.System.Threading.WorkItemHandler);
+        constructor(handler: Windows.System.Threading.WorkItemHandler, priority: Windows.System.Threading.WorkItemPriority);
+        constructor(handler: Windows.System.Threading.WorkItemHandler, priority: Windows.System.Threading.WorkItemPriority, options: Windows.System.Threading.WorkItemOptions);
+        runAsync(): Windows.Foundation.IAsyncAction;
     }
 
-    enum ControlChannelTriggerStatus {
-        hardwareSlotRequested,
-        softwareSlotAllocated,
-        hardwareSlotAllocated,
-        policyError,
-        systemError,
-        transportDisconnected,
-        serviceUnavailable
+    export class SignalHandler {
+        constructor(object: any, method: number);
+        invoke(signalNotifier: Windows.System.Threading.Core.SignalNotifier, timedOut: boolean): void;
     }
 
-    export class DatagramSocket implements Windows.Networking.Sockets.IDatagramSocket, Windows.Foundation.IClosable {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onmessagereceived(ev: any);
-        control: Windows.Networking.Sockets.DatagramSocketControl;
-        information: Windows.Networking.Sockets.DatagramSocketInformation;
-        outputStream: Windows.Storage.Streams.IOutputStream;
-        constructor();
-        connectAsync(remoteHostName: Windows.Networking.HostName, remoteServiceName: string): Windows.Foundation.IAsyncAction;
-        connectAsync(endpointPair: Windows.Networking.EndpointPair): Windows.Foundation.IAsyncAction;
-        bindServiceNameAsync(localServiceName: string): Windows.Foundation.IAsyncAction;
-        bindEndpointAsync(localHostName: Windows.Networking.HostName, localServiceName: string): Windows.Foundation.IAsyncAction;
-        joinMulticastGroup(host: Windows.Networking.HostName): void;
-        getOutputStreamAsync(remoteHostName: Windows.Networking.HostName, remoteServiceName: string): ToTypeScriptD.WinRT.IPromise<Windows.Storage.Streams.IOutputStream>;
-        getOutputStreamAsync(endpointPair: Windows.Networking.EndpointPair): ToTypeScriptD.WinRT.IPromise<Windows.Storage.Streams.IOutputStream>;
-        add_MessageReceived(eventHandler: Windows.Foundation.TypedEventHandler<Windows.Networking.Sockets.DatagramSocket,Windows.Networking.Sockets.DatagramSocketMessageReceivedEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_MessageReceived(eventCookie: Windows.Foundation.EventRegistrationToken): void;
-        close(): void;
-        static getEndpointPairsAsync(remoteHostName: Windows.Networking.HostName, remoteServiceName: string): ToTypeScriptD.WinRT.IPromise<Windows.Foundation.Collections.IVectorView<Windows.Networking.EndpointPair>>;
-        static getEndpointPairsAsync(remoteHostName: Windows.Networking.HostName, remoteServiceName: string, sortOptions: Windows.Networking.HostNameSortOptions): ToTypeScriptD.WinRT.IPromise<Windows.Foundation.Collections.IVectorView<Windows.Networking.EndpointPair>>;
+    export class SignalNotifier implements Windows.System.Threading.Core.ISignalNotifier {
+        enable(): void;
+        terminate(): void;
+        static attachToEvent(name: string, handler: Windows.System.Threading.Core.SignalHandler): Windows.System.Threading.Core.SignalNotifier;
+        static attachToEvent(name: string, handler: Windows.System.Threading.Core.SignalHandler, timeout: Windows.Foundation.TimeSpan): Windows.System.Threading.Core.SignalNotifier;
+        static attachToSemaphore(name: string, handler: Windows.System.Threading.Core.SignalHandler): Windows.System.Threading.Core.SignalNotifier;
+        static attachToSemaphore(name: string, handler: Windows.System.Threading.Core.SignalHandler, timeout: Windows.Foundation.TimeSpan): Windows.System.Threading.Core.SignalNotifier;
     }
 
-    export class DatagramSocketControl implements Windows.Networking.Sockets.IDatagramSocketControl {
-        outboundUnicastHopLimit: number;
-        qualityOfService: Windows.Networking.Sockets.SocketQualityOfService;
+}
+declare module Windows.System.Threading {
+
+    export interface IThreadPoolTimer {
+        delay: Windows.Foundation.TimeSpan;
+        period: Windows.Foundation.TimeSpan;
+        cancel(): void;
     }
 
-    export class DatagramSocketInformation implements Windows.Networking.Sockets.IDatagramSocketInformation {
-        localAddress: Windows.Networking.HostName;
-        localPort: string;
-        remoteAddress: Windows.Networking.HostName;
-        remotePort: string;
+    export class ThreadPool {
+        static runAsync(handler: Windows.System.Threading.WorkItemHandler): Windows.Foundation.IAsyncAction;
+        static runAsync(handler: Windows.System.Threading.WorkItemHandler, priority: Windows.System.Threading.WorkItemPriority): Windows.Foundation.IAsyncAction;
+        static runAsync(handler: Windows.System.Threading.WorkItemHandler, priority: Windows.System.Threading.WorkItemPriority, options: Windows.System.Threading.WorkItemOptions): Windows.Foundation.IAsyncAction;
     }
 
-    export class DatagramSocketMessageReceivedEventArgs implements Windows.Networking.Sockets.IDatagramSocketMessageReceivedEventArgs {
-        localAddress: Windows.Networking.HostName;
-        remoteAddress: Windows.Networking.HostName;
-        remotePort: string;
-        getDataReader(): Windows.Storage.Streams.DataReader;
-        getDataStream(): Windows.Storage.Streams.IInputStream;
+    export class ThreadPoolTimer implements Windows.System.Threading.IThreadPoolTimer {
+        delay: Windows.Foundation.TimeSpan;
+        period: Windows.Foundation.TimeSpan;
+        cancel(): void;
+        static createPeriodicTimer(handler: Windows.System.Threading.TimerElapsedHandler, period: Windows.Foundation.TimeSpan): Windows.System.Threading.ThreadPoolTimer;
+        static createTimer(handler: Windows.System.Threading.TimerElapsedHandler, delay: Windows.Foundation.TimeSpan): Windows.System.Threading.ThreadPoolTimer;
+        static createPeriodicTimer(handler: Windows.System.Threading.TimerElapsedHandler, period: Windows.Foundation.TimeSpan, destroyed: Windows.System.Threading.TimerDestroyedHandler): Windows.System.Threading.ThreadPoolTimer;
+        static createTimer(handler: Windows.System.Threading.TimerElapsedHandler, delay: Windows.Foundation.TimeSpan, destroyed: Windows.System.Threading.TimerDestroyedHandler): Windows.System.Threading.ThreadPoolTimer;
     }
 
-    export interface IControlChannelTrigger extends Windows.Foundation.IClosable {
-        controlChannelTriggerId: string;
-        currentKeepAliveIntervalInMinutes: number;
-        keepAliveTrigger: Windows.ApplicationModel.Background.IBackgroundTrigger;
-        pushNotificationTrigger: Windows.ApplicationModel.Background.IBackgroundTrigger;
-        serverKeepAliveIntervalInMinutes: number;
-        transportObject: any;
-        usingTransport(transport: any): void;
-        waitForPushEnabled(): Windows.Networking.Sockets.ControlChannelTriggerStatus;
-        decreaseNetworkKeepAliveInterval(): void;
-        flushTransport(): void;
+    export class TimerDestroyedHandler {
+        constructor(object: any, method: number);
+        invoke(timer: Windows.System.Threading.ThreadPoolTimer): void;
     }
 
-    export interface IControlChannelTriggerEventDetails {
-        controlChannelTrigger: Windows.Networking.Sockets.ControlChannelTrigger;
+    export class TimerElapsedHandler {
+        constructor(object: any, method: number);
+        invoke(timer: Windows.System.Threading.ThreadPoolTimer): void;
     }
 
-    export interface IControlChannelTriggerResetEventDetails {
-        hardwareSlotReset: boolean;
-        resetReason: Windows.Networking.Sockets.ControlChannelTriggerResetReason;
-        softwareSlotReset: boolean;
+    export class WorkItemHandler {
+        constructor(object: any, method: number);
+        invoke(operation: Windows.Foundation.IAsyncAction): void;
     }
 
-    export interface IDatagramSocket extends Windows.Foundation.IClosable {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onmessagereceived(ev: any);
-        control: Windows.Networking.Sockets.DatagramSocketControl;
-        information: Windows.Networking.Sockets.DatagramSocketInformation;
-        outputStream: Windows.Storage.Streams.IOutputStream;
-        connectAsync(remoteHostName: Windows.Networking.HostName, remoteServiceName: string): Windows.Foundation.IAsyncAction;
-        connectAsync(endpointPair: Windows.Networking.EndpointPair): Windows.Foundation.IAsyncAction;
-        bindServiceNameAsync(localServiceName: string): Windows.Foundation.IAsyncAction;
-        bindEndpointAsync(localHostName: Windows.Networking.HostName, localServiceName: string): Windows.Foundation.IAsyncAction;
-        joinMulticastGroup(host: Windows.Networking.HostName): void;
-        getOutputStreamAsync(remoteHostName: Windows.Networking.HostName, remoteServiceName: string): ToTypeScriptD.WinRT.IPromise<Windows.Storage.Streams.IOutputStream>;
-        getOutputStreamAsync(endpointPair: Windows.Networking.EndpointPair): ToTypeScriptD.WinRT.IPromise<Windows.Storage.Streams.IOutputStream>;
-        add_MessageReceived(eventHandler: Windows.Foundation.TypedEventHandler<Windows.Networking.Sockets.DatagramSocket,Windows.Networking.Sockets.DatagramSocketMessageReceivedEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_MessageReceived(eventCookie: Windows.Foundation.EventRegistrationToken): void;
+    enum WorkItemOptions {
+        none,
+        timeSliced
     }
 
-    export interface IDatagramSocketControl {
-        outboundUnicastHopLimit: number;
-        qualityOfService: Windows.Networking.Sockets.SocketQualityOfService;
-    }
-
-    export interface IDatagramSocketInformation {
-        localAddress: Windows.Networking.HostName;
-        localPort: string;
-        remoteAddress: Windows.Networking.HostName;
-        remotePort: string;
-    }
-
-    export interface IDatagramSocketMessageReceivedEventArgs {
-        localAddress: Windows.Networking.HostName;
-        remoteAddress: Windows.Networking.HostName;
-        remotePort: string;
-        getDataReader(): Windows.Storage.Streams.DataReader;
-        getDataStream(): Windows.Storage.Streams.IInputStream;
-    }
-
-    export interface IMessageWebSocket extends Windows.Networking.Sockets.IWebSocket, Windows.Foundation.IClosable {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onmessagereceived(ev: any);
-        control: Windows.Networking.Sockets.MessageWebSocketControl;
-        information: Windows.Networking.Sockets.MessageWebSocketInformation;
-        add_MessageReceived(eventHandler: Windows.Foundation.TypedEventHandler<Windows.Networking.Sockets.MessageWebSocket,Windows.Networking.Sockets.MessageWebSocketMessageReceivedEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_MessageReceived(eventCookie: Windows.Foundation.EventRegistrationToken): void;
-    }
-
-    export interface IMessageWebSocketControl extends Windows.Networking.Sockets.IWebSocketControl {
-        maxMessageSize: number;
-        messageType: Windows.Networking.Sockets.SocketMessageType;
-    }
-
-    export interface IMessageWebSocketMessageReceivedEventArgs {
-        messageType: Windows.Networking.Sockets.SocketMessageType;
-        getDataReader(): Windows.Storage.Streams.DataReader;
-        getDataStream(): Windows.Storage.Streams.IInputStream;
-    }
-
-    export interface IStreamSocket extends Windows.Foundation.IClosable {
-        control: Windows.Networking.Sockets.StreamSocketControl;
-        information: Windows.Networking.Sockets.StreamSocketInformation;
-        inputStream: Windows.Storage.Streams.IInputStream;
-        outputStream: Windows.Storage.Streams.IOutputStream;
-        connectAsync(endpointPair: Windows.Networking.EndpointPair): Windows.Foundation.IAsyncAction;
-        connectAsync(remoteHostName: Windows.Networking.HostName, remoteServiceName: string): Windows.Foundation.IAsyncAction;
-        connectAsync(endpointPair: Windows.Networking.EndpointPair, protectionLevel: Windows.Networking.Sockets.SocketProtectionLevel): Windows.Foundation.IAsyncAction;
-        connectAsync(remoteHostName: Windows.Networking.HostName, remoteServiceName: string, protectionLevel: Windows.Networking.Sockets.SocketProtectionLevel): Windows.Foundation.IAsyncAction;
-        upgradeToSslAsync(protectionLevel: Windows.Networking.Sockets.SocketProtectionLevel, validationHostName: Windows.Networking.HostName): Windows.Foundation.IAsyncAction;
-    }
-
-    export interface IStreamSocketControl {
-        keepAlive: boolean;
-        noDelay: boolean;
-        outboundBufferSizeInBytes: number;
-        outboundUnicastHopLimit: number;
-        qualityOfService: Windows.Networking.Sockets.SocketQualityOfService;
-    }
-
-    export interface IStreamSocketInformation {
-        bandwidthStatistics: Windows.Networking.Sockets.BandwidthStatistics;
-        localAddress: Windows.Networking.HostName;
-        localPort: string;
-        protectionLevel: Windows.Networking.Sockets.SocketProtectionLevel;
-        remoteAddress: Windows.Networking.HostName;
-        remoteHostName: Windows.Networking.HostName;
-        remotePort: string;
-        remoteServiceName: string;
-        roundTripTimeStatistics: Windows.Networking.Sockets.RoundTripTimeStatistics;
-        sessionKey: Windows.Storage.Streams.IBuffer;
-    }
-
-    export interface IStreamSocketListener extends Windows.Foundation.IClosable {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onconnectionreceived(ev: any);
-        control: Windows.Networking.Sockets.StreamSocketListenerControl;
-        information: Windows.Networking.Sockets.StreamSocketListenerInformation;
-        bindServiceNameAsync(localServiceName: string): Windows.Foundation.IAsyncAction;
-        bindEndpointAsync(localHostName: Windows.Networking.HostName, localServiceName: string): Windows.Foundation.IAsyncAction;
-        add_ConnectionReceived(eventHandler: Windows.Foundation.TypedEventHandler<Windows.Networking.Sockets.StreamSocketListener,Windows.Networking.Sockets.StreamSocketListenerConnectionReceivedEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_ConnectionReceived(eventCookie: Windows.Foundation.EventRegistrationToken): void;
-    }
-
-    export interface IStreamSocketListenerConnectionReceivedEventArgs {
-        socket: Windows.Networking.Sockets.StreamSocket;
-    }
-
-    export interface IStreamSocketListenerControl {
-        qualityOfService: Windows.Networking.Sockets.SocketQualityOfService;
-    }
-
-    export interface IStreamSocketListenerInformation {
-        localPort: string;
-    }
-
-    export interface IStreamWebSocket extends Windows.Networking.Sockets.IWebSocket, Windows.Foundation.IClosable {
-        control: Windows.Networking.Sockets.StreamWebSocketControl;
-        information: Windows.Networking.Sockets.StreamWebSocketInformation;
-        inputStream: Windows.Storage.Streams.IInputStream;
-    }
-
-    export interface IStreamWebSocketControl extends Windows.Networking.Sockets.IWebSocketControl {
-        noDelay: boolean;
-    }
-
-    export interface IWebSocket extends Windows.Foundation.IClosable {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onclosed(ev: any);
-        outputStream: Windows.Storage.Streams.IOutputStream;
-        connectAsync(uri: Windows.Foundation.Uri): Windows.Foundation.IAsyncAction;
-        setRequestHeader(headerName: string, headerValue: string): void;
-        add_Closed(eventHandler: Windows.Foundation.TypedEventHandler<Windows.Networking.Sockets.IWebSocket,Windows.Networking.Sockets.WebSocketClosedEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_Closed(eventCookie: Windows.Foundation.EventRegistrationToken): void;
-        close(code: number, reason: string): void;
-    }
-
-    export interface IWebSocketClosedEventArgs {
-        code: number;
-        reason: string;
-    }
-
-    export interface IWebSocketControl {
-        outboundBufferSizeInBytes: number;
-        proxyCredential: Windows.Security.Credentials.PasswordCredential;
-        serverCredential: Windows.Security.Credentials.PasswordCredential;
-        supportedProtocols: Windows.Foundation.Collections.IVector<string>;
-    }
-
-    export interface IWebSocketInformation {
-        bandwidthStatistics: Windows.Networking.Sockets.BandwidthStatistics;
-        localAddress: Windows.Networking.HostName;
-        protocol: string;
-    }
-
-    export class MessageWebSocket implements Windows.Networking.Sockets.IMessageWebSocket, Windows.Networking.Sockets.IWebSocket, Windows.Foundation.IClosable {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onmessagereceived(ev: any);
-        onclosed(ev: any);
-        control: Windows.Networking.Sockets.MessageWebSocketControl;
-        information: Windows.Networking.Sockets.MessageWebSocketInformation;
-        outputStream: Windows.Storage.Streams.IOutputStream;
-        constructor();
-        add_MessageReceived(eventHandler: Windows.Foundation.TypedEventHandler<Windows.Networking.Sockets.MessageWebSocket,Windows.Networking.Sockets.MessageWebSocketMessageReceivedEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_MessageReceived(eventCookie: Windows.Foundation.EventRegistrationToken): void;
-        connectAsync(uri: Windows.Foundation.Uri): Windows.Foundation.IAsyncAction;
-        setRequestHeader(headerName: string, headerValue: string): void;
-        add_Closed(eventHandler: Windows.Foundation.TypedEventHandler<Windows.Networking.Sockets.IWebSocket,Windows.Networking.Sockets.WebSocketClosedEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_Closed(eventCookie: Windows.Foundation.EventRegistrationToken): void;
-        close(code: number, reason: string): void;
-        close(): void;
-    }
-
-    export class MessageWebSocketControl implements Windows.Networking.Sockets.IMessageWebSocketControl, Windows.Networking.Sockets.IWebSocketControl {
-        maxMessageSize: number;
-        messageType: Windows.Networking.Sockets.SocketMessageType;
-        outboundBufferSizeInBytes: number;
-        proxyCredential: Windows.Security.Credentials.PasswordCredential;
-        serverCredential: Windows.Security.Credentials.PasswordCredential;
-        supportedProtocols: Windows.Foundation.Collections.IVector<string>;
-    }
-
-    export class MessageWebSocketInformation implements Windows.Networking.Sockets.IWebSocketInformation {
-        bandwidthStatistics: Windows.Networking.Sockets.BandwidthStatistics;
-        localAddress: Windows.Networking.HostName;
-        protocol: string;
-    }
-
-    export class MessageWebSocketMessageReceivedEventArgs implements Windows.Networking.Sockets.IMessageWebSocketMessageReceivedEventArgs {
-        messageType: Windows.Networking.Sockets.SocketMessageType;
-        getDataReader(): Windows.Storage.Streams.DataReader;
-        getDataStream(): Windows.Storage.Streams.IInputStream;
-    }
-
-    export class RoundTripTimeStatistics {
-        variance: number;
-        max: number;
-        min: number;
-        sum: number;
-    }
-
-    export class SocketError {
-        static getStatus(hresult: number): Windows.Networking.Sockets.SocketErrorStatus;
-    }
-
-    enum SocketErrorStatus {
-        unknown,
-        operationAborted,
-        httpInvalidServerResponse,
-        connectionTimedOut,
-        addressFamilyNotSupported,
-        socketTypeNotSupported,
-        hostNotFound,
-        noDataRecordOfRequestedType,
-        nonAuthoritativeHostNotFound,
-        classTypeNotFound,
-        addressAlreadyInUse,
-        cannotAssignRequestedAddress,
-        connectionRefused,
-        networkIsUnreachable,
-        unreachableHost,
-        networkIsDown,
-        networkDroppedConnectionOnReset,
-        softwareCausedConnectionAbort,
-        connectionResetByPeer,
-        hostIsDown,
-        noAddressesFound,
-        tooManyOpenFiles,
-        messageTooLong,
-        certificateExpired,
-        certificateUntrustedRoot,
-        certificateCommonNameIsIncorrect,
-        certificateWrongUsage,
-        certificateRevoked,
-        certificateNoRevocationCheck,
-        certificateRevocationServerOffline,
-        certificateIsInvalid
-    }
-
-    enum SocketMessageType {
-        binary,
-        utf8
-    }
-
-    enum SocketProtectionLevel {
-        plainSocket,
-        ssl,
-        sslAllowNullEncryption
-    }
-
-    enum SocketQualityOfService {
+    enum WorkItemPriority {
+        low,
         normal,
-        lowLatency
+        high
     }
 
-    export class StreamSocket implements Windows.Networking.Sockets.IStreamSocket, Windows.Foundation.IClosable {
-        control: Windows.Networking.Sockets.StreamSocketControl;
-        information: Windows.Networking.Sockets.StreamSocketInformation;
-        inputStream: Windows.Storage.Streams.IInputStream;
-        outputStream: Windows.Storage.Streams.IOutputStream;
-        constructor();
-        connectAsync(endpointPair: Windows.Networking.EndpointPair): Windows.Foundation.IAsyncAction;
-        connectAsync(remoteHostName: Windows.Networking.HostName, remoteServiceName: string): Windows.Foundation.IAsyncAction;
-        connectAsync(endpointPair: Windows.Networking.EndpointPair, protectionLevel: Windows.Networking.Sockets.SocketProtectionLevel): Windows.Foundation.IAsyncAction;
-        connectAsync(remoteHostName: Windows.Networking.HostName, remoteServiceName: string, protectionLevel: Windows.Networking.Sockets.SocketProtectionLevel): Windows.Foundation.IAsyncAction;
-        upgradeToSslAsync(protectionLevel: Windows.Networking.Sockets.SocketProtectionLevel, validationHostName: Windows.Networking.HostName): Windows.Foundation.IAsyncAction;
-        close(): void;
+}
+declare module Windows.System.UserProfile {
+
+    enum AccountPictureKind {
+        smallImage,
+        largeImage,
+        video
     }
 
-    export class StreamSocketControl implements Windows.Networking.Sockets.IStreamSocketControl {
-        keepAlive: boolean;
-        noDelay: boolean;
-        outboundBufferSizeInBytes: number;
-        outboundUnicastHopLimit: number;
-        qualityOfService: Windows.Networking.Sockets.SocketQualityOfService;
+    export class GlobalizationPreferences {
+        calendars: Windows.Foundation.Collections.IVectorView<string>;
+        clocks: Windows.Foundation.Collections.IVectorView<string>;
+        currencies: Windows.Foundation.Collections.IVectorView<string>;
+        homeGeographicRegion: string;
+        languages: Windows.Foundation.Collections.IVectorView<string>;
+        weekStartsOn: Windows.Globalization.DayOfWeek;
     }
 
-    export class StreamSocketInformation implements Windows.Networking.Sockets.IStreamSocketInformation {
-        bandwidthStatistics: Windows.Networking.Sockets.BandwidthStatistics;
-        localAddress: Windows.Networking.HostName;
-        localPort: string;
-        protectionLevel: Windows.Networking.Sockets.SocketProtectionLevel;
-        remoteAddress: Windows.Networking.HostName;
-        remoteHostName: Windows.Networking.HostName;
-        remotePort: string;
-        remoteServiceName: string;
-        roundTripTimeStatistics: Windows.Networking.Sockets.RoundTripTimeStatistics;
-        sessionKey: Windows.Storage.Streams.IBuffer;
+    export class LockScreen {
+        originalImageFile: Windows.Foundation.Uri;
+        static getImageStream(): Windows.Storage.Streams.IRandomAccessStream;
+        static setImageFileAsync(value: Windows.Storage.IStorageFile): Windows.Foundation.IAsyncAction;
+        static setImageStreamAsync(value: Windows.Storage.Streams.IRandomAccessStream): Windows.Foundation.IAsyncAction;
     }
 
-    export class StreamSocketListener implements Windows.Networking.Sockets.IStreamSocketListener, Windows.Foundation.IClosable {
+    enum SetAccountPictureResult {
+        success,
+        changeDisabled,
+        largeOrDynamicError,
+        videoFrameSizeError,
+        fileSizeError,
+        failure
+    }
+
+    export class UserInformation {
         addEventListener(type: string, listener: EventListener): void;
         removeEventListener(type: string, listener: EventListener): void;
-        onconnectionreceived(ev: any);
-        control: Windows.Networking.Sockets.StreamSocketListenerControl;
-        information: Windows.Networking.Sockets.StreamSocketListenerInformation;
-        constructor();
-        bindServiceNameAsync(localServiceName: string): Windows.Foundation.IAsyncAction;
-        bindEndpointAsync(localHostName: Windows.Networking.HostName, localServiceName: string): Windows.Foundation.IAsyncAction;
-        add_ConnectionReceived(eventHandler: Windows.Foundation.TypedEventHandler<Windows.Networking.Sockets.StreamSocketListener,Windows.Networking.Sockets.StreamSocketListenerConnectionReceivedEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_ConnectionReceived(eventCookie: Windows.Foundation.EventRegistrationToken): void;
-        close(): void;
-    }
-
-    export class StreamSocketListenerConnectionReceivedEventArgs implements Windows.Networking.Sockets.IStreamSocketListenerConnectionReceivedEventArgs {
-        socket: Windows.Networking.Sockets.StreamSocket;
-    }
-
-    export class StreamSocketListenerControl implements Windows.Networking.Sockets.IStreamSocketListenerControl {
-        qualityOfService: Windows.Networking.Sockets.SocketQualityOfService;
-    }
-
-    export class StreamSocketListenerInformation implements Windows.Networking.Sockets.IStreamSocketListenerInformation {
-        localPort: string;
-    }
-
-    export class StreamWebSocket implements Windows.Networking.Sockets.IStreamWebSocket, Windows.Networking.Sockets.IWebSocket, Windows.Foundation.IClosable {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onclosed(ev: any);
-        control: Windows.Networking.Sockets.StreamWebSocketControl;
-        information: Windows.Networking.Sockets.StreamWebSocketInformation;
-        inputStream: Windows.Storage.Streams.IInputStream;
-        outputStream: Windows.Storage.Streams.IOutputStream;
-        constructor();
-        connectAsync(uri: Windows.Foundation.Uri): Windows.Foundation.IAsyncAction;
-        setRequestHeader(headerName: string, headerValue: string): void;
-        add_Closed(eventHandler: Windows.Foundation.TypedEventHandler<Windows.Networking.Sockets.IWebSocket,Windows.Networking.Sockets.WebSocketClosedEventArgs>): Windows.Foundation.EventRegistrationToken;
-        remove_Closed(eventCookie: Windows.Foundation.EventRegistrationToken): void;
-        close(code: number, reason: string): void;
-        close(): void;
-    }
-
-    export class StreamWebSocketControl implements Windows.Networking.Sockets.IStreamWebSocketControl, Windows.Networking.Sockets.IWebSocketControl {
-        noDelay: boolean;
-        outboundBufferSizeInBytes: number;
-        proxyCredential: Windows.Security.Credentials.PasswordCredential;
-        serverCredential: Windows.Security.Credentials.PasswordCredential;
-        supportedProtocols: Windows.Foundation.Collections.IVector<string>;
-    }
-
-    export class StreamWebSocketInformation implements Windows.Networking.Sockets.IWebSocketInformation {
-        bandwidthStatistics: Windows.Networking.Sockets.BandwidthStatistics;
-        localAddress: Windows.Networking.HostName;
-        protocol: string;
-    }
-
-    export class WebSocketClosedEventArgs implements Windows.Networking.Sockets.IWebSocketClosedEventArgs {
-        code: number;
-        reason: string;
-    }
-
-    export class WebSocketError {
-        static getStatus(hresult: number): Windows.Web.WebErrorStatus;
-    }
-
-    export class WebSocketKeepAlive implements Windows.ApplicationModel.Background.IBackgroundTask {
-        constructor();
-        run(taskInstance: Windows.ApplicationModel.Background.IBackgroundTaskInstance): void;
+        onaccountpicturechanged(ev: any);
+        accountPictureChangeEnabled: boolean;
+        nameAccessAllowed: boolean;
+        static getAccountPicture(kind: Windows.System.UserProfile.AccountPictureKind): Windows.Storage.IStorageFile;
+        static setAccountPictureAsync(image: Windows.Storage.IStorageFile): ToTypeScriptD.WinRT.IPromise<Windows.System.UserProfile.SetAccountPictureResult>;
+        static setAccountPicturesAsync(smallImage: Windows.Storage.IStorageFile, largeImage: Windows.Storage.IStorageFile, video: Windows.Storage.IStorageFile): ToTypeScriptD.WinRT.IPromise<Windows.System.UserProfile.SetAccountPictureResult>;
+        static setAccountPictureFromStreamAsync(image: Windows.Storage.Streams.IRandomAccessStream): ToTypeScriptD.WinRT.IPromise<Windows.System.UserProfile.SetAccountPictureResult>;
+        static setAccountPicturesFromStreamsAsync(smallImage: Windows.Storage.Streams.IRandomAccessStream, largeImage: Windows.Storage.Streams.IRandomAccessStream, video: Windows.Storage.Streams.IRandomAccessStream): ToTypeScriptD.WinRT.IPromise<Windows.System.UserProfile.SetAccountPictureResult>;
+        static add_AccountPictureChanged(changeHandler: Windows.Foundation.EventHandler<any>): Windows.Foundation.EventRegistrationToken;
+        static remove_AccountPictureChanged(token: Windows.Foundation.EventRegistrationToken): void;
+        static getDisplayNameAsync(): ToTypeScriptD.WinRT.IPromise<string>;
+        static getFirstNameAsync(): ToTypeScriptD.WinRT.IPromise<string>;
+        static getLastNameAsync(): ToTypeScriptD.WinRT.IPromise<string>;
+        static getPrincipalNameAsync(): ToTypeScriptD.WinRT.IPromise<string>;
+        static getSessionInitiationProtocolUriAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Foundation.Uri>;
+        static getDomainNameAsync(): ToTypeScriptD.WinRT.IPromise<string>;
     }
 
 }

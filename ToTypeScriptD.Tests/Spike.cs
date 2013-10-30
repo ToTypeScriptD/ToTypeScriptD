@@ -14,6 +14,7 @@ namespace ToTypeScriptD.Tests
         [Fact]
         public void SpikeIt()
         {
+            //@"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd".DumpAndVerify();
         }
 
     }
@@ -44,6 +45,13 @@ namespace ToTypeScriptD.Tests
         public static void Verify<T>(this T item)
         {
             Approvals.Verify(item);
+        }
+
+        public static void DumpAndVerify(this string path)
+        {
+            var errors = new StringBuilderTypeNotFoundErrorHandler();
+            var result = ToTypeScriptD.Render.FullAssembly(path, errors);
+            Approvals.Verify(errors + result);
         }
     }
 
