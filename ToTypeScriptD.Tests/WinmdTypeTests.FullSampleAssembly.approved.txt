@@ -24,6 +24,7 @@
         getBoolean(): boolean;
         methodWithSomeOutParameters(in1: number, in2: string): CXReturnTypes_methodWithSomeOutParameters_OUT;
         methodWithSomeOutParametersButVoidResult(in1: number, in2: string): CXReturnTypes_methodWithSomeOutParametersButVoidResult_OUT;
+        overloadedMethodWithNumberTypeParams(value: number): string;
     }
 
     interface CXReturnTypes_methodWithSomeOutParameters_OUT {
