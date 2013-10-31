@@ -1,5 +1,4 @@
-﻿
-declare module Windows.Foundation {
+﻿declare module Windows.Foundation {
 
     export class AsyncActionCompletedHandler {
         constructor(object: any, method: number);
@@ -724,8 +723,6 @@ declare module Windows.Foundation.Metadata {
     }
 
 }
-
-
 declare module Windows.System.Display {
 
     export class DisplayRequest implements Windows.System.Display.IDisplayRequest {

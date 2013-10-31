@@ -84,5 +84,14 @@ describe('CXReturnTypes', function () {
             expect(JSON.stringify(out3)).to.equal(JSON.stringify({ "0": 0, "1": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9 }));
         });
 
+        it("A floating point JavaScript number should select a C++/CX overload with a double parameter", function () {
+            var result = sut.overloadedMethodWithNumberTypeParams(100.5);
+            expect(result).to.eq("Method with double overload.");
+        })
+        it("An integer JavaScript number should select a C++/CX overload with a double parameter", function () {
+            var result = sut.overloadedMethodWithNumberTypeParams(5);
+            expect(result).to.eq("Method with double overload.");
+        })
+
     });
 });

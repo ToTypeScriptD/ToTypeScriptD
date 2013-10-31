@@ -75,3 +75,19 @@ void CXReturnTypes::MethodWithSomeOutParametersButVoidResult(int in1, Platform::
 	*out1 = in1;
 	*out3 = temp;
 }
+
+
+
+
+Platform::String^ CXReturnTypes::OverloadedMethodWithNumberTypeParams(int64 value)
+{
+	return "Method with int64/long overload.";
+}
+Platform::String^ CXReturnTypes::OverloadedMethodWithNumberTypeParams(uint64 value)
+{
+	return "Method with uint64/ulong overload.";
+}
+Platform::String^ CXReturnTypes::OverloadedMethodWithNumberTypeParams(double value)
+{
+	return "Method with double overload.";
+}
