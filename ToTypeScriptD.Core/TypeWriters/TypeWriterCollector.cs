@@ -47,12 +47,8 @@ namespace ToTypeScriptD.Core.TypeWriters
 
             td.Interfaces.Each(item =>
             {
-                string lookupName = item.FullName;
-                if (item.IsGenericInstance)
-                {
-                    lookupName = item.GetElementType().FullName;
-                }
-                var foundType = item.Module.Types.SingleOrDefault(w => w.FullName == lookupName);
+                var foundType = typeCollection.LookupType(item);
+
                 if (foundType == null)
                 {
                     typeNotFoundErrorHandler.Handle(item);

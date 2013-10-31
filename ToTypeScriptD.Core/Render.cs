@@ -13,12 +13,14 @@ namespace ToTypeScriptD
             if (assemblyPaths == null)
                 assemblyPaths = new string[0];
 
+            var typeCollection = new TypeCollection();
+
             var wroteAnyTypes = WriteSpecialTypes(includeSpecialTypes, w);
-            wroteAnyTypes |= WriteFiles(assemblyPaths, w, typeNotFoundErrorHandler);
+            wroteAnyTypes |= WriteFiles(assemblyPaths, w, typeNotFoundErrorHandler, typeCollection);
             return  wroteAnyTypes;
         }
 
-        private static bool WriteFiles(IEnumerable<string> assemblyPaths, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler)
+        private static bool WriteFiles(IEnumerable<string> assemblyPaths, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection)
         {
             var filesAlreadyProcessed = new HashSet<string>(new IgnoreCaseStringEqualityComparer());
             if (!assemblyPaths.Any())
@@ -30,7 +32,7 @@ namespace ToTypeScriptD
                     return;
 
                 filesAlreadyProcessed.Add(file);
-                var x = ToTypeScriptD.Render.FullAssembly(file, typeNotFoundErrorHandler);
+                var x = ToTypeScriptD.Render.FullAssembly(file, typeNotFoundErrorHandler, typeCollection);
 
                 w.NewLine();
                 w.WriteLine(x);
@@ -51,10 +53,11 @@ namespace ToTypeScriptD
             return true;
         }
 
-        public static string FullAssembly(string assemblyPath, ITypeNotFoundErrorHandler typeNotFoundErrorHandler)
+        public static string FullAssembly(string assemblyPath, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection)
         {
             var assembly = Mono.Cecil.AssemblyDefinition.ReadAssembly(assemblyPath);
-            var typeCollection = new TypeCollection();
+
+            typeCollection.AddAssembly(assembly);
 
             var typeWriterGenerator = new TypeWriterCollector(typeNotFoundErrorHandler);
             foreach (var item in assembly.MainModule.Types)
@@ -64,5 +67,6 @@ namespace ToTypeScriptD
 
             return typeCollection.Render();
         }
+
     }
 }

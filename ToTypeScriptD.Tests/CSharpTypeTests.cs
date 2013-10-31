@@ -11,7 +11,8 @@ namespace ToTypeScriptD.Tests
         {
             var path = base.CSharpAssembly.ComponentPath;
             var errors = new StringBuilderTypeNotFoundErrorHandler();
-            var result = ToTypeScriptD.Render.FullAssembly(path, errors);
+            var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection();
+            var result = ToTypeScriptD.Render.FullAssembly(path, errors, typeCollection);
             Approvals.Verify(errors + result);
         }
     }
