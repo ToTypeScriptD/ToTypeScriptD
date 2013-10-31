@@ -53,6 +53,10 @@ Include the special types for WinJS apps:
 
 Checkout the [project milestones](https://github.com/staxmanade/ToTypeScriptD/issues/milestones), suggest a feature, bug etc. Or even better, submit a pull request.
 
+## Contribute
+
+Checkout the [Contribution](CONTRIBUTING.md) guide.
+
 ## How does the magic happen?
 
 By loading assembly metadata with [Mono.Cecil](http://www.mono-project.com/Cecil) 
