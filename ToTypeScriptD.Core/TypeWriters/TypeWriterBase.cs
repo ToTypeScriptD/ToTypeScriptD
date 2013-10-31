@@ -107,8 +107,11 @@ namespace ToTypeScriptD.Core.TypeWriters
                 sb.AppendLine();
             });
 
+            var methodSignatures = new HashSet<string>();
+
             foreach (var method in TypeDefinition.Methods)
             {
+                var methodSb = new StringBuilder();
                 // TODO: determine if method was already defined by interface?
 
                 var methodName = method.Name;
@@ -132,26 +135,26 @@ namespace ToTypeScriptD.Core.TypeWriters
                 // Lowercase first char of the method
                 methodName = methodName.ToTypeScriptName();
 
-                Indent(sb); Indent(sb);
+                Indent(methodSb); Indent(methodSb);
                 if (method.IsStatic)
                 {
-                    sb.Append("static ");
+                    methodSb.Append("static ");
                 }
-                sb.Append(methodName);
+                methodSb.Append(methodName);
 
                 var outTypes = new List<ParameterDefinition>();
 
-                sb.Append("(");
+                methodSb.Append("(");
                 method.Parameters.Where(w => w.IsOut).Each(e => outTypes.Add(e));
                 method.Parameters.Where(w => !w.IsOut).For((parameter, i, isLast) =>
                 {
-                    sb.Append(i == 0 ? "" : " ");
-                    sb.Append(parameter.Name);
-                    sb.Append(": ");
-                    sb.Append(parameter.ParameterType.ToTypeScriptType());
-                    sb.Append(isLast ? "" : ",");
+                    methodSb.Append(i == 0 ? "" : " ");
+                    methodSb.Append(parameter.Name);
+                    methodSb.Append(": ");
+                    methodSb.Append(parameter.ParameterType.ToTypeScriptType());
+                    methodSb.Append(isLast ? "" : ",");
                 });
-                sb.Append(")");
+                methodSb.Append(")");
 
                 // constructors don't have return types.
                 if (!method.IsConstructor)
@@ -169,10 +172,16 @@ namespace ToTypeScriptD.Core.TypeWriters
                         returnType = method.ReturnType.ToTypeScriptType();
                     }
 
-                    sb.AppendFormat(": {0}", returnType);
+                    methodSb.AppendFormat(": {0}", returnType);
                 }
-                sb.AppendLine(";");
+                methodSb.AppendLine(";");
+
+                var renderedMethod = methodSb.ToString();
+                if (!methodSignatures.Contains(renderedMethod))
+                    methodSignatures.Add(renderedMethod);
             }
+
+            methodSignatures.Each(method => sb.Append(method));
 
             Indent(sb); sb.AppendLine("}");
 
