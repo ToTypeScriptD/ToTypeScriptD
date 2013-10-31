@@ -32,27 +32,31 @@ You can see the Chocolatey package here: [ToTypeScriptD package](https://chocola
 ## How to use?
 
 
-Short and sweet command line arguments: 
+Print the short and sweet command line arguments: 
 
-> `ToTypeScript --help`
+    ToTypeScript.bat --help
 
-Generate types from Windows.winmd file:
+Generate all types from Windows.winmd file:
 
-> `ToTypeScriptD "C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral\Windows.winmd"`
+    ToTypeScriptD.bat "C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral\Windows.winmd"
 
-Generate types from other Windows `.winmd` files:
+Generate all types from multiple `.winmd` files:
 
-> `ToTypeScriptD C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Networking.winmd`
+    ToTypeScriptD.bat C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Networking.winmd
 
-Include the special types for WinJS apps
+Include the special types for WinJS apps:
 
-> `ToTypeScriptD --specialTypes C:\Windows\System32\WinMetadata\Windows.Foundation.winmd`
+    ToTypeScriptD.bat --specialTypes C:\Windows\System32\WinMetadata\Windows.Foundation.winmd
 
 
-## How does it work?
+## Roadmap
 
-By loading the assembly metadata with [Mono.Cecil](http://www.mono-project.com/Cecil) 
+Checkout the [project milestones](https://github.com/staxmanade/ToTypeScriptD/issues/milestones), suggest a feature, bug etc. Or even better, submit a pull request.
+
+## How does the magic happen?
+
+By loading assembly metadata with [Mono.Cecil](http://www.mono-project.com/Cecil) 
 which can read any [Ecma 355](http://www.ecma-international.org/publications/standards/Ecma-335.htm) 
 Common Language Infrastructure (CLI) file, we can generate a set of TypeScript definition 
-files that allow us to project the type system from these assemblies into TypeScript.
+files that allow us to project the type system from these assemblies into TypeScript Definition files. Cool eh?
 
