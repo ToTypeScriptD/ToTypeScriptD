@@ -9,6 +9,7 @@ ToTypeScriptD.Tests.JavascriptTests/Scripts/typings/Windows.Foundation.d.ts
 ToTypeScriptD.Tests.JavascriptTests/specs/*.js
 ToTypeScriptD.Tests.JavascriptTests/AppPackages
 
+ToTypeScriptD.Tests.JavascriptTests/js/default.js
 ToTypeScriptD.Tests.JavascriptTests/definitions.js
 ToTypeScriptD.Tests.JavascriptTests/specs/*.js
 

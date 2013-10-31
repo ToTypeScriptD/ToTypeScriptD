@@ -31,8 +31,7 @@
     };
 
     var x = new ToTypeScriptD.Native.ClassWithEventHandler();
-    x.onsomethinghappened;
+    x.onsomethinghappened
 
     app.start();
 })();
-//# sourceMappingURL=default.js.map
