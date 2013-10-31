@@ -51,7 +51,8 @@ namespace ToTypeScriptD.Core.TypeWriters
 
                 if (foundType == null)
                 {
-                    typeNotFoundErrorHandler.Handle(item);
+                    //TODO: This reporting a missing type is too early in the process.
+                    // typeNotFoundErrorHandler.Handle(item);
                     return;
                 }
 

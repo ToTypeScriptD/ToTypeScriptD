@@ -16,7 +16,6 @@ namespace ToTypeScriptD.Tests
         {
             //@"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd".DumpAndVerify();
         }
-
     }
 
 
@@ -50,7 +49,8 @@ namespace ToTypeScriptD.Tests
         public static void DumpAndVerify(this string path)
         {
             var errors = new StringBuilderTypeNotFoundErrorHandler();
-            var result = ToTypeScriptD.Render.FullAssembly(path, errors);
+            var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection();
+            var result = ToTypeScriptD.Render.FullAssembly(path, errors, typeCollection);
             Approvals.Verify(errors + result);
         }
     }

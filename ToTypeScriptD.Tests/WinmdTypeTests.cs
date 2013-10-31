@@ -79,6 +79,18 @@ namespace ToTypeScriptD.Tests
             Approvals.Verify(errors + result);
         }
 
+        //[Fact]
+        //public void RenderAllWinmdFilesInWindowsMetadataDirectory()
+        //{
+        //    var files = @"C:\Windows\System32\WinMetadata\Windows.ApplicationModel.winmd C:\Windows\System32\WinMetadata\Windows.Data.winmd C:\Windows\System32\WinMetadata\Windows.Devices.winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Globalization.winmd C:\Windows\System32\WinMetadata\Windows.Graphics.winmd C:\Windows\System32\WinMetadata\Windows.Management.winmd C:\Windows\System32\WinMetadata\Windows.Media.winmd C:\Windows\System32\WinMetadata\Windows.Networking.winmd C:\Windows\System32\WinMetadata\Windows.Security.winmd C:\Windows\System32\WinMetadata\Windows.Storage.winmd C:\Windows\System32\WinMetadata\Windows.System.winmd C:\Windows\System32\WinMetadata\Windows.UI.winmd C:\Windows\System32\WinMetadata\Windows.UI.Xaml.winmd C:\Windows\System32\WinMetadata\Windows.Web.winmd".Split(' ');
+        //    var sw = new System.IO.StringWriter();
+        //    var error = new StringBuilderTypeNotFoundErrorHandler();
+        //    ToTypeScriptD.Render.AllAssemblies(files, true, sw, error);
+        //    var result = error.ToString() + Environment.NewLine + Environment.NewLine + sw.ToString();
+        //    result.Verify();
+        //}
+
+
         [Fact]
         public void AllWinmdFilesInWinMetadata()
         {

@@ -17,7 +17,7 @@ namespace ToTypeScriptD
 
             var wroteAnyTypes = WriteSpecialTypes(includeSpecialTypes, w);
             wroteAnyTypes |= WriteFiles(assemblyPaths, w, typeNotFoundErrorHandler, typeCollection);
-            return  wroteAnyTypes;
+            return wroteAnyTypes;
         }
 
         private static bool WriteFiles(IEnumerable<string> assemblyPaths, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection)
@@ -26,17 +26,17 @@ namespace ToTypeScriptD
             if (!assemblyPaths.Any())
                 return false;
 
-            assemblyPaths.Each(file =>
+            assemblyPaths.Each(assemblyPath =>
             {
-                if (filesAlreadyProcessed.Contains(file))
+                if (filesAlreadyProcessed.Contains(assemblyPath))
                     return;
 
-                filesAlreadyProcessed.Add(file);
-                var x = ToTypeScriptD.Render.FullAssembly(file, typeNotFoundErrorHandler, typeCollection);
-
-                w.NewLine();
-                w.WriteLine(x);
+                filesAlreadyProcessed.Add(assemblyPath);
+                CollectTypes(assemblyPath, typeNotFoundErrorHandler, typeCollection);
             });
+
+            var renderedOut = typeCollection.Render();
+            w.WriteLine(renderedOut);
 
             return true;
         }
@@ -55,6 +55,12 @@ namespace ToTypeScriptD
 
         public static string FullAssembly(string assemblyPath, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection)
         {
+            CollectTypes(assemblyPath, typeNotFoundErrorHandler, typeCollection);
+            return typeCollection.Render();
+        }
+
+        private static void CollectTypes(string assemblyPath, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection)
+        {
             var assembly = Mono.Cecil.AssemblyDefinition.ReadAssembly(assemblyPath);
 
             typeCollection.AddAssembly(assembly);
@@ -64,8 +70,6 @@ namespace ToTypeScriptD
             {
                 typeWriterGenerator.Collect(item, typeCollection);
             }
-
-            return typeCollection.Render();
         }
 
     }
