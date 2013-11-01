@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Mono.Cecil;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using ToTypeScriptD;
 
 namespace ToTypeScriptD
 {
@@ -56,8 +58,64 @@ namespace ToTypeScriptD
             return false;
         }
 
+        private static TypeReference GetNullableType(TypeReference typeReference)
+        {
+            if (IsNullable(typeReference))
+            {
+                var genericInstanceType = typeReference as GenericInstanceType;
+                if (genericInstanceType != null)
+                {
+                    typeReference = genericInstanceType.GenericArguments[0];
+                }
+                else
+                {
+                    throw new NotImplementedException("For some reason this Nullable didn't have a generic parameter type? " + typeReference.FullName);
+                }
+            }
+
+            return typeReference;
+        }
+
+        private static bool IsNullable(this Mono.Cecil.TypeReference typeReference)
+        {
+            // TODO: is there a better way to determine if it's a Nullable?
+            if (typeReference.Namespace == "System" && typeReference.Name == "Nullable`1")
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static string ToTypeScriptNullable(this Mono.Cecil.TypeReference typeReference)
+        {
+            return IsNullable(typeReference) ? "?" : "";
+        }
+
+        public static string ToTypeScriptItemName(this Mono.Cecil.TypeReference typeReference)
+        {
+            // Nested classes don't report their namespace. So we have to walk up the 
+            // DeclaringType tree to find the root most type to grab it's namespace.
+            var parentMostType = typeReference;
+            while (parentMostType.DeclaringType != null)
+            {
+                parentMostType = parentMostType.DeclaringType;
+            }
+
+            var mainTypeName = typeReference.FullName;
+
+            // trim namespace off of the front.
+            mainTypeName = mainTypeName.Substring(parentMostType.Namespace.Length + 1);
+
+            // replace the nested class slash with an underscore
+            mainTypeName = mainTypeName.Replace("/", "_").StripGenericTick();
+
+            return mainTypeName.StripGenericTick();
+        }
+
         public static string ToTypeScriptType(this Mono.Cecil.TypeReference typeReference)
         {
+            typeReference = GetNullableType(typeReference);
+
             if (genericTypeMap == null)
             {
                 genericTypeMap = typeMap
@@ -69,6 +127,9 @@ namespace ToTypeScriptD
             }
 
             var fromName = typeReference.FullName;
+
+            // translate / in nested classes into underscores
+            fromName = fromName.Replace("/", "_");
 
             if (typeMap.ContainsKey(fromName))
             {
@@ -177,7 +238,7 @@ namespace ToTypeScriptD
         {
             return value.Replace("&", "");
         }
-        
+
         public static string StripGenericTick(this string value)
         {
             4.Times().Each(x =>

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ToTypeScriptD.TestAssembly.CSharp
@@ -9,6 +6,7 @@ namespace ToTypeScriptD.TestAssembly.CSharp
     public interface IAmAnInterface
     {
         string SomeProperty { get; set; }
+        int? NullableProperty { get; set; }
 
         void GetNothing();
         Task<int> LoadAsync();
@@ -26,6 +24,24 @@ namespace ToTypeScriptD.TestAssembly.CSharp
             throw new NotImplementedException();
         }
 
+        public void MethodWithNullableParameter(int? p1)
+        {
+        }
+
+        public void MethodThatTakesNestedValueTypeAsNullable(NestedEnumValueType? nullableEnum)
+        {
+        }
+
         public string SomeProperty { get; set; }
+
+
+        public int? NullableProperty { get; set; }
+
+        public enum NestedEnumValueType
+        {
+            a,
+            b,
+            c
+        }
     }
 }

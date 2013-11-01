@@ -49,7 +49,7 @@ namespace ToTypeScriptD.Core.TypeWriters
         internal void WriteOutMethodSignatures(StringBuilder sb, string exportType, string inheriterString)
         {
             List<ITypeWriter> extendedTypes = new List<ITypeWriter>();
-            Indent(sb); sb.AppendFormat("export {0} {1}", exportType, TypeDefinition.Name.StripGenericTick());
+            Indent(sb); sb.AppendFormat("export {0} {1}", exportType, TypeDefinition.ToTypeScriptItemName());
 
             if (TypeDefinition.HasGenericParameters)
             {
@@ -104,7 +104,7 @@ namespace ToTypeScriptD.Core.TypeWriters
 
                 var propName = prop.Name.ToTypeScriptName();
                 propNames.Add(propName);
-                Indent(sb); Indent(sb); sb.AppendFormat("{0}: {1};", propName, prop.PropertyType.ToTypeScriptType());
+                Indent(sb); Indent(sb); sb.AppendFormat("{0}{1}: {2};", propName, prop.PropertyType.ToTypeScriptNullable(), prop.PropertyType.ToTypeScriptType());
                 sb.AppendLine();
             });
 
@@ -149,11 +149,12 @@ namespace ToTypeScriptD.Core.TypeWriters
                 method.Parameters.Where(w => w.IsOut).Each(e => outTypes.Add(e));
                 method.Parameters.Where(w => !w.IsOut).For((parameter, i, isLast) =>
                 {
-                    methodSb.Append(i == 0 ? "" : " ");
-                    methodSb.Append(parameter.Name);
-                    methodSb.Append(": ");
-                    methodSb.Append(parameter.ParameterType.ToTypeScriptType());
-                    methodSb.Append(isLast ? "" : ",");
+                    methodSb.AppendFormat("{0}{1}{2}: {3}{4}",
+                        (i == 0 ? "" : " "),                            // spacer
+                        parameter.Name,                                 // argument name
+                        parameter.ParameterType.ToTypeScriptNullable(), // nullable
+                        parameter.ParameterType.ToTypeScriptType(),     // type
+                        (isLast ? "" : ","));                           // last one gets a comma
                 });
                 methodSb.Append(")");
 
@@ -187,6 +188,13 @@ namespace ToTypeScriptD.Core.TypeWriters
             Indent(sb); sb.AppendLine("}");
 
             extendedTypes.Each(item => item.Write(sb));
+
+            TypeDefinition.NestedTypes.Where(type => type.IsNestedPublic).Each(type =>
+            {
+                var typeWriter = TypeWriterCollector.PickTypeWriter(type, IndentCount-1, TypeCollection);
+                sb.AppendLine();
+                typeWriter.Write(sb);
+            });
         }
     }
 }

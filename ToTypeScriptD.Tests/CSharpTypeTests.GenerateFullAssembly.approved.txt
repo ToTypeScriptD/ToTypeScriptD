@@ -1,16 +1,55 @@
 ﻿declare module ToTypeScriptD.TestAssembly.CSharp {
 
+    export class CrazyAmountOfNestedClasses {
+        constructor();
+    }
+
+    export class CrazyAmountOfNestedClasses_C1 {
+        constructor();
+    }
+
+    export class CrazyAmountOfNestedClasses_C1_C2 {
+        constructor();
+    }
+
+    export class CrazyAmountOfNestedClasses_C1_C2_C3 {
+        constructor();
+    }
+
+    export class CrazyAmountOfNestedClasses_C1_C2_C3_C4 {
+        constructor();
+    }
+
+    export class CrazyAmountOfNestedClasses_C1_C2_C3_C4_C5 {
+        constructor();
+    }
+
+    export class CrazyAmountOfNestedClasses_C1_C2_C3_C4_C5_WAT {
+        static takesANestedParam(wat: ToTypeScriptD.TestAssembly.CSharp.CrazyAmountOfNestedClasses_C1_C2_C3_C4_C5_WAT): void;
+        constructor();
+    }
+
     export interface IAmAnInterface {
         someProperty: string;
+        nullableProperty?: number;
         getNothing(): void;
         loadAsync(): System.Threading.Tasks.Task<number>;
     }
 
     export class SomeClass implements ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface {
         someProperty: string;
+        nullableProperty?: number;
         getNothing(): void;
         loadAsync(): System.Threading.Tasks.Task<number>;
+        methodWithNullableParameter(p1?: number): void;
+        methodThatTakesNestedValueTypeAsNullable(nullableEnum?: ToTypeScriptD.TestAssembly.CSharp.SomeClass_NestedEnumValueType): void;
         constructor();
+    }
+
+    enum SomeClass_NestedEnumValueType {
+        a,
+        b,
+        c
     }
 
 }

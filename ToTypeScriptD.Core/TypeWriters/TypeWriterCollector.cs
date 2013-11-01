@@ -64,7 +64,7 @@ namespace ToTypeScriptD.Core.TypeWriters
             typeCollection.Add(td.Namespace, td.Name, typeWriter);
         }
 
-        ITypeWriter PickTypeWriter(TypeDefinition td, int indentCount, TypeCollection typeCollection)
+        public static ITypeWriter PickTypeWriter(TypeDefinition td, int indentCount, TypeCollection typeCollection)
         {
             if (td.IsEnum)
             {
