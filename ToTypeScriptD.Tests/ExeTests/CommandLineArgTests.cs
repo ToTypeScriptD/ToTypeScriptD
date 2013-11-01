@@ -58,6 +58,22 @@ namespace ToTypeScriptD.Tests.ExeTests
 
             resultDup.Verify();
         }
+
+        [Fact]
+        public void ExeShouldGiveHelpfulErrorWhenFilesNotFoundInUnknownDirectory()
+        {
+            var resultDup = Execute(@"C:\TypeScriptD\TypeScriptD\TypeScriptD\Foo.dll C:\TypeScriptD\TypeScriptD\TypeScriptD\Foo.dll");
+
+            resultDup.Verify();
+        }
+
+        [Fact]
+        public void ExeShouldGiveHelpfulErrorWhenFilesNotFound()
+        {
+            var resultDup = Execute(@"C:\TypeScriptD_FileNotFound_ThisShouldNotExistOnYourSystem.dll");
+
+            resultDup.Verify();
+        }
     }
 
     public static class Extensions
