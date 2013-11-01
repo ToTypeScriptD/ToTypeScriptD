@@ -8,6 +8,8 @@ namespace ToTypeScriptD.TestAssembly.CSharp
 {
     public interface IAmAnInterface
     {
+        string SomeProperty { get; set; }
+
         void GetNothing();
         Task<int> LoadAsync();
     }
@@ -23,5 +25,7 @@ namespace ToTypeScriptD.TestAssembly.CSharp
         {
             throw new NotImplementedException();
         }
+
+        public string SomeProperty { get; set; }
     }
 }

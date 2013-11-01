@@ -1,11 +1,13 @@
 ﻿declare module ToTypeScriptD.TestAssembly.CSharp {
 
     export interface IAmAnInterface {
+        someProperty: string;
         getNothing(): void;
         loadAsync(): System.Threading.Tasks.Task<number>;
     }
 
     export class SomeClass implements ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface {
+        someProperty: string;
         getNothing(): void;
         loadAsync(): System.Threading.Tasks.Task<number>;
         constructor();
