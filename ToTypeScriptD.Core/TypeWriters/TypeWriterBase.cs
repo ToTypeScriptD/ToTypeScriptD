@@ -30,10 +30,7 @@ namespace ToTypeScriptD.Core.TypeWriters
         {
             midWrite();
         }
-        public virtual void Write(StringBuilder sb)
-        {
-            //noop
-        }
+        public abstract void Write(StringBuilder sb);
 
 
         public string IndentValue
@@ -48,9 +45,24 @@ namespace ToTypeScriptD.Core.TypeWriters
 
         internal void WriteOutMethodSignatures(StringBuilder sb, string exportType, string inheriterString)
         {
-            List<ITypeWriter> extendedTypes = new List<ITypeWriter>();
             Indent(sb); sb.AppendFormat("export {0} {1}", exportType, TypeDefinition.ToTypeScriptItemName());
+            WriteGenerics(sb);
+            sb.Append(" ");
+            WriteExportedInterfaces(sb, inheriterString);
+            sb.AppendLine("{");
 
+            WriteEvents(sb);
+            WriteFields(sb);
+            WriteProperties(sb);
+            List<ITypeWriter> extendedTypes = WriteMethods(sb);
+            Indent(sb); sb.AppendLine("}");
+
+            WriteExtendedTypes(sb, extendedTypes);
+            WriteNestedTypes(sb);
+        }
+
+        private void WriteGenerics(StringBuilder sb)
+        {
             if (TypeDefinition.HasGenericParameters)
             {
                 sb.Append("<");
@@ -79,65 +91,33 @@ namespace ToTypeScriptD.Core.TypeWriters
                                 constraintsSB.AppendFormat("{0}{1}", constraint.ToTypeScriptType(), (isLastItemJ ? "*/" : ", "));
                             }
                         }
-
-
-                        //constraintsSB.AppendFormat(" extends {0}{1}", constraint.ToTypeScriptType(), (isLastItemJ ? "" : ", "));
                     });
 
                     sb.AppendFormat("{0}{1}{2}", genericParameter.ToTypeScriptType(), constraintsSB.ToString(), (isLastItem ? "" : ", "));
                 });
                 sb.Append(">");
             }
+        }
 
-            sb.Append(" ");
-            if (TypeDefinition.Interfaces.Any())
+        private static void WriteExtendedTypes(StringBuilder sb, List<ITypeWriter> extendedTypes)
+        {
+            extendedTypes.Each(item => item.Write(sb));
+        }
+
+        private void WriteNestedTypes(StringBuilder sb)
+        {
+            TypeDefinition.NestedTypes.Where(type => type.IsNestedPublic).Each(type =>
             {
-                var interfaceTypes = TypeDefinition.Interfaces.Where(w => !w.Name.ShouldIgnoreTypeByName());
-                if (interfaceTypes.Any())
-                {
-                    sb.Append(inheriterString);
-                    interfaceTypes.For((item, i, isLast) =>
-                    {
-                        sb.AppendFormat(" {0}{1}", item.ToTypeScriptType(), isLast ? " " : ",");
-                    });
-                }
-            }
-            sb.AppendLine("{");
-
-            // TODO: get specific types of EventListener types?
-            if (TypeDefinition.HasEvents)
-            {
-                Indent(sb); Indent(sb); sb.AppendLine("addEventListener(type: string, listener: EventListener): void;");
-                Indent(sb); Indent(sb); sb.AppendLine("removeEventListener(type: string, listener: EventListener): void;");
-
-                TypeDefinition.Events.For((item, i, isLast) =>
-                {
-                    // TODO: events with multiple return types???
-                    Indent(sb); Indent(sb); sb.AppendLine("on" + item.Name.ToLower() + "(ev: any);");
-                });
-            }
-
-            TypeDefinition.Fields.Each(field =>
-            {
-                if (!field.IsPublic) return;
-                var fieldName = field.Name.ToTypeScriptName();
-                Indent(sb); Indent(sb); sb.AppendFormat("{0}: {1};", fieldName, field.FieldType.ToTypeScriptType());
+                var typeWriter = TypeWriterCollector.PickTypeWriter(type, IndentCount - 1, TypeCollection);
                 sb.AppendLine();
+                typeWriter.Write(sb);
             });
+        }
 
-            var propNames = new HashSet<string>();
-            TypeDefinition.Properties.Each(prop =>
-            {
-                // TODO: determine if property was already defined by interface?
-
-                var propName = prop.Name.ToTypeScriptName();
-                propNames.Add(propName);
-                Indent(sb); Indent(sb); sb.AppendFormat("{0}{1}: {2};", propName, prop.PropertyType.ToTypeScriptNullable(), prop.PropertyType.ToTypeScriptType());
-                sb.AppendLine();
-            });
-
+        private List<ITypeWriter> WriteMethods(StringBuilder sb)
+        {
+            List<ITypeWriter> extendedTypes = new List<ITypeWriter>();
             var methodSignatures = new HashSet<string>();
-
             foreach (var method in TypeDefinition.Methods)
             {
                 var methodSb = new StringBuilder();
@@ -213,16 +193,60 @@ namespace ToTypeScriptD.Core.TypeWriters
 
             methodSignatures.Each(method => sb.Append(method));
 
-            Indent(sb); sb.AppendLine("}");
+            return extendedTypes;
+        }
 
-            extendedTypes.Each(item => item.Write(sb));
-
-            TypeDefinition.NestedTypes.Where(type => type.IsNestedPublic).Each(type =>
+        private void WriteProperties(StringBuilder sb)
+        {
+            TypeDefinition.Properties.Each(prop =>
             {
-                var typeWriter = TypeWriterCollector.PickTypeWriter(type, IndentCount - 1, TypeCollection);
+                var propName = prop.Name.ToTypeScriptName();
+                Indent(sb); Indent(sb); sb.AppendFormat("{0}{1}: {2};", propName, prop.PropertyType.ToTypeScriptNullable(), prop.PropertyType.ToTypeScriptType());
                 sb.AppendLine();
-                typeWriter.Write(sb);
             });
+        }
+
+        private void WriteFields(StringBuilder sb)
+        {
+            TypeDefinition.Fields.Each(field =>
+            {
+                if (!field.IsPublic) return;
+                var fieldName = field.Name.ToTypeScriptName();
+                Indent(sb); Indent(sb); sb.AppendFormat("{0}: {1};", fieldName, field.FieldType.ToTypeScriptType());
+                sb.AppendLine();
+            });
+        }
+
+        private void WriteEvents(StringBuilder sb)
+        {
+            // TODO: get specific types of EventListener types?
+            if (TypeDefinition.HasEvents)
+            {
+                Indent(sb); Indent(sb); sb.AppendLine("addEventListener(type: string, listener: EventListener): void;");
+                Indent(sb); Indent(sb); sb.AppendLine("removeEventListener(type: string, listener: EventListener): void;");
+
+                TypeDefinition.Events.For((item, i, isLast) =>
+                {
+                    // TODO: events with multiple return types???
+                    Indent(sb); Indent(sb); sb.AppendLine("on" + item.Name.ToLower() + "(ev: any);");
+                });
+            }
+        }
+
+        private void WriteExportedInterfaces(StringBuilder sb, string inheriterString)
+        {
+            if (TypeDefinition.Interfaces.Any())
+            {
+                var interfaceTypes = TypeDefinition.Interfaces.Where(w => !w.Name.ShouldIgnoreTypeByName());
+                if (interfaceTypes.Any())
+                {
+                    sb.Append(inheriterString);
+                    interfaceTypes.For((item, i, isLast) =>
+                    {
+                        sb.AppendFormat(" {0}{1}", item.ToTypeScriptType(), isLast ? " " : ",");
+                    });
+                }
+            }
         }
     }
 }

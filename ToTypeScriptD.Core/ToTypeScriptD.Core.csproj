@@ -67,7 +67,6 @@
     <Compile Include="TypeWriters\EnumWriter.cs" />
     <Compile Include="TypeWriters\InterfaceWriter.cs" />
     <Compile Include="TypeWriters\ITypeWriter.cs" />
-    <Compile Include="TypeWriters\NamespaceWriter.cs" />
     <Compile Include="TypeWriters\OutParameterReturnTypeWriter.cs" />
     <Compile Include="TypeWriters\TypeCollection.cs" />
     <Compile Include="TypeWriters\TypeWriterBase.cs" />
