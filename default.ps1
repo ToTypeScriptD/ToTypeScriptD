@@ -8,7 +8,10 @@ properties {
 task default -depends Test
 
 task Test -depends Compile { 
-    & (ls ".\packages\xunit.runners*\tools\xunit.console.clr4.exe") ".\ToTypeScriptD.Tests\bin\$msbuildConfiguration\ToTypeScriptD.Tests.dll"
+    exec {
+        $xunitExe = (ls ".\packages\xunit.runners*\tools\xunit.console.clr4.exe" | select -Last 1)
+        & $xunitExe ".\ToTypeScriptD.Tests\bin\$msbuildConfiguration\ToTypeScriptD.Tests.dll"
+    }
 }
 
 task Compile -depends Clean, Create-VersionInfo { 
@@ -16,7 +19,9 @@ task Compile -depends Clean, Create-VersionInfo {
     # the p:/VisualStudioEdition=v11.0 property is just to remove a warning when compiling the javascript tests project
     # http://www.interact-sw.co.uk/iangblog/2013/07/29/fix-appx2102
 
-    msbuild ToTypeScriptD.sln /p:Platform="$msbuildPlatform" /p:Configuration=$msbuildConfiguration /verbosity:quiet /nologo /p:VisualStudioEdition=v11.0
+    exec {
+        msbuild ToTypeScriptD.sln /p:Platform="$msbuildPlatform" /p:Configuration=$msbuildConfiguration /verbosity:quiet /nologo /p:VisualStudioEdition=v11.0
+    }
 }
 
 task Package -depends Test, Compile {
@@ -94,7 +99,7 @@ task ? -Description "Helper to display task info" {
 task putOnAHelmet -Description "Install a git pre-commit hook that runs the build/tests before commiting" {
 	$cmd = '#!/bin/sh
 #***********
-exec powershell -NoProfile -command "&{ import-module C:\Chocolatey\lib\psake.4.2.0.1\tools\psake.psm1; Invoke-Psake Test }"
+exec powershell -NoProfile -command "&{ import-module C:\Chocolatey\lib\psake.4.2.0.1\tools\psake.psm1; Invoke-Psake Test; exit !(\$psake.build_success); }"
 #***********
 '
 	$hookPath = ".git/hooks/pre-commit"
