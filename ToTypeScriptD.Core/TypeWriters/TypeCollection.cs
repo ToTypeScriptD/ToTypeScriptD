@@ -30,7 +30,7 @@ namespace ToTypeScriptD.Core.TypeWriters
             }
         }
 
-        public string Render()
+        public string Render(string filterRegex)
         {
             Func<string, string> getNamespace = name =>
             {
@@ -39,6 +39,7 @@ namespace ToTypeScriptD.Core.TypeWriters
 
             var items = from t in types
                         where !typesRendered.Contains(t.Key)
+                        where t.Value.FullName.Matches(filterRegex)
                         orderby t.Key
                         group t by getNamespace(t.Key) into namespaces
                         select namespaces;

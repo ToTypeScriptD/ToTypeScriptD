@@ -57,5 +57,13 @@ namespace ToTypeScriptD.Core.TypeWriters
                 return TypeDefinition.Name.StripGenericTick() + "_" + MethodName + "_OUT";
             }
         }
+
+        public string FullName
+        {
+            get
+            {
+                return TypeDefinition.Name + "." + TypeName;
+            }
+        }
     }
 }

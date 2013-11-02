@@ -21,6 +21,12 @@ namespace ToTypeScriptD
             return string.Join(separator, items);
         }
 
+        public static bool Matches(this string value, string pattern)
+        {
+            var result = System.Text.RegularExpressions.Regex.IsMatch(value, pattern ?? "");
+            return result;
+        }
+
         static Dictionary<string, string> typeMap = new Dictionary<string, string>{
                 { "System.String",               "string"},
                 { "System.Int16",                "number"},

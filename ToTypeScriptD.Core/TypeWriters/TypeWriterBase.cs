@@ -45,7 +45,7 @@ namespace ToTypeScriptD.Core.TypeWriters
 
         internal void WriteOutMethodSignatures(StringBuilder sb, string exportType, string inheriterString)
         {
-            Indent(sb); sb.AppendFormat("export {0} {1}", exportType, this.TypeName);
+            Indent(sb); sb.AppendFormat("export {0} {1}", exportType, TypeDefinition.ToTypeScriptItemName());
             WriteGenerics(sb);
             sb.Append(" ");
             WriteExportedInterfaces(sb, inheriterString);
@@ -250,9 +250,9 @@ namespace ToTypeScriptD.Core.TypeWriters
         }
 
 
-        public string TypeName
+        public string FullName
         {
-            get { return TypeDefinition.ToTypeScriptItemName(); }
+            get { return TypeDefinition.Namespace + "." + TypeDefinition.ToTypeScriptItemName(); }
         }
     }
 }

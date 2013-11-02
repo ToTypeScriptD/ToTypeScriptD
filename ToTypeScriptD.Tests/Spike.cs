@@ -26,13 +26,13 @@ namespace ToTypeScriptD.Tests
             return ToTypeScript(new[] { value });
         }
 
-        public static string ToTypeScript(this IEnumerable<TypeDefinition> value)
+        public static string ToTypeScript(this IEnumerable<TypeDefinition> value, string filterRegex = null)
         {
             var typeCollection = new TypeCollection();
             var errors = new StringBuilderTypeNotFoundErrorHandler();
             new TypeWriterCollector(errors)
                 .Collect(value, typeCollection);
-            var result = typeCollection.Render();
+            var result = typeCollection.Render(filterRegex);
             var errorResult = errors.ToString();
             if (string.IsNullOrEmpty(errorResult))
             {
@@ -50,7 +50,7 @@ namespace ToTypeScriptD.Tests
         {
             var errors = new StringBuilderTypeNotFoundErrorHandler();
             var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection();
-            var result = ToTypeScriptD.Render.FullAssembly(path, errors, typeCollection);
+            var result = ToTypeScriptD.Render.FullAssembly(path, errors, typeCollection, string.Empty);
             Approvals.Verify(errors + result);
         }
     }

@@ -8,7 +8,7 @@ namespace ToTypeScriptD
 {
     public class Render
     {
-        public static bool AllAssemblies(IEnumerable<string> assemblyPaths, bool includeSpecialTypes, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler)
+        public static bool AllAssemblies(IEnumerable<string> assemblyPaths, bool includeSpecialTypes, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, string filterRegex)
         {
             if (assemblyPaths == null)
                 assemblyPaths = new string[0];
@@ -16,11 +16,11 @@ namespace ToTypeScriptD
             var typeCollection = new TypeCollection();
 
             var wroteAnyTypes = WriteSpecialTypes(includeSpecialTypes, w);
-            wroteAnyTypes |= WriteFiles(assemblyPaths, w, typeNotFoundErrorHandler, typeCollection);
+            wroteAnyTypes |= WriteFiles(assemblyPaths, w, typeNotFoundErrorHandler, typeCollection, filterRegex);
             return wroteAnyTypes;
         }
 
-        private static bool WriteFiles(IEnumerable<string> assemblyPaths, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection)
+        private static bool WriteFiles(IEnumerable<string> assemblyPaths, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection, string filterRegex)
         {
             var filesAlreadyProcessed = new HashSet<string>(new IgnoreCaseStringEqualityComparer());
             if (!assemblyPaths.Any())
@@ -35,7 +35,7 @@ namespace ToTypeScriptD
                 CollectTypes(assemblyPath, typeNotFoundErrorHandler, typeCollection);
             });
 
-            var renderedOut = typeCollection.Render();
+            var renderedOut = typeCollection.Render(filterRegex);
             w.WriteLine(renderedOut);
 
             return true;
@@ -53,10 +53,10 @@ namespace ToTypeScriptD
             return true;
         }
 
-        public static string FullAssembly(string assemblyPath, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection)
+        public static string FullAssembly(string assemblyPath, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection, string filterRegex)
         {
             CollectTypes(assemblyPath, typeNotFoundErrorHandler, typeCollection);
-            return typeCollection.Render();
+            return typeCollection.Render(filterRegex);
         }
 
         private static void CollectTypes(string assemblyPath, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection)

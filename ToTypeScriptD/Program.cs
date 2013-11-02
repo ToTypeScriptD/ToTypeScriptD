@@ -13,7 +13,7 @@ namespace ToTypeScriptD
 
                 try
                 {
-                    skipPrintingHelp = ToTypeScriptD.Render.AllAssemblies(options.Files, options.IncludeSpecialTypeDefinitions, Console.Out, new ConsoleErrorTypeNotFoundErrorHandler());
+                    skipPrintingHelp = ToTypeScriptD.Render.AllAssemblies(options.Files, options.IncludeSpecialTypeDefinitions, Console.Out, new ConsoleErrorTypeNotFoundErrorHandler(), options.RegexFilter);
                 }
                 catch (Exception ex)
                 {

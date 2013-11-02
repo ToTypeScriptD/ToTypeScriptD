@@ -6,6 +6,6 @@ namespace ToTypeScriptD.Core.TypeWriters
     {
         void Write(StringBuilder sb);
 
-        string TypeName { get; }
+        string FullName { get; }
     }
 }
