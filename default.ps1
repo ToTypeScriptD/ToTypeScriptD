@@ -91,6 +91,24 @@ task ? -Description "Helper to display task info" {
     Write-Documentation
 }
 
+task putOnAHelmet -Description "Install a git pre-commit hook that runs the build/tests before commiting" {
+	$cmd = '#!/bin/sh
+#***********
+exec powershell -NoProfile -command "&{ import-module C:\Chocolatey\lib\psake.4.2.0.1\tools\psake.psm1; Invoke-Psake Test }"
+#***********
+'
+	$hookPath = ".git/hooks/pre-commit"
+	if( test-path $hookPath ){
+		throw "The git pre-commit hook file already exists. Verify that this command is in there.$cmd";
+	} else {
+		cp "$hookPath.sample" $hookPath
+		$hookFile = cat $hookPath | Out-String
+		$hookFile = $hookFile.Replace('exec git diff-index --check --cached $against --', '#exec git diff-index --check --cached $against --')
+		$hookFile = $hookFile + $cmd
+		sc $hookPath $hookFile
+	}
+}
+
 
 
 task Create-VersionInfo {
