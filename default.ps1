@@ -19,7 +19,7 @@ task Compile -depends Clean, Create-VersionInfo {
     msbuild ToTypeScriptD.sln /p:Platform="$msbuildPlatform" /p:Configuration=$msbuildConfiguration /verbosity:quiet /nologo /p:VisualStudioEdition=v11.0
 }
 
-task Package -depends Compile {
+task Package -depends Test, Compile {
 
     # 1. Get Assembly Version #
     # 2. Zip Release Files
