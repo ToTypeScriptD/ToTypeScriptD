@@ -13,7 +13,7 @@ namespace ToTypeScriptD
         public bool IncludeSpecialTypeDefinitions { get; set; }
 
         private string _regexFilter;
-        [Option('r', "regexFilter", HelpText = "A .net regular expression that can be used to filter the FullName of types exported.")]
+        [Option('r', "regexFilter", HelpText = "A .net regular expression that can be used to filter the FullName of types exported. Picture this taking the FullName of the TypeScript type and running it through the .Net Regex.IsMatch(name, pattern)")]
         public string RegexFilter
         {
             get
