@@ -32,22 +32,25 @@ You can see the Chocolatey package here: [ToTypeScriptD package](https://chocola
 ## How to use?
 
 
-Print the short and sweet command line arguments: 
+#### Print the short and sweet command line arguments: 
 
     ToTypeScript.bat --help
 
-Generate all types from Windows.winmd file:
+#### Generate all types from Windows.winmd file:
 
     ToTypeScriptD.bat "C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral\Windows.winmd"
 
-Generate all types from multiple `.winmd` files:
+#### Generate all types from multiple `.winmd` files:
 
     ToTypeScriptD.bat C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Networking.winmd
 
-Include the special types for WinJS apps:
+#### Include the special types for WinJS apps:
 
     ToTypeScriptD.bat --specialTypes C:\Windows\System32\WinMetadata\Windows.Foundation.winmd
 
+#### Filter types in a specific namespace
+
+    ToTypeScriptD.bat  --specialTypes C:\Windows\System32\WinMetadata\Windows.Foundation.winmd --regexFilter "Windows.Foundation.Collections"
 
 ## Roadmap
 
