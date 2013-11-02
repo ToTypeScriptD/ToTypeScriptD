@@ -20,12 +20,12 @@
         invoke(asyncInfo: ToTypeScriptD.WinRT.IPromise<TResult>, asyncStatus: Windows.Foundation.AsyncStatus): void;
     }
 
-    export class AsyncOperationProgressHandler<TResult,TProgress> {
+    export class AsyncOperationProgressHandler<TResult, TProgress> {
         constructor(object: any, method: number);
         invoke(asyncInfo: Windows.Foundation.IAsyncOperationWithProgress<TResult,TProgress>, progressInfo: TProgress): void;
     }
 
-    export class AsyncOperationWithProgressCompletedHandler<TResult,TProgress> {
+    export class AsyncOperationWithProgressCompletedHandler<TResult, TProgress> {
         constructor(object: any, method: number);
         invoke(asyncInfo: Windows.Foundation.IAsyncOperationWithProgress<TResult,TProgress>, asyncStatus: Windows.Foundation.AsyncStatus): void;
     }
@@ -78,7 +78,7 @@
         getResults(): TResult;
     }
 
-    export interface IAsyncOperationWithProgress<TResult,TProgress> extends Windows.Foundation.IAsyncInfo {
+    export interface IAsyncOperationWithProgress<TResult, TProgress> extends Windows.Foundation.IAsyncInfo {
         progress: Windows.Foundation.AsyncOperationProgressHandler<TResult,TProgress>;
         completed: Windows.Foundation.AsyncOperationWithProgressCompletedHandler<TResult,TProgress>;
         getResults(): TResult;
@@ -359,7 +359,7 @@
         duration: number;
     }
 
-    export class TypedEventHandler<TSender,TResult> {
+    export class TypedEventHandler<TSender, TResult> {
         constructor(object: any, method: number);
         invoke(sender: TSender, args: TResult): void;
     }
@@ -436,12 +436,12 @@ declare module Windows.Foundation.Collections {
         items: T[];
     }
 
-    export interface IKeyValuePair<K,V> {
+    export interface IKeyValuePair<K, V> {
         key: K;
         value: V;
     }
 
-    export interface IMap<K,V> extends Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<K,V>> {
+    export interface IMap<K, V> extends Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<K,V>> {
         size: number;
         lookup(key: K): V;
         hasKey(key: K): boolean;
@@ -456,7 +456,7 @@ declare module Windows.Foundation.Collections {
         key: K;
     }
 
-    export interface IMapView<K,V> extends Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<K,V>> {
+    export interface IMapView<K, V> extends Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<K,V>> {
         size: number;
         lookup(key: K): V;
         hasKey(key: K): boolean;
@@ -468,7 +468,7 @@ declare module Windows.Foundation.Collections {
         second: Windows.Foundation.Collections.IMapView<K,V>;
     }
 
-    export interface IObservableMap<K,V> extends Windows.Foundation.Collections.IMap<K,V> {
+    export interface IObservableMap<K, V> extends Windows.Foundation.Collections.IMap<K,V> {
         addEventListener(type: string, listener: EventListener): void;
         removeEventListener(type: string, listener: EventListener): void;
         onmapchanged(ev: any);
@@ -534,7 +534,7 @@ declare module Windows.Foundation.Collections {
         items: T[];
     }
 
-    export class MapChangedEventHandler<K,V> {
+    export class MapChangedEventHandler<K, V> {
         constructor(object: any, method: number);
         invoke(sender: Windows.Foundation.Collections.IObservableMap<K,V>, event: Windows.Foundation.Collections.IMapChangedEventArgs<K>): void;
     }

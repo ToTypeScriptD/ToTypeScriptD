@@ -56,7 +56,35 @@ namespace ToTypeScriptD.Core.TypeWriters
                 sb.Append("<");
                 TypeDefinition.GenericParameters.For((genericParameter, i, isLastItem) =>
                 {
-                    sb.AppendFormat("{0}{1}", genericParameter.ToTypeScriptType(), isLastItem ? "" : ",");
+                    StringBuilder constraintsSB = new StringBuilder();
+                    genericParameter.Constraints.For((constraint, j, isLastItemJ) =>
+                    {
+                        // Not sure how best to deal with multiple generic constraints (yet)
+                        // For now place in a comment
+                        // TODO: possible generate a new interface type that extends all of the constraints?
+                        var isFirstItem = j == 0;
+                        var isOnlyItem = isFirstItem && isLastItemJ;
+                        if (isOnlyItem)
+                        {
+                            constraintsSB.AppendFormat(" extends {0}", constraint.ToTypeScriptType());
+                        }
+                        else
+                        {
+                            if (isFirstItem)
+                            {
+                                constraintsSB.AppendFormat(" extends {0} /*TODO:{1}", constraint.ToTypeScriptType(), (isLastItemJ ? "*/" : ", "));
+                            }
+                            else
+                            {
+                                constraintsSB.AppendFormat("{0}{1}", constraint.ToTypeScriptType(), (isLastItemJ ? "*/" : ", "));
+                            }
+                        }
+
+
+                        //constraintsSB.AppendFormat(" extends {0}{1}", constraint.ToTypeScriptType(), (isLastItemJ ? "" : ", "));
+                    });
+
+                    sb.AppendFormat("{0}{1}{2}", genericParameter.ToTypeScriptType(), constraintsSB.ToString(), (isLastItem ? "" : ", "));
                 });
                 sb.Append(">");
             }
@@ -191,7 +219,7 @@ namespace ToTypeScriptD.Core.TypeWriters
 
             TypeDefinition.NestedTypes.Where(type => type.IsNestedPublic).Each(type =>
             {
-                var typeWriter = TypeWriterCollector.PickTypeWriter(type, IndentCount-1, TypeCollection);
+                var typeWriter = TypeWriterCollector.PickTypeWriter(type, IndentCount - 1, TypeCollection);
                 sb.AppendLine();
                 typeWriter.Write(sb);
             });

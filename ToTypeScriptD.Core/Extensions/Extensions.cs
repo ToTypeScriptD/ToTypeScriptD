@@ -14,6 +14,13 @@ namespace ToTypeScriptD
             return string.Join("", Enumerable.Range(0, count).Select(s => value));
         }
 
+        public static string Join(this IEnumerable<string> items, string separator = "")
+        {
+            if (items == null) return string.Empty;
+
+            return string.Join(separator, items);
+        }
+
         static Dictionary<string, string> typeMap = new Dictionary<string, string>{
                 { "System.String",               "string"},
                 { "System.Int16",                "number"},

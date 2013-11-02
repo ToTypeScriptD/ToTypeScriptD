@@ -29,11 +29,54 @@
         constructor();
     }
 
+    export class GenericClass<T> {
+        getItem(input: T): T;
+        constructor();
+    }
+
+    export class GenericClassIsGettingALittleCrazy<T extends ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterfaceButGeneric3<T>> {
+        constructor();
+    }
+
+    export class GenericClassWithConstraint<T extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface> {
+        getItem(item: T): T;
+        constructor();
+    }
+
+    export class GenericClassWithMultipleTypesConstrained<T extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface, K extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface> {
+        getItemK(item: K): K;
+        getItemT(item: T): T;
+        constructor();
+    }
+
+    export class GenericClassWithOneTypeConstraintMultipleTimes<T extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface /*TODO:, ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterface1, ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterface2, ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterface3<T,K>*/, K> {
+        getItemT(item: T): T;
+        constructor();
+    }
+
     export interface IAmAnInterface {
         someProperty: string;
         nullableProperty?: number;
         getNothing(): void;
         loadAsync(): System.Threading.Tasks.Task<number>;
+    }
+
+    export interface IAmAnotherInterface1 {
+    }
+
+    export interface IAmAnotherInterface2 {
+    }
+
+    export interface IAmAnotherInterface3<T, K> {
+    }
+
+    export interface IAmAnotherInterfaceButGeneric1<T> {
+    }
+
+    export interface IAmAnotherInterfaceButGeneric2<T> {
+    }
+
+    export interface IAmAnotherInterfaceButGeneric3<T> extends ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterfaceButGeneric1<T>, ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterfaceButGeneric2<T> {
     }
 
     export class SomeClass implements ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface {
