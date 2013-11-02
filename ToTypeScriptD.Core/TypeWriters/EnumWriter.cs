@@ -13,7 +13,7 @@ namespace ToTypeScriptD.Core.TypeWriters
         public override void Write(StringBuilder sb)
         {
             ++IndentCount;
-            sb.AppendLine(IndentValue + "enum " + TypeDefinition.ToTypeScriptItemName() + " {");
+            sb.AppendLine(IndentValue + "enum " + base.TypeName + " {");
             ++IndentCount;
             TypeDefinition.Fields.OrderBy(ob => ob.Constant).For((item, i, isLast) =>
             {

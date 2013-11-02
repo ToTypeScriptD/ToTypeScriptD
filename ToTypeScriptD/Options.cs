@@ -12,6 +12,9 @@ namespace ToTypeScriptD
         [Option('s', "specialTypes", HelpText = "Writes the ToTypeScriptD special types to standard out")]
         public bool IncludeSpecialTypeDefinitions { get; set; }
 
+        [Option('r', "regexFilter", HelpText = "A .net regular expression that can be used to filter the FullName of types exported.")]
+        public string RegexFilter { get; set; }
+
         //[Option('v', "verbose", DefaultValue = true, HelpText = "Prints all messages to standard output.")]
         //public bool Verbose { get; set; }
 

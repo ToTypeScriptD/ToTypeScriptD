@@ -1,10 +1,5 @@
 ﻿using ApprovalTests;
 using Xunit;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Text.RegularExpressions;
 
 namespace ToTypeScriptD.Tests.ExeTests
 {
@@ -74,13 +69,22 @@ namespace ToTypeScriptD.Tests.ExeTests
 
             resultDup.Verify();
         }
+
+        [Fact]
+        public void ExeShouldApplyRegexFilterOnTypes()
+        {
+            var resultDup = Execute(@"..\..\..\bin\ToTypeScriptD.TestAssembly.CSharp.dll --regexFilter 'ToTypeScriptD.TestAssembly.CSharp.NamespaceSample'");
+
+            resultDup.Verify();
+        }
+
     }
 
     public static class Extensions
     {
         public static string StripVersionFromOutput(this string value)
         {
-            return Regex.Replace(value, "^ToTypeScriptD [a-zA-Z0-9]{0,7}", "ToTypeScriptD XXX_VERSION_XXX");
+            return System.Text.RegularExpressions.Regex.Replace(value, "^ToTypeScriptD [a-zA-Z0-9]{0,7}", "ToTypeScriptD XXX_VERSION_XXX");
         }
     }
 }

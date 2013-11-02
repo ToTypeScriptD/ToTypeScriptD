@@ -5,5 +5,8 @@ Usage: TypeScriptD.exe [--specialTypes] [<file1.winmd> ...<fileN.winmd>]
 
   -s, --specialTypes    Writes the ToTypeScriptD special types to standard out
 
+  -r, --regexFilter     A .net regular expression that can be used to filter 
+                        the FullName of types exported.
+
   --help                Display this help screen.
 
