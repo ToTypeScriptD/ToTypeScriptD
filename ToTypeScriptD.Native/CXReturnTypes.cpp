@@ -2,6 +2,9 @@
 #include "pch.h"
 #include <Objbase.h>
 #include "CXReturnTypes.h"
+#include <collection.h> 
+#include <vector>
+#include <utility> //for std::move
 
 using namespace ToTypeScriptD::Native;
 
@@ -90,4 +93,16 @@ Platform::String^ CXReturnTypes::OverloadedMethodWithNumberTypeParams(uint64 val
 Platform::String^ CXReturnTypes::OverloadedMethodWithNumberTypeParams(double value)
 {
 	return "Method with double overload.";
+}
+
+
+Windows::Foundation::Collections::IIterable<int>^ CXReturnTypes::GetIterableOfInts()
+{
+	std::vector<int> vec;
+	for(int i = 0; i < 10; i++)
+	{
+		vec.push_back(i);
+	}
+	// Implicit conversion to IVector 
+	return ref new Platform::Collections::Vector<int>(std::move(vec));
 }

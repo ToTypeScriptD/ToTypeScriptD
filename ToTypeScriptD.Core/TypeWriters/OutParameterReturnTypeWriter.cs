@@ -1,6 +1,7 @@
 ﻿using Mono.Cecil;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ToTypeScriptD.Core.TypeWriters
@@ -54,7 +55,12 @@ namespace ToTypeScriptD.Core.TypeWriters
         {
             get
             {
-                return TypeDefinition.Name.StripGenericTick() + "_" + MethodName + "_OUT";
+                string genericParams = "";
+                if (TypeDefinition.HasGenericParameters)
+                {
+                    genericParams = "<" + TypeDefinition.GenericParameters.Select(s => s.FullName).Join(", ") + ">";
+                }
+                return TypeDefinition.ToTypeScriptItemName() + "_" + MethodName + "_OUT" + genericParams;
             }
         }
 

@@ -38,6 +38,15 @@
         constructor();
     }
 
+    export class GenericClassWith<T, K> {
+        getSomething(inT: T, inK: K): GenericClassWith_getSomething_OUT<T, K>;
+        constructor();
+    }
+
+    interface GenericClassWith_getSomething_OUT<T, K> {
+        outParam1: ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterface3<T,K>;
+    }
+
     export class GenericClassWithConstraint<T extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface> {
         getItem(item: T): T;
         constructor();

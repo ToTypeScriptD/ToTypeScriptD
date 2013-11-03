@@ -14,7 +14,7 @@ namespace ToTypeScriptD.TestAssembly.CSharp
         }
     }
 
-    public class GenericClassWithConstraint<T> 
+    public class GenericClassWithConstraint<T>
         where T : IAmAnInterface
     {
         public T GetItem(T item)
@@ -53,8 +53,8 @@ namespace ToTypeScriptD.TestAssembly.CSharp
     public interface IAmAnotherInterface1 { }
     public interface IAmAnotherInterface2 { }
     public interface IAmAnotherInterface3<T, K> { }
-    public class GenericClassWithOneTypeConstraintMultipleTimes<T,K>
-        where T : IAmAnInterface, IAmAnotherInterface1, IAmAnotherInterface2, IAmAnotherInterface3<T,K>
+    public class GenericClassWithOneTypeConstraintMultipleTimes<T, K>
+        where T : IAmAnInterface, IAmAnotherInterface1, IAmAnotherInterface2, IAmAnotherInterface3<T, K>
     {
         public T GetItemT(T item)
         {
@@ -62,4 +62,12 @@ namespace ToTypeScriptD.TestAssembly.CSharp
         }
     }
 
+
+    public class GenericClassWith<T, K>
+    {
+        public void GetSomething(T inT, K inK, out IAmAnotherInterface3<T, K> outParam1)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

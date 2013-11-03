@@ -21,6 +21,8 @@ namespace ToTypeScriptD
 			Platform::String^ OverloadedMethodWithNumberTypeParams(int64 value);
 			Platform::String^ OverloadedMethodWithNumberTypeParams(uint64 value);
 			Platform::String^ OverloadedMethodWithNumberTypeParams(double value);
+
+			Windows::Foundation::Collections::IIterable<int>^ GetIterableOfInts();
 		};
 	}
 }

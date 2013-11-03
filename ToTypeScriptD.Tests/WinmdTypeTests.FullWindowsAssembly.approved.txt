@@ -428,10 +428,10 @@ declare module Windows.Foundation.Collections {
         current: T;
         hasCurrent: boolean;
         moveNext(): boolean;
-        getMany(): IIterator_getMany_OUT;
+        getMany(): IIterator_getMany_OUT<T>;
     }
 
-    interface IIterator_getMany_OUT {
+    interface IIterator_getMany_OUT<T> {
         __returnValue: number;
         items: T[];
     }
@@ -460,10 +460,10 @@ declare module Windows.Foundation.Collections {
         size: number;
         lookup(key: K): V;
         hasKey(key: K): boolean;
-        split(): IMapView_split_OUT;
+        split(): IMapView_split_OUT<K, V>;
     }
 
-    interface IMapView_split_OUT {
+    interface IMapView_split_OUT<K, V> {
         first: Windows.Foundation.Collections.IMapView<K,V>;
         second: Windows.Foundation.Collections.IMapView<K,V>;
     }
@@ -491,23 +491,23 @@ declare module Windows.Foundation.Collections {
         size: number;
         getAt(index: number): T;
         getView(): Windows.Foundation.Collections.IVectorView<T>;
-        indexOf(value: T): IVector_indexOf_OUT;
+        indexOf(value: T): IVector_indexOf_OUT<T>;
         setAt(index: number, value: T): void;
         insertAt(index: number, value: T): void;
         removeAt(index: number): void;
         append(value: T): void;
         removeAtEnd(): void;
         clear(): void;
-        getMany(startIndex: number): IVector_getMany_OUT;
+        getMany(startIndex: number): IVector_getMany_OUT<T>;
         replaceAll(items: T[]): void;
     }
 
-    interface IVector_indexOf_OUT {
+    interface IVector_indexOf_OUT<T> {
         __returnValue: boolean;
         index: number;
     }
 
-    interface IVector_getMany_OUT {
+    interface IVector_getMany_OUT<T> {
         __returnValue: number;
         items: T[];
     }
@@ -520,16 +520,16 @@ declare module Windows.Foundation.Collections {
     export interface IVectorView<T> extends Windows.Foundation.Collections.IIterable<T> {
         size: number;
         getAt(index: number): T;
-        indexOf(value: T): IVectorView_indexOf_OUT;
-        getMany(startIndex: number): IVectorView_getMany_OUT;
+        indexOf(value: T): IVectorView_indexOf_OUT<T>;
+        getMany(startIndex: number): IVectorView_getMany_OUT<T>;
     }
 
-    interface IVectorView_indexOf_OUT {
+    interface IVectorView_indexOf_OUT<T> {
         __returnValue: boolean;
         index: number;
     }
 
-    interface IVectorView_getMany_OUT {
+    interface IVectorView_getMany_OUT<T> {
         __returnValue: number;
         items: T[];
     }
