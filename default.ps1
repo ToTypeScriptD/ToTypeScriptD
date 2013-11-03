@@ -53,6 +53,8 @@ task Package -depends Test, Compile {
     $nuspec.package.metadata.version = $version
     $nuspec.Save((get-item $nuspecFile))
 
+    git tag $version
+
     chocolatey pack "$buildFolder\ToTypeScriptD.nuspec"
 }
 
