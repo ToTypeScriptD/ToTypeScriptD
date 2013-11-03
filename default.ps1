@@ -138,10 +138,13 @@ task Create-VersionInfo {
     $versionBuildRelease = "$build.$revision"
     $version = "$versionMajorMinor.$versionBuildRelease"
     $commit = Get-Git-Commit
+    $informationalVersion = "v$version - SHA1:$commit - $msbuildConfiguration"
+
+    echo "Informational Version: $informationalVersion"
 
     $asmInfo = "
 
-[assembly: System.Reflection.AssemblyInformationalVersion(""v$version - SHA1:$commit - $msbuildConfiguration"")]
+[assembly: System.Reflection.AssemblyInformationalVersion(""$informationalVersion"")]
 [assembly: System.Reflection.AssemblyVersion(""$version"")]
 [assembly: System.Reflection.AssemblyFileVersion(""$version"")]
 
