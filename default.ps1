@@ -119,6 +119,10 @@ exec powershell -NoProfile -command "&{ import-module C:\Chocolatey\lib\psake.4.
 
 task Create-VersionInfo {
 
+    if(!$versionMajorMinor) {
+        throw 'The variable "$versionMajorMinor" was not set. Please configure this value to a valid Major.Minor version. EX: 0.3'
+    }
+
     $versionInfoFile = 'SharedItems/VersionInfo.cs'
     New-Item -ItemType file $versionInfoFile -Force | out-null
 
