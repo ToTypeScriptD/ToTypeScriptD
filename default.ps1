@@ -3,6 +3,7 @@ properties {
     $msbuildPlatform = "Any CPU"
     $buildFolder = "bin"
     $packageFolder = "$buildFolder\ToTypeScriptD"
+    $versionMajorMinor = "0.1"
 }
 
 task default -depends Test
@@ -121,10 +122,23 @@ task Create-VersionInfo {
     $versionInfoFile = 'SharedItems/VersionInfo.cs'
     New-Item -ItemType file $versionInfoFile -Force | out-null
 
+    # Get the build and revision for assembly version.
+    # Build    – Number of days since the year 2000.
+    # Revision – Number of seconds since midnight divided by 2 and yes this number is not random as stated by MSDN.
+    #
+    $now = (get-date)
+    $build = [int](($now - (New-Object DateTime @(2000, 1, 1))).TotalDays)
+    $revision = [int](($now - $now.date).TotalSeconds/2)
+    $versionBuildRelease = "$build.$revision"
+    $version = "$versionMajorMinor.$versionBuildRelease"
     $commit = Get-Git-Commit
 
     $asmInfo = "
-[assembly: System.Reflection.AssemblyInformationalVersion(""$commit"")]
+
+[assembly: System.Reflection.AssemblyInformationalVersion(""v$version - SHA1:$commit - $msbuildConfiguration"")]
+[assembly: System.Reflection.AssemblyVersion(""$version"")]
+[assembly: System.Reflection.AssemblyFileVersion(""$version"")]
+
 "
     Write-Output $asmInfo > $versionInfoFile
 }

@@ -1,4 +1,4 @@
-﻿ToTypeScriptD XXX_VERSION_XXX
+﻿ToTypeScriptD - v0.0.0000.0000 SHA1:0000000 - Debug
 Copyright (C) 2013 Jason Jarrett
  
 Usage: TypeScriptD.exe [--specialTypes] [<file1.winmd> ...<fileN.winmd>]
