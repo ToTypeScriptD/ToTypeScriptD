@@ -98,11 +98,28 @@ Platform::String^ CXReturnTypes::OverloadedMethodWithNumberTypeParams(double val
 
 Windows::Foundation::Collections::IIterable<int>^ CXReturnTypes::GetIterableOfInts()
 {
-	std::vector<int> vec;
-	for(int i = 0; i < 10; i++)
-	{
-		vec.push_back(i);
+	// Depending on the return type - the WinJS type will change.
+	if(false){
+
+		// Vector return type
+
+		std::vector<int> vec;
+		for(int i = 0; i < 10; i++)
+		{
+			vec.push_back(i);
+		}
+		// Implicit conversion to IVector 
+		return ref new Platform::Collections::Vector<int>(std::move(vec));
+
+	} else {
+
+		// VectorView return type
+
+		auto temp = ref new Array<int>(10);
+		for(unsigned int i = 0; i < temp->Length; i++)
+		{
+			temp[i] = i;
+		}
+		return ref new Platform::Collections::VectorView<int>(temp);
 	}
-	// Implicit conversion to IVector 
-	return ref new Platform::Collections::Vector<int>(std::move(vec));
 }

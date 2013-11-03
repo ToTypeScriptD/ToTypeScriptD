@@ -87,11 +87,16 @@ describe('CXReturnTypes', function () {
         it("A floating point JavaScript number should select a C++/CX overload with a double parameter", function () {
             var result = sut.overloadedMethodWithNumberTypeParams(100.5);
             expect(result).to.eq("Method with double overload.");
-        })
+        });
         it("An integer JavaScript number should select a C++/CX overload with a double parameter", function () {
             var result = sut.overloadedMethodWithNumberTypeParams(5);
             expect(result).to.eq("Method with double overload.");
-        })
+        });
+
+        //it("An IIterable<int> should have array.prototype functions", function () {
+        //    var result = sut.getIterableOfInts();
+        //    //expect(result).to.eq([0,1,2,3,4,5,6,7,8,9]);
+        //});
 
     });
 });
