@@ -1,8 +1,8 @@
 properties {
     $msbuildConfiguration = "Debug"
     $msbuildPlatform = "Any CPU"
-    $buildFolder = "bin"
-    $packageFolder = "$buildFolder\ToTypeScriptD"
+    $buildFolder = "src\bin"
+    $packageFolder = "src\$buildFolder\ToTypeScriptD"
     $versionMajorMinor = "0.1"
 }
 
@@ -10,8 +10,8 @@ task default -depends Test
 
 task Test -depends Compile { 
     exec {
-        $xunitExe = (ls ".\packages\xunit.runners*\tools\xunit.console.clr4.exe" | select -Last 1)
-        & $xunitExe ".\ToTypeScriptD.Tests\bin\$msbuildConfiguration\ToTypeScriptD.Tests.dll"
+        $xunitExe = (ls "src\packages\xunit.runners*\tools\xunit.console.clr4.exe" | select -Last 1)
+        & $xunitExe "src\ToTypeScriptD.Tests\bin\$msbuildConfiguration\ToTypeScriptD.Tests.dll"
     }
 }
 
@@ -21,7 +21,7 @@ task Compile -depends Clean, Create-VersionInfo {
     # http://www.interact-sw.co.uk/iangblog/2013/07/29/fix-appx2102
 
     exec {
-        msbuild ToTypeScriptD.sln /p:Platform="$msbuildPlatform" /p:Configuration=$msbuildConfiguration /verbosity:quiet /nologo /p:VisualStudioEdition=v11.0
+        msbuild src\ToTypeScriptD.sln /p:Platform="$msbuildPlatform" /p:Configuration=$msbuildConfiguration /verbosity:quiet /nologo /p:VisualStudioEdition=v11.0
     }
 }
 
@@ -69,7 +69,7 @@ task Publish -depends Package {
     $result = $Host.UI.PromptForChoice("","Are you sure you want to publish?", $choices, 0)
 
     if($result -eq 0) {
-        ls *.nupkg | %{
+        ls "src/*.nupkg" | %{
             ""
             Write-Host -Foreground Green "Publishing... $_"
             ""
@@ -88,7 +88,7 @@ task Clean {
     rm -force -ErrorAction SilentlyContinue bin\*.zip
 
 # For some reason the msbuild step above won't compile the native assembly? (we'll come back to that)
-#    msbuild ToTypeScriptD.sln /target:clean /p:Platform="$msbuildPlatform" /p:Configuration=$msbuildConfiguration /verbosity:quiet /nologo
+#    msbuild src/ToTypeScriptD.sln /target:clean /p:Platform="$msbuildPlatform" /p:Configuration=$msbuildConfiguration /verbosity:quiet /nologo
 #
 #    if(test-path $buildFolder) {
 #        rm $buildFolder -Force -Recurse -ErrorAction SilentlyContinue
@@ -125,7 +125,7 @@ task Create-VersionInfo {
         throw 'The variable "$versionMajorMinor" was not set. Please configure this value to a valid Major.Minor version. EX: 0.3'
     }
 
-    $versionInfoFile = 'SharedItems/VersionInfo.cs'
+    $versionInfoFile = 'src/SharedItems/VersionInfo.cs'
     New-Item -ItemType file $versionInfoFile -Force | out-null
 
     # Get the build and revision for assembly version.

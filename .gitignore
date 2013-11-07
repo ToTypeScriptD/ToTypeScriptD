@@ -2,18 +2,18 @@
 *.ide
 *.opensdf
 *.nupkg
-packages/
-ToTypeScriptD.Tests.JavascriptTests/Scripts/typings/ToTypeScriptD.Native/ToTypeScriptD.Native.d.ts
-ToTypeScriptD.Tests.JavascriptTests/Scripts/typings/ToTypeScriptD.specialTypes.d.ts
-ToTypeScriptD.Tests.JavascriptTests/Scripts/typings/Windows.Foundation.d.ts
-ToTypeScriptD.Tests.JavascriptTests/specs/*.js
-ToTypeScriptD.Tests.JavascriptTests/AppPackages
+src/packages/
+src/ToTypeScriptD.Tests.JavascriptTests/Scripts/typings/ToTypeScriptD.Native/ToTypeScriptD.Native.d.ts
+src/ToTypeScriptD.Tests.JavascriptTests/Scripts/typings/ToTypeScriptD.specialTypes.d.ts
+src/ToTypeScriptD.Tests.JavascriptTests/Scripts/typings/Windows.Foundation.d.ts
+src/ToTypeScriptD.Tests.JavascriptTests/specs/*.js
+src/ToTypeScriptD.Tests.JavascriptTests/AppPackages
 
-ToTypeScriptD.Tests.JavascriptTests/js/default.js
-ToTypeScriptD.Tests.JavascriptTests/definitions.js
-ToTypeScriptD.Tests.JavascriptTests/specs/*.js
+src/ToTypeScriptD.Tests.JavascriptTests/js/default.js
+src/ToTypeScriptD.Tests.JavascriptTests/definitions.js
+src/ToTypeScriptD.Tests.JavascriptTests/specs/*.js
 
-SharedItems/VersionInfo.cs
+src/SharedItems/VersionInfo.cs
 
 *.js.map
 
