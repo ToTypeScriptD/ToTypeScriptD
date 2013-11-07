@@ -1,32 +1,24 @@
 ﻿declare module ToTypeScriptD.TestAssembly.CSharp.NamespaceSample.Sample.SubSample {
 
-    export class TestClassB {
-        static go(): void;
-        constructor();
+    export interface TestClassB {
     }
 
 }
 declare module ToTypeScriptD.TestAssembly.CSharp.NamespaceSample.Sample {
 
-    export class TestClassA {
-        static go(): void;
-        constructor();
+    export interface TestClassA {
     }
 
 }
 declare module ToTypeScriptD.TestAssembly.CSharp.NamespaceSample.Sample2 {
 
-    export class TestClassC {
-        static go(): void;
-        constructor();
+    export interface TestClassC {
     }
 
 }
 declare module ToTypeScriptD.TestAssembly.CSharp.NamespaceSample {
 
-    export class TestClass {
-        static go(): void;
-        constructor();
+    export interface TestClass {
     }
 
 }

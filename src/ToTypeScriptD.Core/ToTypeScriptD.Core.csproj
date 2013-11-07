@@ -47,6 +47,11 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config.cs" />
+    <Compile Include="DotNet\ClassWriter.cs" />
+    <Compile Include="DotNet\DotNetTypeWriterTypeSelector.cs" />
+    <Compile Include="DotNet\InterfaceWriter.cs" />
+    <Compile Include="DotNet\TypeWriterBase.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="IgnoreCaseStringEqualityComparer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,29 +68,31 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="StringBuilderTypeNotFoundErrorHandler.cs" />
-    <Compile Include="TypeWriters\ClassWriter.cs" />
+    <Compile Include="WinRT\ClassWriter.cs" />
     <Compile Include="TypeWriters\EnumWriter.cs" />
-    <Compile Include="TypeWriters\InterfaceWriter.cs" />
+    <Compile Include="WinRT\InterfaceWriter.cs" />
     <Compile Include="TypeWriters\ITypeWriter.cs" />
-    <Compile Include="TypeWriters\OutParameterReturnTypeWriter.cs" />
+    <Compile Include="TypeWriters\ITypeWriterTypeSelector.cs" />
+    <Compile Include="WinRT\OutParameterReturnTypeWriter.cs" />
     <Compile Include="TypeWriters\TypeCollection.cs" />
-    <Compile Include="TypeWriters\TypeWriterBase.cs" />
-    <Compile Include="TypeWriters\TypeWriterConfig.cs" />
+    <Compile Include="WinRT\TypeWriterBase.cs" />
     <Compile Include="TypeWriters\TypeWriterCollector.cs" />
+    <Compile Include="WinRT\WinRTTypeWriterTypeSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ToTypeScriptDSpecialTypes.d.ts" />
+    <Content Include="WinRT\ToTypeScriptDSpecialTypes.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

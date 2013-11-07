@@ -1,10 +1,6 @@
-﻿using Mono.Cecil;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using ToTypeScriptD.Core.TypeWriters;
 
-namespace ToTypeScriptD.Core.TypeWriters
+namespace ToTypeScriptD.Core.WinRT
 {
     public class ClassWriter : TypeWriterBase
     {

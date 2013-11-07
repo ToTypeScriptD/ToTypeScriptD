@@ -1,4 +1,5 @@
 ﻿using System;
+using ToTypeScriptD.Core;
 
 namespace ToTypeScriptD
 {
@@ -10,10 +11,14 @@ namespace ToTypeScriptD
             if (CommandLine.Parser.Default.ParseArgumentsStrict(args, options))
             {
                 bool skipPrintingHelp = false;
+                var config = new Config
+                {
+                    OutputType = options.OutputType
+                };
 
                 try
                 {
-                    skipPrintingHelp = ToTypeScriptD.Render.AllAssemblies(options.Files, options.IncludeSpecialTypeDefinitions, Console.Out, new ConsoleErrorTypeNotFoundErrorHandler(), options.RegexFilter);
+                    skipPrintingHelp = ToTypeScriptD.Render.AllAssemblies(config, options.Files, options.IncludeSpecialTypeDefinitions, Console.Out, new ConsoleErrorTypeNotFoundErrorHandler(), options.RegexFilter);
                 }
                 catch (Exception ex)
                 {

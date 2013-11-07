@@ -1,6 +1,7 @@
 ﻿using CommandLine;
 using CommandLine.Text;
 using System.Collections.Generic;
+using ToTypeScriptD.Core;
 
 namespace ToTypeScriptD
 {
@@ -11,6 +12,9 @@ namespace ToTypeScriptD
 
         [Option('s', "specialTypes", HelpText = "Writes the ToTypeScriptD special types to standard out")]
         public bool IncludeSpecialTypeDefinitions { get; set; }
+
+        [Option('o', "outputType", Required = true, HelpText = "[WinRT | DotNet] - What .d.ts format would you like? EX: -o WinRT")]
+        public OutputType OutputType { get; set; }
 
         private string _regexFilter;
         [Option('r', "regexFilter", HelpText = "A .net regular expression that can be used to filter the FullName of types exported. Picture this taking the FullName of the TypeScript type and running it through the .Net Regex.IsMatch(name, pattern)")]

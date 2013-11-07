@@ -1,73 +1,47 @@
 ﻿declare module ToTypeScriptD.TestAssembly.CSharp {
 
-    export class CrazyAmountOfNestedClasses {
-        constructor();
+    export interface CrazyAmountOfNestedClasses {
     }
 
-    export class CrazyAmountOfNestedClasses_C1 {
-        constructor();
+    export interface CrazyAmountOfNestedClasses_C1 {
     }
 
-    export class CrazyAmountOfNestedClasses_C1_C2 {
-        constructor();
+    export interface CrazyAmountOfNestedClasses_C1_C2 {
     }
 
-    export class CrazyAmountOfNestedClasses_C1_C2_C3 {
-        constructor();
+    export interface CrazyAmountOfNestedClasses_C1_C2_C3 {
     }
 
-    export class CrazyAmountOfNestedClasses_C1_C2_C3_C4 {
-        constructor();
+    export interface CrazyAmountOfNestedClasses_C1_C2_C3_C4 {
     }
 
-    export class CrazyAmountOfNestedClasses_C1_C2_C3_C4_C5 {
-        constructor();
+    export interface CrazyAmountOfNestedClasses_C1_C2_C3_C4_C5 {
     }
 
-    export class CrazyAmountOfNestedClasses_C1_C2_C3_C4_C5_WAT {
-        static takesANestedParam(wat: ToTypeScriptD.TestAssembly.CSharp.CrazyAmountOfNestedClasses_C1_C2_C3_C4_C5_WAT): void;
-        constructor();
+    export interface CrazyAmountOfNestedClasses_C1_C2_C3_C4_C5_WAT {
     }
 
-    export class GenericClass<T> {
-        getItem(input: T): T;
-        constructor();
+    export interface GenericClass<T> {
     }
 
-    export class GenericClassIsGettingALittleCrazy<T extends ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterfaceButGeneric3<T>> {
-        constructor();
+    export interface GenericClassIsGettingALittleCrazy<T extends ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterfaceButGeneric3<T>> {
     }
 
-    export class GenericClassWith<T, K> {
-        getSomething(inT: T, inK: K): GenericClassWith_getSomething_OUT<T, K>;
-        constructor();
+    export interface GenericClassWith<T, K> {
     }
 
-    interface GenericClassWith_getSomething_OUT<T, K> {
-        outParam1: ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterface3<T,K>;
+    export interface GenericClassWithConstraint<T extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface> {
     }
 
-    export class GenericClassWithConstraint<T extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface> {
-        getItem(item: T): T;
-        constructor();
+    export interface GenericClassWithMultipleTypesConstrained<T extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface, K extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface> {
     }
 
-    export class GenericClassWithMultipleTypesConstrained<T extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface, K extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface> {
-        getItemK(item: K): K;
-        getItemT(item: T): T;
-        constructor();
-    }
-
-    export class GenericClassWithOneTypeConstraintMultipleTimes<T extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface /*TODO:, ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterface1, ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterface2, ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterface3<T,K>*/, K> {
-        getItemT(item: T): T;
-        constructor();
+    export interface GenericClassWithOneTypeConstraintMultipleTimes<T extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface /*TODO:, ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterface1, ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterface2, ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterface3<T,K>*/, K> {
     }
 
     export interface IAmAnInterface {
         someProperty: string;
         nullableProperty?: number;
-        getNothing(): void;
-        loadAsync(): System.Threading.Tasks.Task<number>;
     }
 
     export interface IAmAnotherInterface1 {
@@ -88,14 +62,9 @@
     export interface IAmAnotherInterfaceButGeneric3<T> extends ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterfaceButGeneric1<T>, ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterfaceButGeneric2<T> {
     }
 
-    export class SomeClass implements ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface {
+    export interface SomeClass extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface {
         someProperty: string;
         nullableProperty?: number;
-        getNothing(): void;
-        loadAsync(): System.Threading.Tasks.Task<number>;
-        methodWithNullableParameter(p1?: number): void;
-        methodThatTakesNestedValueTypeAsNullable(nullableEnum?: ToTypeScriptD.TestAssembly.CSharp.SomeClass_NestedEnumValueType): void;
-        constructor();
     }
 
     enum SomeClass_NestedEnumValueType {
@@ -107,33 +76,25 @@
 }
 declare module ToTypeScriptD.TestAssembly.CSharp.NamespaceSample.Sample.SubSample {
 
-    export class TestClassB {
-        static go(): void;
-        constructor();
+    export interface TestClassB {
     }
 
 }
 declare module ToTypeScriptD.TestAssembly.CSharp.NamespaceSample.Sample {
 
-    export class TestClassA {
-        static go(): void;
-        constructor();
+    export interface TestClassA {
     }
 
 }
 declare module ToTypeScriptD.TestAssembly.CSharp.NamespaceSample.Sample2 {
 
-    export class TestClassC {
-        static go(): void;
-        constructor();
+    export interface TestClassC {
     }
 
 }
 declare module ToTypeScriptD.TestAssembly.CSharp.NamespaceSample {
 
-    export class TestClass {
-        static go(): void;
-        constructor();
+    export interface TestClass {
     }
 
 }

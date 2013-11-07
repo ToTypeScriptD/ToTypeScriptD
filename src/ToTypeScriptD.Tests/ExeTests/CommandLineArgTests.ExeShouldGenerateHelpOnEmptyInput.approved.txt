@@ -3,7 +3,14 @@ Copyright (C) 2013 Jason Jarrett
  
 Usage: TypeScriptD.exe [--specialTypes] [<file1.winmd> ...<fileN.winmd>]
 
+ERROR(S):
+  -o/--outputType required option is missing.
+
+
   -s, --specialTypes    Writes the ToTypeScriptD special types to standard out
+
+  -o, --outputType      Required. [WinRT | DotNet] - What .d.ts format would 
+                        you like? EX: -o WinRT
 
   -r, --regexFilter     A .net regular expression that can be used to filter 
                         the FullName of types exported. Picture this taking the
@@ -11,5 +18,4 @@ Usage: TypeScriptD.exe [--specialTypes] [<file1.winmd> ...<fileN.winmd>]
                         the .Net Regex.IsMatch(name, pattern)
 
   --help                Display this help screen.
-
 

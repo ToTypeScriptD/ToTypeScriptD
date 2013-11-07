@@ -12,6 +12,11 @@ namespace ToTypeScriptD.Core.TypeWriters
         HashSet<string> typesRendered = new HashSet<string>();
         HashSet<AssemblyDefinition> assemblies = new HashSet<AssemblyDefinition>();
 
+        public TypeCollection(ITypeWriterTypeSelector typeSelector)
+        {
+            this.TypeSelector = typeSelector;
+        }
+
         public bool Contains(string name)
         {
             return types.ContainsKey(name);
@@ -45,7 +50,6 @@ namespace ToTypeScriptD.Core.TypeWriters
                         select namespaces;
 
             var sb = new StringBuilder();
-            var Indent = TypeWriterConfig.Instance.Indentation;
             foreach (var ns in items)
             {
                 sb.AppendFormat("declare module {0} {{", ns.Key);
@@ -79,6 +83,8 @@ namespace ToTypeScriptD.Core.TypeWriters
             var foundType = item.Module.Types.SingleOrDefault(w => w.FullName == lookupName);
             return foundType;
         }
+
+        public ITypeWriterTypeSelector TypeSelector { get; private set; }
     }
 
 }

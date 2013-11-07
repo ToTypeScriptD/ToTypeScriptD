@@ -16,10 +16,12 @@ namespace ToTypeScriptD.Core.TypeWriters
     public class TypeWriterCollector
     {
         private ITypeNotFoundErrorHandler typeNotFoundErrorHandler;
+        private ITypeWriterTypeSelector typeSelector;
 
-        public TypeWriterCollector(ITypeNotFoundErrorHandler typeNotFoundErrorHandler)
+        public TypeWriterCollector(ITypeNotFoundErrorHandler typeNotFoundErrorHandler, ITypeWriterTypeSelector typeSelector)
         {
             this.typeNotFoundErrorHandler = typeNotFoundErrorHandler;
+            this.typeSelector = typeSelector;
         }
         public void Collect(IEnumerable<Mono.Cecil.TypeDefinition> tds, TypeCollection typeCollection)
         {
@@ -43,7 +45,7 @@ namespace ToTypeScriptD.Core.TypeWriters
 
             StringBuilder sb = new StringBuilder();
             var indentCount = 0;
-            ITypeWriter typeWriter = PickTypeWriter(td, indentCount, typeCollection);
+            ITypeWriter typeWriter = typeSelector.PickTypeWriter(td, indentCount, typeCollection);
 
             td.Interfaces.Each(item =>
             {
@@ -56,33 +58,12 @@ namespace ToTypeScriptD.Core.TypeWriters
                     return;
                 }
 
-                var itemWriter = new InterfaceWriter(foundType, indentCount, typeCollection);
+                var itemWriter = typeSelector.PickTypeWriter(foundType, indentCount, typeCollection);
                 typeCollection.Add(foundType.Namespace, foundType.Name, itemWriter);
 
             });
 
             typeCollection.Add(td.Namespace, td.Name, typeWriter);
         }
-
-        public static ITypeWriter PickTypeWriter(TypeDefinition td, int indentCount, TypeCollection typeCollection)
-        {
-            if (td.IsEnum)
-            {
-                return new EnumWriter(td, indentCount, typeCollection);
-            }
-
-            if (td.IsInterface)
-            {
-                return new InterfaceWriter(td, indentCount, typeCollection);
-            }
-
-            if (td.IsClass)
-            {
-                return new ClassWriter(td, indentCount, typeCollection);
-            }
-
-            throw new NotImplementedException("Could not get a type to generate for:" + td.FullName);
-        }
-
     }
 }

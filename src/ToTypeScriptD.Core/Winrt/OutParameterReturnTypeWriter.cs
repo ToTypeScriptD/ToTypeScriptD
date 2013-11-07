@@ -3,8 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ToTypeScriptD.Core.TypeWriters;
 
-namespace ToTypeScriptD.Core.TypeWriters
+namespace ToTypeScriptD.Core.WinRT
 {
     public class OutParameterReturnTypeWriter : ITypeWriter
     {
@@ -24,9 +25,10 @@ namespace ToTypeScriptD.Core.TypeWriters
             this.OutTypes = outTypes;
         }
 
+        // TODO: pull out of config
         public string IndentValue
         {
-            get { return TypeWriterConfig.Instance.Indentation.Dup(IndentCount); }
+            get { return "    ".Dup(IndentCount); }
         }
 
         public void Write(StringBuilder sb)

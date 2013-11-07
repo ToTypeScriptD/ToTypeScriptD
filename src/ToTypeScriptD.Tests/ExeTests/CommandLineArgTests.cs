@@ -22,7 +22,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldGenerateOutputForMultipleWinmdFiles()
         {
-            var result = Execute(@"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Networking.winmd");
+            var result = Execute(@"-o WinRT C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Networking.winmd");
 
             (result.StdOut.Length > 100).ShouldBeTrue(result.StdOut.Length + " should be greater than 100");
         }
@@ -30,7 +30,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void VerifyExeGeneratedOutputForMultipleWinmdFiles()
         {
-            var result = Execute(@"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.System.winmd");
+            var result = Execute(@"-o WinRT C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.System.winmd");
 
             result.StdOut.Verify();
         }
@@ -38,8 +38,8 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeDuplicateAssemblyShouldStillOnlyGenerateOne()
         {
-            var resultDup = Execute(@"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd");
-            var resultNonDup = Execute(@"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd");
+            var resultDup = Execute(@"-o WinRT C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd");
+            var resultNonDup = Execute(@"-o WinRT C:\Windows\System32\WinMetadata\Windows.Foundation.winmd");
 
             // TODO: this test needs a good way to leverage the power of approvals diff capability (but it's not yet supported)
 
@@ -49,7 +49,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldBeAbleToGenerateSpecialTypes()
         {
-            var resultDup = Execute("--specialTypes");
+            var resultDup = Execute("-o WinRT --specialTypes");
 
             resultDup.Verify();
         }
@@ -57,7 +57,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldGiveHelpfulErrorWhenFilesNotFoundInUnknownDirectory()
         {
-            var resultDup = Execute(@"C:\TypeScriptD\TypeScriptD\TypeScriptD\Foo.dll C:\TypeScriptD\TypeScriptD\TypeScriptD\Foo.dll");
+            var resultDup = Execute(@"-o WinRT C:\TypeScriptD\TypeScriptD\TypeScriptD\Foo.dll C:\TypeScriptD\TypeScriptD\TypeScriptD\Foo.dll");
 
             resultDup.Verify();
         }
@@ -65,7 +65,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldGiveHelpfulErrorWhenFilesNotFound()
         {
-            var resultDup = Execute(@"C:\TypeScriptD_FileNotFound_ThisShouldNotExistOnYourSystem.dll");
+            var resultDup = Execute(@"-o WinRT C:\TypeScriptD_FileNotFound_ThisShouldNotExistOnYourSystem.dll");
 
             resultDup.Verify();
         }
@@ -73,7 +73,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldApplyRegexFilterOnTypes()
         {
-            var resultDup = Execute(@"..\..\..\bin\ToTypeScriptD.TestAssembly.CSharp.dll --regexFilter 'ToTypeScriptD.TestAssembly.CSharp.NamespaceSample'");
+            var resultDup = Execute(@"-o DotNet ..\..\..\bin\ToTypeScriptD.TestAssembly.CSharp.dll --regexFilter 'ToTypeScriptD.TestAssembly.CSharp.NamespaceSample'");
 
             resultDup.Verify();
         }

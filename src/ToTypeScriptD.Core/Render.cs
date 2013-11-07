@@ -8,12 +8,12 @@ namespace ToTypeScriptD
 {
     public class Render
     {
-        public static bool AllAssemblies(IEnumerable<string> assemblyPaths, bool includeSpecialTypes, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, string filterRegex)
+        public static bool AllAssemblies(Config config, IEnumerable<string> assemblyPaths, bool includeSpecialTypes, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, string filterRegex)
         {
             if (assemblyPaths == null)
                 assemblyPaths = new string[0];
 
-            var typeCollection = new TypeCollection();
+            var typeCollection = new TypeCollection(config.GetTypeWriterTypeSelector());
 
             var wroteAnyTypes = WriteSpecialTypes(includeSpecialTypes, w);
             wroteAnyTypes |= WriteFiles(assemblyPaths, w, typeNotFoundErrorHandler, typeCollection, filterRegex);
@@ -65,7 +65,7 @@ namespace ToTypeScriptD
 
             typeCollection.AddAssembly(assembly);
 
-            var typeWriterGenerator = new TypeWriterCollector(typeNotFoundErrorHandler);
+            var typeWriterGenerator = new TypeWriterCollector(typeNotFoundErrorHandler, typeCollection.TypeSelector);
             foreach (var item in assembly.MainModule.Types)
             {
                 typeWriterGenerator.Collect(item, typeCollection);

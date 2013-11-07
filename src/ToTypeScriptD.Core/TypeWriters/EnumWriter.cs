@@ -4,13 +4,15 @@ using System.Text;
 
 namespace ToTypeScriptD.Core.TypeWriters
 {
-    public class EnumWriter : TypeWriterBase
+    public class EnumWriter : ITypeWriter
     {
         public EnumWriter(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection)
-            : base(typeDefinition, indentCount, typeCollection)
-        { }
+        {
+            this.TypeDefinition = typeDefinition;
+            this.IndentCount = indentCount;
+        }
 
-        public override void Write(StringBuilder sb)
+        public void Write(StringBuilder sb)
         {
             ++IndentCount;
             sb.AppendLine(IndentValue + "enum " + TypeDefinition.ToTypeScriptItemName() + " {");
@@ -24,5 +26,20 @@ namespace ToTypeScriptD.Core.TypeWriters
             --IndentCount;
             sb.AppendLine(IndentValue + "}");
         }
+
+        // TODO: pull indentation type out of config
+        public string IndentValue
+        {
+            get { return "    ".Dup(IndentCount); }
+        }
+
+        public string FullName
+        {
+            get { return TypeDefinition.Namespace + "." + TypeDefinition.ToTypeScriptItemName(); }
+        }
+
+        public TypeDefinition TypeDefinition { get; set; }
+
+        public int IndentCount { get; set; }
     }
 }

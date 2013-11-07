@@ -3,21 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ToTypeScriptD.Core.TypeWriters;
 
-namespace ToTypeScriptD.Core.TypeWriters
+namespace ToTypeScriptD.Core.WinRT
 {
     public abstract class TypeWriterBase : ITypeWriter
     {
         public TypeDefinition TypeDefinition { get; set; }
         public int IndentCount { get; set; }
         public TypeCollection TypeCollection { get; set; }
-
-        public static TypeWriterConfig config;
-        public static TypeWriterConfig Config
-        {
-            get { return config ?? TypeWriterConfig.Instance; }
-            set { config = value; }
-        }
 
         public TypeWriterBase(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection)
         {
@@ -33,9 +27,10 @@ namespace ToTypeScriptD.Core.TypeWriters
         public abstract void Write(StringBuilder sb);
 
 
+        // TODO: pull tab out of Config
         public string IndentValue
         {
-            get { return Config.Indentation.Dup(IndentCount); }
+            get { return "    ".Dup(IndentCount); }
         }
 
         public void Indent(StringBuilder sb)
@@ -108,7 +103,7 @@ namespace ToTypeScriptD.Core.TypeWriters
         {
             TypeDefinition.NestedTypes.Where(type => type.IsNestedPublic).Each(type =>
             {
-                var typeWriter = TypeWriterCollector.PickTypeWriter(type, IndentCount - 1, TypeCollection);
+                var typeWriter = TypeCollection.TypeSelector.PickTypeWriter(type, IndentCount - 1, TypeCollection);
                 sb.AppendLine();
                 typeWriter.Write(sb);
             });
