@@ -122,11 +122,6 @@ namespace ToTypeScriptD
             return string.Format(System.Globalization.CultureInfo.CurrentCulture, format, args);
         }
 
-        public static string StripOutParamSymbol(this string value)
-        {
-            return value.Replace("&", "");
-        }
-
         public static string StripGenericTick(this string value)
         {
             4.Times().Each(x =>

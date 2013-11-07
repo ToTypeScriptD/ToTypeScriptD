@@ -139,14 +139,7 @@ namespace ToTypeScriptD.Core.DotNet
             }
 
             fromName = fromName
-                .StripGenericTick()
-                .StripOutParamSymbol();
-
-            // hack the async type with a custom promise definition
-            if (fromName.StartsWith("Windows.Foundation.IAsyncOperation<"))
-            {
-                fromName = fromName.Replace("Windows.Foundation.IAsyncOperation<", "ToTypeScriptD.WinRT.IPromise<");
-            }
+                .StripGenericTick();
 
             // To lazy to figure out the Mono.Cecil way (or if there is a way), but do 
             // some string search/replace on types for example:
@@ -174,14 +167,6 @@ namespace ToTypeScriptD.Core.DotNet
 
             return Char.ToLowerInvariant(name[0]) + name.Substring(1);
         }
-        public static string StripOutParamSymbol(this string value)
-        {
-            return value.Replace("&", "");
-        }
 
-        public static void NewLine(this System.IO.TextWriter textWriter)
-        {
-            textWriter.WriteLine("");
-        }
     }
 }
