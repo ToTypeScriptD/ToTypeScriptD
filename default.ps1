@@ -2,7 +2,7 @@ properties {
     $msbuildConfiguration = "Debug"
     $msbuildPlatform = "Any CPU"
     $buildFolder = "src\bin"
-    $packageFolder = "src\$buildFolder\ToTypeScriptD"
+    $packageFolder = "$buildFolder\ToTypeScriptD"
     $versionMajorMinor = "0.1"
 }
 
@@ -46,7 +46,7 @@ task Package -depends Test, Compile {
     #Zip-Folder "$buildFolder\ToTypeScriptD" ((pwd).Path + "\bin\ToTypeScriptD.$version.zip")
 
     $nuspecFile = "$buildFolder\ToTypeScriptD.nuspec";
-    cp .\chocolatey\ToTypeScriptD.nuspec $nuspecFile
+    cp src\chocolatey\ToTypeScriptD.nuspec $nuspecFile
 
     [xml](cat $nuspecFile)
     $nuspec = [xml](cat $nuspecFile)
