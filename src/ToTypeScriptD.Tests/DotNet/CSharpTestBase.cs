@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace ToTypeScriptD.Tests
+namespace ToTypeScriptD.Tests.DotNet
 {
     public class CSharpTestBase
     {

@@ -30,10 +30,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7F113C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{A17DA2E2-D45B-4179-A1EA-62C2A7A46201}"
 	ProjectSection(SolutionItems) = preProject
-		CONTRIBUTING.md = CONTRIBUTING.md
+		..\CONTRIBUTING.md = ..\CONTRIBUTING.md
+		..\default.ps1 = ..\default.ps1
 		metroPS.ps1 = metroPS.ps1
-		notes.md = notes.md
-		readme.md = readme.md
+		..\notes.md = ..\notes.md
+		..\readme.md = ..\readme.md
 		chocolatey\ToTypeScriptD.nuspec = chocolatey\ToTypeScriptD.nuspec
 	EndProjectSection
 EndProject

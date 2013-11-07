@@ -9,7 +9,7 @@ using Xunit;
 namespace ToTypeScriptD.Tests
 {
 
-    public class Spike : WinmdTestBase
+    public class Spike
     {
         [Fact]
         public void SpikeIt()

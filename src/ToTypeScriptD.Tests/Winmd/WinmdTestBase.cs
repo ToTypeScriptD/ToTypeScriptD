@@ -1,5 +1,5 @@
 ﻿
-namespace ToTypeScriptD.Tests
+namespace ToTypeScriptD.Tests.Winmd
 {
     public class WinmdTestBase
     {

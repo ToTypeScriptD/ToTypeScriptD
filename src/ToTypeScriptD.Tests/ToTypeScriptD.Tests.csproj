@@ -60,8 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CSharpTestBase.cs" />
-    <Compile Include="CSharpTypeTests.cs" />
+    <Compile Include="DotNet\CSharpTestBase.cs" />
+    <Compile Include="DotNet\CSharpTypeTests.cs" />
     <Compile Include="ExeTests\CommandLineArgTests.cs" />
     <Compile Include="ExeTests\ExeProcessResult.cs" />
     <Compile Include="ExeTests\ExeTestBase.cs" />
@@ -72,8 +72,8 @@
       <Link>Properties\AssemblyInfo.Common.cs</Link>
     </Compile>
     <Compile Include="TestAssembly.cs" />
-    <Compile Include="WinmdTestBase.cs" />
-    <Compile Include="WinmdTypeTests.cs" />
+    <Compile Include="Winmd\WinmdTestBase.cs" />
+    <Compile Include="Winmd\WinmdTypeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

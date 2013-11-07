@@ -2,7 +2,7 @@
 using Mono.Cecil;
 using Xunit;
 
-namespace ToTypeScriptD.Tests
+namespace ToTypeScriptD.Tests.Winmd
 {
 
     public class WinmdTypeTests : WinmdTestBase
