@@ -1,9 +1,9 @@
 ﻿using System;
 using ToTypeScriptD.Core.TypeWriters;
 
-namespace ToTypeScriptD.Core.WinRT
+namespace ToTypeScriptD.Core.WinMD
 {
-    public class WinRTTypeWriterTypeSelector : ITypeWriterTypeSelector
+    public class WinMDTypeWriterTypeSelector : ITypeWriterTypeSelector
     {
         public ITypeWriter PickTypeWriter(Mono.Cecil.TypeDefinition td, int indentCount, TypeCollection typeCollection)
         {

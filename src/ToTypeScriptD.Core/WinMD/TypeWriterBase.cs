@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ToTypeScriptD.Core.TypeWriters;
+using ToTypeScriptD.Core.WinMD;
 
-namespace ToTypeScriptD.Core.WinRT
+namespace ToTypeScriptD.Core.WinMD
 {
     public abstract class TypeWriterBase : ITypeWriter
     {
@@ -152,10 +153,9 @@ namespace ToTypeScriptD.Core.WinRT
                 method.Parameters.Where(w => w.IsOut).Each(e => outTypes.Add(e));
                 method.Parameters.Where(w => !w.IsOut).For((parameter, i, isLast) =>
                 {
-                    methodSb.AppendFormat("{0}{1}{2}: {3}{4}",
+                    methodSb.AppendFormat("{0}{1}: {2}{3}",
                         (i == 0 ? "" : " "),                            // spacer
                         parameter.Name,                                 // argument name
-                        parameter.ParameterType.ToTypeScriptNullable(), // nullable
                         parameter.ParameterType.ToTypeScriptType(),     // type
                         (isLast ? "" : ","));                           // last one gets a comma
                 });
@@ -196,7 +196,7 @@ namespace ToTypeScriptD.Core.WinRT
             TypeDefinition.Properties.Each(prop =>
             {
                 var propName = prop.Name.ToTypeScriptName();
-                Indent(sb); Indent(sb); sb.AppendFormat("{0}{1}: {2};", propName, prop.PropertyType.ToTypeScriptNullable(), prop.PropertyType.ToTypeScriptType());
+                Indent(sb); Indent(sb); sb.AppendFormat("{0}: {1};", propName, prop.PropertyType.ToTypeScriptType());
                 sb.AppendLine();
             });
         }

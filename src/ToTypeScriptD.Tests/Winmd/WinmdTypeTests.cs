@@ -43,7 +43,7 @@ namespace ToTypeScriptD.Tests.Winmd
         {
             var file = base.NativeAssembly.ComponentPath;
             var errors = new StringBuilderTypeNotFoundErrorHandler();
-            var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(new ToTypeScriptD.Core.WinRT.WinRTTypeWriterTypeSelector());
+            var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(new ToTypeScriptD.Core.WinMD.WinMDTypeWriterTypeSelector());
             var result = ToTypeScriptD.Render.FullAssembly(file, errors, typeCollection, string.Empty);
             Approvals.Verify(errors + result);
         }
@@ -74,7 +74,7 @@ namespace ToTypeScriptD.Tests.Winmd
         {
             var file = @"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd";
             var errors = new StringBuilderTypeNotFoundErrorHandler();
-            var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(new ToTypeScriptD.Core.WinRT.WinRTTypeWriterTypeSelector());
+            var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(new ToTypeScriptD.Core.WinMD.WinMDTypeWriterTypeSelector());
             var result = ToTypeScriptD.Render.FullAssembly(file, errors, typeCollection, string.Empty);
             Approvals.Verify(errors + result);
         }

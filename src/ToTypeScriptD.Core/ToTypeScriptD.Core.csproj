@@ -50,6 +50,7 @@
     <Compile Include="Config.cs" />
     <Compile Include="DotNet\ClassWriter.cs" />
     <Compile Include="DotNet\DotNetTypeWriterTypeSelector.cs" />
+    <Compile Include="DotNet\DotNetExtensions.cs" />
     <Compile Include="DotNet\InterfaceWriter.cs" />
     <Compile Include="DotNet\TypeWriterBase.cs" />
     <Compile Include="Extensions\Extensions.cs" />
@@ -68,22 +69,23 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="StringBuilderTypeNotFoundErrorHandler.cs" />
-    <Compile Include="WinRT\ClassWriter.cs" />
+    <Compile Include="WinMD\ClassWriter.cs" />
     <Compile Include="TypeWriters\EnumWriter.cs" />
-    <Compile Include="WinRT\InterfaceWriter.cs" />
+    <Compile Include="WinMD\WinMDExtensions.cs" />
+    <Compile Include="WinMD\InterfaceWriter.cs" />
     <Compile Include="TypeWriters\ITypeWriter.cs" />
     <Compile Include="TypeWriters\ITypeWriterTypeSelector.cs" />
-    <Compile Include="WinRT\OutParameterReturnTypeWriter.cs" />
+    <Compile Include="WinMD\OutParameterReturnTypeWriter.cs" />
     <Compile Include="TypeWriters\TypeCollection.cs" />
-    <Compile Include="WinRT\TypeWriterBase.cs" />
+    <Compile Include="WinMD\TypeWriterBase.cs" />
     <Compile Include="TypeWriters\TypeWriterCollector.cs" />
-    <Compile Include="WinRT\WinRTTypeWriterTypeSelector.cs" />
+    <Compile Include="WinMD\WinMDTypeWriterTypeSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="WinRT\ToTypeScriptDSpecialTypes.d.ts" />
+    <Content Include="WinMD\ToTypeScriptDSpecialTypes.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources.resx">

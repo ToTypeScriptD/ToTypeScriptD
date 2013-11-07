@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using ToTypeScriptD.Core.TypeWriters;
-using ToTypeScriptD.Core.WinRT;
+using ToTypeScriptD.Core.WinMD;
 using Xunit;
 
 namespace ToTypeScriptD.Tests
@@ -29,7 +29,7 @@ namespace ToTypeScriptD.Tests
 
         public static string ToTypeScript(this IEnumerable<TypeDefinition> value, string filterRegex = null)
         {
-            var typeCollection = new TypeCollection(new WinRTTypeWriterTypeSelector());
+            var typeCollection = new TypeCollection(new WinMDTypeWriterTypeSelector());
             var errors = new StringBuilderTypeNotFoundErrorHandler();
             new TypeWriterCollector(errors, typeCollection.TypeSelector)
                 .Collect(value, typeCollection);
@@ -50,7 +50,7 @@ namespace ToTypeScriptD.Tests
         public static void DumpAndVerify(this string path)
         {
             var errors = new StringBuilderTypeNotFoundErrorHandler();
-            var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(new ToTypeScriptD.Core.WinRT.WinRTTypeWriterTypeSelector());
+            var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(new ToTypeScriptD.Core.WinMD.WinMDTypeWriterTypeSelector());
             var result = ToTypeScriptD.Render.FullAssembly(path, errors, typeCollection, string.Empty);
             Approvals.Verify(errors + result);
         }

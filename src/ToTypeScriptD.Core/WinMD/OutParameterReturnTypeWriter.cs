@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ToTypeScriptD.Core.TypeWriters;
+using ToTypeScriptD.Core.WinMD;
 
-namespace ToTypeScriptD.Core.WinRT
+namespace ToTypeScriptD.Core.WinMD
 {
     public class OutParameterReturnTypeWriter : ITypeWriter
     {

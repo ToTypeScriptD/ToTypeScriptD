@@ -11,7 +11,7 @@ namespace ToTypeScriptD.Core
             {
                 return new DotNet.DotNetTypeWriterTypeSelector();
             }
-            return new WinRT.WinRTTypeWriterTypeSelector();
+            return new WinMD.WinMDTypeWriterTypeSelector();
         }
     }
 

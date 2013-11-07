@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using ToTypeScriptD.Core.TypeWriters;
 
-namespace ToTypeScriptD.Core.WinRT
+namespace ToTypeScriptD.Core.WinMD
 {
     public class InterfaceWriter : TypeWriterBase
     {
