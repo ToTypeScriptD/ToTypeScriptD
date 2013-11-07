@@ -22,6 +22,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToTypeScriptD.TestAssembly.CSharp", "ToTypeScriptD.TestAssembly.CSharp\ToTypeScriptD.TestAssembly.CSharp.csproj", "{C7F85246-C5D8-44B0-A125-E526E24F900B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedItems", "SharedItems", "{A9C25E8C-8B6E-44E2-932B-A95F7EF232A9}"
+	ProjectSection(SolutionItems) = preProject
+		SharedItems\AssemblyInfo.Common.cs = SharedItems\AssemblyInfo.Common.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7F113CB2-67B5-48D6-A824-B6F75B8AF3A7}"
 	ProjectSection(SolutionItems) = preProject
