@@ -214,16 +214,18 @@ namespace ToTypeScriptD.Core.WinMD
 
         private void WriteEvents(StringBuilder sb)
         {
-            // TODO: get specific types of EventListener types?
             if (TypeDefinition.HasEvents)
             {
-                Indent(sb); Indent(sb); sb.AppendLine("addEventListener(type: string, listener: EventListener): void;");
-                Indent(sb); Indent(sb); sb.AppendLine("removeEventListener(type: string, listener: EventListener): void;");
-
                 TypeDefinition.Events.For((item, i, isLast) =>
                 {
-                    // TODO: events with multiple return types???
-                    Indent(sb); Indent(sb); sb.AppendLine("on" + item.Name.ToLower() + "(ev: any);");
+                    var eventListenerType = item.EventType.ToTypeScriptType();
+                    Indent(sb); Indent(sb); sb.AppendFormat("addEventListener(eventName: string, listener: {0}): void;", eventListenerType);
+                    sb.AppendLine();
+                    Indent(sb); Indent(sb); sb.AppendFormat("removeEventListener(eventName: string, listener: {0}): void;", eventListenerType);
+                    sb.AppendLine();
+
+                    Indent(sb); Indent(sb); sb.AppendFormat("on{0}: (ev: {1}) => void;", item.Name.ToLower(), eventListenerType);
+                    sb.AppendLine();
                 });
             }
         }

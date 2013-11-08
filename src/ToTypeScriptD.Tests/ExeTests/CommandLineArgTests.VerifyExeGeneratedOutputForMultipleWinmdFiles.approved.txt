@@ -1,33 +1,39 @@
 ﻿declare module Windows.Foundation {
 
-    export class AsyncActionCompletedHandler {
-        constructor(object: any, method: number);
-        invoke(asyncInfo: Windows.Foundation.IAsyncAction, asyncStatus: Windows.Foundation.AsyncStatus): void;
+    export interface AsyncActionCompletedHandler {
+        target: Windows.Foundation.IAsyncAction;
+        detail: any[];
+        type: string;
     }
 
-    export class AsyncActionProgressHandler<TProgress> {
-        constructor(object: any, method: number);
-        invoke(asyncInfo: Windows.Foundation.IAsyncActionWithProgress<TProgress>, progressInfo: TProgress): void;
+    export interface AsyncActionProgressHandler<TProgress> {
+        target: Windows.Foundation.IAsyncActionWithProgress<TProgress>;
+        detail: any[];
+        type: string;
     }
 
-    export class AsyncActionWithProgressCompletedHandler<TProgress> {
-        constructor(object: any, method: number);
-        invoke(asyncInfo: Windows.Foundation.IAsyncActionWithProgress<TProgress>, asyncStatus: Windows.Foundation.AsyncStatus): void;
+    export interface AsyncActionWithProgressCompletedHandler<TProgress> {
+        target: Windows.Foundation.IAsyncActionWithProgress<TProgress>;
+        detail: any[];
+        type: string;
     }
 
-    export class AsyncOperationCompletedHandler<TResult> {
-        constructor(object: any, method: number);
-        invoke(asyncInfo: ToTypeScriptD.WinRT.IPromise<TResult>, asyncStatus: Windows.Foundation.AsyncStatus): void;
+    export interface AsyncOperationCompletedHandler<TResult> {
+        target: ToTypeScriptD.WinRT.IPromise<TResult>;
+        detail: any[];
+        type: string;
     }
 
-    export class AsyncOperationProgressHandler<TResult, TProgress> {
-        constructor(object: any, method: number);
-        invoke(asyncInfo: Windows.Foundation.IAsyncOperationWithProgress<TResult,TProgress>, progressInfo: TProgress): void;
+    export interface AsyncOperationProgressHandler<TResult, TProgress> {
+        target: Windows.Foundation.IAsyncOperationWithProgress<TResult,TProgress>;
+        detail: any[];
+        type: string;
     }
 
-    export class AsyncOperationWithProgressCompletedHandler<TResult, TProgress> {
-        constructor(object: any, method: number);
-        invoke(asyncInfo: Windows.Foundation.IAsyncOperationWithProgress<TResult,TProgress>, asyncStatus: Windows.Foundation.AsyncStatus): void;
+    export interface AsyncOperationWithProgressCompletedHandler<TResult, TProgress> {
+        target: Windows.Foundation.IAsyncOperationWithProgress<TResult,TProgress>;
+        detail: any[];
+        type: string;
     }
 
     enum AsyncStatus {
@@ -41,9 +47,10 @@
         universalTime: number;
     }
 
-    export class EventHandler<T> {
-        constructor(object: any, method: number);
-        invoke(sender: any, args: T): void;
+    export interface EventHandler<T> {
+        target: any;
+        detail: any[];
+        type: string;
     }
 
     export class EventRegistrationToken {
@@ -359,9 +366,10 @@
         duration: number;
     }
 
-    export class TypedEventHandler<TSender, TResult> {
-        constructor(object: any, method: number);
-        invoke(sender: TSender, args: TResult): void;
+    export interface TypedEventHandler<TSender, TResult> {
+        target: TSender;
+        detail: any[];
+        type: string;
     }
 
     export class Uri implements Windows.Foundation.IUriRuntimeClass, Windows.Foundation.IUriRuntimeClassWithAbsoluteCanonicalUri {
@@ -469,17 +477,17 @@ declare module Windows.Foundation.Collections {
     }
 
     export interface IObservableMap<K, V> extends Windows.Foundation.Collections.IMap<K,V> {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onmapchanged(ev: any);
+        addEventListener(eventName: string, listener: Windows.Foundation.Collections.MapChangedEventHandler<K,V>): void;
+        removeEventListener(eventName: string, listener: Windows.Foundation.Collections.MapChangedEventHandler<K,V>): void;
+        onmapchanged: (ev: Windows.Foundation.Collections.MapChangedEventHandler<K,V>) => void;
         add_MapChanged(vhnd: Windows.Foundation.Collections.MapChangedEventHandler<K,V>): Windows.Foundation.EventRegistrationToken;
         remove_MapChanged(token: Windows.Foundation.EventRegistrationToken): void;
     }
 
     export interface IObservableVector<T> extends Windows.Foundation.Collections.IVector<T> {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onvectorchanged(ev: any);
+        addEventListener(eventName: string, listener: Windows.Foundation.Collections.VectorChangedEventHandler<T>): void;
+        removeEventListener(eventName: string, listener: Windows.Foundation.Collections.VectorChangedEventHandler<T>): void;
+        onvectorchanged: (ev: Windows.Foundation.Collections.VectorChangedEventHandler<T>) => void;
         add_VectorChanged(vhnd: Windows.Foundation.Collections.VectorChangedEventHandler<T>): Windows.Foundation.EventRegistrationToken;
         remove_VectorChanged(token: Windows.Foundation.EventRegistrationToken): void;
     }
@@ -534,15 +542,16 @@ declare module Windows.Foundation.Collections {
         items: T[];
     }
 
-    export class MapChangedEventHandler<K, V> {
-        constructor(object: any, method: number);
-        invoke(sender: Windows.Foundation.Collections.IObservableMap<K,V>, event: Windows.Foundation.Collections.IMapChangedEventArgs<K>): void;
+    export interface MapChangedEventHandler<K, V> {
+        target: Windows.Foundation.Collections.IObservableMap<K,V>;
+        detail: any[];
+        type: string;
     }
 
     export class PropertySet implements Windows.Foundation.Collections.IPropertySet, Windows.Foundation.Collections.IObservableMap<string,any>, Windows.Foundation.Collections.IMap<string,any>, Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<string,any>> {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onmapchanged(ev: any);
+        addEventListener(eventName: string, listener: Windows.Foundation.Collections.MapChangedEventHandler<string,any>): void;
+        removeEventListener(eventName: string, listener: Windows.Foundation.Collections.MapChangedEventHandler<string,any>): void;
+        onmapchanged: (ev: Windows.Foundation.Collections.MapChangedEventHandler<string,any>) => void;
         size: number;
         constructor();
         add_MapChanged(vhnd: Windows.Foundation.Collections.MapChangedEventHandler<string,any>): Windows.Foundation.EventRegistrationToken;
@@ -556,9 +565,10 @@ declare module Windows.Foundation.Collections {
         first(): Windows.Foundation.Collections.IIterator<Windows.Foundation.Collections.IKeyValuePair<string,any>>;
     }
 
-    export class VectorChangedEventHandler<T> {
-        constructor(object: any, method: number);
-        invoke(sender: Windows.Foundation.Collections.IObservableVector<T>, event: Windows.Foundation.Collections.IVectorChangedEventArgs): void;
+    export interface VectorChangedEventHandler<T> {
+        target: Windows.Foundation.Collections.IObservableVector<T>;
+        detail: any[];
+        type: string;
     }
 
 }
@@ -974,9 +984,10 @@ declare module Windows.System.Threading.Core {
         runAsync(): Windows.Foundation.IAsyncAction;
     }
 
-    export class SignalHandler {
-        constructor(object: any, method: number);
-        invoke(signalNotifier: Windows.System.Threading.Core.SignalNotifier, timedOut: boolean): void;
+    export interface SignalHandler {
+        target: Windows.System.Threading.Core.SignalNotifier;
+        detail: any[];
+        type: string;
     }
 
     export class SignalNotifier implements Windows.System.Threading.Core.ISignalNotifier {
@@ -1013,19 +1024,22 @@ declare module Windows.System.Threading {
         static createTimer(handler: Windows.System.Threading.TimerElapsedHandler, delay: Windows.Foundation.TimeSpan, destroyed: Windows.System.Threading.TimerDestroyedHandler): Windows.System.Threading.ThreadPoolTimer;
     }
 
-    export class TimerDestroyedHandler {
-        constructor(object: any, method: number);
-        invoke(timer: Windows.System.Threading.ThreadPoolTimer): void;
+    export interface TimerDestroyedHandler {
+        target: Windows.System.Threading.ThreadPoolTimer;
+        detail: any[];
+        type: string;
     }
 
-    export class TimerElapsedHandler {
-        constructor(object: any, method: number);
-        invoke(timer: Windows.System.Threading.ThreadPoolTimer): void;
+    export interface TimerElapsedHandler {
+        target: Windows.System.Threading.ThreadPoolTimer;
+        detail: any[];
+        type: string;
     }
 
-    export class WorkItemHandler {
-        constructor(object: any, method: number);
-        invoke(operation: Windows.Foundation.IAsyncAction): void;
+    export interface WorkItemHandler {
+        target: Windows.Foundation.IAsyncAction;
+        detail: any[];
+        type: string;
     }
 
     enum WorkItemOptions {
@@ -1074,9 +1088,9 @@ declare module Windows.System.UserProfile {
     }
 
     export class UserInformation {
-        addEventListener(type: string, listener: EventListener): void;
-        removeEventListener(type: string, listener: EventListener): void;
-        onaccountpicturechanged(ev: any);
+        addEventListener(eventName: string, listener: Windows.Foundation.EventHandler<any>): void;
+        removeEventListener(eventName: string, listener: Windows.Foundation.EventHandler<any>): void;
+        onaccountpicturechanged: (ev: Windows.Foundation.EventHandler<any>) => void;
         accountPictureChangeEnabled: boolean;
         nameAccessAllowed: boolean;
         static getAccountPicture(kind: Windows.System.UserProfile.AccountPictureKind): Windows.Storage.IStorageFile;

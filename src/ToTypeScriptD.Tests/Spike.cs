@@ -15,7 +15,7 @@ namespace ToTypeScriptD.Tests
         [Fact]
         public void SpikeIt()
         {
-            //@"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd".DumpAndVerify();
+            //@"C:\Windows\System32\WinMetadata\Windows.System.winmd".DumpAndVerify();
         }
     }
 

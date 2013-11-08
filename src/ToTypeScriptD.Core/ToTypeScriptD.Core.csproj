@@ -71,6 +71,7 @@
     <Compile Include="StringBuilderTypeNotFoundErrorHandler.cs" />
     <Compile Include="WinMD\ClassWriter.cs" />
     <Compile Include="TypeWriters\EnumWriter.cs" />
+    <Compile Include="WinMD\DelegateWriter.cs" />
     <Compile Include="WinMD\WinMDExtensions.cs" />
     <Compile Include="WinMD\InterfaceWriter.cs" />
     <Compile Include="TypeWriters\ITypeWriter.cs" />

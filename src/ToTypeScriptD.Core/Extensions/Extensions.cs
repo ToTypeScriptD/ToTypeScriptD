@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using ToTypeScriptD;
+using ToTypeScriptD.Core.WinMD;
 
 namespace ToTypeScriptD
 {
@@ -36,6 +38,7 @@ namespace ToTypeScriptD
             return false;
         }
 
+        // TODO: look to move this to the WinMDExtensions.cs
         public static string ToTypeScriptItemName(this Mono.Cecil.TypeReference typeReference)
         {
             // Nested classes don't report their namespace. So we have to walk up the 
@@ -54,7 +57,8 @@ namespace ToTypeScriptD
             // replace the nested class slash with an underscore
             mainTypeName = mainTypeName.Replace("/", "_").StripGenericTick();
 
-            return mainTypeName.StripGenericTick();
+            mainTypeName = mainTypeName.StripGenericTick();
+            return mainTypeName;
         }
 
         [System.Diagnostics.DebuggerHidden]
@@ -122,7 +126,7 @@ namespace ToTypeScriptD
                 }
             }
         }
-        public static string FormatWith(this string format, params object[] args)
+        [System.Diagnostics.DebuggerHidden]        public static string FormatWith(this string format, params object[] args)
         {
             return string.Format(System.Globalization.CultureInfo.CurrentCulture, format, args);
         }
@@ -139,6 +143,12 @@ namespace ToTypeScriptD
         public static void NewLine(this System.IO.TextWriter textWriter)
         {
             textWriter.WriteLine("");
+        }
+
+        public static void AppendFormatLine(this System.Text.StringBuilder sb, string format, params object[] args)
+        {
+            sb.AppendFormat(format, args);
+            sb.AppendLine();
         }
     }
 }
