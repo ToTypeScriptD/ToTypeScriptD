@@ -49,6 +49,11 @@
     };
 
     app.addEventListener("activated", function (args) {
+        args.detail.splashScreen.ondismissed = function () {
+            console.dir(arguments);
+            console.log('hi');
+        }
+
         if (args.detail.kind === activation.ActivationKind.launch) {
             args.setPromise(WinJS.UI.processAll().then(runSpecs));
         }
