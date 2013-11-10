@@ -14,6 +14,7 @@ namespace ToTypeScriptD
             return string.Join("", Enumerable.Range(0, count).Select(s => value));
         }
 
+        [System.Diagnostics.DebuggerHidden]
         public static string Join(this IEnumerable<string> items, string separator = "")
         {
             if (items == null) return string.Empty;
@@ -56,6 +57,7 @@ namespace ToTypeScriptD
             return mainTypeName.StripGenericTick();
         }
 
+        [System.Diagnostics.DebuggerHidden]
         public static HashSet<T> ToHashSet<T>(this IEnumerable<T> items)
         {
             var hashset = new HashSet<T>();
@@ -88,6 +90,7 @@ namespace ToTypeScriptD
         /// <typeparam name="T"></typeparam>
         /// <param name="items">Items to iterate</param>
         /// <param name="action">generic action with T1=Item, T2=i</param>
+        [System.Diagnostics.DebuggerHidden]
         public static void For<T>(this IEnumerable<T> items, Action<T, int, bool> action)
         {
             if (items != null)
@@ -102,11 +105,13 @@ namespace ToTypeScriptD
             }
         }
 
+        [System.Diagnostics.DebuggerHidden]
         public static IEnumerable<int> Times(this int value)
         {
             return Enumerable.Range(0, value);
         }
 
+        [System.Diagnostics.DebuggerHidden]
         public static void Each<T>(this IEnumerable<T> items, Action<T> action)
         {
             if (items != null)
