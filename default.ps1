@@ -12,6 +12,10 @@ task open {
     ii .\src\ToTypeScriptD.sln
 }
 
+task winmd {
+    ii C:\Windows\System32\WinMetadata
+}
+
 task Test -depends Compile { 
     exec {
         $xunitExe = (ls "src\packages\xunit.runners*\tools\xunit.console.clr4.exe" | select -Last 1)
