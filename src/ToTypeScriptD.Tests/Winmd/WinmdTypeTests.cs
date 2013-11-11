@@ -1,5 +1,6 @@
 ﻿using ApprovalTests;
 using Mono.Cecil;
+using System;
 using Xunit;
 
 namespace ToTypeScriptD.Tests.Winmd
@@ -94,12 +95,16 @@ namespace ToTypeScriptD.Tests.Winmd
         [Fact]
         public void AllWinmdFilesInWinMetadata()
         {
-
             var allFiles = System.IO.Directory.GetFiles(@"C:\Windows\System32\WinMetadata\", "*.winmd");
-
-            var result = allFiles;
-            Approvals.VerifyAll(result, "File: ");
-            //.Verify();
+            var sw = new System.IO.StringWriter();
+            var error = new StringBuilderTypeNotFoundErrorHandler();
+            var config = new ToTypeScriptD.Core.Config
+            {
+                OutputType = Core.OutputType.WinRT
+            };
+            ToTypeScriptD.Render.AllAssemblies(config, allFiles, false, sw, error, string.Empty);
+            var result = error.ToString() + Environment.NewLine + Environment.NewLine + sw.ToString();
+            Approvals.Verify(result);
         }
 
         // Some types in Windows.winmd are duplicated in Windows.Foundation.winmd (huh?)

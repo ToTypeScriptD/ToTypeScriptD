@@ -1,12 +1,12 @@
 ﻿declare module Windows.System.UserProfile {
 
     export class GlobalizationPreferences {
-        calendars: Windows.Foundation.Collections.IVectorView<string>;
-        clocks: Windows.Foundation.Collections.IVectorView<string>;
-        currencies: Windows.Foundation.Collections.IVectorView<string>;
-        homeGeographicRegion: string;
-        languages: Windows.Foundation.Collections.IVectorView<string>;
-        weekStartsOn: Windows.Globalization.DayOfWeek;
+        static calendars: Windows.Foundation.Collections.IVectorView<string>;
+        static clocks: Windows.Foundation.Collections.IVectorView<string>;
+        static currencies: Windows.Foundation.Collections.IVectorView<string>;
+        static homeGeographicRegion: string;
+        static languages: Windows.Foundation.Collections.IVectorView<string>;
+        static weekStartsOn: Windows.Globalization.DayOfWeek;
     }
 
 }

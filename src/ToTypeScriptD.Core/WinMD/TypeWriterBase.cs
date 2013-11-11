@@ -196,7 +196,9 @@ namespace ToTypeScriptD.Core.WinMD
             TypeDefinition.Properties.Each(prop =>
             {
                 var propName = prop.Name.ToTypeScriptName();
-                Indent(sb); Indent(sb); sb.AppendFormat("{0}: {1};", propName, prop.PropertyType.ToTypeScriptType());
+                var staticText = prop.GetMethod.IsStatic ? "static " : "";
+
+                Indent(sb); Indent(sb); sb.AppendFormat("{0}{1}: {2};", staticText, propName, prop.PropertyType.ToTypeScriptType());
                 sb.AppendLine();
             });
         }

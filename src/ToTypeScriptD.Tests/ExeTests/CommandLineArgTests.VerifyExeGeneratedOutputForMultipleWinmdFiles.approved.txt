@@ -962,7 +962,7 @@ declare module Windows.System.Profile {
 declare module Windows.System.RemoteDesktop {
 
     export class InteractiveSession {
-        isRemote: boolean;
+        static isRemote: boolean;
     }
 
 }
@@ -1063,16 +1063,16 @@ declare module Windows.System.UserProfile {
     }
 
     export class GlobalizationPreferences {
-        calendars: Windows.Foundation.Collections.IVectorView<string>;
-        clocks: Windows.Foundation.Collections.IVectorView<string>;
-        currencies: Windows.Foundation.Collections.IVectorView<string>;
-        homeGeographicRegion: string;
-        languages: Windows.Foundation.Collections.IVectorView<string>;
-        weekStartsOn: Windows.Globalization.DayOfWeek;
+        static calendars: Windows.Foundation.Collections.IVectorView<string>;
+        static clocks: Windows.Foundation.Collections.IVectorView<string>;
+        static currencies: Windows.Foundation.Collections.IVectorView<string>;
+        static homeGeographicRegion: string;
+        static languages: Windows.Foundation.Collections.IVectorView<string>;
+        static weekStartsOn: Windows.Globalization.DayOfWeek;
     }
 
     export class LockScreen {
-        originalImageFile: Windows.Foundation.Uri;
+        static originalImageFile: Windows.Foundation.Uri;
         static getImageStream(): Windows.Storage.Streams.IRandomAccessStream;
         static setImageFileAsync(value: Windows.Storage.IStorageFile): Windows.Foundation.IAsyncAction;
         static setImageStreamAsync(value: Windows.Storage.Streams.IRandomAccessStream): Windows.Foundation.IAsyncAction;
@@ -1091,8 +1091,8 @@ declare module Windows.System.UserProfile {
         addEventListener(eventName: string, listener: Windows.Foundation.EventHandler<any>): void;
         removeEventListener(eventName: string, listener: Windows.Foundation.EventHandler<any>): void;
         onaccountpicturechanged: (ev: Windows.Foundation.EventHandler<any>) => void;
-        accountPictureChangeEnabled: boolean;
-        nameAccessAllowed: boolean;
+        static accountPictureChangeEnabled: boolean;
+        static nameAccessAllowed: boolean;
         static getAccountPicture(kind: Windows.System.UserProfile.AccountPictureKind): Windows.Storage.IStorageFile;
         static setAccountPictureAsync(image: Windows.Storage.IStorageFile): ToTypeScriptD.WinRT.IPromise<Windows.System.UserProfile.SetAccountPictureResult>;
         static setAccountPicturesAsync(smallImage: Windows.Storage.IStorageFile, largeImage: Windows.Storage.IStorageFile, video: Windows.Storage.IStorageFile): ToTypeScriptD.WinRT.IPromise<Windows.System.UserProfile.SetAccountPictureResult>;
