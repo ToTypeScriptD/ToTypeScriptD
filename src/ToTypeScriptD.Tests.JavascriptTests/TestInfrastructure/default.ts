@@ -1,11 +1,5 @@
-﻿// ===============================================================================
-//  Microsoft patterns & practices
-//  Hilo JS Guidance
-// ===============================================================================
-//  Copyright © Microsoft Corporation.  All rights reserved.
-//  This code released under the terms of the 
-//  Microsoft patterns & practices license (http://hilojs.codeplex.com/license)
-// ===============================================================================
+﻿/// <reference path="../definitions.ts" />
+
 
 (function (globals) {
     "use strict";
@@ -15,16 +9,13 @@
 
     function runSpecs() {
         // configure the spec runner
-        var specRunner = new Test.SpecRunner({
+        var specRunner = new ToTypeScriptD.Tests.SpecRunner({
             src: "src",
             specs: "specs",
-            helpers: "helpers"
-        });
-
-        // Handle any errors in the execution that
-        // were not part of a failing test
-        specRunner.addEventListener("error", function (args) {
-            document.querySelector("body").innerText = args.detail;
+            helpers: "helpers",
+            errorHandler: args => {
+                (<any>document.querySelector("body")).innerText = args.detail;
+            }
         });
 
         // run the specs
@@ -42,7 +33,7 @@
         pre.innerText = message;
         errorsList.appendChild(pre);
 
-        document.querySelector("#errors").style.display = "block";
+        (<any>document.querySelector("#errors")).style.display = "block";
         // By returning true, we signal that the exception was handled,
         // preventing the application from being terminated
         return true;

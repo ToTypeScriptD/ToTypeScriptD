@@ -9,9 +9,10 @@ src/ToTypeScriptD.Tests.JavascriptTests/Scripts/typings/Windows.Foundation.d.ts
 src/ToTypeScriptD.Tests.JavascriptTests/specs/*.js
 src/ToTypeScriptD.Tests.JavascriptTests/AppPackages
 
-src/ToTypeScriptD.Tests.JavascriptTests/js/default.js
 src/ToTypeScriptD.Tests.JavascriptTests/definitions.js
 src/ToTypeScriptD.Tests.JavascriptTests/specs/*.js
+src/ToTypeScriptD.Tests.JavascriptTests/TestInfrastructure/default.js
+src/ToTypeScriptD.Tests.JavascriptTests/TestInfrastructure/specRunner.js
 
 src/SharedItems/VersionInfo.cs
 
