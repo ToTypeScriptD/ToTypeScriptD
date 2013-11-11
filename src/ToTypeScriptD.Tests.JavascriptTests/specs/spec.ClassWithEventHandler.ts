@@ -15,4 +15,12 @@ describe('ClassWithEventHandler', function () {
 
     });
 
+    //it("when calling doSomethingTyped it should raise the event.", function (done) {
+    //    var item = new ToTypeScriptD.Native.ClassWithEventHandler();
+    //    item.onsampletyped = function (ev) {
+    //        done();
+    //    };
+    //    item.doSomethingTyped();
+    //});
+
 });

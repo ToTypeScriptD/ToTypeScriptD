@@ -21,5 +21,5 @@ void ClassWithEventHandler::DoSomethingTyped()
 	//Do something....
 
 	// ...then fire the event:
-	SampleTyped(this, SampleEnum::B);
+	//SampleTyped(this, SampleEnum::B);
 }

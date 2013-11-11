@@ -9,9 +9,6 @@
         addEventListener(eventName: string, listener: ToTypeScriptD.Native.SomethingHappenedEventHandler): void;
         removeEventListener(eventName: string, listener: ToTypeScriptD.Native.SomethingHappenedEventHandler): void;
         onsomethinghappened: (ev: ToTypeScriptD.Native.SomethingHappenedEventHandler) => void;
-        addEventListener(eventName: string, listener: Windows.Foundation.TypedEventHandler<ToTypeScriptD.Native.ClassWithEventHandler,ToTypeScriptD.Native.SampleEnum>): void;
-        removeEventListener(eventName: string, listener: Windows.Foundation.TypedEventHandler<ToTypeScriptD.Native.ClassWithEventHandler,ToTypeScriptD.Native.SampleEnum>): void;
-        onsampletyped: (ev: Windows.Foundation.TypedEventHandler<ToTypeScriptD.Native.ClassWithEventHandler,ToTypeScriptD.Native.SampleEnum>) => void;
         constructor();
         doSomething(): void;
         doSomethingTyped(): void;

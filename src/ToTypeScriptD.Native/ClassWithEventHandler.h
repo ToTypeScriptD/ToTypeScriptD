@@ -13,9 +13,8 @@ namespace ToTypeScriptD
 		{
 		public:
 			ClassWithEventHandler();
-            event Windows::Foundation::TypedEventHandler<ClassWithEventHandler^, ToTypeScriptD::Native::SampleEnum>^ SampleTyped;
+            //event Windows::Foundation::TypedEventHandler<ClassWithEventHandler^, ToTypeScriptD::Native::SampleEnum>^ SampleTyped;
 			event SomethingHappenedEventHandler^ SomethingHappened;
-            //event Windows::Foundation::EventHandler<??> PlainOlEventHandler;
 			void DoSomething();
 			void DoSomethingTyped();
 
