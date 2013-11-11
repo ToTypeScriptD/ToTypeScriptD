@@ -8,6 +8,8 @@ describe('ClassWithEventHandler', function () {
         var item = new ToTypeScriptD.Native.ClassWithEventHandler();
 
         item.onsomethinghappened = function (ev) {
+            expect(ev.detail[0]).to.equal("Something happened.");
+            expect(ev.detail[1]).to.equal(10);
             done();
         };
 

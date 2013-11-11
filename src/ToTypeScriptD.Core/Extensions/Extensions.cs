@@ -126,7 +126,9 @@ namespace ToTypeScriptD
                 }
             }
         }
-        [System.Diagnostics.DebuggerHidden]        public static string FormatWith(this string format, params object[] args)
+
+        [System.Diagnostics.DebuggerHidden]
+        public static string FormatWith(this string format, params object[] args)
         {
             return string.Format(System.Globalization.CultureInfo.CurrentCulture, format, args);
         }
