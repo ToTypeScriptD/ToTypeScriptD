@@ -610,7 +610,7 @@ declare module Windows.Foundation.Metadata {
 
     export class ActivatableAttribute {
         constructor(version: number);
-        constructor(type: System.Type, version: number);
+        constructor(type: string /*System.Type?*/, version: number);
     }
 
     export class AllowMultipleAttribute {
@@ -637,7 +637,7 @@ declare module Windows.Foundation.Metadata {
     }
 
     export class ComposableAttribute {
-        constructor(type: System.Type, compositionType: Windows.Foundation.Metadata.CompositionType, version: number);
+        constructor(type: string /*System.Type?*/, compositionType: Windows.Foundation.Metadata.CompositionType, version: number);
     }
 
     enum CompositionType {
@@ -659,7 +659,7 @@ declare module Windows.Foundation.Metadata {
     }
 
     export class ExclusiveToAttribute {
-        constructor(typeName: System.Type);
+        constructor(typeName: string /*System.Type?*/);
     }
 
     enum GCPressureAmount {
@@ -718,7 +718,7 @@ declare module Windows.Foundation.Metadata {
     }
 
     export class StaticAttribute {
-        constructor(type: System.Type, version: number);
+        constructor(type: string /*System.Type?*/, version: number);
     }
 
     export class ThreadingAttribute {

@@ -12,6 +12,7 @@ namespace ToTypeScriptD.Core.WinMD
 
         static Dictionary<string, string> typeMap = new Dictionary<string, string>{
                 { "System.String",               "string"},
+                { "System.Type",                 "string /*System.Type?*/"},
                 { "System.Int16",                "number"},
                 { "System.Int32",                "number"},
                 { "System.Int64",                "number"},
