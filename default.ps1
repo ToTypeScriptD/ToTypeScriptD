@@ -77,7 +77,7 @@ task Publish -depends Package {
     $result = $Host.UI.PromptForChoice("","Are you sure you want to publish?", $choices, 0)
 
     if($result -eq 0) {
-        ls "src/*.nupkg" | %{
+        ls "*.nupkg" | %{
             ""
             Write-Host -Foreground Green "Publishing... $_"
             ""
