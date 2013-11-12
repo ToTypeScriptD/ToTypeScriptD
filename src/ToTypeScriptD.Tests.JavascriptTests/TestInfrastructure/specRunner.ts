@@ -2,7 +2,7 @@
 
 declare var mocha: any;
 
-module ToTypeScriptD.Tests {
+module Tests {
     export class SpecRunner {
 
         specFolder: string;

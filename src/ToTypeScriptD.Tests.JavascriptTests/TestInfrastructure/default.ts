@@ -9,7 +9,7 @@
 
     function runSpecs() {
         // configure the spec runner
-        var specRunner = new ToTypeScriptD.Tests.SpecRunner({
+        var specRunner = new Tests.SpecRunner({
             src: "src",
             specs: "specs",
             helpers: "helpers",
