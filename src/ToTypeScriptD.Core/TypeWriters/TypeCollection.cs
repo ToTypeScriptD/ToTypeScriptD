@@ -34,14 +34,6 @@ namespace ToTypeScriptD.Core.TypeWriters
             // HACK:
             // Types in here are causing some issues - removing for now - will work on later
             if (fullname.StartsWith("Windows.UI.Input.Inking") ||
-                fullname.StartsWith("Windows.Networking.Sockets.IMessageWebSocket") ||
-                fullname.StartsWith("Windows.Networking.Sockets.IStreamWebSocket") ||
-                fullname.StartsWith("Windows.Networking.Sockets.IWebSocket") ||
-                fullname.StartsWith("Windows.Networking.Sockets.MessageWebSocket") ||
-                fullname.StartsWith("Windows.Networking.Sockets.StreamWebSocket") ||
-                fullname.StartsWith("Windows.Networking.Sockets.MessageWebSocket") ||
-                fullname.StartsWith("Windows.Networking.Sockets.StreamWebSocket") ||
-                fullname.StartsWith("Windows.Networking.Sockets.WebSocket") ||
                 false)
             {
                 return;

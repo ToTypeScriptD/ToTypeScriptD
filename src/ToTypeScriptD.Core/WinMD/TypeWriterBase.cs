@@ -246,6 +246,15 @@ namespace ToTypeScriptD.Core.WinMD
                     methodSignatures.Add(renderedMethod);
             }
 
+            // HACK: This not a sustainable approach (but working for now)
+            //       The IWebSocket inherits from IClosable and the websocket's close 
+            //       conflicts with the closable close so we have to hack this method
+            //       onto the websocket interface.
+            if (TypeDefinition.FullName == "Windows.Networking.Sockets.IWebSocket")
+            {
+                methodSignatures.Add(IndentValue + IndentValue + "close(): void;" + Environment.NewLine);
+            }
+
             methodSignatures.Each(method => sb.Append(method));
 
             return extendedTypes;
