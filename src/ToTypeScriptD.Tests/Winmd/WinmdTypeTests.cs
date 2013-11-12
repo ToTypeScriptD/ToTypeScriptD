@@ -46,7 +46,7 @@ namespace ToTypeScriptD.Tests.Winmd
             var errors = new StringBuilderTypeNotFoundErrorHandler();
             var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(new ToTypeScriptD.Core.WinMD.WinMDTypeWriterTypeSelector());
             var result = ToTypeScriptD.Render.FullAssembly(file, errors, typeCollection, string.Empty);
-            Approvals.Verify(errors + result);
+            (errors + result).Verify();
         }
 
         [Fact]

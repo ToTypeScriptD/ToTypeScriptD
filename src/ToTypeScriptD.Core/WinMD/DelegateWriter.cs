@@ -34,21 +34,14 @@ namespace ToTypeScriptD.Core.WinMD
             // 'ctor' is at index 0
             // 'invoke' is at index 1
             var invokeMethod = TypeDefinition.Methods[1];
-            if (invokeMethod.Parameters.Count() > 0)
+            if (invokeMethod.Parameters.Any())
             {
                 var target = invokeMethod.Parameters[0];
                 Indent(sb); sb.AppendFormatLine("target: {0};", target.ParameterType.ToTypeScriptType());
-
-                //if (invokeMethod.Parameters.Count() > 1)
-                //{
-                //    var details = invokeMethod.Parameters[1];
-                //    Indent(sb); sb.AppendFormatLine("detail: {0};", details.ParameterType.ToTypeScriptType());
-                //}
             }
             else
             {
                 Indent(sb); sb.AppendFormatLine("target: any;");
-                //Indent(sb); sb.AppendFormatLine("detail: any;");
             }
             Indent(sb); sb.AppendFormatLine("detail: any[];");
 

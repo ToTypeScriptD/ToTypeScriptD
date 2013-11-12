@@ -42,6 +42,12 @@ namespace ToTypeScriptD.Tests
             return errorResult + Environment.NewLine + Environment.NewLine + result;
         }
 
+        public static void Verify(this string item)
+        {
+            item = System.Text.RegularExpressions.Regex.Replace(item, "__ToTypeScriptD_([0-9a-z]){32}:", "__ToTypeScriptD_{RANDOM_GUIDishString}:");
+            Approvals.Verify(item);
+        }
+
         public static void Verify<T>(this T item)
         {
             Approvals.Verify(item);

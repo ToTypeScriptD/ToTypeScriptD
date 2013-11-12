@@ -6,12 +6,19 @@
     }
 
     export class ClassWithEventHandler {
-        addEventListener(eventName: string, listener: ToTypeScriptD.Native.SomethingHappenedEventHandler): void;
-        removeEventListener(eventName: string, listener: ToTypeScriptD.Native.SomethingHappenedEventHandler): void;
-        onsomethinghappened: (ev: ToTypeScriptD.Native.SomethingHappenedEventHandler) => void;
         constructor();
         doSomething(): void;
         doSomethingTyped(): void;
+        // Events
+        addEventListener(eventName: string, listener: any): void;
+        removeEventListener(eventName: string, listener: any): void;
+        addEventListener(eventName: "somethinghappened", listener: ToTypeScriptD.Native.SomethingHappenedEventHandler): void;
+        removeEventListener(eventName: "somethinghappened", listener: ToTypeScriptD.Native.SomethingHappenedEventHandler): void;
+        onsomethinghappened: (ev: ToTypeScriptD.Native.SomethingHappenedEventHandler) => void;
+        addEventListener(eventName: "sampletyped", listener: Windows.Foundation.TypedEventHandler<ToTypeScriptD.Native.ClassWithEventHandler,ToTypeScriptD.Native.SampleEnum>): void;
+        removeEventListener(eventName: "sampletyped", listener: Windows.Foundation.TypedEventHandler<ToTypeScriptD.Native.ClassWithEventHandler,ToTypeScriptD.Native.SampleEnum>): void;
+        onsampletyped: (ev: Windows.Foundation.TypedEventHandler<ToTypeScriptD.Native.ClassWithEventHandler,ToTypeScriptD.Native.SampleEnum>) => void;
+
     }
 
     export class CXReturnTypes {

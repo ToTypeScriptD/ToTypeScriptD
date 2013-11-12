@@ -62,33 +62,33 @@
     }
 
     export interface IAsyncAction extends Windows.Foundation.IAsyncInfo {
-        completed: Windows.Foundation.AsyncActionCompletedHandler;
         getResults(): void;
+        completed: Windows.Foundation.AsyncActionCompletedHandler;
     }
 
     export interface IAsyncActionWithProgress<TProgress> extends Windows.Foundation.IAsyncInfo {
+        getResults(): void;
         progress: Windows.Foundation.AsyncActionProgressHandler<TProgress>;
         completed: Windows.Foundation.AsyncActionWithProgressCompletedHandler<TProgress>;
-        getResults(): void;
     }
 
     export interface IAsyncInfo {
+        cancel(): void;
+        close(): void;
         errorCode: Windows.Foundation.HResult;
         id: number;
         status: Windows.Foundation.AsyncStatus;
-        cancel(): void;
-        close(): void;
     }
 
     export interface IAsyncOperation<TResult> extends Windows.Foundation.IAsyncInfo {
-        completed: Windows.Foundation.AsyncOperationCompletedHandler<TResult>;
         getResults(): TResult;
+        completed: Windows.Foundation.AsyncOperationCompletedHandler<TResult>;
     }
 
     export interface IAsyncOperationWithProgress<TResult, TProgress> extends Windows.Foundation.IAsyncInfo {
+        getResults(): TResult;
         progress: Windows.Foundation.AsyncOperationProgressHandler<TResult,TProgress>;
         completed: Windows.Foundation.AsyncOperationWithProgressCompletedHandler<TResult,TProgress>;
-        getResults(): TResult;
     }
 
     export interface IClosable {
@@ -100,8 +100,6 @@
     }
 
     export interface IPropertyValue {
-        isNumericScalar: boolean;
-        type: Windows.Foundation.PropertyType;
         getUInt8(): number;
         getInt16(): number;
         getUInt16(): number;
@@ -139,6 +137,8 @@
         getPointArray(): IPropertyValue_getPointArray_OUT;
         getSizeArray(): IPropertyValue_getSizeArray_OUT;
         getRectArray(): IPropertyValue_getRectArray_OUT;
+        isNumericScalar: boolean;
+        type: Windows.Foundation.PropertyType;
     }
 
     interface IPropertyValue_getUInt8Array_OUT {
@@ -226,6 +226,8 @@
     }
 
     export interface IUriRuntimeClass {
+        equals(pUri: Windows.Foundation.Uri): boolean;
+        combineUri(relativeUri: string): Windows.Foundation.Uri;
         absoluteUri: string;
         displayUri: string;
         domain: string;
@@ -241,8 +243,6 @@
         schemeName: string;
         suspicious: boolean;
         userName: string;
-        equals(pUri: Windows.Foundation.Uri): boolean;
-        combineUri(relativeUri: string): Windows.Foundation.Uri;
     }
 
     export interface IUriRuntimeClassWithAbsoluteCanonicalUri {
@@ -373,6 +373,12 @@
     }
 
     export class Uri implements Windows.Foundation.IUriRuntimeClass, Windows.Foundation.IUriRuntimeClassWithAbsoluteCanonicalUri {
+        constructor(uri: string);
+        constructor(baseUri: string, relativeUri: string);
+        equals(pUri: Windows.Foundation.Uri): boolean;
+        combineUri(relativeUri: string): Windows.Foundation.Uri;
+        static unescapeComponent(toUnescape: string): string;
+        static escapeComponent(toEscape: string): string;
         absoluteUri: string;
         displayUri: string;
         domain: string;
@@ -390,22 +396,16 @@
         userName: string;
         absoluteCanonicalUri: string;
         displayIri: string;
-        constructor(uri: string);
-        constructor(baseUri: string, relativeUri: string);
-        equals(pUri: Windows.Foundation.Uri): boolean;
-        combineUri(relativeUri: string): Windows.Foundation.Uri;
-        static unescapeComponent(toUnescape: string): string;
-        static escapeComponent(toEscape: string): string;
     }
 
     export class WwwFormUrlDecoder implements Windows.Foundation.IWwwFormUrlDecoderRuntimeClass, Windows.Foundation.Collections.IIterable<Windows.Foundation.IWwwFormUrlDecoderEntry>, Windows.Foundation.Collections.IVectorView<Windows.Foundation.IWwwFormUrlDecoderEntry> {
-        size: number;
         constructor(query: string);
         getFirstValueByName(name: string): string;
         first(): Windows.Foundation.Collections.IIterator<Windows.Foundation.IWwwFormUrlDecoderEntry>;
         getAt(index: number): Windows.Foundation.IWwwFormUrlDecoderEntry;
         indexOf(value: Windows.Foundation.IWwwFormUrlDecoderEntry): WwwFormUrlDecoder_indexOf_OUT;
         getMany(startIndex: number): WwwFormUrlDecoder_getMany_OUT;
+        size: number;
     }
 
     interface WwwFormUrlDecoder_indexOf_OUT {
@@ -433,10 +433,10 @@ declare module Windows.Foundation.Collections {
     }
 
     export interface IIterator<T> {
-        current: T;
-        hasCurrent: boolean;
         moveNext(): boolean;
         getMany(): IIterator_getMany_OUT<T>;
+        current: T;
+        hasCurrent: boolean;
     }
 
     interface IIterator_getMany_OUT<T> {
@@ -450,13 +450,13 @@ declare module Windows.Foundation.Collections {
     }
 
     export interface IMap<K, V> extends Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<K,V>> {
-        size: number;
         lookup(key: K): V;
         hasKey(key: K): boolean;
         getView(): Windows.Foundation.Collections.IMapView<K,V>;
         insert(key: K, value: V): boolean;
         remove(key: K): void;
         clear(): void;
+        size: number;
     }
 
     export interface IMapChangedEventArgs<K> {
@@ -465,10 +465,10 @@ declare module Windows.Foundation.Collections {
     }
 
     export interface IMapView<K, V> extends Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<K,V>> {
-        size: number;
         lookup(key: K): V;
         hasKey(key: K): boolean;
         split(): IMapView_split_OUT<K, V>;
+        size: number;
     }
 
     interface IMapView_split_OUT<K, V> {
@@ -477,26 +477,33 @@ declare module Windows.Foundation.Collections {
     }
 
     export interface IObservableMap<K, V> extends Windows.Foundation.Collections.IMap<K,V> {
-        addEventListener(eventName: string, listener: Windows.Foundation.Collections.MapChangedEventHandler<K,V>): void;
-        removeEventListener(eventName: string, listener: Windows.Foundation.Collections.MapChangedEventHandler<K,V>): void;
-        onmapchanged: (ev: Windows.Foundation.Collections.MapChangedEventHandler<K,V>) => void;
         add_MapChanged(vhnd: Windows.Foundation.Collections.MapChangedEventHandler<K,V>): Windows.Foundation.EventRegistrationToken;
         remove_MapChanged(token: Windows.Foundation.EventRegistrationToken): void;
+        // Events
+        addEventListener(eventName: string, listener: any): void;
+        removeEventListener(eventName: string, listener: any): void;
+        addEventListener(eventName: "mapchanged", listener: Windows.Foundation.Collections.MapChangedEventHandler<K,V>): void;
+        removeEventListener(eventName: "mapchanged", listener: Windows.Foundation.Collections.MapChangedEventHandler<K,V>): void;
+        onmapchanged: (ev: Windows.Foundation.Collections.MapChangedEventHandler<K,V>) => void;
+
     }
 
     export interface IObservableVector<T> extends Windows.Foundation.Collections.IVector<T> {
-        addEventListener(eventName: string, listener: Windows.Foundation.Collections.VectorChangedEventHandler<T>): void;
-        removeEventListener(eventName: string, listener: Windows.Foundation.Collections.VectorChangedEventHandler<T>): void;
-        onvectorchanged: (ev: Windows.Foundation.Collections.VectorChangedEventHandler<T>) => void;
         add_VectorChanged(vhnd: Windows.Foundation.Collections.VectorChangedEventHandler<T>): Windows.Foundation.EventRegistrationToken;
         remove_VectorChanged(token: Windows.Foundation.EventRegistrationToken): void;
+        // Events
+        addEventListener(eventName: string, listener: any): void;
+        removeEventListener(eventName: string, listener: any): void;
+        addEventListener(eventName: "vectorchanged", listener: Windows.Foundation.Collections.VectorChangedEventHandler<T>): void;
+        removeEventListener(eventName: "vectorchanged", listener: Windows.Foundation.Collections.VectorChangedEventHandler<T>): void;
+        onvectorchanged: (ev: Windows.Foundation.Collections.VectorChangedEventHandler<T>) => void;
+
     }
 
     export interface IPropertySet extends Windows.Foundation.Collections.IObservableMap<string,any>, Windows.Foundation.Collections.IMap<string,any>, Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<string,any>> {
     }
 
     export interface IVector<T> extends Windows.Foundation.Collections.IIterable<T> {
-        size: number;
         getAt(index: number): T;
         getView(): Windows.Foundation.Collections.IVectorView<T>;
         indexOf(value: T): IVector_indexOf_OUT<T>;
@@ -508,6 +515,7 @@ declare module Windows.Foundation.Collections {
         clear(): void;
         getMany(startIndex: number): IVector_getMany_OUT<T>;
         replaceAll(items: T[]): void;
+        size: number;
     }
 
     interface IVector_indexOf_OUT<T> {
@@ -526,10 +534,10 @@ declare module Windows.Foundation.Collections {
     }
 
     export interface IVectorView<T> extends Windows.Foundation.Collections.IIterable<T> {
-        size: number;
         getAt(index: number): T;
         indexOf(value: T): IVectorView_indexOf_OUT<T>;
         getMany(startIndex: number): IVectorView_getMany_OUT<T>;
+        size: number;
     }
 
     interface IVectorView_indexOf_OUT<T> {
@@ -549,10 +557,6 @@ declare module Windows.Foundation.Collections {
     }
 
     export class PropertySet implements Windows.Foundation.Collections.IPropertySet, Windows.Foundation.Collections.IObservableMap<string,any>, Windows.Foundation.Collections.IMap<string,any>, Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<string,any>> {
-        addEventListener(eventName: string, listener: Windows.Foundation.Collections.MapChangedEventHandler<string,any>): void;
-        removeEventListener(eventName: string, listener: Windows.Foundation.Collections.MapChangedEventHandler<string,any>): void;
-        onmapchanged: (ev: Windows.Foundation.Collections.MapChangedEventHandler<string,any>) => void;
-        size: number;
         constructor();
         add_MapChanged(vhnd: Windows.Foundation.Collections.MapChangedEventHandler<string,any>): Windows.Foundation.EventRegistrationToken;
         remove_MapChanged(token: Windows.Foundation.EventRegistrationToken): void;
@@ -563,6 +567,14 @@ declare module Windows.Foundation.Collections {
         remove(key: string): void;
         clear(): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.Foundation.Collections.IKeyValuePair<string,any>>;
+        size: number;
+        // Events
+        addEventListener(eventName: string, listener: any): void;
+        removeEventListener(eventName: string, listener: any): void;
+        addEventListener(eventName: "mapchanged", listener: Windows.Foundation.Collections.MapChangedEventHandler<string,any>): void;
+        removeEventListener(eventName: "mapchanged", listener: Windows.Foundation.Collections.MapChangedEventHandler<string,any>): void;
+        onmapchanged: (ev: Windows.Foundation.Collections.MapChangedEventHandler<string,any>) => void;
+
     }
 
     export interface VectorChangedEventHandler<T> {
@@ -642,8 +654,8 @@ declare module Windows.Foundation.Metadata {
     }
 
     export class DualApiPartitionAttribute {
-        version: number;
         constructor();
+        version: number;
     }
 
     export class ExclusiveToAttribute {
@@ -657,8 +669,8 @@ declare module Windows.Foundation.Metadata {
     }
 
     export class GCPressureAttribute {
-        amount: Windows.Foundation.Metadata.GCPressureAmount;
         constructor();
+        amount: Windows.Foundation.Metadata.GCPressureAmount;
     }
 
     export class GuidAttribute {
@@ -685,8 +697,8 @@ declare module Windows.Foundation.Metadata {
     }
 
     export class MuseAttribute {
-        version: number;
         constructor();
+        version: number;
     }
 
     export class OverloadAttribute {
@@ -773,6 +785,7 @@ declare module Windows.System {
     }
 
     export class LauncherOptions implements Windows.System.ILauncherOptions {
+        constructor();
         contentType: string;
         displayApplicationPicker: boolean;
         fallbackUri: Windows.Foundation.Uri;
@@ -780,7 +793,6 @@ declare module Windows.System {
         preferredApplicationPackageFamilyName: string;
         treatAsUntrusted: boolean;
         ui: Windows.System.LauncherUIOptions;
-        constructor();
     }
 
     export class LauncherUIOptions implements Windows.System.ILauncherUIOptions {
@@ -1003,9 +1015,9 @@ declare module Windows.System.Threading.Core {
 declare module Windows.System.Threading {
 
     export interface IThreadPoolTimer {
+        cancel(): void;
         delay: Windows.Foundation.TimeSpan;
         period: Windows.Foundation.TimeSpan;
-        cancel(): void;
     }
 
     export class ThreadPool {
@@ -1015,13 +1027,13 @@ declare module Windows.System.Threading {
     }
 
     export class ThreadPoolTimer implements Windows.System.Threading.IThreadPoolTimer {
-        delay: Windows.Foundation.TimeSpan;
-        period: Windows.Foundation.TimeSpan;
         cancel(): void;
         static createPeriodicTimer(handler: Windows.System.Threading.TimerElapsedHandler, period: Windows.Foundation.TimeSpan): Windows.System.Threading.ThreadPoolTimer;
         static createTimer(handler: Windows.System.Threading.TimerElapsedHandler, delay: Windows.Foundation.TimeSpan): Windows.System.Threading.ThreadPoolTimer;
         static createPeriodicTimer(handler: Windows.System.Threading.TimerElapsedHandler, period: Windows.Foundation.TimeSpan, destroyed: Windows.System.Threading.TimerDestroyedHandler): Windows.System.Threading.ThreadPoolTimer;
         static createTimer(handler: Windows.System.Threading.TimerElapsedHandler, delay: Windows.Foundation.TimeSpan, destroyed: Windows.System.Threading.TimerDestroyedHandler): Windows.System.Threading.ThreadPoolTimer;
+        delay: Windows.Foundation.TimeSpan;
+        period: Windows.Foundation.TimeSpan;
     }
 
     export interface TimerDestroyedHandler {
@@ -1072,10 +1084,10 @@ declare module Windows.System.UserProfile {
     }
 
     export class LockScreen {
-        static originalImageFile: Windows.Foundation.Uri;
         static getImageStream(): Windows.Storage.Streams.IRandomAccessStream;
         static setImageFileAsync(value: Windows.Storage.IStorageFile): Windows.Foundation.IAsyncAction;
         static setImageStreamAsync(value: Windows.Storage.Streams.IRandomAccessStream): Windows.Foundation.IAsyncAction;
+        static originalImageFile: Windows.Foundation.Uri;
     }
 
     enum SetAccountPictureResult {
@@ -1088,11 +1100,6 @@ declare module Windows.System.UserProfile {
     }
 
     export class UserInformation {
-        addEventListener(eventName: string, listener: Windows.Foundation.EventHandler<any>): void;
-        removeEventListener(eventName: string, listener: Windows.Foundation.EventHandler<any>): void;
-        onaccountpicturechanged: (ev: Windows.Foundation.EventHandler<any>) => void;
-        static accountPictureChangeEnabled: boolean;
-        static nameAccessAllowed: boolean;
         static getAccountPicture(kind: Windows.System.UserProfile.AccountPictureKind): Windows.Storage.IStorageFile;
         static setAccountPictureAsync(image: Windows.Storage.IStorageFile): ToTypeScriptD.WinRT.IPromise<Windows.System.UserProfile.SetAccountPictureResult>;
         static setAccountPicturesAsync(smallImage: Windows.Storage.IStorageFile, largeImage: Windows.Storage.IStorageFile, video: Windows.Storage.IStorageFile): ToTypeScriptD.WinRT.IPromise<Windows.System.UserProfile.SetAccountPictureResult>;
@@ -1106,6 +1113,15 @@ declare module Windows.System.UserProfile {
         static getPrincipalNameAsync(): ToTypeScriptD.WinRT.IPromise<string>;
         static getSessionInitiationProtocolUriAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Foundation.Uri>;
         static getDomainNameAsync(): ToTypeScriptD.WinRT.IPromise<string>;
+        static accountPictureChangeEnabled: boolean;
+        static nameAccessAllowed: boolean;
+        // Events
+        addEventListener(eventName: string, listener: any): void;
+        removeEventListener(eventName: string, listener: any): void;
+        addEventListener(eventName: "accountpicturechanged", listener: Windows.Foundation.EventHandler<any>): void;
+        removeEventListener(eventName: "accountpicturechanged", listener: Windows.Foundation.EventHandler<any>): void;
+        onaccountpicturechanged: (ev: Windows.Foundation.EventHandler<any>) => void;
+
     }
 
 }

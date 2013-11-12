@@ -47,10 +47,11 @@ namespace ToTypeScriptD.Core.WinMD
             WriteExportedInterfaces(sb, inheriterString);
             sb.AppendLine("{");
 
-            WriteEvents(sb);
+            List<ITypeWriter> extendedTypes = WriteMethods(sb);
             WriteFields(sb);
             WriteProperties(sb);
-            List<ITypeWriter> extendedTypes = WriteMethods(sb);
+            WriteEvents(sb);
+
             Indent(sb); sb.AppendLine("}");
 
             WriteExtendedTypes(sb, extendedTypes);
@@ -218,17 +219,37 @@ namespace ToTypeScriptD.Core.WinMD
         {
             if (TypeDefinition.HasEvents)
             {
+                Indent(sb); Indent(sb); sb.AppendLine("// Events");
+
+                Indent(sb); Indent(sb); sb.AppendLine("addEventListener(eventName: string, listener: any): void;");
+                Indent(sb); Indent(sb); sb.AppendLine("removeEventListener(eventName: string, listener: any): void;");
+                var distinctListenerSignatures = new List<string>();
+
                 TypeDefinition.Events.For((item, i, isLast) =>
                 {
                     var eventListenerType = item.EventType.ToTypeScriptType();
-                    Indent(sb); Indent(sb); sb.AppendFormat("addEventListener(eventName: string, listener: {0}): void;", eventListenerType);
-                    sb.AppendLine();
-                    Indent(sb); Indent(sb); sb.AppendFormat("removeEventListener(eventName: string, listener: {0}): void;", eventListenerType);
-                    sb.AppendLine();
+                    var eventName = item.Name.ToLower();
 
-                    Indent(sb); Indent(sb); sb.AppendFormat("on{0}: (ev: {1}) => void;", item.Name.ToLower(), eventListenerType);
-                    sb.AppendLine();
+                    var line = IndentValue + IndentValue + "addEventListener(eventName: \"{0}\", listener: {1}): void;".FormatWith(eventName, eventListenerType);
+                    if (!distinctListenerSignatures.Contains(line))
+                        distinctListenerSignatures.Add(line);
+
+                    line = IndentValue + IndentValue + "removeEventListener(eventName: \"{0}\", listener: {1}): void;".FormatWith(eventName, eventListenerType);
+                    if (!distinctListenerSignatures.Contains(line))
+                        distinctListenerSignatures.Add(line);
+
+                    line = IndentValue + IndentValue + "on{0}: (ev: {1}) => void;".FormatWith(eventName, eventListenerType);
+                    if (!distinctListenerSignatures.Contains(line))
+                    {
+                        distinctListenerSignatures.Add(line);
+                    }
                 });
+
+                distinctListenerSignatures.Each(item =>
+                {
+                    sb.AppendLine(item);
+                });
+                sb.AppendLine();
             }
         }
 
