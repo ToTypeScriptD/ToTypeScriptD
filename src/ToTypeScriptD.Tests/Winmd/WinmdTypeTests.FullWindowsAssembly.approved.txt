@@ -19,7 +19,7 @@
     }
 
     export interface AsyncOperationCompletedHandler<TResult> {
-        target: ToTypeScriptD.WinRT.IPromise<TResult>;
+        target: Windows.Foundation.IAsyncOperation<TResult>;
         detail: any[];
         type: string;
     }
@@ -83,12 +83,26 @@
     export interface IAsyncOperation<TResult> extends Windows.Foundation.IAsyncInfo {
         getResults(): TResult;
         completed: Windows.Foundation.AsyncOperationCompletedHandler<TResult>;
+
+        // Promise Extension
+        then<U>(success?: (value: TResult) => ToTypeScriptD.WinRT.IPromise<U>, error?: (error: any) => ToTypeScriptD.WinRT.IPromise<U>, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        then<U>(success?: (value: TResult) => ToTypeScriptD.WinRT.IPromise<U>, error?: (error: any) => U, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        then<U>(success?: (value: TResult) => U, error?: (error: any) => ToTypeScriptD.WinRT.IPromise<U>, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        then<U>(success?: (value: TResult) => U, error?: (error: any) => U, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        done<U>(success?: (value: TResult) => any, error?: (error: any) => any, progress?: (progress: any) => void): void;
     }
 
     export interface IAsyncOperationWithProgress<TResult, TProgress> extends Windows.Foundation.IAsyncInfo {
         getResults(): TResult;
         progress: Windows.Foundation.AsyncOperationProgressHandler<TResult,TProgress>;
         completed: Windows.Foundation.AsyncOperationWithProgressCompletedHandler<TResult,TProgress>;
+
+        // Promise Extension
+        then<U>(success?: (value: TResult) => ToTypeScriptD.WinRT.IPromise<U>, error?: (error: any) => ToTypeScriptD.WinRT.IPromise<U>, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        then<U>(success?: (value: TResult) => ToTypeScriptD.WinRT.IPromise<U>, error?: (error: any) => U, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        then<U>(success?: (value: TResult) => U, error?: (error: any) => ToTypeScriptD.WinRT.IPromise<U>, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        then<U>(success?: (value: TResult) => U, error?: (error: any) => U, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        done<U>(success?: (value: TResult) => any, error?: (error: any) => any, progress?: (progress: any) => void): void;
     }
 
     export interface IClosable {

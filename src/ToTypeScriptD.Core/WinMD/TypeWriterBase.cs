@@ -52,10 +52,69 @@ namespace ToTypeScriptD.Core.WinMD
             WriteProperties(sb);
             WriteEvents(sb);
 
+            WriteAsyncPromiseMethods(sb);
+
             Indent(sb); sb.AppendLine("}");
 
             WriteExtendedTypes(sb, extendedTypes);
             WriteNestedTypes(sb);
+        }
+
+        private void WriteAsyncPromiseMethods(StringBuilder sb)
+        {
+            string genericTypeArgName;
+            if (IsTypeAsync(out genericTypeArgName))
+            {
+                sb.AppendLine();
+                Indent(sb); Indent(sb); sb.AppendFormatLine("// Promise Extension");
+                Indent(sb); Indent(sb); sb.AppendFormatLine("then<U>(success?: (value: {0}) => ToTypeScriptD.WinRT.IPromise<U>, error?: (error: any) => ToTypeScriptD.WinRT.IPromise<U>, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("then<U>(success?: (value: {0}) => ToTypeScriptD.WinRT.IPromise<U>, error?: (error: any) => U, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("then<U>(success?: (value: {0}) => U, error?: (error: any) => ToTypeScriptD.WinRT.IPromise<U>, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("then<U>(success?: (value: {0}) => U, error?: (error: any) => U, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("done<U>(success?: (value: {0}) => any, error?: (error: any) => any, progress?: (progress: any) => void): void;", genericTypeArgName);
+            }
+        }
+
+        private bool IsTypeAsync(out string genericTypeArgName)
+        {
+            var currType = TypeDefinition;
+
+            if (IsTypeAsync(TypeDefinition, out genericTypeArgName))
+            {
+                return true;
+            }
+
+            foreach (var i in TypeDefinition.Interfaces)
+            {
+                if (IsTypeAsync(i, out genericTypeArgName))
+                {
+                    return true;
+                }
+            }
+            genericTypeArgName = "";
+            return false;
+        }
+
+        private bool IsTypeAsync(TypeReference typeReference, out string genericTypeArgName)
+        {
+            if (typeReference.FullName.StartsWith("Windows.Foundation.IAsyncOperation`1") ||
+                typeReference.FullName.StartsWith("Windows.Foundation.IAsyncOperationWithProgress`2")
+                )
+            {
+                var genericInstanceType = typeReference as GenericInstanceType;
+                if (genericInstanceType == null)
+                {
+                    genericTypeArgName = "TResult";
+                }
+                else
+                {
+                    genericTypeArgName = genericInstanceType.GenericArguments[0].ToTypeScriptType();
+                }
+                return true;
+            }
+
+            genericTypeArgName = "";
+            return false;
         }
 
         private void WriteGenerics(StringBuilder sb)

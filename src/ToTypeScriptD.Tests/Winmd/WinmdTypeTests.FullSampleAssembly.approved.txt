@@ -2,7 +2,7 @@
 
     export class AsyncClass {
         constructor();
-        getStringAsync(value: string): ToTypeScriptD.WinRT.IPromise<string>;
+        getStringAsync(value: string): Windows.Foundation.IAsyncOperation<string>;
     }
 
     export class ClassWithEventHandler {

@@ -19,7 +19,7 @@
     }
 
     export interface AsyncOperationCompletedHandler<TResult> {
-        target: ToTypeScriptD.WinRT.IPromise<TResult>;
+        target: Windows.Foundation.IAsyncOperation<TResult>;
         detail: any[];
         type: string;
     }
@@ -83,12 +83,26 @@
     export interface IAsyncOperation<TResult> extends Windows.Foundation.IAsyncInfo {
         getResults(): TResult;
         completed: Windows.Foundation.AsyncOperationCompletedHandler<TResult>;
+
+        // Promise Extension
+        then<U>(success?: (value: TResult) => ToTypeScriptD.WinRT.IPromise<U>, error?: (error: any) => ToTypeScriptD.WinRT.IPromise<U>, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        then<U>(success?: (value: TResult) => ToTypeScriptD.WinRT.IPromise<U>, error?: (error: any) => U, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        then<U>(success?: (value: TResult) => U, error?: (error: any) => ToTypeScriptD.WinRT.IPromise<U>, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        then<U>(success?: (value: TResult) => U, error?: (error: any) => U, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        done<U>(success?: (value: TResult) => any, error?: (error: any) => any, progress?: (progress: any) => void): void;
     }
 
     export interface IAsyncOperationWithProgress<TResult, TProgress> extends Windows.Foundation.IAsyncInfo {
         getResults(): TResult;
         progress: Windows.Foundation.AsyncOperationProgressHandler<TResult,TProgress>;
         completed: Windows.Foundation.AsyncOperationWithProgressCompletedHandler<TResult,TProgress>;
+
+        // Promise Extension
+        then<U>(success?: (value: TResult) => ToTypeScriptD.WinRT.IPromise<U>, error?: (error: any) => ToTypeScriptD.WinRT.IPromise<U>, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        then<U>(success?: (value: TResult) => ToTypeScriptD.WinRT.IPromise<U>, error?: (error: any) => U, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        then<U>(success?: (value: TResult) => U, error?: (error: any) => ToTypeScriptD.WinRT.IPromise<U>, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        then<U>(success?: (value: TResult) => U, error?: (error: any) => U, progress?: (progress: any) => void): ToTypeScriptD.WinRT.IPromise<U>;
+        done<U>(success?: (value: TResult) => any, error?: (error: any) => any, progress?: (progress: any) => void): void;
     }
 
     export interface IClosable {
@@ -778,10 +792,10 @@ declare module Windows.System {
     }
 
     export class Launcher {
-        static launchFileAsync(file: Windows.Storage.IStorageFile): ToTypeScriptD.WinRT.IPromise<boolean>;
-        static launchFileAsync(file: Windows.Storage.IStorageFile, options: Windows.System.LauncherOptions): ToTypeScriptD.WinRT.IPromise<boolean>;
-        static launchUriAsync(uri: Windows.Foundation.Uri): ToTypeScriptD.WinRT.IPromise<boolean>;
-        static launchUriAsync(uri: Windows.Foundation.Uri, options: Windows.System.LauncherOptions): ToTypeScriptD.WinRT.IPromise<boolean>;
+        static launchFileAsync(file: Windows.Storage.IStorageFile): Windows.Foundation.IAsyncOperation<boolean>;
+        static launchFileAsync(file: Windows.Storage.IStorageFile, options: Windows.System.LauncherOptions): Windows.Foundation.IAsyncOperation<boolean>;
+        static launchUriAsync(uri: Windows.Foundation.Uri): Windows.Foundation.IAsyncOperation<boolean>;
+        static launchUriAsync(uri: Windows.Foundation.Uri, options: Windows.System.LauncherOptions): Windows.Foundation.IAsyncOperation<boolean>;
     }
 
     export class LauncherOptions implements Windows.System.ILauncherOptions {
@@ -1101,18 +1115,18 @@ declare module Windows.System.UserProfile {
 
     export class UserInformation {
         static getAccountPicture(kind: Windows.System.UserProfile.AccountPictureKind): Windows.Storage.IStorageFile;
-        static setAccountPictureAsync(image: Windows.Storage.IStorageFile): ToTypeScriptD.WinRT.IPromise<Windows.System.UserProfile.SetAccountPictureResult>;
-        static setAccountPicturesAsync(smallImage: Windows.Storage.IStorageFile, largeImage: Windows.Storage.IStorageFile, video: Windows.Storage.IStorageFile): ToTypeScriptD.WinRT.IPromise<Windows.System.UserProfile.SetAccountPictureResult>;
-        static setAccountPictureFromStreamAsync(image: Windows.Storage.Streams.IRandomAccessStream): ToTypeScriptD.WinRT.IPromise<Windows.System.UserProfile.SetAccountPictureResult>;
-        static setAccountPicturesFromStreamsAsync(smallImage: Windows.Storage.Streams.IRandomAccessStream, largeImage: Windows.Storage.Streams.IRandomAccessStream, video: Windows.Storage.Streams.IRandomAccessStream): ToTypeScriptD.WinRT.IPromise<Windows.System.UserProfile.SetAccountPictureResult>;
+        static setAccountPictureAsync(image: Windows.Storage.IStorageFile): Windows.Foundation.IAsyncOperation<Windows.System.UserProfile.SetAccountPictureResult>;
+        static setAccountPicturesAsync(smallImage: Windows.Storage.IStorageFile, largeImage: Windows.Storage.IStorageFile, video: Windows.Storage.IStorageFile): Windows.Foundation.IAsyncOperation<Windows.System.UserProfile.SetAccountPictureResult>;
+        static setAccountPictureFromStreamAsync(image: Windows.Storage.Streams.IRandomAccessStream): Windows.Foundation.IAsyncOperation<Windows.System.UserProfile.SetAccountPictureResult>;
+        static setAccountPicturesFromStreamsAsync(smallImage: Windows.Storage.Streams.IRandomAccessStream, largeImage: Windows.Storage.Streams.IRandomAccessStream, video: Windows.Storage.Streams.IRandomAccessStream): Windows.Foundation.IAsyncOperation<Windows.System.UserProfile.SetAccountPictureResult>;
         static add_AccountPictureChanged(changeHandler: Windows.Foundation.EventHandler<any>): Windows.Foundation.EventRegistrationToken;
         static remove_AccountPictureChanged(token: Windows.Foundation.EventRegistrationToken): void;
-        static getDisplayNameAsync(): ToTypeScriptD.WinRT.IPromise<string>;
-        static getFirstNameAsync(): ToTypeScriptD.WinRT.IPromise<string>;
-        static getLastNameAsync(): ToTypeScriptD.WinRT.IPromise<string>;
-        static getPrincipalNameAsync(): ToTypeScriptD.WinRT.IPromise<string>;
-        static getSessionInitiationProtocolUriAsync(): ToTypeScriptD.WinRT.IPromise<Windows.Foundation.Uri>;
-        static getDomainNameAsync(): ToTypeScriptD.WinRT.IPromise<string>;
+        static getDisplayNameAsync(): Windows.Foundation.IAsyncOperation<string>;
+        static getFirstNameAsync(): Windows.Foundation.IAsyncOperation<string>;
+        static getLastNameAsync(): Windows.Foundation.IAsyncOperation<string>;
+        static getPrincipalNameAsync(): Windows.Foundation.IAsyncOperation<string>;
+        static getSessionInitiationProtocolUriAsync(): Windows.Foundation.IAsyncOperation<Windows.Foundation.Uri>;
+        static getDomainNameAsync(): Windows.Foundation.IAsyncOperation<string>;
         static accountPictureChangeEnabled: boolean;
         static nameAccessAllowed: boolean;
         // Events

@@ -90,12 +90,6 @@ namespace ToTypeScriptD.Core.WinMD
                 .StripGenericTick()
                 .StripOutParamSymbol();
 
-            // hack the async type with a custom promise definition
-            if (fromName.StartsWith("Windows.Foundation.IAsyncOperation<"))
-            {
-                fromName = fromName.Replace("Windows.Foundation.IAsyncOperation<", "ToTypeScriptD.WinRT.IPromise<");
-            }
-
             // To lazy to figure out the Mono.Cecil way (or if there is a way), but do 
             // some string search/replace on types for example:
             //
