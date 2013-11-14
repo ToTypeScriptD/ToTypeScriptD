@@ -100,9 +100,10 @@ namespace ToTypeScriptD.Tests.Winmd
             var error = new StringBuilderTypeNotFoundErrorHandler();
             var config = new ToTypeScriptD.Core.Config
             {
-                OutputType = Core.OutputType.WinRT
+                OutputType = Core.OutputType.WinRT,
+                AssemblyPaths = allFiles,
             };
-            ToTypeScriptD.Render.AllAssemblies(config, allFiles, false, sw, error, string.Empty);
+            ToTypeScriptD.Render.AllAssemblies(config, false, sw, error, string.Empty);
             var result = error.ToString() + Environment.NewLine + Environment.NewLine + sw.ToString();
             result.Verify();
         }

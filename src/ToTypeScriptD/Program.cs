@@ -13,12 +13,13 @@ namespace ToTypeScriptD
                 bool skipPrintingHelp = false;
                 var config = new Config
                 {
-                    OutputType = options.OutputType
+                    OutputType = options.OutputType,
+                    AssemblyPaths = options.Files,
                 };
 
                 try
                 {
-                    skipPrintingHelp = ToTypeScriptD.Render.AllAssemblies(config, options.Files, options.IncludeSpecialTypeDefinitions, Console.Out, new ConsoleErrorTypeNotFoundErrorHandler(), options.RegexFilter);
+                    skipPrintingHelp = ToTypeScriptD.Render.AllAssemblies(config, options.IncludeSpecialTypeDefinitions, Console.Out, new ConsoleErrorTypeNotFoundErrorHandler(), options.RegexFilter);
                 }
                 catch (Exception ex)
                 {
