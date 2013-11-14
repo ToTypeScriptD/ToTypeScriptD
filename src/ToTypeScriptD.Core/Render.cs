@@ -10,14 +10,14 @@ namespace ToTypeScriptD
 {
     public class Render
     {
-        public static bool AllAssemblies(Config config, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, string filterRegex)
+        public static bool AllAssemblies(Config config, TextWriter w)
         {
             w.Write(GetHeader(config.AssemblyPaths));
 
             var typeCollection = new TypeCollection(config.GetTypeWriterTypeSelector());
 
             var wroteAnyTypes = WriteSpecialTypes(config.IncludeSpecialTypes, w);
-            wroteAnyTypes |= WriteFiles(config.AssemblyPaths, w, typeNotFoundErrorHandler, typeCollection, filterRegex);
+            wroteAnyTypes |= WriteFiles(config.AssemblyPaths, w, config.TypeNotFoundErrorHandler, typeCollection, config.RegexFilter);
             return wroteAnyTypes;
         }
 
@@ -75,7 +75,6 @@ namespace ToTypeScriptD
             sb.AppendFormatLine("//  Date:          {0}", DateTime.Now);
             if (assemblyPaths.Any())
             {
-                sb.AppendFormatLine("//");
                 sb.AppendFormatLine("//");
                 sb.AppendFormatLine("//  Assemblies:");
                 assemblyPaths

@@ -1,4 +1,5 @@
 ﻿using ApprovalTests;
+using System.IO;
 using Xunit;
 
 namespace ToTypeScriptD.Tests.ExeTests
@@ -36,14 +37,14 @@ namespace ToTypeScriptD.Tests.ExeTests
         }
 
         [Fact]
+        [ApprovalTests.Reporters.UseReporter(typeof(ApprovalTests.Reporters.P4MergeReporter))]
         public void ExeDuplicateAssemblyShouldStillOnlyGenerateOne()
         {
             var resultDup = Execute(@"-o WinRT C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd");
             var resultNonDup = Execute(@"-o WinRT C:\Windows\System32\WinMetadata\Windows.Foundation.winmd");
 
-            // TODO: this test needs a good way to leverage the power of approvals diff capability (but it's not yet supported)
-
-            resultNonDup.StdOut.Trim().ShouldEqual(resultDup.StdOut.Trim());
+            resultNonDup.ToString().StripHeaderGarbageromOutput()
+                .DiffWith(resultDup.ToString().StripHeaderGarbageromOutput());
         }
 
         [Fact]
@@ -80,11 +81,22 @@ namespace ToTypeScriptD.Tests.ExeTests
 
     }
 
-    public static class Extensions
+    public static class ApprovalsExtensions
     {
-        public static string StripVersionFromOutput(this string value)
+        public static void DiffWith(this string expected, string actual)
         {
-            return System.Text.RegularExpressions.Regex.Replace(value, "v[0-9].[0-9].[0-9]{0,4}.[0-9]{0,4}[0-9]? - SHA1:[a-zA-Z0-9]{0,7} - (Debug|Release)", "v0.0.0000.0000 SHA1:0000000 - Debug");
+            if (expected != actual)
+            {
+                var expectedFile = Path.GetTempPath() + "Expected.Approvals.Temp.txt";
+                var actualFile = Path.GetTempPath() + "Actual.Approvals.Temp.txt";
+
+                File.WriteAllText(expectedFile, expected);
+                File.WriteAllText(actualFile, actual);
+
+                var reporter = Approvals.GetReporter();
+                reporter.Report(expectedFile, actualFile);
+            }
         }
     }
+
 }

@@ -103,8 +103,9 @@ namespace ToTypeScriptD.Tests.Winmd
                 OutputType = Core.OutputType.WinRT,
                 AssemblyPaths = allFiles,
                 IncludeSpecialTypes = false,
+                TypeNotFoundErrorHandler = error,
             };
-            ToTypeScriptD.Render.AllAssemblies(config, sw, error, string.Empty);
+            ToTypeScriptD.Render.AllAssemblies(config, sw);
             var result = error.ToString() + Environment.NewLine + Environment.NewLine + sw.ToString();
             result.Verify();
         }

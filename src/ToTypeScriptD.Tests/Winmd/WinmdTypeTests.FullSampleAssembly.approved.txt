@@ -4,7 +4,6 @@
 //  Version:       v0.0.0000.0000 SHA1:0000000 - Debug
 //  Date:          mm/dd/YYYY H:MM:SS PM
 //
-//
 //  Assemblies:
 //    ToTypeScriptD.Native.winmd
 //

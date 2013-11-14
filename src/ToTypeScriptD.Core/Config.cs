@@ -37,6 +37,26 @@ namespace ToTypeScriptD.Core
             }
             return new WinMD.WinMDTypeWriterTypeSelector();
         }
+
+        private TypeWriters.ITypeNotFoundErrorHandler _typeNotfoundErrorHandler;
+        public TypeWriters.ITypeNotFoundErrorHandler TypeNotFoundErrorHandler
+        {
+            get
+            {
+                return _typeNotfoundErrorHandler ?? (_typeNotfoundErrorHandler = new ConsoleErrorTypeNotFoundErrorHandler());
+            }
+            set
+            {
+                _typeNotfoundErrorHandler = value;
+            }
+        }
+
+        private string _regexFilter = "";
+        public string RegexFilter
+        {
+            get { return _regexFilter ?? ""; }
+            set { _regexFilter = value ?? ""; }
+        }
     }
 
 }
