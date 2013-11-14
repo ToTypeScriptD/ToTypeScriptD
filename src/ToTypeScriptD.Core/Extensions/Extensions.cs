@@ -147,9 +147,10 @@ namespace ToTypeScriptD
             textWriter.WriteLine("");
         }
 
-        public static void AppendFormatLine(this System.Text.StringBuilder sb, string format, params object[] args)
+        public static void AppendFormatLine(this System.Text.StringBuilder sb, string format=null, params object[] args)
         {
-            sb.AppendFormat(format, args);
+            if (!string.IsNullOrEmpty(format))
+                sb.AppendFormat(format, args);
             sb.AppendLine();
         }
     }

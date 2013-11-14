@@ -84,7 +84,7 @@ namespace ToTypeScriptD.Tests.ExeTests
     {
         public static string StripVersionFromOutput(this string value)
         {
-            return System.Text.RegularExpressions.Regex.Replace(value, "^ToTypeScriptD v[0-9].[0-9].[0-9]{0,4}.[0-9]{0,4}[0-9]? - SHA1:[a-zA-Z0-9]{0,7} - (Debug|Release)", "ToTypeScriptD - v0.0.0000.0000 SHA1:0000000 - Debug");
+            return System.Text.RegularExpressions.Regex.Replace(value, "v[0-9].[0-9].[0-9]{0,4}.[0-9]{0,4}[0-9]? - SHA1:[a-zA-Z0-9]{0,7} - (Debug|Release)", "v0.0.0000.0000 SHA1:0000000 - Debug");
         }
     }
 }

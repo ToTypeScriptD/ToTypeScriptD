@@ -15,7 +15,7 @@ namespace ToTypeScriptD.Tests.DotNet
             var errors = new StringBuilderTypeNotFoundErrorHandler();
             var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(typeSelector);
             var result = ToTypeScriptD.Render.FullAssembly(path, errors, typeCollection, string.Empty);
-            Approvals.Verify(errors + result);
+            (errors + result).Verify();
         }
     }
 }

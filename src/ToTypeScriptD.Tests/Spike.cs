@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Text;
 using ToTypeScriptD.Core.TypeWriters;
 using ToTypeScriptD.Core.WinMD;
+using ToTypeScriptD.Tests.ExeTests;
+
 using Xunit;
 
 namespace ToTypeScriptD.Tests
@@ -45,7 +47,14 @@ namespace ToTypeScriptD.Tests
         public static void Verify(this string item)
         {
             item = System.Text.RegularExpressions.Regex.Replace(item, "__ToTypeScriptD_([0-9a-z]){32}:", "__ToTypeScriptD_{RANDOM_GUIDishString}:");
+            item = System.Text.RegularExpressions.Regex.Replace(item, @"//  Date:          (.*)", "//  Date:          mm/dd/YYYY H:MM:SS PM");
+            item = item.StripVersionFromOutput();
             Approvals.Verify(item);
+        }
+
+        public static void Verify(this ExeProcessResult item)
+        {
+            item.ToString().Verify();
         }
 
         public static void Verify<T>(this T item)

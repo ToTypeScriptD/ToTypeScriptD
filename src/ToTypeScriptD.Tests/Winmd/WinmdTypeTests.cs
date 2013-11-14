@@ -77,7 +77,7 @@ namespace ToTypeScriptD.Tests.Winmd
             var errors = new StringBuilderTypeNotFoundErrorHandler();
             var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(new ToTypeScriptD.Core.WinMD.WinMDTypeWriterTypeSelector());
             var result = ToTypeScriptD.Render.FullAssembly(file, errors, typeCollection, string.Empty);
-            Approvals.Verify(errors + result);
+            (errors + result).Verify();
         }
 
         //[Fact]
@@ -104,7 +104,7 @@ namespace ToTypeScriptD.Tests.Winmd
             };
             ToTypeScriptD.Render.AllAssemblies(config, allFiles, false, sw, error, string.Empty);
             var result = error.ToString() + Environment.NewLine + Environment.NewLine + sw.ToString();
-            Approvals.Verify(result);
+            result.Verify();
         }
 
         // Some types in Windows.winmd are duplicated in Windows.Foundation.winmd (huh?)
