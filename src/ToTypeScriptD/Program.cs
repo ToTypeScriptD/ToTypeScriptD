@@ -15,11 +15,12 @@ namespace ToTypeScriptD
                 {
                     OutputType = options.OutputType,
                     AssemblyPaths = options.Files,
+                    IncludeSpecialTypes = options.IncludeSpecialTypeDefinitions,
                 };
 
                 try
                 {
-                    skipPrintingHelp = ToTypeScriptD.Render.AllAssemblies(config, options.IncludeSpecialTypeDefinitions, Console.Out, new ConsoleErrorTypeNotFoundErrorHandler(), options.RegexFilter);
+                    skipPrintingHelp = ToTypeScriptD.Render.AllAssemblies(config, Console.Out, new ConsoleErrorTypeNotFoundErrorHandler(), options.RegexFilter);
                 }
                 catch (Exception ex)
                 {

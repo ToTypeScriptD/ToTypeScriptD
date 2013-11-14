@@ -15,6 +15,8 @@ namespace ToTypeScriptD.Core
 
         public OutputType OutputType { get; set; }
 
+        public bool IncludeSpecialTypes { get; set; }
+
         public IEnumerable<string> AssemblyPaths
         {
             get

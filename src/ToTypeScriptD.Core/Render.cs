@@ -10,13 +10,13 @@ namespace ToTypeScriptD
 {
     public class Render
     {
-        public static bool AllAssemblies(Config config, bool includeSpecialTypes, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, string filterRegex)
+        public static bool AllAssemblies(Config config, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, string filterRegex)
         {
             w.Write(GetHeader(config.AssemblyPaths));
 
             var typeCollection = new TypeCollection(config.GetTypeWriterTypeSelector());
 
-            var wroteAnyTypes = WriteSpecialTypes(includeSpecialTypes, w);
+            var wroteAnyTypes = WriteSpecialTypes(config.IncludeSpecialTypes, w);
             wroteAnyTypes |= WriteFiles(config.AssemblyPaths, w, typeNotFoundErrorHandler, typeCollection, filterRegex);
             return wroteAnyTypes;
         }
