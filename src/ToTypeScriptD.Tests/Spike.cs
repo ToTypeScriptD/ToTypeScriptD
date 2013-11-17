@@ -58,7 +58,7 @@ namespace ToTypeScriptD.Tests
         public static string StripHeaderGarbageromOutput(this string value)
         {
             value = System.Text.RegularExpressions.Regex.Replace(value, "__ToTypeScriptD_([0-9a-z]){32}:", "__ToTypeScriptD_{RANDOM_GUIDishString}:");
-            value = System.Text.RegularExpressions.Regex.Replace(value, @"//  Date:          (.*)", "//  Date:          mm/dd/YYYY H:MM:SS PM");
+            value = System.Text.RegularExpressions.Regex.Replace(value, @"//  Date:          (.*)(PM|AM)", "//  Date:          mm/dd/YYYY H:MM:SS PM");
             value = value.StripVersionFromOutput();
             return value;
         }
