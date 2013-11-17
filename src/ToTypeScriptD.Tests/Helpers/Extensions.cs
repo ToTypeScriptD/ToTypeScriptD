@@ -1,12 +1,9 @@
-﻿using ApprovalTests;
-using Mono.Cecil;
+﻿using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using ToTypeScriptD.Core;
 using ToTypeScriptD.Core.TypeWriters;
 using ToTypeScriptD.Core.WinMD;
-using ToTypeScriptD.Tests.ExeTests;
-using Xunit;
 
 namespace ToTypeScriptD.Tests
 {
@@ -34,11 +31,6 @@ namespace ToTypeScriptD.Tests
             return errorResult + Environment.NewLine + Environment.NewLine + result;
         }
 
-        public static void Verify(this string item)
-        {
-            item = item.StripHeaderGarbageromOutput();
-            Approvals.Verify(item);
-        }
 
         public static string StripVersionFromOutput(this string value)
         {
@@ -52,25 +44,5 @@ namespace ToTypeScriptD.Tests
             value = value.StripVersionFromOutput();
             return value;
         }
-
-        public static void Verify(this ExeProcessResult item)
-        {
-            item.ToString().Verify();
-        }
-
-        public static void Verify<T>(this T item)
-        {
-            Approvals.Verify(item);
-        }
-
-        public static void DumpAndVerify(this string path)
-        {
-            var errors = new StringBuilderTypeNotFoundErrorHandler();
-            var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(new ToTypeScriptD.Core.WinMD.WinMDTypeWriterTypeSelector());
-            var config = new Config();
-            var result = ToTypeScriptD.Render.FullAssembly(path, errors, typeCollection, string.Empty, config);
-            Approvals.Verify(errors + result);
-        }
     }
-
 }
