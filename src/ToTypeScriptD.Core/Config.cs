@@ -3,13 +3,6 @@
 namespace ToTypeScriptD.Core
 {
 
-    public enum OutputType
-    {
-        WinRT,
-        DotNet,
-    }
-
-
     public enum IndentationFormatting
     {
         None,
@@ -33,7 +26,6 @@ namespace ToTypeScriptD.Core
             CamelCase = true;
         }
 
-        public OutputType OutputType { get; set; }
         public bool IncludeSpecialTypes { get; set; }
         public bool CamelCase { get; set; }
 
@@ -95,23 +87,24 @@ namespace ToTypeScriptD.Core
         }
 
 
-        public TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector()
-        {
-            if (this.OutputType == OutputType.DotNet)
-            {
-                return new DotNet.DotNetTypeWriterTypeSelector();
-            }
-            return new WinMD.WinMDTypeWriterTypeSelector();
-        }
+        public abstract TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector();
     }
 
     public class DotNetConfig : Config
     {
         // TODO: move PascalCase here
+        public override TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector()
+        {
+            return new DotNet.DotNetTypeWriterTypeSelector();
+        }
     }
     public class WinmdConfig : Config
     {
         // TODO: move PascalCase here
+        public override TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector()
+        {
+            return new WinMD.WinMDTypeWriterTypeSelector();
+        }
     }
 
 }

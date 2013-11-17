@@ -26,7 +26,6 @@ namespace ToTypeScriptD
                         CamelCase = dotNetSubOptions.CamelCase,
                         IncludeSpecialTypes = dotNetSubOptions.IncludeSpecialTypeDefinitions,
                         IndentationType = dotNetSubOptions.IndentationType,
-                        OutputType = Core.OutputType.DotNet,
                         RegexFilter = dotNetSubOptions.RegexFilter,
                         TypeNotFoundErrorHandler = new ConsoleErrorTypeNotFoundErrorHandler(),
                     };
@@ -34,12 +33,11 @@ namespace ToTypeScriptD
                 else if (verb == "winmd")
                 {
                     var winmdSubOptions = (WinmdSubOptions)subOptions;
-                    config = new DotNetConfig
+                    config = new WinmdConfig
                     {
                         AssemblyPaths = winmdSubOptions.Files,
                         IncludeSpecialTypes = winmdSubOptions.IncludeSpecialTypeDefinitions,
                         IndentationType = winmdSubOptions.IndentationType,
-                        OutputType = Core.OutputType.WinRT,
                         RegexFilter = winmdSubOptions.RegexFilter,
                         TypeNotFoundErrorHandler = new ConsoleErrorTypeNotFoundErrorHandler(),
                     };

@@ -49,7 +49,6 @@ namespace ToTypeScriptD.Tests.Winmd
             var config = new ToTypeScriptD.Core.WinmdConfig
             {
                 TypeNotFoundErrorHandler = errors,
-                OutputType = ToTypeScriptD.Core.OutputType.WinRT,
             };
             var result = ToTypeScriptD.Render.FullAssembly(file, typeCollection, config);
             (errors + result).Verify();
@@ -85,7 +84,6 @@ namespace ToTypeScriptD.Tests.Winmd
             var config = new ToTypeScriptD.Core.WinmdConfig
             {
                 TypeNotFoundErrorHandler = errors,
-                OutputType = ToTypeScriptD.Core.OutputType.WinRT,
             };
             var result = ToTypeScriptD.Render.FullAssembly(file, typeCollection, config);
             (errors + result).Verify();
@@ -111,7 +109,6 @@ namespace ToTypeScriptD.Tests.Winmd
             var error = new StringBuilderTypeNotFoundErrorHandler();
             var config = new ToTypeScriptD.Core.WinmdConfig
             {
-                OutputType = Core.OutputType.WinRT,
                 AssemblyPaths = allFiles,
                 IncludeSpecialTypes = false,
                 TypeNotFoundErrorHandler = error,

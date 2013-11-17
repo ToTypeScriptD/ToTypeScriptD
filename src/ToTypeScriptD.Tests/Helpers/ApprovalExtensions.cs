@@ -58,7 +58,6 @@
             var config = new ToTypeScriptD.Core.DotNetConfig
             {
                 TypeNotFoundErrorHandler = errors,
-                OutputType = Core.OutputType.DotNet,
             };
 
             if (configOverrideHook != null)
