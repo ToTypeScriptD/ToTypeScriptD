@@ -30,11 +30,12 @@ namespace ToTypeScriptD.Core
         public Config()
         {
             this.IndentationType = IndentationFormatting.SpaceX4;
+            CamelCase = true;
         }
 
         public OutputType OutputType { get; set; }
-
         public bool IncludeSpecialTypes { get; set; }
+        public bool CamelCase { get; set; }
 
         private IEnumerable<string> _assemblyPaths = new List<string>();
         public IEnumerable<string> AssemblyPaths

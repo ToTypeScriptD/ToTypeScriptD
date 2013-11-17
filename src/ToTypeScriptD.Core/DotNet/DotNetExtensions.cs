@@ -157,16 +157,5 @@ namespace ToTypeScriptD.Core.DotNet
             // remove the generic bit
             return fromName;
         }
-
-        public static string ToTypeScriptName(this string name)
-        {
-            if (name.ToUpper() == name)
-            {
-                return name.ToLower();
-            }
-
-            return Char.ToLowerInvariant(name[0]) + name.Substring(1);
-        }
-
     }
 }

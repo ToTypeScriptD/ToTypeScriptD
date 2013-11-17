@@ -75,14 +75,54 @@ namespace ToTypeScriptD
             return hashset;
         }
 
-        public static string ToTypeScriptName(this string name)
+        static Dictionary<string, string> _specialEnumNames = new Dictionary<string, string>
         {
-            if (name.ToUpper() == name)
+            {"GB2312", "gb2312"},
+            {"PC437", "pc437"},
+            {"NKo", "nko"},
+        };
+
+        // Copied and modified from Json.Net
+        // https://github.com/JamesNK/Newtonsoft.Json/blob/master/Src/Newtonsoft.Json/Utilities/StringUtils.cs
+        public static string ToCamelCase(this string s, bool camelCaseConfig)
+        {
+            if (!camelCaseConfig)
+                return s;
+
+            if (_specialEnumNames.ContainsKey(s))
             {
-                return name.ToLower();
+                return _specialEnumNames[s];
             }
 
-            return Char.ToLowerInvariant(name[0]) + name.Substring(1);
+            if (string.IsNullOrEmpty(s))
+                return s;
+
+            if (!char.IsUpper(s[0]))
+                return s;
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < s.Length; i++)
+            {
+                bool hasNext = (i + 1 < s.Length);
+                if ((i == 0 || !hasNext) || char.IsUpper(s[i + 1]))
+                {
+                    char lowerCase;
+#if !(NETFX_CORE || PORTABLE)
+                    lowerCase = char.ToLower(s[i], System.Globalization.CultureInfo.InvariantCulture);
+#else
+                    lowerCase = char.ToLower(s[i]);
+#endif
+
+                    sb.Append(lowerCase);
+                }
+                else
+                {
+                    sb.Append(s.Substring(i));
+                    break;
+                }
+            }
+
+            return sb.ToString();
         }
 
         /// <summary>

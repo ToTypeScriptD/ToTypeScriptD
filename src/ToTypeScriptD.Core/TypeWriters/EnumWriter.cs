@@ -22,7 +22,7 @@ namespace ToTypeScriptD.Core.TypeWriters
             TypeDefinition.Fields.OrderBy(ob => ob.Constant).For((item, i, isLast) =>
             {
                 if (item.Name == "value__") return;
-                sb.AppendFormat("{0}{1}", IndentValue, item.Name.ToTypeScriptName());
+                sb.AppendFormat("{0}{1}", IndentValue, item.Name.ToCamelCase(config.CamelCase));
                 sb.AppendLine(isLast ? "" : ",");
             });
             --IndentCount;

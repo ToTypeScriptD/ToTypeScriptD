@@ -34,7 +34,7 @@
             ApprovalTests.Approvals.Verify(item);
         }
 
-        public static void DumpAndVerify(this string path, ToTypeScriptD.Core.OutputType outputType)
+        public static void DumpAndVerify(this string path, ToTypeScriptD.Core.OutputType outputType, System.Action<ToTypeScriptD.Core.Config> configOverrideHook = null)
         {
             var errors = new StringBuilderTypeNotFoundErrorHandler();
             var config = new ToTypeScriptD.Core.Config
@@ -42,6 +42,12 @@
                 TypeNotFoundErrorHandler = errors,
                 OutputType = outputType,
             };
+
+            if (configOverrideHook != null)
+            {
+                configOverrideHook(config);
+            }
+
             var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(config.GetTypeWriterTypeSelector());
             var result = ToTypeScriptD.Render.FullAssembly(path, typeCollection, config).StripHeaderGarbageromOutput();
             ApprovalTests.Approvals.Verify(errors + result);

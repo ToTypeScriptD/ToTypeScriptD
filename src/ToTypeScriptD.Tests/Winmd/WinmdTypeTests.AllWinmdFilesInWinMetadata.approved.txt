@@ -14503,7 +14503,7 @@ declare module Windows.UI.Text {
     }
 
     enum RangeGravity {
-        uIBehavior,
+        uiBehavior,
         backward,
         forward,
         inward,
@@ -14659,7 +14659,7 @@ declare module Windows.UI.Text {
         glagolitic,
         lisu,
         vai,
-        nKo,
+        nko,
         osmanya,
         phagsPa,
         gothic,

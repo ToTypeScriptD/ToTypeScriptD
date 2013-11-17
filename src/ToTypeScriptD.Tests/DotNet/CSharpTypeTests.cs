@@ -14,5 +14,15 @@ namespace ToTypeScriptD.Tests.DotNet
             var path = base.CSharpAssembly.ComponentPath;
             path.DumpAndVerify(OutputType.DotNet);
         }
+
+        [Fact]
+        public void UpperCasePropertyName()
+        {
+            var path = base.CSharpAssembly.ComponentPath;
+            path.DumpAndVerify(OutputType.DotNet, config =>
+            {
+                config.CamelCase = false;
+            });
+        }
     }
 }
