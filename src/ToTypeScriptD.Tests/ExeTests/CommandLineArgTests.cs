@@ -55,6 +55,15 @@ namespace ToTypeScriptD.Tests.ExeTests
             resultDup.Verify();
         }
 
+
+        [Fact]
+        public void ExeShouldGenerateWith2SpaceIndentation()
+        {
+            var resultDup = Execute("-o WinRT --specialTypes ToTypeScriptD.Native.winmd --indentWith SpaceX2");
+
+            resultDup.Verify();
+        }
+
         [Fact]
         public void ExeShouldGiveHelpfulErrorWhenFilesNotFoundInUnknownDirectory()
         {

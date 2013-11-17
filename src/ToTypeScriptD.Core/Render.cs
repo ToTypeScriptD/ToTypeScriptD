@@ -16,12 +16,12 @@ namespace ToTypeScriptD
 
             var typeCollection = new TypeCollection(config.GetTypeWriterTypeSelector());
 
-            var wroteAnyTypes = WriteSpecialTypes(config.IncludeSpecialTypes, w);
-            wroteAnyTypes |= WriteFiles(config.AssemblyPaths, w, config.TypeNotFoundErrorHandler, typeCollection, config.RegexFilter);
+            var wroteAnyTypes = WriteSpecialTypes(config.IncludeSpecialTypes, w, config);
+            wroteAnyTypes |= WriteFiles(config.AssemblyPaths, w, config.TypeNotFoundErrorHandler, typeCollection, config.RegexFilter, config);
             return wroteAnyTypes;
         }
 
-        private static bool WriteFiles(IEnumerable<string> assemblyPaths, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection, string filterRegex)
+        private static bool WriteFiles(IEnumerable<string> assemblyPaths, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection, string filterRegex, Config config)
         {
             var filesAlreadyProcessed = new HashSet<string>(new IgnoreCaseStringEqualityComparer());
             if (!assemblyPaths.Any())
@@ -33,7 +33,7 @@ namespace ToTypeScriptD
                     return;
 
                 filesAlreadyProcessed.Add(assemblyPath);
-                CollectTypes(assemblyPath, typeNotFoundErrorHandler, typeCollection);
+                CollectTypes(assemblyPath, typeNotFoundErrorHandler, typeCollection, config);
             });
 
             var renderedOut = typeCollection.Render(filterRegex);
@@ -42,21 +42,22 @@ namespace ToTypeScriptD
             return true;
         }
 
-        private static bool WriteSpecialTypes(bool includeSpecialTypes, TextWriter w)
+        private static bool WriteSpecialTypes(bool includeSpecialTypes, TextWriter w, Config config)
         {
             if (!includeSpecialTypes)
                 return false;
 
             w.NewLine();
-            w.WriteLine(Resources.ToTypeScriptDSpecialTypes_d);
+
+            w.WriteLine(Resources.ToTypeScriptDSpecialTypes_d.Replace("    ", config.Indent));
             w.NewLine();
             w.NewLine();
             return true;
         }
 
-        public static string FullAssembly(string assemblyPath, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection, string filterRegex)
+        public static string FullAssembly(string assemblyPath, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection, string filterRegex, Config config)
         {
-            CollectTypes(assemblyPath, typeNotFoundErrorHandler, typeCollection);
+            CollectTypes(assemblyPath, typeNotFoundErrorHandler, typeCollection, config);
             return GetHeader(new[] { assemblyPath }) + typeCollection.Render(filterRegex);
         }
 
@@ -94,7 +95,7 @@ namespace ToTypeScriptD
             return sb.ToString();
         }
 
-        private static void CollectTypes(string assemblyPath, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection)
+        private static void CollectTypes(string assemblyPath, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection, Config config)
         {
             var assembly = Mono.Cecil.AssemblyDefinition.ReadAssembly(assemblyPath);
 
@@ -103,7 +104,7 @@ namespace ToTypeScriptD
             var typeWriterGenerator = new TypeWriterCollector(typeNotFoundErrorHandler, typeCollection.TypeSelector);
             foreach (var item in assembly.MainModule.Types)
             {
-                typeWriterGenerator.Collect(item, typeCollection);
+                typeWriterGenerator.Collect(item, typeCollection, config);
             }
         }
 

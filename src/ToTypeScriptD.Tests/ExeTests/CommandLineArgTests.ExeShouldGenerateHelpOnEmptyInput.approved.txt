@@ -12,6 +12,10 @@ ERROR(S):
   -o, --outputType      Required. [WinRT | DotNet] - What .d.ts format would 
                         you like? EX: -o WinRT
 
+  -i, --indentWith      Override default indentation of SpaceX4 (four spaces). 
+                        Possible options: [None, TabX1, TabX2, 
+                        SpaceX1,...SpaceX8]
+
   -r, --regexFilter     A .net regular expression that can be used to filter 
                         the FullName of types exported. Picture this taking the
                         FullName of the TypeScript type and running it through 

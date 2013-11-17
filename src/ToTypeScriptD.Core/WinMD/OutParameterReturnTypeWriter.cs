@@ -15,42 +15,40 @@ namespace ToTypeScriptD.Core.WinMD
         private int IndentCount;
         private TypeDefinition TypeDefinition;
         private string MethodName;
+        private Config config;
 
-        public OutParameterReturnTypeWriter(int IndentCount, Mono.Cecil.TypeDefinition TypeDefinition, string methodName, TypeReference retrunTypeReference, List<ParameterDefinition> outTypes)
+        public OutParameterReturnTypeWriter(Config config, int indentCount, Mono.Cecil.TypeDefinition TypeDefinition, string methodName, TypeReference retrunTypeReference, List<ParameterDefinition> outTypes)
         {
-            // TODO: Complete member initialization
-            this.IndentCount = IndentCount;
+            this.config = config;
+            this.IndentCount = indentCount;
             this.TypeDefinition = TypeDefinition;
             this.MethodName = methodName;
             this.ReturnTypeReference = retrunTypeReference;
             this.OutTypes = outTypes;
         }
 
-        // TODO: pull out of config
         public string IndentValue
         {
-            get { return "    ".Dup(IndentCount); }
+            get { return config.Indent.Dup(IndentCount); }
         }
 
         public void Write(StringBuilder sb)
         {
             sb.AppendLine();
             sb.Append(IndentValue); sb.AppendFormat("interface {0} {{{1}", TypeName, Environment.NewLine);
-            IndentCount++;
 
             // return type
             if (!(ReturnTypeReference.FullName == "System.Void"))
             {
-                sb.AppendFormat("{0}__returnValue: {1};{2}", IndentValue, ReturnTypeReference.ToTypeScriptType(), Environment.NewLine);
+                sb.AppendFormat("{0}{0}__returnValue: {1};{2}", IndentValue, ReturnTypeReference.ToTypeScriptType(), Environment.NewLine);
             }
 
             // out parameter values
             OutTypes.Each(item =>
             {
-                sb.AppendFormat("{0}{1}: {2};{3}", IndentValue, item.Name, item.ParameterType.ToTypeScriptType(), Environment.NewLine);
+                sb.AppendFormat("{0}{0}{1}: {2};{3}", IndentValue, item.Name, item.ParameterType.ToTypeScriptType(), Environment.NewLine);
             });
 
-            IndentCount--;
             sb.Append(IndentValue + "}" + Environment.NewLine);
         }
 

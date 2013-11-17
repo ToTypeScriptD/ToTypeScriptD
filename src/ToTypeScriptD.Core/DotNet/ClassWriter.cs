@@ -4,8 +4,8 @@ namespace ToTypeScriptD.Core.DotNet
 {
     public class ClassWriter : TypeWriterBase
     {
-        public ClassWriter(Mono.Cecil.TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection)
-            : base(typeDefinition, indentCount, typeCollection)
+        public ClassWriter(Mono.Cecil.TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection, Config config)
+            : base(typeDefinition, indentCount, typeCollection, config)
         {
         }
 

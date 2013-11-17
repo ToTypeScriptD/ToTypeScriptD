@@ -8,8 +8,8 @@ namespace ToTypeScriptD.Core.WinMD
 {
     public class DelegateWriter : TypeWriterBase
     {
-        public DelegateWriter(Mono.Cecil.TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection)
-            : base(typeDefinition, indentCount, typeCollection)
+        public DelegateWriter(Mono.Cecil.TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection, Config config)
+            : base(typeDefinition, indentCount, typeCollection, config)
         {
         }
 
@@ -58,7 +58,6 @@ namespace ToTypeScriptD.Core.WinMD
             foreach (var method in TypeDefinition.Methods)
             {
                 var methodSb = new StringBuilder();
-                // TODO: determine if method was already defined by interface?
 
                 var methodName = method.Name;
 
@@ -108,9 +107,8 @@ namespace ToTypeScriptD.Core.WinMD
                     string returnType;
                     if (outTypes.Any())
                     {
-                        var outWriter = new OutParameterReturnTypeWriter(IndentCount, TypeDefinition, methodName, method.ReturnType, outTypes);
+                        var outWriter = new OutParameterReturnTypeWriter(Config, IndentCount, TypeDefinition, methodName, method.ReturnType, outTypes);
                         extendedTypes.Add(outWriter);
-                        //TypeCollection.Add(TypeDefinition.Namespace, outWriter.TypeName, outWriter);
                         returnType = outWriter.TypeName;
                     }
                     else

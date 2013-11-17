@@ -10,15 +10,17 @@ namespace ToTypeScriptD.Core.WinMD
 {
     public abstract class TypeWriterBase : ITypeWriter
     {
+        protected Config Config { get; set; }
         public TypeDefinition TypeDefinition { get; set; }
         public int IndentCount { get; set; }
         public TypeCollection TypeCollection { get; set; }
 
-        public TypeWriterBase(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection)
+        public TypeWriterBase(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection, Config config)
         {
             this.TypeDefinition = typeDefinition;
             this.IndentCount = indentCount;
             this.TypeCollection = typeCollection;
+            this.Config = config;
         }
 
         public virtual void Write(StringBuilder sb, Action midWrite)
@@ -27,11 +29,9 @@ namespace ToTypeScriptD.Core.WinMD
         }
         public abstract void Write(StringBuilder sb);
 
-
-        // TODO: pull tab out of Config
         public string IndentValue
         {
-            get { return "    ".Dup(IndentCount); }
+            get { return Config.Indent.Dup(IndentCount); }
         }
 
         public void Indent(StringBuilder sb)
@@ -164,7 +164,7 @@ namespace ToTypeScriptD.Core.WinMD
         {
             TypeDefinition.NestedTypes.Where(type => type.IsNestedPublic).Each(type =>
             {
-                var typeWriter = TypeCollection.TypeSelector.PickTypeWriter(type, IndentCount - 1, TypeCollection);
+                var typeWriter = TypeCollection.TypeSelector.PickTypeWriter(type, IndentCount - 1, TypeCollection, Config);
                 sb.AppendLine();
                 typeWriter.Write(sb);
             });
@@ -177,7 +177,6 @@ namespace ToTypeScriptD.Core.WinMD
             foreach (var method in TypeDefinition.Methods)
             {
                 var methodSb = new StringBuilder();
-                // TODO: determine if method was already defined by interface?
 
                 var methodName = method.Name;
 
@@ -230,7 +229,7 @@ namespace ToTypeScriptD.Core.WinMD
                     string returnType;
                     if (outTypes.Any())
                     {
-                        var outWriter = new OutParameterReturnTypeWriter(IndentCount, TypeDefinition, methodName, method.ReturnType, outTypes);
+                        var outWriter = new OutParameterReturnTypeWriter(Config, IndentCount, TypeDefinition, methodName, method.ReturnType, outTypes);
                         extendedTypes.Add(outWriter);
                         //TypeCollection.Add(TypeDefinition.Namespace, outWriter.TypeName, outWriter);
                         returnType = outWriter.TypeName;

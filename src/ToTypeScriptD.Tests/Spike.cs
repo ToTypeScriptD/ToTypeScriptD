@@ -3,10 +3,10 @@ using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using ToTypeScriptD.Core;
 using ToTypeScriptD.Core.TypeWriters;
 using ToTypeScriptD.Core.WinMD;
 using ToTypeScriptD.Tests.ExeTests;
-
 using Xunit;
 
 namespace ToTypeScriptD.Tests
@@ -33,8 +33,10 @@ namespace ToTypeScriptD.Tests
         {
             var typeCollection = new TypeCollection(new WinMDTypeWriterTypeSelector());
             var errors = new StringBuilderTypeNotFoundErrorHandler();
+            var config = new Config();
+
             new TypeWriterCollector(errors, typeCollection.TypeSelector)
-                .Collect(value, typeCollection);
+                .Collect(value, typeCollection, config);
             var result = typeCollection.Render(filterRegex);
             var errorResult = errors.ToString();
             if (string.IsNullOrEmpty(errorResult))
@@ -77,7 +79,8 @@ namespace ToTypeScriptD.Tests
         {
             var errors = new StringBuilderTypeNotFoundErrorHandler();
             var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(new ToTypeScriptD.Core.WinMD.WinMDTypeWriterTypeSelector());
-            var result = ToTypeScriptD.Render.FullAssembly(path, errors, typeCollection, string.Empty);
+            var config = new Config();
+            var result = ToTypeScriptD.Render.FullAssembly(path, errors, typeCollection, string.Empty, config);
             Approvals.Verify(errors + result);
         }
     }

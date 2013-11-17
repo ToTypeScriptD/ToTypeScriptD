@@ -18,6 +18,7 @@ namespace ToTypeScriptD
                     IncludeSpecialTypes = options.IncludeSpecialTypeDefinitions,
                     TypeNotFoundErrorHandler = new ConsoleErrorTypeNotFoundErrorHandler(),
                     RegexFilter = options.RegexFilter,
+                    IndentationType = options.IndentationType,
                 };
 
                 try

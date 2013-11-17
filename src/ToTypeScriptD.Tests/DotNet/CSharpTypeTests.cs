@@ -1,4 +1,5 @@
 ﻿using ApprovalTests;
+using ToTypeScriptD.Core;
 using ToTypeScriptD.Core.DotNet;
 using Xunit;
 
@@ -14,7 +15,8 @@ namespace ToTypeScriptD.Tests.DotNet
             var typeSelector = new DotNetTypeWriterTypeSelector();
             var errors = new StringBuilderTypeNotFoundErrorHandler();
             var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(typeSelector);
-            var result = ToTypeScriptD.Render.FullAssembly(path, errors, typeCollection, string.Empty);
+            var config = new Config();
+            var result = ToTypeScriptD.Render.FullAssembly(path, errors, typeCollection, string.Empty, config);
             (errors + result).Verify();
         }
     }

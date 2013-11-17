@@ -12,12 +12,14 @@ namespace ToTypeScriptD.Core.DotNet
         public TypeDefinition TypeDefinition { get; set; }
         public int IndentCount { get; set; }
         public TypeCollection TypeCollection { get; set; }
+        protected Config Config { get; set; }
 
-        public TypeWriterBase(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection)
+        public TypeWriterBase(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection, Config config)
         {
             this.TypeDefinition = typeDefinition;
             this.IndentCount = indentCount;
             this.TypeCollection = typeCollection;
+            this.Config = config;
         }
 
         public virtual void Write(StringBuilder sb, Action midWrite)
@@ -27,10 +29,9 @@ namespace ToTypeScriptD.Core.DotNet
         public abstract void Write(StringBuilder sb);
 
 
-        // TODO: pull tab out of Config
         public string IndentValue
         {
-            get { return "    ".Dup(IndentCount); }
+            get { return Config.Indent.Dup(IndentCount); }
         }
 
         public void Indent(StringBuilder sb)
@@ -100,7 +101,7 @@ namespace ToTypeScriptD.Core.DotNet
         {
             TypeDefinition.NestedTypes.Where(type => type.IsNestedPublic).Each(type =>
             {
-                var typeWriter = TypeCollection.TypeSelector.PickTypeWriter(type, IndentCount - 1, TypeCollection);
+                var typeWriter = TypeCollection.TypeSelector.PickTypeWriter(type, IndentCount - 1, TypeCollection, this.Config);
                 sb.AppendLine();
                 typeWriter.Write(sb);
             });
@@ -148,5 +149,6 @@ namespace ToTypeScriptD.Core.DotNet
         {
             get { return TypeDefinition.Namespace + "." + TypeDefinition.ToTypeScriptItemName(); }
         }
+
     }
 }

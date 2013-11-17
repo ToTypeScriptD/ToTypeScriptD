@@ -6,8 +6,10 @@ namespace ToTypeScriptD.Core.TypeWriters
 {
     public class EnumWriter : ITypeWriter
     {
-        public EnumWriter(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection)
+        private Config config;
+        public EnumWriter(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection, Config config)
         {
+            this.config = config;
             this.TypeDefinition = typeDefinition;
             this.IndentCount = indentCount;
         }
@@ -27,10 +29,9 @@ namespace ToTypeScriptD.Core.TypeWriters
             sb.AppendLine(IndentValue + "}");
         }
 
-        // TODO: pull indentation type out of config
         public string IndentValue
         {
-            get { return "    ".Dup(IndentCount); }
+            get { return config.Indent.Dup(IndentCount); }
         }
 
         public string FullName

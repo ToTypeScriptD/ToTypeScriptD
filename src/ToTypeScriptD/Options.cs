@@ -7,6 +7,10 @@ namespace ToTypeScriptD
 {
     public class Options
     {
+        public Options()
+        {
+            IndentationType = IndentationFormatting.SpaceX4;
+        }
         [ValueList(typeof(List<string>))]
         public IList<string> Files { get; set; }
 
@@ -15,6 +19,9 @@ namespace ToTypeScriptD
 
         [Option('o', "outputType", Required = true, HelpText = "[WinRT | DotNet] - What .d.ts format would you like? EX: -o WinRT")]
         public OutputType OutputType { get; set; }
+
+        [Option('i', "indentWith", HelpText = "Override default indentation of SpaceX4 (four spaces). Possible options: [None, TabX1, TabX2, SpaceX1,...SpaceX8]")]
+        public IndentationFormatting IndentationType { get; set; }
 
         private string _regexFilter;
         [Option('r', "regexFilter", HelpText = "A .net regular expression that can be used to filter the FullName of types exported. Picture this taking the FullName of the TypeScript type and running it through the .Net Regex.IsMatch(name, pattern)")]

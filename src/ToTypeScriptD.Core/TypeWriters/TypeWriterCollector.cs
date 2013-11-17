@@ -20,14 +20,14 @@ namespace ToTypeScriptD.Core.TypeWriters
             this.typeNotFoundErrorHandler = typeNotFoundErrorHandler;
             this.typeSelector = typeSelector;
         }
-        public void Collect(IEnumerable<Mono.Cecil.TypeDefinition> tds, TypeCollection typeCollection)
+        public void Collect(IEnumerable<Mono.Cecil.TypeDefinition> tds, TypeCollection typeCollection, Config config)
         {
             foreach (var item in tds)
             {
-                Collect(item, typeCollection);
+                Collect(item, typeCollection, config);
             }
         }
-        public void Collect(Mono.Cecil.TypeDefinition td, TypeCollection typeCollection)
+        public void Collect(Mono.Cecil.TypeDefinition td, TypeCollection typeCollection, Config config)
         {
             if (td.ShouldIgnoreType())
             {
@@ -42,7 +42,7 @@ namespace ToTypeScriptD.Core.TypeWriters
 
             StringBuilder sb = new StringBuilder();
             var indentCount = 0;
-            ITypeWriter typeWriter = typeSelector.PickTypeWriter(td, indentCount, typeCollection);
+            ITypeWriter typeWriter = typeSelector.PickTypeWriter(td, indentCount, typeCollection, config);
 
             td.Interfaces.Each(item =>
             {
@@ -55,7 +55,7 @@ namespace ToTypeScriptD.Core.TypeWriters
                     return;
                 }
 
-                var itemWriter = typeSelector.PickTypeWriter(foundType, indentCount, typeCollection);
+                var itemWriter = typeSelector.PickTypeWriter(foundType, indentCount, typeCollection, config);
                 typeCollection.Add(foundType.Namespace, foundType.Name, itemWriter);
 
             });
