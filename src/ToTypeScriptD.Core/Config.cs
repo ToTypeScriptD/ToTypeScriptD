@@ -26,6 +26,8 @@ namespace ToTypeScriptD.Core
         }
 
         public abstract bool CamelCase { get; set; }
+        public abstract TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector();
+
 
         public bool IncludeSpecialTypes { get; set; }
 
@@ -85,9 +87,6 @@ namespace ToTypeScriptD.Core
                 }
             }
         }
-
-
-        public abstract TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector();
     }
 
     public class DotNetConfig : Config
@@ -104,6 +103,7 @@ namespace ToTypeScriptD.Core
             return new DotNet.DotNetTypeWriterTypeSelector();
         }
     }
+
     public class WinmdConfig : Config
     {
         public override TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector()
