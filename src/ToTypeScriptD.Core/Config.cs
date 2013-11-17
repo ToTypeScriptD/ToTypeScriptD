@@ -94,7 +94,7 @@ namespace ToTypeScriptD.Core
         }
 
 
-        internal TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector()
+        public TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector()
         {
             if (this.OutputType == OutputType.DotNet)
             {

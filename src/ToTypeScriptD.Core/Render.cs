@@ -55,10 +55,10 @@ namespace ToTypeScriptD
             return true;
         }
 
-        public static string FullAssembly(string assemblyPath, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection, string filterRegex, Config config)
+        public static string FullAssembly(string assemblyPath, TypeCollection typeCollection, Config config)
         {
-            CollectTypes(assemblyPath, typeNotFoundErrorHandler, typeCollection, config);
-            return GetHeader(new[] { assemblyPath }) + typeCollection.Render(filterRegex);
+            CollectTypes(assemblyPath, config.TypeNotFoundErrorHandler, typeCollection, config);
+            return GetHeader(new[] { assemblyPath }) + typeCollection.Render(config.RegexFilter);
         }
 
         private static string GetHeader(IEnumerable<string> assemblyPaths)

@@ -38,8 +38,12 @@
         {
             var errors = new StringBuilderTypeNotFoundErrorHandler();
             var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(new ToTypeScriptD.Core.WinMD.WinMDTypeWriterTypeSelector());
-            var config = new ToTypeScriptD.Core.Config();
-            var result = ToTypeScriptD.Render.FullAssembly(path, errors, typeCollection, string.Empty, config);
+            var config = new ToTypeScriptD.Core.Config
+            {
+                TypeNotFoundErrorHandler = errors,
+                OutputType = ToTypeScriptD.Core.OutputType.WinRT,
+            };
+            var result = ToTypeScriptD.Render.FullAssembly(path, typeCollection, config);
             ApprovalTests.Approvals.Verify(errors + result);
         }
     }

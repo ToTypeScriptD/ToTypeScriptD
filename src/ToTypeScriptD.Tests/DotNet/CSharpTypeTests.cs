@@ -12,12 +12,14 @@ namespace ToTypeScriptD.Tests.DotNet
         public void GenerateFullAssembly()
         {
             var path = base.CSharpAssembly.ComponentPath;
-            var typeSelector = new DotNetTypeWriterTypeSelector();
-            var errors = new StringBuilderTypeNotFoundErrorHandler();
-            var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(typeSelector);
-            var config = new Config();
-            var result = ToTypeScriptD.Render.FullAssembly(path, errors, typeCollection, string.Empty, config);
-            (errors + result).Verify();
+            var config = new Config
+            {
+                TypeNotFoundErrorHandler = new StringBuilderTypeNotFoundErrorHandler(),
+                OutputType = OutputType.DotNet,
+            };
+            var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(config.GetTypeWriterTypeSelector());
+            var result = ToTypeScriptD.Render.FullAssembly(path, typeCollection, config);
+            (config.TypeNotFoundErrorHandler + result).Verify();
         }
     }
 }
