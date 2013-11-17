@@ -47,7 +47,10 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config.cs" />
+    <Compile Include="Config\Config.cs" />
+    <Compile Include="DotNet\DotNetConfig.cs" />
+    <Compile Include="Config\IndentationFormatting.cs" />
+    <Compile Include="WinMD\WinmdConfig.cs" />
     <Compile Include="DotNet\ClassWriter.cs" />
     <Compile Include="DotNet\DotNetTypeWriterTypeSelector.cs" />
     <Compile Include="DotNet\DotNetExtensions.cs" />

@@ -5,7 +5,7 @@ namespace ToTypeScriptD.Core.DotNet
 {
     public class DotNetTypeWriterTypeSelector : ITypeWriterTypeSelector
     {
-        public ITypeWriter PickTypeWriter(Mono.Cecil.TypeDefinition td, int indentCount, TypeCollection typeCollection, Config config)
+        public ITypeWriter PickTypeWriter(Mono.Cecil.TypeDefinition td, int indentCount, TypeCollection typeCollection, ConfigBase config)
         {
             var castedConfig = (DotNetConfig)config;
             if (td.IsEnum)

@@ -34,10 +34,10 @@
             ApprovalTests.Approvals.Verify(item);
         }
 
-        public static void DumpWinMDAndVerify(this string path, System.Action<ToTypeScriptD.Core.Config> configOverrideHook = null)
+        public static void DumpWinMDAndVerify(this string path, System.Action<ToTypeScriptD.Core.ConfigBase> configOverrideHook = null)
         {
             var errors = new StringBuilderTypeNotFoundErrorHandler();
-            var config = new ToTypeScriptD.Core.WinmdConfig
+            var config = new ToTypeScriptD.Core.WinMD.WinmdConfig
             {
                 TypeNotFoundErrorHandler = errors,
             };
@@ -52,10 +52,10 @@
             ApprovalTests.Approvals.Verify(errors + result);
         }
 
-        public static void DumpDotNetAndVerify(this string path, System.Action<ToTypeScriptD.Core.Config> configOverrideHook = null)
+        public static void DumpDotNetAndVerify(this string path, System.Action<ToTypeScriptD.Core.ConfigBase> configOverrideHook = null)
         {
             var errors = new StringBuilderTypeNotFoundErrorHandler();
-            var config = new ToTypeScriptD.Core.DotNetConfig
+            var config = new ToTypeScriptD.Core.DotNet.DotNetConfig
             {
                 TypeNotFoundErrorHandler = errors,
             };

@@ -1,26 +1,12 @@
 ﻿using System.Collections.Generic;
+using ToTypeScriptD.Core.Config;
 
 namespace ToTypeScriptD.Core
 {
 
-    public enum IndentationFormatting
+    public abstract class ConfigBase
     {
-        None,
-        TabX1,
-        TabX2,
-        SpaceX1,
-        SpaceX2,
-        SpaceX3,
-        SpaceX4, // Default
-        SpaceX5,
-        SpaceX6,
-        SpaceX7,
-        SpaceX8,
-    }
-
-    public abstract class Config
-    {
-        public Config()
+        public ConfigBase()
         {
             this.IndentationType = IndentationFormatting.SpaceX4;
         }
@@ -88,34 +74,4 @@ namespace ToTypeScriptD.Core
             }
         }
     }
-
-    public class DotNetConfig : Config
-    {
-        public DotNetConfig()
-            : base()
-        {
-            CamelCase = true;
-        }
-
-        public override bool CamelCase { get; set; }
-        public override TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector()
-        {
-            return new DotNet.DotNetTypeWriterTypeSelector();
-        }
-    }
-
-    public class WinmdConfig : Config
-    {
-        public override TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector()
-        {
-            return new WinMD.WinMDTypeWriterTypeSelector();
-        }
-
-        public override bool CamelCase
-        {
-            get { return true; }
-            set { throw new System.NotSupportedException(); }
-        }
-    }
-
 }

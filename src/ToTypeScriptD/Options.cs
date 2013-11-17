@@ -2,6 +2,7 @@
 using CommandLine.Text;
 using System.Collections.Generic;
 using ToTypeScriptD.Core;
+using ToTypeScriptD.Core.Config;
 
 namespace ToTypeScriptD
 {
