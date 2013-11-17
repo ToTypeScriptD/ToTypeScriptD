@@ -52,6 +52,29 @@ You can see the Chocolatey package here: [ToTypeScriptD package](https://chocola
 
     ToTypeScriptD.bat --outputType WinRT --specialTypes C:\Windows\System32\WinMetadata\Windows.Foundation.winmd --regexFilter "Windows.Foundation.Collections"
 
+## Command Line Options
+
+```CommandLine
+Usage:
+  TypeScriptD.exe -o WinRT [--specialTypes] [<file1.winmd>...<fileN.winmd>]
+
+  -s, --specialTypes    Writes the ToTypeScriptD special types to standard out
+
+  -o, --outputType      Required. [WinRT | DotNet] - What .d.ts format would 
+                        you like? EX: -o WinRT
+
+  -i, --indentWith      Override default indentation of SpaceX4 (four spaces). 
+                        Possible options: [None, TabX1, TabX2, 
+                        SpaceX1,...SpaceX8]
+
+  -r, --regexFilter     A .net regular expression that can be used to filter 
+                        the FullName of types exported. Picture this taking the
+                        FullName of the TypeScript type and running it through 
+                        the .Net Regex.IsMatch(name, pattern)
+
+  --help                Display this help screen.
+```
+
 ## Roadmap
 
 Checkout the [project milestones](https://github.com/staxmanade/ToTypeScriptD/issues/milestones), suggest a feature, bug etc. Or even better, submit a pull request.

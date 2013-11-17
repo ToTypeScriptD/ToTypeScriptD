@@ -60,7 +60,8 @@ namespace ToTypeScriptD
             {
 
                 current.AddPreOptionsLine(" "); // blank line
-                current.AddPreOptionsLine("Usage: TypeScriptD.exe [--specialTypes] [<file1.winmd> ...<fileN.winmd>]");
+                current.AddPreOptionsLine("Usage:");
+                current.AddPreOptionsLine("  TypeScriptD.exe -o WinRT [--specialTypes] [<file1.winmd>...<fileN.winmd>]");
 
                 HelpText.DefaultParsingErrorsHandler(this, current);
             });

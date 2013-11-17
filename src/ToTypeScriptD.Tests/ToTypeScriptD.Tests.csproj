@@ -65,6 +65,8 @@
     <Compile Include="ExeTests\CommandLineArgTests.cs" />
     <Compile Include="ExeTests\ExeProcessResult.cs" />
     <Compile Include="ExeTests\ExeTestBase.cs" />
+    <Compile Include="Helpers\ApprovalExtensions.cs" />
+    <Compile Include="ReadmeTests.cs" />
     <Compile Include="SpecExtensions\xUnitSpecificationExtensions.cs" />
     <Compile Include="Spike.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,6 +91,10 @@
     <ProjectReference Include="..\ToTypeScriptD.TestAssembly.CSharp\ToTypeScriptD.TestAssembly.CSharp.csproj">
       <Project>{c7f85246-c5d8-44b0-a125-e526e24f900b}</Project>
       <Name>ToTypeScriptD.TestAssembly.CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ToTypeScriptD\ToTypeScriptD.csproj">
+      <Project>{128a58cf-d911-4c50-b20f-3afa6d75cae8}</Project>
+      <Name>ToTypeScriptD</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

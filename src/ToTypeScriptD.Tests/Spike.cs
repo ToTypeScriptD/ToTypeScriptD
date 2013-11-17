@@ -3,6 +3,7 @@ using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using ToTypeScriptD.Core;
 using ToTypeScriptD.Core.TypeWriters;
 using ToTypeScriptD.Core.WinMD;
