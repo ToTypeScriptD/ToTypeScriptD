@@ -66,6 +66,7 @@
     <Compile Include="ExeTests\ExeProcessResult.cs" />
     <Compile Include="ExeTests\ExeTestBase.cs" />
     <Compile Include="Helpers\ApprovalExtensions.cs" />
+    <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="ReadmeTests.cs" />
     <Compile Include="SpecExtensions\xUnitSpecificationExtensions.cs" />
     <Compile Include="Spike.cs" />
