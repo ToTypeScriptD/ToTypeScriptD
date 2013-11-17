@@ -25,7 +25,7 @@ namespace ToTypeScriptD.Core
         SpaceX8,
     }
 
-    public class Config
+    public abstract class Config
     {
         public Config()
         {
@@ -106,6 +106,10 @@ namespace ToTypeScriptD.Core
     }
 
     public class DotNetConfig : Config
+    {
+        // TODO: move PascalCase here
+    }
+    public class WinmdConfig : Config
     {
         // TODO: move PascalCase here
     }
