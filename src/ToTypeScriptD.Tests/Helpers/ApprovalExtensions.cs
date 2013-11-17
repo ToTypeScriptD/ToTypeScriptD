@@ -34,16 +34,16 @@
             ApprovalTests.Approvals.Verify(item);
         }
 
-        public static void DumpAndVerify(this string path)
+        public static void DumpAndVerify(this string path, ToTypeScriptD.Core.OutputType outputType)
         {
             var errors = new StringBuilderTypeNotFoundErrorHandler();
-            var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(new ToTypeScriptD.Core.WinMD.WinMDTypeWriterTypeSelector());
             var config = new ToTypeScriptD.Core.Config
             {
                 TypeNotFoundErrorHandler = errors,
-                OutputType = ToTypeScriptD.Core.OutputType.WinRT,
+                OutputType = outputType,
             };
-            var result = ToTypeScriptD.Render.FullAssembly(path, typeCollection, config);
+            var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(config.GetTypeWriterTypeSelector());
+            var result = ToTypeScriptD.Render.FullAssembly(path, typeCollection, config).StripHeaderGarbageromOutput();
             ApprovalTests.Approvals.Verify(errors + result);
         }
     }
