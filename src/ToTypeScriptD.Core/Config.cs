@@ -23,11 +23,11 @@ namespace ToTypeScriptD.Core
         public Config()
         {
             this.IndentationType = IndentationFormatting.SpaceX4;
-            CamelCase = true;
         }
 
+        public abstract bool CamelCase { get; set; }
+
         public bool IncludeSpecialTypes { get; set; }
-        public bool CamelCase { get; set; }
 
         private IEnumerable<string> _assemblyPaths = new List<string>();
         public IEnumerable<string> AssemblyPaths
@@ -92,7 +92,13 @@ namespace ToTypeScriptD.Core
 
     public class DotNetConfig : Config
     {
-        // TODO: move PascalCase here
+        public DotNetConfig()
+            : base()
+        {
+            CamelCase = true;
+        }
+
+        public override bool CamelCase { get; set; }
         public override TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector()
         {
             return new DotNet.DotNetTypeWriterTypeSelector();
@@ -100,10 +106,15 @@ namespace ToTypeScriptD.Core
     }
     public class WinmdConfig : Config
     {
-        // TODO: move PascalCase here
         public override TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector()
         {
             return new WinMD.WinMDTypeWriterTypeSelector();
+        }
+
+        public override bool CamelCase
+        {
+            get { return true; }
+            set { throw new System.NotSupportedException(); }
         }
     }
 
