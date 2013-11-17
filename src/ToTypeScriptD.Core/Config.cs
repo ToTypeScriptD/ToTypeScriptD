@@ -105,4 +105,9 @@ namespace ToTypeScriptD.Core
         }
     }
 
+    public class DotNetConfig : Config
+    {
+        // TODO: move PascalCase here
+    }
+
 }

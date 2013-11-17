@@ -7,19 +7,46 @@ namespace ToTypeScriptD
     {
         static void Main(string[] args)
         {
+            Config config = null;
+
             var options = new Options();
-            if (CommandLine.Parser.Default.ParseArgumentsStrict(args, options))
+
+            string verbInvoked = null;
+
+            if (CommandLine.Parser.Default.ParseArgumentsStrict(args, options, (verb, subOptions) =>
+            {
+                verb = (verb ?? "").ToLowerInvariant();
+                verbInvoked = verb;
+                if (verb == "dotnet")
+                {
+                    var dotNetSubOptions = (DotNetSubOptions)subOptions;
+                    config = new DotNetConfig
+                    {
+                        AssemblyPaths = dotNetSubOptions.Files,
+                        CamelCase = dotNetSubOptions.CamelCase,
+                        IncludeSpecialTypes = dotNetSubOptions.IncludeSpecialTypeDefinitions,
+                        IndentationType = dotNetSubOptions.IndentationType,
+                        OutputType = Core.OutputType.DotNet,
+                        RegexFilter = dotNetSubOptions.RegexFilter,
+                        TypeNotFoundErrorHandler = new ConsoleErrorTypeNotFoundErrorHandler(),
+                    };
+                }
+                else if (verb == "winmd")
+                {
+                    var winmdSubOptions = (WinmdSubOptions)subOptions;
+                    config = new DotNetConfig
+                    {
+                        AssemblyPaths = winmdSubOptions.Files,
+                        IncludeSpecialTypes = winmdSubOptions.IncludeSpecialTypeDefinitions,
+                        IndentationType = winmdSubOptions.IndentationType,
+                        OutputType = Core.OutputType.WinRT,
+                        RegexFilter = winmdSubOptions.RegexFilter,
+                        TypeNotFoundErrorHandler = new ConsoleErrorTypeNotFoundErrorHandler(),
+                    };
+                }
+            }))
             {
                 bool skipPrintingHelp = false;
-                var config = new Config
-                {
-                    OutputType = options.OutputType,
-                    AssemblyPaths = options.Files,
-                    IncludeSpecialTypes = options.IncludeSpecialTypeDefinitions,
-                    TypeNotFoundErrorHandler = new ConsoleErrorTypeNotFoundErrorHandler(),
-                    RegexFilter = options.RegexFilter,
-                    IndentationType = options.IndentationType,
-                };
 
                 try
                 {
@@ -40,7 +67,7 @@ namespace ToTypeScriptD
 
                 if (!skipPrintingHelp)
                 {
-                    Console.WriteLine(options.GetUsage());
+                    Console.WriteLine(options.GetUsage(verbInvoked));
                     Environment.ExitCode = 1;
                 }
             }

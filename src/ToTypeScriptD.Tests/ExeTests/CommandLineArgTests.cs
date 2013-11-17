@@ -23,7 +23,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldGenerateOutputForMultipleWinmdFiles()
         {
-            var result = Execute(@"-o WinRT C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Networking.winmd");
+            var result = Execute(@"winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Networking.winmd");
 
             (result.StdOut.Length > 100).ShouldBeTrue(result.StdOut.Length + " should be greater than 100");
         }
@@ -31,7 +31,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void VerifyExeGeneratedOutputForMultipleWinmdFiles()
         {
-            var result = Execute(@"-o WinRT C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.System.winmd");
+            var result = Execute(@"winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.System.winmd");
 
             result.StdOut.Verify();
         }
@@ -40,8 +40,8 @@ namespace ToTypeScriptD.Tests.ExeTests
         [ApprovalTests.Reporters.UseReporter(typeof(ApprovalTests.Reporters.P4MergeReporter))]
         public void ExeDuplicateAssemblyShouldStillOnlyGenerateOne()
         {
-            var resultDup = Execute(@"-o WinRT C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd");
-            var resultNonDup = Execute(@"-o WinRT C:\Windows\System32\WinMetadata\Windows.Foundation.winmd");
+            var resultDup = Execute(@"winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd");
+            var resultNonDup = Execute(@"winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd");
 
             resultNonDup.ToString().StripHeaderGarbageromOutput()
                 .DiffWith(resultDup.ToString().StripHeaderGarbageromOutput());
@@ -50,7 +50,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldBeAbleToGenerateSpecialTypes()
         {
-            var resultDup = Execute("-o WinRT --specialTypes");
+            var resultDup = Execute("winmd --specialTypes");
 
             resultDup.Verify();
         }
@@ -59,7 +59,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldGenerateWith2SpaceIndentation()
         {
-            var resultDup = Execute("-o WinRT --specialTypes ToTypeScriptD.Native.winmd --indentWith SpaceX2");
+            var resultDup = Execute("winmd --specialTypes ToTypeScriptD.Native.winmd --indentWith SpaceX2");
 
             resultDup.Verify();
         }
@@ -67,7 +67,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldGiveHelpfulErrorWhenFilesNotFoundInUnknownDirectory()
         {
-            var resultDup = Execute(@"-o WinRT C:\TypeScriptD\TypeScriptD\TypeScriptD\Foo.dll C:\TypeScriptD\TypeScriptD\TypeScriptD\Foo.dll");
+            var resultDup = Execute(@"winmd C:\TypeScriptD\TypeScriptD\TypeScriptD\Foo.dll C:\TypeScriptD\TypeScriptD\TypeScriptD\Foo.dll");
 
             resultDup.Verify();
         }
@@ -75,7 +75,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldGiveHelpfulErrorWhenFilesNotFound()
         {
-            var resultDup = Execute(@"-o WinRT C:\TypeScriptD_FileNotFound_ThisShouldNotExistOnYourSystem.dll");
+            var resultDup = Execute(@"winmd C:\TypeScriptD_FileNotFound_ThisShouldNotExistOnYourSystem.dll");
 
             resultDup.Verify();
         }
@@ -83,7 +83,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldApplyRegexFilterOnTypes()
         {
-            var resultDup = Execute(@"-o DotNet ..\..\..\bin\ToTypeScriptD.TestAssembly.CSharp.dll --regexFilter 'ToTypeScriptD.TestAssembly.CSharp.NamespaceSample'");
+            var resultDup = Execute(@"DotNet ..\..\..\bin\ToTypeScriptD.TestAssembly.CSharp.dll --regexFilter 'ToTypeScriptD.TestAssembly.CSharp.NamespaceSample'");
 
             resultDup.Verify();
         }

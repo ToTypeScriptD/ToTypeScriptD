@@ -7,18 +7,90 @@ namespace ToTypeScriptD
 {
     public class Options
     {
-        public Options()
+        [VerbOption("dotnet", HelpText = "Generate .d.ts based on .Net conventions")]
+        public DotNetSubOptions DotNet { get; set; }
+
+        [VerbOption("winmd", HelpText = "Generate .d.ts based on WinJS/WinMD conventions")]
+        public WinmdSubOptions WinMD { get; set; }
+
+
+        //[Option('v', "verbose", DefaultValue = true, HelpText = "Prints all messages to standard output.")]
+        //public bool Verbose { get; set; }
+
+        [HelpVerbOption]
+        public string GetUsage(string verb)
+        {
+            return HelpText.AutoBuild(this, verb);
+
+//            return HelpText.AutoBuild(this, current =>
+//            {
+//
+////                current.AddPreOptionsLine(" "); // blank line
+////                current.AddPreOptionsLine("Usage:");
+////                current.AddPreOptionsLine("  TypeScriptD.exe -o WinRT [--specialTypes] [<file1.winmd>...<fileN.winmd>]");
+//
+//                HelpText.DefaultParsingErrorsHandler(this, current);
+//            });
+        }
+    }
+
+    public class DotNetSubOptions
+    {
+        public DotNetSubOptions()
         {
             IndentationType = IndentationFormatting.SpaceX4;
         }
+
         [ValueList(typeof(List<string>))]
         public IList<string> Files { get; set; }
 
         [Option('s', "specialTypes", HelpText = "Writes the ToTypeScriptD special types to standard out")]
         public bool IncludeSpecialTypeDefinitions { get; set; }
 
-        [Option('o', "outputType", Required = true, HelpText = "[WinRT | DotNet] - What .d.ts format would you like? EX: -o WinRT")]
-        public OutputType OutputType { get; set; }
+        [Option('i', "indentWith", HelpText = "Override default indentation of SpaceX4 (four spaces). Possible options: [None, TabX1, TabX2, SpaceX1,...SpaceX8]")]
+        public IndentationFormatting IndentationType { get; set; }
+
+        [Option('p', "camelCase", DefaultValue = true, HelpText = "Changes properties from .Net name to camel cased names. EX: (Foo: string) becomes (foo: string)")]
+        public bool CamelCase { get; set; }
+
+
+        private string _regexFilter;
+        [Option('r', "regexFilter", HelpText = "A .net regular expression that can be used to filter the FullName of types exported. Picture this taking the FullName of the TypeScript type and running it through the .Net Regex.IsMatch(name, pattern)")]
+        public string RegexFilter
+        {
+            get
+            {
+                return _regexFilter;
+            }
+            set
+            {
+                var v = value ?? "";
+                if (v.StartsWith("'") && v.EndsWith("'"))
+                {
+                    v = v.Substring(1, v.Length - 2);
+                }
+                if (v.StartsWith("\"") && v.EndsWith("\""))
+                {
+                    v = v.Substring(1, v.Length - 2);
+                }
+
+                _regexFilter = v;
+            }
+        }
+    }
+
+    public class WinmdSubOptions
+    {
+        public WinmdSubOptions()
+        {
+            IndentationType = IndentationFormatting.SpaceX4;
+        }
+
+        [ValueList(typeof(List<string>))]
+        public IList<string> Files { get; set; }
+
+        [Option('s', "specialTypes", HelpText = "Writes the ToTypeScriptD special types to standard out")]
+        public bool IncludeSpecialTypeDefinitions { get; set; }
 
         [Option('i', "indentWith", HelpText = "Override default indentation of SpaceX4 (four spaces). Possible options: [None, TabX1, TabX2, SpaceX1,...SpaceX8]")]
         public IndentationFormatting IndentationType { get; set; }
@@ -46,25 +118,6 @@ namespace ToTypeScriptD
                 _regexFilter = v;
             }
         }
-
-        //[Option('v', "verbose", DefaultValue = true, HelpText = "Prints all messages to standard output.")]
-        //public bool Verbose { get; set; }
-
-        [ParserState]
-        public IParserState LastParserState { get; set; }
-
-        [HelpOption]
-        public string GetUsage()
-        {
-            return HelpText.AutoBuild(this, current =>
-            {
-
-                current.AddPreOptionsLine(" "); // blank line
-                current.AddPreOptionsLine("Usage:");
-                current.AddPreOptionsLine("  TypeScriptD.exe -o WinRT [--specialTypes] [<file1.winmd>...<fileN.winmd>]");
-
-                HelpText.DefaultParsingErrorsHandler(this, current);
-            });
-        }
     }
+
 }
