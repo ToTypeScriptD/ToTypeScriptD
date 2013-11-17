@@ -71,6 +71,9 @@
     <Compile Include="..\SharedItems\AssemblyInfo.Common.cs">
       <Link>Properties\AssemblyInfo.Common.cs</Link>
     </Compile>
+    <Compile Include="..\SharedItems\VersionInfo.cs">
+      <Link>Properties\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="TestAssembly.cs" />
     <Compile Include="Winmd\WinmdTestBase.cs" />
     <Compile Include="Winmd\WinmdTypeTests.cs" />
