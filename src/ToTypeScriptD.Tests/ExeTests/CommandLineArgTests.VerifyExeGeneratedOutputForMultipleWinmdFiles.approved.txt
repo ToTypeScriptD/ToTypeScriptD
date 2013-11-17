@@ -505,8 +505,6 @@ declare module Windows.Foundation.Collections {
     }
 
     export interface IObservableMap<K, V> extends Windows.Foundation.Collections.IMap<K,V> {
-        add_MapChanged(vhnd: Windows.Foundation.Collections.MapChangedEventHandler<K,V>): Windows.Foundation.EventRegistrationToken;
-        remove_MapChanged(token: Windows.Foundation.EventRegistrationToken): void;
         // Events
         addEventListener(eventName: string, listener: any): void;
         removeEventListener(eventName: string, listener: any): void;
@@ -517,8 +515,6 @@ declare module Windows.Foundation.Collections {
     }
 
     export interface IObservableVector<T> extends Windows.Foundation.Collections.IVector<T> {
-        add_VectorChanged(vhnd: Windows.Foundation.Collections.VectorChangedEventHandler<T>): Windows.Foundation.EventRegistrationToken;
-        remove_VectorChanged(token: Windows.Foundation.EventRegistrationToken): void;
         // Events
         addEventListener(eventName: string, listener: any): void;
         removeEventListener(eventName: string, listener: any): void;
@@ -586,8 +582,6 @@ declare module Windows.Foundation.Collections {
 
     export class PropertySet implements Windows.Foundation.Collections.IPropertySet, Windows.Foundation.Collections.IObservableMap<string,any>, Windows.Foundation.Collections.IMap<string,any>, Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<string,any>> {
         constructor();
-        add_MapChanged(vhnd: Windows.Foundation.Collections.MapChangedEventHandler<string,any>): Windows.Foundation.EventRegistrationToken;
-        remove_MapChanged(token: Windows.Foundation.EventRegistrationToken): void;
         lookup(key: string): any;
         hasKey(key: string): boolean;
         getView(): Windows.Foundation.Collections.IMapView<string,any>;
@@ -1133,8 +1127,6 @@ declare module Windows.System.UserProfile {
         static setAccountPicturesAsync(smallImage: Windows.Storage.IStorageFile, largeImage: Windows.Storage.IStorageFile, video: Windows.Storage.IStorageFile): Windows.Foundation.IAsyncOperation<Windows.System.UserProfile.SetAccountPictureResult>;
         static setAccountPictureFromStreamAsync(image: Windows.Storage.Streams.IRandomAccessStream): Windows.Foundation.IAsyncOperation<Windows.System.UserProfile.SetAccountPictureResult>;
         static setAccountPicturesFromStreamsAsync(smallImage: Windows.Storage.Streams.IRandomAccessStream, largeImage: Windows.Storage.Streams.IRandomAccessStream, video: Windows.Storage.Streams.IRandomAccessStream): Windows.Foundation.IAsyncOperation<Windows.System.UserProfile.SetAccountPictureResult>;
-        static add_AccountPictureChanged(changeHandler: Windows.Foundation.EventHandler<any>): Windows.Foundation.EventRegistrationToken;
-        static remove_AccountPictureChanged(token: Windows.Foundation.EventRegistrationToken): void;
         static getDisplayNameAsync(): Windows.Foundation.IAsyncOperation<string>;
         static getFirstNameAsync(): Windows.Foundation.IAsyncOperation<string>;
         static getLastNameAsync(): Windows.Foundation.IAsyncOperation<string>;

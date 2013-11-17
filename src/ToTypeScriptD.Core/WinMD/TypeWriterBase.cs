@@ -187,6 +187,9 @@ namespace ToTypeScriptD.Core.WinMD
                     (methodName.StartsWith("add_") || methodName.StartsWith("remove_")))
                     continue;
 
+                if (method.IsSpecialName && !method.IsConstructor)
+                    continue;
+
                 // already handled properties
                 if (method.IsGetter || method.IsSetter)
                     continue;
