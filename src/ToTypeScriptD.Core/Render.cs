@@ -12,7 +12,7 @@ namespace ToTypeScriptD
     {
         public static bool AllAssemblies(ConfigBase config, TextWriter w)
         {
-            w.Write(GetHeader(config.AssemblyPaths));
+            w.Write(GetHeader(config.AssemblyPaths, config.IncludeSpecialTypes));
 
             var typeCollection = new TypeCollection(config.GetTypeWriterTypeSelector());
 
@@ -58,11 +58,16 @@ namespace ToTypeScriptD
         public static string FullAssembly(string assemblyPath, TypeCollection typeCollection, ConfigBase config)
         {
             CollectTypes(assemblyPath, config.TypeNotFoundErrorHandler, typeCollection, config);
-            return GetHeader(new[] { assemblyPath }) + typeCollection.Render(config.RegexFilter);
+            return GetHeader(new[] { assemblyPath }, config.IncludeSpecialTypes) + typeCollection.Render(config.RegexFilter);
         }
 
-        private static string GetHeader(IEnumerable<string> assemblyPaths)
+        private static string GetHeader(IEnumerable<string> assemblyPaths, bool forceDueToSpecialType)
         {
+            if (!forceDueToSpecialType && !assemblyPaths.Any())
+            {
+                return "";
+            }
+
             if (!assemblyPaths.All(File.Exists))
             {
                 return "";

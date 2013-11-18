@@ -21,6 +21,20 @@ namespace ToTypeScriptD.Tests.ExeTests
         }
 
         [Fact]
+        public void ExeShouldGenerateHelpForDotNet()
+        {
+            var result = Execute("dotnet").StdOut.StripVersionFromOutput();
+            Approvals.Verify(result);
+        }
+
+        [Fact]
+        public void ExeShouldGenerateHelpForWinMD()
+        {
+            var result = Execute("winmd").StdOut.StripVersionFromOutput();
+            Approvals.Verify(result);
+        }
+
+        [Fact]
         public void ExeShouldGenerateOutputForMultipleWinmdFiles()
         {
             var result = Execute(@"winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Networking.winmd");
