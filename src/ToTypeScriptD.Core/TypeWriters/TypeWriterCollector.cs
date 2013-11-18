@@ -20,14 +20,14 @@ namespace ToTypeScriptD.Core.TypeWriters
             this.typeNotFoundErrorHandler = typeNotFoundErrorHandler;
             this.typeSelector = typeSelector;
         }
-        public void Collect(IEnumerable<Mono.Cecil.TypeDefinition> tds, TypeCollection typeCollection, Config config)
+        public void Collect(IEnumerable<Mono.Cecil.TypeDefinition> tds, TypeCollection typeCollection, ConfigBase config)
         {
             foreach (var item in tds)
             {
                 Collect(item, typeCollection, config);
             }
         }
-        public void Collect(Mono.Cecil.TypeDefinition td, TypeCollection typeCollection, Config config)
+        public void Collect(Mono.Cecil.TypeDefinition td, TypeCollection typeCollection, ConfigBase config)
         {
             if (td.ShouldIgnoreType())
             {

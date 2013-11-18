@@ -1,41 +1,21 @@
 ﻿using System.Collections.Generic;
+using ToTypeScriptD.Core.Config;
 
 namespace ToTypeScriptD.Core
 {
 
-    public enum OutputType
+    public abstract class ConfigBase
     {
-        WinRT,
-        DotNet,
-    }
-
-
-    public enum IndentationFormatting
-    {
-        None,
-        TabX1,
-        TabX2,
-        SpaceX1,
-        SpaceX2,
-        SpaceX3,
-        SpaceX4, // Default
-        SpaceX5,
-        SpaceX6,
-        SpaceX7,
-        SpaceX8,
-    }
-
-    public class Config
-    {
-        public Config()
+        public ConfigBase()
         {
             this.IndentationType = IndentationFormatting.SpaceX4;
-            CamelCase = true;
         }
 
-        public OutputType OutputType { get; set; }
+        public abstract bool CamelCase { get; set; }
+        public abstract TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector();
+
+
         public bool IncludeSpecialTypes { get; set; }
-        public bool CamelCase { get; set; }
 
         private IEnumerable<string> _assemblyPaths = new List<string>();
         public IEnumerable<string> AssemblyPaths
@@ -93,21 +73,5 @@ namespace ToTypeScriptD.Core
                 }
             }
         }
-
-
-        public TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector()
-        {
-            if (this.OutputType == OutputType.DotNet)
-            {
-                return new DotNet.DotNetTypeWriterTypeSelector();
-            }
-            return new WinMD.WinMDTypeWriterTypeSelector();
-        }
     }
-
-    public class DotNetConfig : Config
-    {
-        // TODO: move PascalCase here
-    }
-
 }

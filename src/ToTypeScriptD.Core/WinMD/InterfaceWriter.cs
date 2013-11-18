@@ -5,7 +5,7 @@ namespace ToTypeScriptD.Core.WinMD
 {
     public class InterfaceWriter : TypeWriterBase
     {
-        public InterfaceWriter(Mono.Cecil.TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection, Config config)
+        public InterfaceWriter(Mono.Cecil.TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection, ConfigBase config)
             : base(typeDefinition, indentCount, typeCollection, config)
         {
         }

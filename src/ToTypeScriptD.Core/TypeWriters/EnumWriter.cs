@@ -6,8 +6,8 @@ namespace ToTypeScriptD.Core.TypeWriters
 {
     public class EnumWriter : ITypeWriter
     {
-        private Config config;
-        public EnumWriter(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection, Config config)
+        private ConfigBase config;
+        public EnumWriter(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection, ConfigBase config)
         {
             this.config = config;
             this.TypeDefinition = typeDefinition;

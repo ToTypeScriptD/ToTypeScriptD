@@ -2,6 +2,7 @@
 using Mono.Cecil;
 using System;
 using ToTypeScriptD.Core;
+using ToTypeScriptD.Core.WinMD;
 using Xunit;
 
 namespace ToTypeScriptD.Tests.Winmd
@@ -46,10 +47,9 @@ namespace ToTypeScriptD.Tests.Winmd
             var file = base.NativeAssembly.ComponentPath;
             var errors = new StringBuilderTypeNotFoundErrorHandler();
             var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(new ToTypeScriptD.Core.WinMD.WinMDTypeWriterTypeSelector());
-            var config = new ToTypeScriptD.Core.Config
+            var config = new WinmdConfig
             {
                 TypeNotFoundErrorHandler = errors,
-                OutputType = ToTypeScriptD.Core.OutputType.WinRT,
             };
             var result = ToTypeScriptD.Render.FullAssembly(file, typeCollection, config);
             (errors + result).Verify();
@@ -82,10 +82,9 @@ namespace ToTypeScriptD.Tests.Winmd
             var file = @"C:\Windows\System32\WinMetadata\Windows.Foundation.winmd";
             var errors = new StringBuilderTypeNotFoundErrorHandler();
             var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(new ToTypeScriptD.Core.WinMD.WinMDTypeWriterTypeSelector());
-            var config = new ToTypeScriptD.Core.Config
+            var config = new WinmdConfig
             {
                 TypeNotFoundErrorHandler = errors,
-                OutputType = ToTypeScriptD.Core.OutputType.WinRT,
             };
             var result = ToTypeScriptD.Render.FullAssembly(file, typeCollection, config);
             (errors + result).Verify();
@@ -109,9 +108,8 @@ namespace ToTypeScriptD.Tests.Winmd
             var allFiles = System.IO.Directory.GetFiles(@"C:\Windows\System32\WinMetadata\", "*.winmd");
             var sw = new System.IO.StringWriter();
             var error = new StringBuilderTypeNotFoundErrorHandler();
-            var config = new ToTypeScriptD.Core.Config
+            var config = new WinmdConfig
             {
-                OutputType = Core.OutputType.WinRT,
                 AssemblyPaths = allFiles,
                 IncludeSpecialTypes = false,
                 TypeNotFoundErrorHandler = error,

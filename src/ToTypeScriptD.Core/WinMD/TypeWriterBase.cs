@@ -10,12 +10,12 @@ namespace ToTypeScriptD.Core.WinMD
 {
     public abstract class TypeWriterBase : ITypeWriter
     {
-        protected Config Config { get; set; }
+        protected ConfigBase Config { get; set; }
         public TypeDefinition TypeDefinition { get; set; }
         public int IndentCount { get; set; }
         public TypeCollection TypeCollection { get; set; }
 
-        public TypeWriterBase(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection, Config config)
+        public TypeWriterBase(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection, ConfigBase config)
         {
             this.TypeDefinition = typeDefinition;
             this.IndentCount = indentCount;

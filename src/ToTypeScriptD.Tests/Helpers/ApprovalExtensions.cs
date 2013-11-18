@@ -34,13 +34,30 @@
             ApprovalTests.Approvals.Verify(item);
         }
 
-        public static void DumpAndVerify(this string path, ToTypeScriptD.Core.OutputType outputType, System.Action<ToTypeScriptD.Core.Config> configOverrideHook = null)
+        public static void DumpWinMDAndVerify(this string path, System.Action<ToTypeScriptD.Core.ConfigBase> configOverrideHook = null)
         {
             var errors = new StringBuilderTypeNotFoundErrorHandler();
-            var config = new ToTypeScriptD.Core.Config
+            var config = new ToTypeScriptD.Core.WinMD.WinmdConfig
             {
                 TypeNotFoundErrorHandler = errors,
-                OutputType = outputType,
+            };
+
+            if (configOverrideHook != null)
+            {
+                configOverrideHook(config);
+            }
+
+            var typeCollection = new ToTypeScriptD.Core.TypeWriters.TypeCollection(config.GetTypeWriterTypeSelector());
+            var result = ToTypeScriptD.Render.FullAssembly(path, typeCollection, config).StripHeaderGarbageromOutput();
+            ApprovalTests.Approvals.Verify(errors + result);
+        }
+
+        public static void DumpDotNetAndVerify(this string path, System.Action<ToTypeScriptD.Core.ConfigBase> configOverrideHook = null)
+        {
+            var errors = new StringBuilderTypeNotFoundErrorHandler();
+            var config = new ToTypeScriptD.Core.DotNet.DotNetConfig
+            {
+                TypeNotFoundErrorHandler = errors,
             };
 
             if (configOverrideHook != null)

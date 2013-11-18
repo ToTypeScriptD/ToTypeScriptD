@@ -15,9 +15,9 @@ namespace ToTypeScriptD.Core.WinMD
         private int IndentCount;
         private TypeDefinition TypeDefinition;
         private string MethodName;
-        private Config config;
+        private ConfigBase config;
 
-        public OutParameterReturnTypeWriter(Config config, int indentCount, Mono.Cecil.TypeDefinition TypeDefinition, string methodName, TypeReference retrunTypeReference, List<ParameterDefinition> outTypes)
+        public OutParameterReturnTypeWriter(ConfigBase config, int indentCount, Mono.Cecil.TypeDefinition TypeDefinition, string methodName, TypeReference retrunTypeReference, List<ParameterDefinition> outTypes)
         {
             this.config = config;
             this.IndentCount = indentCount;

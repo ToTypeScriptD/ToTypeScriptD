@@ -18,7 +18,7 @@ namespace ToTypeScriptD.Tests
         {
             var typeCollection = new TypeCollection(new WinMDTypeWriterTypeSelector());
             var errors = new StringBuilderTypeNotFoundErrorHandler();
-            var config = new Config();
+            var config = new WinmdConfig();
 
             new TypeWriterCollector(errors, typeCollection.TypeSelector)
                 .Collect(value, typeCollection, config);

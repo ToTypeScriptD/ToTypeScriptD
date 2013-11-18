@@ -7,7 +7,7 @@ namespace ToTypeScriptD
     {
         static void Main(string[] args)
         {
-            Config config = null;
+            ConfigBase config = null;
 
             var options = new Options();
 
@@ -20,13 +20,12 @@ namespace ToTypeScriptD
                 if (verb == "dotnet")
                 {
                     var dotNetSubOptions = (DotNetSubOptions)subOptions;
-                    config = new DotNetConfig
+                    config = new ToTypeScriptD.Core.DotNet.DotNetConfig
                     {
                         AssemblyPaths = dotNetSubOptions.Files,
                         CamelCase = dotNetSubOptions.CamelCase,
                         IncludeSpecialTypes = dotNetSubOptions.IncludeSpecialTypeDefinitions,
                         IndentationType = dotNetSubOptions.IndentationType,
-                        OutputType = Core.OutputType.DotNet,
                         RegexFilter = dotNetSubOptions.RegexFilter,
                         TypeNotFoundErrorHandler = new ConsoleErrorTypeNotFoundErrorHandler(),
                     };
@@ -34,12 +33,11 @@ namespace ToTypeScriptD
                 else if (verb == "winmd")
                 {
                     var winmdSubOptions = (WinmdSubOptions)subOptions;
-                    config = new DotNetConfig
+                    config = new ToTypeScriptD.Core.WinMD.WinmdConfig
                     {
                         AssemblyPaths = winmdSubOptions.Files,
                         IncludeSpecialTypes = winmdSubOptions.IncludeSpecialTypeDefinitions,
                         IndentationType = winmdSubOptions.IndentationType,
-                        OutputType = Core.OutputType.WinRT,
                         RegexFilter = winmdSubOptions.RegexFilter,
                         TypeNotFoundErrorHandler = new ConsoleErrorTypeNotFoundErrorHandler(),
                     };

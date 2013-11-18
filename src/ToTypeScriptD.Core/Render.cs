@@ -10,7 +10,7 @@ namespace ToTypeScriptD
 {
     public class Render
     {
-        public static bool AllAssemblies(Config config, TextWriter w)
+        public static bool AllAssemblies(ConfigBase config, TextWriter w)
         {
             w.Write(GetHeader(config.AssemblyPaths));
 
@@ -21,7 +21,7 @@ namespace ToTypeScriptD
             return wroteAnyTypes;
         }
 
-        private static bool WriteFiles(IEnumerable<string> assemblyPaths, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection, string filterRegex, Config config)
+        private static bool WriteFiles(IEnumerable<string> assemblyPaths, TextWriter w, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection, string filterRegex, ConfigBase config)
         {
             var filesAlreadyProcessed = new HashSet<string>(new IgnoreCaseStringEqualityComparer());
             if (!assemblyPaths.Any())
@@ -42,7 +42,7 @@ namespace ToTypeScriptD
             return true;
         }
 
-        private static bool WriteSpecialTypes(bool includeSpecialTypes, TextWriter w, Config config)
+        private static bool WriteSpecialTypes(bool includeSpecialTypes, TextWriter w, ConfigBase config)
         {
             if (!includeSpecialTypes)
                 return false;
@@ -55,7 +55,7 @@ namespace ToTypeScriptD
             return true;
         }
 
-        public static string FullAssembly(string assemblyPath, TypeCollection typeCollection, Config config)
+        public static string FullAssembly(string assemblyPath, TypeCollection typeCollection, ConfigBase config)
         {
             CollectTypes(assemblyPath, config.TypeNotFoundErrorHandler, typeCollection, config);
             return GetHeader(new[] { assemblyPath }) + typeCollection.Render(config.RegexFilter);
@@ -95,7 +95,7 @@ namespace ToTypeScriptD
             return sb.ToString();
         }
 
-        private static void CollectTypes(string assemblyPath, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection, Config config)
+        private static void CollectTypes(string assemblyPath, ITypeNotFoundErrorHandler typeNotFoundErrorHandler, TypeCollection typeCollection, ConfigBase config)
         {
             var assembly = Mono.Cecil.AssemblyDefinition.ReadAssembly(assemblyPath);
 

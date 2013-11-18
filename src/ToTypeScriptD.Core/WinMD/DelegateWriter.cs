@@ -8,7 +8,7 @@ namespace ToTypeScriptD.Core.WinMD
 {
     public class DelegateWriter : TypeWriterBase
     {
-        public DelegateWriter(Mono.Cecil.TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection, Config config)
+        public DelegateWriter(Mono.Cecil.TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection, ConfigBase config)
             : base(typeDefinition, indentCount, typeCollection, config)
         {
         }

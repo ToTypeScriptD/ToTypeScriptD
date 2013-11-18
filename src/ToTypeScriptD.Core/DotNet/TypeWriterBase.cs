@@ -12,9 +12,9 @@ namespace ToTypeScriptD.Core.DotNet
         public TypeDefinition TypeDefinition { get; set; }
         public int IndentCount { get; set; }
         public TypeCollection TypeCollection { get; set; }
-        protected Config Config { get; set; }
+        protected DotNetConfig Config { get; set; }
 
-        public TypeWriterBase(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection, Config config)
+        public TypeWriterBase(TypeDefinition typeDefinition, int indentCount, TypeCollection typeCollection, DotNetConfig config)
         {
             this.TypeDefinition = typeDefinition;
             this.IndentCount = indentCount;
