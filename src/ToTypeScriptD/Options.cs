@@ -15,23 +15,10 @@ namespace ToTypeScriptD
         public WinmdSubOptions WinMD { get; set; }
 
 
-        //[Option('v', "verbose", DefaultValue = true, HelpText = "Prints all messages to standard output.")]
-        //public bool Verbose { get; set; }
-
         [HelpVerbOption]
         public string GetUsage(string verb)
         {
             return HelpText.AutoBuild(this, verb);
-
-//            return HelpText.AutoBuild(this, current =>
-//            {
-//
-////                current.AddPreOptionsLine(" "); // blank line
-////                current.AddPreOptionsLine("Usage:");
-////                current.AddPreOptionsLine("  TypeScriptD.exe -o WinRT [--specialTypes] [<file1.winmd>...<fileN.winmd>]");
-//
-//                HelpText.DefaultParsingErrorsHandler(this, current);
-//            });
         }
     }
 
