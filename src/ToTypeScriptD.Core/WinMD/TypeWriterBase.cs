@@ -46,13 +46,16 @@ namespace ToTypeScriptD.Core.WinMD
             sb.Append(" ");
             WriteExportedInterfaces(sb, inheriterString);
             sb.AppendLine("{");
+            bool wroteALengthProperty;
 
             List<ITypeWriter> extendedTypes = WriteMethods(sb);
             WriteFields(sb);
-            WriteProperties(sb);
+            WriteProperties(sb, out wroteALengthProperty);
             WriteEvents(sb);
 
             WriteAsyncPromiseMethods(sb);
+
+            WriteVectorArrayPrototypeExtensions(sb, wroteALengthProperty);
 
             Indent(sb); sb.AppendLine("}");
 
@@ -60,6 +63,98 @@ namespace ToTypeScriptD.Core.WinMD
             WriteNestedTypes(sb);
         }
 
+        #region Array Extension
+        private void WriteVectorArrayPrototypeExtensions(StringBuilder sb, bool wroteALengthProperty)
+        {
+            string genericTypeArgName;
+            if (IsTypeArray(out genericTypeArgName))
+            {
+                sb.AppendLine();
+                Indent(sb); Indent(sb); sb.AppendFormatLine("// Array.prototype extensions", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("toString(): string;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("toLocaleString(): string;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("concat(...items: {0}[][]): {0}[];", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("join(seperator: string): string;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("pop(): {0};", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("push(...items: {0}[]): void;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("reverse(): {0}[];", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("shift(): {0};", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("slice(start: number): {0}[];", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("slice(start: number, end: number): {0}[];", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("sort(): {0}[];", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("sort(compareFn: (a: {0}, b: {0}) => number): {0}[];", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("splice(start: number): {0}[];", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("splice(start: number, deleteCount: number, ...items: {0}[]): {0}[];", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("unshift(...items: {0}[]): number;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("lastIndexOf(searchElement: {0}): number;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("lastIndexOf(searchElement: {0}, fromIndex: number): number;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("every(callbackfn: (value: {0}, index: number, array: {0}[]) => boolean): boolean;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("every(callbackfn: (value: {0}, index: number, array: {0}[]) => boolean, thisArg: any): boolean;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("some(callbackfn: (value: {0}, index: number, array: {0}[]) => boolean): boolean;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("some(callbackfn: (value: {0}, index: number, array: {0}[]) => boolean, thisArg: any): boolean;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("forEach(callbackfn: (value: {0}, index: number, array: {0}[]) => void ): void;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("forEach(callbackfn: (value: {0}, index: number, array: {0}[]) => void , thisArg: any): void;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("map(callbackfn: (value: {0}, index: number, array: {0}[]) => any): any[];", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("map(callbackfn: (value: {0}, index: number, array: {0}[]) => any, thisArg: any): any[];", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("filter(callbackfn: (value: {0}, index: number, array: {0}[]) => boolean): {0}[];", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("filter(callbackfn: (value: {0}, index: number, array: {0}[]) => boolean, thisArg: any): {0}[];", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: {0}[]) => any): any;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: {0}[]) => any, initialValue: any): any;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: {0}[]) => any): any;", genericTypeArgName);
+                Indent(sb); Indent(sb); sb.AppendFormatLine("reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: {0}[]) => any, initialValue: any): any;", genericTypeArgName);
+                if (!wroteALengthProperty)
+                {
+                    Indent(sb); Indent(sb); sb.AppendFormatLine("length: number;", genericTypeArgName);
+                }
+
+            }
+        }
+
+        private bool IsTypeArray(out string genericTypeArgName)
+        {
+            var currType = TypeDefinition;
+
+            if (IsTypeArray(TypeDefinition, out genericTypeArgName))
+            {
+                return true;
+            }
+
+            foreach (var i in TypeDefinition.Interfaces)
+            {
+                if (IsTypeArray(i, out genericTypeArgName))
+                {
+                    return true;
+                }
+            }
+            genericTypeArgName = "";
+            return false;
+        }
+
+        private bool IsTypeArray(TypeReference typeReference, out string genericTypeArgName)
+        {
+            if (typeReference.FullName.StartsWith("Windows.Foundation.Collections.IVector`1") ||
+                typeReference.FullName.StartsWith("Windows.Foundation.Collections.IVectorView`1")
+                )
+            {
+                var genericInstanceType = typeReference as GenericInstanceType;
+                if (genericInstanceType == null)
+                {
+                    genericTypeArgName = "T";
+                }
+                else
+                {
+                    genericTypeArgName = genericInstanceType.GenericArguments[0].ToTypeScriptType();
+                }
+                return true;
+            }
+
+            genericTypeArgName = "";
+            return false;
+        }
+
+        #endregion
+
+        #region Promise Extension
         private void WriteAsyncPromiseMethods(StringBuilder sb)
         {
             string genericTypeArgName;
@@ -116,6 +211,7 @@ namespace ToTypeScriptD.Core.WinMD
             genericTypeArgName = "";
             return false;
         }
+        #endregion
 
         private void WriteGenerics(StringBuilder sb)
         {
@@ -262,11 +358,19 @@ namespace ToTypeScriptD.Core.WinMD
             return extendedTypes;
         }
 
-        private void WriteProperties(StringBuilder sb)
+        private void WriteProperties(StringBuilder sb, out bool wroteALengthProperty)
         {
+            var wroteALengthPropertyLambdaWorkAround = false;
+
             TypeDefinition.Properties.Each(prop =>
             {
                 var propName = prop.Name.ToTypeScriptName();
+
+
+                if (propName == "length")
+                {
+                    wroteALengthPropertyLambdaWorkAround = true;
+                }
 
                 var propMethod = prop.GetMethod ?? prop.SetMethod;
 
@@ -275,6 +379,8 @@ namespace ToTypeScriptD.Core.WinMD
                 Indent(sb); Indent(sb); sb.AppendFormat("{0}{1}: {2};", staticText, propName, prop.PropertyType.ToTypeScriptType());
                 sb.AppendLine();
             });
+
+            wroteALengthProperty = wroteALengthPropertyLambdaWorkAround;
         }
 
         private void WriteFields(StringBuilder sb)

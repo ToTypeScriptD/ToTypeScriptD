@@ -284,6 +284,40 @@ declare module Windows.Foundation {
 
     export interface IWwwFormUrlDecoderRuntimeClass extends Windows.Foundation.Collections.IIterable<Windows.Foundation.IWwwFormUrlDecoderEntry>, Windows.Foundation.Collections.IVectorView<Windows.Foundation.IWwwFormUrlDecoderEntry> {
         getFirstValueByName(name: string): string;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Foundation.IWwwFormUrlDecoderEntry[][]): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        join(seperator: string): string;
+        pop(): Windows.Foundation.IWwwFormUrlDecoderEntry;
+        push(...items: Windows.Foundation.IWwwFormUrlDecoderEntry[]): void;
+        reverse(): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        shift(): Windows.Foundation.IWwwFormUrlDecoderEntry;
+        slice(start: number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        slice(start: number, end: number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        sort(): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        sort(compareFn: (a: Windows.Foundation.IWwwFormUrlDecoderEntry, b: Windows.Foundation.IWwwFormUrlDecoderEntry) => number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        splice(start: number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        splice(start: number, deleteCount: number, ...items: Windows.Foundation.IWwwFormUrlDecoderEntry[]): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        unshift(...items: Windows.Foundation.IWwwFormUrlDecoderEntry[]): number;
+        lastIndexOf(searchElement: Windows.Foundation.IWwwFormUrlDecoderEntry): number;
+        lastIndexOf(searchElement: Windows.Foundation.IWwwFormUrlDecoderEntry, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any): any[];
+        map(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        filter(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean, thisArg: any): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any, initialValue: any): any;
+        length: number;
     }
 
     export class Point {
@@ -433,6 +467,40 @@ declare module Windows.Foundation {
         indexOf(value: Windows.Foundation.IWwwFormUrlDecoderEntry): WwwFormUrlDecoder_indexOf_OUT;
         getMany(startIndex: number): WwwFormUrlDecoder_getMany_OUT;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Foundation.IWwwFormUrlDecoderEntry[][]): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        join(seperator: string): string;
+        pop(): Windows.Foundation.IWwwFormUrlDecoderEntry;
+        push(...items: Windows.Foundation.IWwwFormUrlDecoderEntry[]): void;
+        reverse(): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        shift(): Windows.Foundation.IWwwFormUrlDecoderEntry;
+        slice(start: number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        slice(start: number, end: number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        sort(): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        sort(compareFn: (a: Windows.Foundation.IWwwFormUrlDecoderEntry, b: Windows.Foundation.IWwwFormUrlDecoderEntry) => number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        splice(start: number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        splice(start: number, deleteCount: number, ...items: Windows.Foundation.IWwwFormUrlDecoderEntry[]): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        unshift(...items: Windows.Foundation.IWwwFormUrlDecoderEntry[]): number;
+        lastIndexOf(searchElement: Windows.Foundation.IWwwFormUrlDecoderEntry): number;
+        lastIndexOf(searchElement: Windows.Foundation.IWwwFormUrlDecoderEntry, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any): any[];
+        map(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        filter(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean, thisArg: any): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface WwwFormUrlDecoder_indexOf_OUT {
@@ -521,6 +589,40 @@ declare module Windows.Foundation.Collections {
         removeEventListener(eventName: "vectorchanged", listener: Windows.Foundation.Collections.VectorChangedEventHandler<T>): void;
         onvectorchanged: (ev: Windows.Foundation.Collections.VectorChangedEventHandler<T>) => void;
 
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: T[][]): T[];
+        join(seperator: string): string;
+        pop(): T;
+        push(...items: T[]): void;
+        reverse(): T[];
+        shift(): T;
+        slice(start: number): T[];
+        slice(start: number, end: number): T[];
+        sort(): T[];
+        sort(compareFn: (a: T, b: T) => number): T[];
+        splice(start: number): T[];
+        splice(start: number, deleteCount: number, ...items: T[]): T[];
+        unshift(...items: T[]): number;
+        lastIndexOf(searchElement: T): number;
+        lastIndexOf(searchElement: T, fromIndex: number): number;
+        every(callbackfn: (value: T, index: number, array: T[]) => boolean): boolean;
+        every(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: T, index: number, array: T[]) => boolean): boolean;
+        some(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: T, index: number, array: T[]) => void ): void;
+        forEach(callbackfn: (value: T, index: number, array: T[]) => void , thisArg: any): void;
+        map(callbackfn: (value: T, index: number, array: T[]) => any): any[];
+        map(callbackfn: (value: T, index: number, array: T[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: T, index: number, array: T[]) => boolean): T[];
+        filter(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): T[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any, initialValue: any): any;
+        length: number;
     }
 
     export interface IPropertySet extends Windows.Foundation.Collections.IObservableMap<string,any>, Windows.Foundation.Collections.IMap<string,any>, Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<string,any>> {
@@ -539,6 +641,40 @@ declare module Windows.Foundation.Collections {
         getMany(startIndex: number): IVector_getMany_OUT<T>;
         replaceAll(items: T[]): void;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: T[][]): T[];
+        join(seperator: string): string;
+        pop(): T;
+        push(...items: T[]): void;
+        reverse(): T[];
+        shift(): T;
+        slice(start: number): T[];
+        slice(start: number, end: number): T[];
+        sort(): T[];
+        sort(compareFn: (a: T, b: T) => number): T[];
+        splice(start: number): T[];
+        splice(start: number, deleteCount: number, ...items: T[]): T[];
+        unshift(...items: T[]): number;
+        lastIndexOf(searchElement: T): number;
+        lastIndexOf(searchElement: T, fromIndex: number): number;
+        every(callbackfn: (value: T, index: number, array: T[]) => boolean): boolean;
+        every(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: T, index: number, array: T[]) => boolean): boolean;
+        some(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: T, index: number, array: T[]) => void ): void;
+        forEach(callbackfn: (value: T, index: number, array: T[]) => void , thisArg: any): void;
+        map(callbackfn: (value: T, index: number, array: T[]) => any): any[];
+        map(callbackfn: (value: T, index: number, array: T[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: T, index: number, array: T[]) => boolean): T[];
+        filter(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): T[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface IVector_indexOf_OUT<T> {
@@ -561,6 +697,40 @@ declare module Windows.Foundation.Collections {
         indexOf(value: T): IVectorView_indexOf_OUT<T>;
         getMany(startIndex: number): IVectorView_getMany_OUT<T>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: T[][]): T[];
+        join(seperator: string): string;
+        pop(): T;
+        push(...items: T[]): void;
+        reverse(): T[];
+        shift(): T;
+        slice(start: number): T[];
+        slice(start: number, end: number): T[];
+        sort(): T[];
+        sort(compareFn: (a: T, b: T) => number): T[];
+        splice(start: number): T[];
+        splice(start: number, deleteCount: number, ...items: T[]): T[];
+        unshift(...items: T[]): number;
+        lastIndexOf(searchElement: T): number;
+        lastIndexOf(searchElement: T, fromIndex: number): number;
+        every(callbackfn: (value: T, index: number, array: T[]) => boolean): boolean;
+        every(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: T, index: number, array: T[]) => boolean): boolean;
+        some(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: T, index: number, array: T[]) => void ): void;
+        forEach(callbackfn: (value: T, index: number, array: T[]) => void , thisArg: any): void;
+        map(callbackfn: (value: T, index: number, array: T[]) => any): any[];
+        map(callbackfn: (value: T, index: number, array: T[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: T, index: number, array: T[]) => boolean): T[];
+        filter(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): T[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface IVectorView_indexOf_OUT<T> {

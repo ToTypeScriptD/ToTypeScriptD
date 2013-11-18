@@ -1234,6 +1234,40 @@ declare module Windows.ApplicationModel.Resources.Core {
         getMany(startIndex: number): ResourceCandidateVectorView_getMany_OUT;
         first(): Windows.Foundation.Collections.IIterator<Windows.ApplicationModel.Resources.Core.ResourceCandidate>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.ApplicationModel.Resources.Core.ResourceCandidate[][]): Windows.ApplicationModel.Resources.Core.ResourceCandidate[];
+        join(seperator: string): string;
+        pop(): Windows.ApplicationModel.Resources.Core.ResourceCandidate;
+        push(...items: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]): void;
+        reverse(): Windows.ApplicationModel.Resources.Core.ResourceCandidate[];
+        shift(): Windows.ApplicationModel.Resources.Core.ResourceCandidate;
+        slice(start: number): Windows.ApplicationModel.Resources.Core.ResourceCandidate[];
+        slice(start: number, end: number): Windows.ApplicationModel.Resources.Core.ResourceCandidate[];
+        sort(): Windows.ApplicationModel.Resources.Core.ResourceCandidate[];
+        sort(compareFn: (a: Windows.ApplicationModel.Resources.Core.ResourceCandidate, b: Windows.ApplicationModel.Resources.Core.ResourceCandidate) => number): Windows.ApplicationModel.Resources.Core.ResourceCandidate[];
+        splice(start: number): Windows.ApplicationModel.Resources.Core.ResourceCandidate[];
+        splice(start: number, deleteCount: number, ...items: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]): Windows.ApplicationModel.Resources.Core.ResourceCandidate[];
+        unshift(...items: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]): number;
+        lastIndexOf(searchElement: Windows.ApplicationModel.Resources.Core.ResourceCandidate): number;
+        lastIndexOf(searchElement: Windows.ApplicationModel.Resources.Core.ResourceCandidate, fromIndex: number): number;
+        every(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceCandidate, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceCandidate, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceCandidate, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceCandidate, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceCandidate, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]) => void ): void;
+        forEach(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceCandidate, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceCandidate, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]) => any): any[];
+        map(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceCandidate, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceCandidate, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]) => boolean): Windows.ApplicationModel.Resources.Core.ResourceCandidate[];
+        filter(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceCandidate, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]) => boolean, thisArg: any): Windows.ApplicationModel.Resources.Core.ResourceCandidate[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.ApplicationModel.Resources.Core.ResourceCandidate[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface ResourceCandidateVectorView_indexOf_OUT {
@@ -1263,6 +1297,40 @@ declare module Windows.ApplicationModel.Resources.Core {
         getMany(startIndex: number): ResourceContextLanguagesVectorView_getMany_OUT;
         first(): Windows.Foundation.Collections.IIterator<string>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: string[][]): string[];
+        join(seperator: string): string;
+        pop(): string;
+        push(...items: string[]): void;
+        reverse(): string[];
+        shift(): string;
+        slice(start: number): string[];
+        slice(start: number, end: number): string[];
+        sort(): string[];
+        sort(compareFn: (a: string, b: string) => number): string[];
+        splice(start: number): string[];
+        splice(start: number, deleteCount: number, ...items: string[]): string[];
+        unshift(...items: string[]): number;
+        lastIndexOf(searchElement: string): number;
+        lastIndexOf(searchElement: string, fromIndex: number): number;
+        every(callbackfn: (value: string, index: number, array: string[]) => boolean): boolean;
+        every(callbackfn: (value: string, index: number, array: string[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: string, index: number, array: string[]) => boolean): boolean;
+        some(callbackfn: (value: string, index: number, array: string[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: string, index: number, array: string[]) => void ): void;
+        forEach(callbackfn: (value: string, index: number, array: string[]) => void , thisArg: any): void;
+        map(callbackfn: (value: string, index: number, array: string[]) => any): any[];
+        map(callbackfn: (value: string, index: number, array: string[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: string, index: number, array: string[]) => boolean): string[];
+        filter(callbackfn: (value: string, index: number, array: string[]) => boolean, thisArg: any): string[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: string[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: string[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: string[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: string[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface ResourceContextLanguagesVectorView_indexOf_OUT {
@@ -1384,6 +1452,40 @@ declare module Windows.ApplicationModel.Resources.Core {
         getMany(startIndex: number): ResourceQualifierVectorView_getMany_OUT;
         first(): Windows.Foundation.Collections.IIterator<Windows.ApplicationModel.Resources.Core.ResourceQualifier>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.ApplicationModel.Resources.Core.ResourceQualifier[][]): Windows.ApplicationModel.Resources.Core.ResourceQualifier[];
+        join(seperator: string): string;
+        pop(): Windows.ApplicationModel.Resources.Core.ResourceQualifier;
+        push(...items: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]): void;
+        reverse(): Windows.ApplicationModel.Resources.Core.ResourceQualifier[];
+        shift(): Windows.ApplicationModel.Resources.Core.ResourceQualifier;
+        slice(start: number): Windows.ApplicationModel.Resources.Core.ResourceQualifier[];
+        slice(start: number, end: number): Windows.ApplicationModel.Resources.Core.ResourceQualifier[];
+        sort(): Windows.ApplicationModel.Resources.Core.ResourceQualifier[];
+        sort(compareFn: (a: Windows.ApplicationModel.Resources.Core.ResourceQualifier, b: Windows.ApplicationModel.Resources.Core.ResourceQualifier) => number): Windows.ApplicationModel.Resources.Core.ResourceQualifier[];
+        splice(start: number): Windows.ApplicationModel.Resources.Core.ResourceQualifier[];
+        splice(start: number, deleteCount: number, ...items: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]): Windows.ApplicationModel.Resources.Core.ResourceQualifier[];
+        unshift(...items: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]): number;
+        lastIndexOf(searchElement: Windows.ApplicationModel.Resources.Core.ResourceQualifier): number;
+        lastIndexOf(searchElement: Windows.ApplicationModel.Resources.Core.ResourceQualifier, fromIndex: number): number;
+        every(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceQualifier, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceQualifier, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceQualifier, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceQualifier, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceQualifier, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]) => void ): void;
+        forEach(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceQualifier, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceQualifier, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]) => any): any[];
+        map(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceQualifier, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceQualifier, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]) => boolean): Windows.ApplicationModel.Resources.Core.ResourceQualifier[];
+        filter(callbackfn: (value: Windows.ApplicationModel.Resources.Core.ResourceQualifier, index: number, array: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]) => boolean, thisArg: any): Windows.ApplicationModel.Resources.Core.ResourceQualifier[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.ApplicationModel.Resources.Core.ResourceQualifier[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface ResourceQualifierVectorView_indexOf_OUT {
@@ -1808,6 +1910,40 @@ declare module Windows.Data.Json {
         static tryParse(input: string): JsonArray_tryParse_OUT;
         valueType: Windows.Data.Json.JsonValueType;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Data.Json.IJsonValue[][]): Windows.Data.Json.IJsonValue[];
+        join(seperator: string): string;
+        pop(): Windows.Data.Json.IJsonValue;
+        push(...items: Windows.Data.Json.IJsonValue[]): void;
+        reverse(): Windows.Data.Json.IJsonValue[];
+        shift(): Windows.Data.Json.IJsonValue;
+        slice(start: number): Windows.Data.Json.IJsonValue[];
+        slice(start: number, end: number): Windows.Data.Json.IJsonValue[];
+        sort(): Windows.Data.Json.IJsonValue[];
+        sort(compareFn: (a: Windows.Data.Json.IJsonValue, b: Windows.Data.Json.IJsonValue) => number): Windows.Data.Json.IJsonValue[];
+        splice(start: number): Windows.Data.Json.IJsonValue[];
+        splice(start: number, deleteCount: number, ...items: Windows.Data.Json.IJsonValue[]): Windows.Data.Json.IJsonValue[];
+        unshift(...items: Windows.Data.Json.IJsonValue[]): number;
+        lastIndexOf(searchElement: Windows.Data.Json.IJsonValue): number;
+        lastIndexOf(searchElement: Windows.Data.Json.IJsonValue, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Data.Json.IJsonValue, index: number, array: Windows.Data.Json.IJsonValue[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Data.Json.IJsonValue, index: number, array: Windows.Data.Json.IJsonValue[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Data.Json.IJsonValue, index: number, array: Windows.Data.Json.IJsonValue[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Data.Json.IJsonValue, index: number, array: Windows.Data.Json.IJsonValue[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Data.Json.IJsonValue, index: number, array: Windows.Data.Json.IJsonValue[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Data.Json.IJsonValue, index: number, array: Windows.Data.Json.IJsonValue[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Data.Json.IJsonValue, index: number, array: Windows.Data.Json.IJsonValue[]) => any): any[];
+        map(callbackfn: (value: Windows.Data.Json.IJsonValue, index: number, array: Windows.Data.Json.IJsonValue[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Data.Json.IJsonValue, index: number, array: Windows.Data.Json.IJsonValue[]) => boolean): Windows.Data.Json.IJsonValue[];
+        filter(callbackfn: (value: Windows.Data.Json.IJsonValue, index: number, array: Windows.Data.Json.IJsonValue[]) => boolean, thisArg: any): Windows.Data.Json.IJsonValue[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Json.IJsonValue[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Json.IJsonValue[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Json.IJsonValue[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Json.IJsonValue[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface JsonArray_indexOf_OUT {
@@ -2075,6 +2211,39 @@ declare module Windows.Data.Xml.Dom {
         removeNamedItemNS(namespaceUri: any, name: string): Windows.Data.Xml.Dom.IXmlNode;
         setNamedItemNS(node: Windows.Data.Xml.Dom.IXmlNode): Windows.Data.Xml.Dom.IXmlNode;
         length: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Data.Xml.Dom.IXmlNode[][]): Windows.Data.Xml.Dom.IXmlNode[];
+        join(seperator: string): string;
+        pop(): Windows.Data.Xml.Dom.IXmlNode;
+        push(...items: Windows.Data.Xml.Dom.IXmlNode[]): void;
+        reverse(): Windows.Data.Xml.Dom.IXmlNode[];
+        shift(): Windows.Data.Xml.Dom.IXmlNode;
+        slice(start: number): Windows.Data.Xml.Dom.IXmlNode[];
+        slice(start: number, end: number): Windows.Data.Xml.Dom.IXmlNode[];
+        sort(): Windows.Data.Xml.Dom.IXmlNode[];
+        sort(compareFn: (a: Windows.Data.Xml.Dom.IXmlNode, b: Windows.Data.Xml.Dom.IXmlNode) => number): Windows.Data.Xml.Dom.IXmlNode[];
+        splice(start: number): Windows.Data.Xml.Dom.IXmlNode[];
+        splice(start: number, deleteCount: number, ...items: Windows.Data.Xml.Dom.IXmlNode[]): Windows.Data.Xml.Dom.IXmlNode[];
+        unshift(...items: Windows.Data.Xml.Dom.IXmlNode[]): number;
+        lastIndexOf(searchElement: Windows.Data.Xml.Dom.IXmlNode): number;
+        lastIndexOf(searchElement: Windows.Data.Xml.Dom.IXmlNode, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any): any[];
+        map(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean): Windows.Data.Xml.Dom.IXmlNode[];
+        filter(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean, thisArg: any): Windows.Data.Xml.Dom.IXmlNode[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any, initialValue: any): any;
     }
 
     export interface IXmlNode extends Windows.Data.Xml.Dom.IXmlNodeSelector, Windows.Data.Xml.Dom.IXmlNodeSerializer {
@@ -2104,6 +2273,39 @@ declare module Windows.Data.Xml.Dom {
     export interface IXmlNodeList extends Windows.Foundation.Collections.IVectorView<Windows.Data.Xml.Dom.IXmlNode>, Windows.Foundation.Collections.IIterable<Windows.Data.Xml.Dom.IXmlNode> {
         item(index: number): Windows.Data.Xml.Dom.IXmlNode;
         length: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Data.Xml.Dom.IXmlNode[][]): Windows.Data.Xml.Dom.IXmlNode[];
+        join(seperator: string): string;
+        pop(): Windows.Data.Xml.Dom.IXmlNode;
+        push(...items: Windows.Data.Xml.Dom.IXmlNode[]): void;
+        reverse(): Windows.Data.Xml.Dom.IXmlNode[];
+        shift(): Windows.Data.Xml.Dom.IXmlNode;
+        slice(start: number): Windows.Data.Xml.Dom.IXmlNode[];
+        slice(start: number, end: number): Windows.Data.Xml.Dom.IXmlNode[];
+        sort(): Windows.Data.Xml.Dom.IXmlNode[];
+        sort(compareFn: (a: Windows.Data.Xml.Dom.IXmlNode, b: Windows.Data.Xml.Dom.IXmlNode) => number): Windows.Data.Xml.Dom.IXmlNode[];
+        splice(start: number): Windows.Data.Xml.Dom.IXmlNode[];
+        splice(start: number, deleteCount: number, ...items: Windows.Data.Xml.Dom.IXmlNode[]): Windows.Data.Xml.Dom.IXmlNode[];
+        unshift(...items: Windows.Data.Xml.Dom.IXmlNode[]): number;
+        lastIndexOf(searchElement: Windows.Data.Xml.Dom.IXmlNode): number;
+        lastIndexOf(searchElement: Windows.Data.Xml.Dom.IXmlNode, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any): any[];
+        map(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean): Windows.Data.Xml.Dom.IXmlNode[];
+        filter(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean, thisArg: any): Windows.Data.Xml.Dom.IXmlNode[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any, initialValue: any): any;
     }
 
     export interface IXmlNodeSelector {
@@ -2469,6 +2671,39 @@ declare module Windows.Data.Xml.Dom {
         first(): Windows.Foundation.Collections.IIterator<Windows.Data.Xml.Dom.IXmlNode>;
         length: number;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Data.Xml.Dom.IXmlNode[][]): Windows.Data.Xml.Dom.IXmlNode[];
+        join(seperator: string): string;
+        pop(): Windows.Data.Xml.Dom.IXmlNode;
+        push(...items: Windows.Data.Xml.Dom.IXmlNode[]): void;
+        reverse(): Windows.Data.Xml.Dom.IXmlNode[];
+        shift(): Windows.Data.Xml.Dom.IXmlNode;
+        slice(start: number): Windows.Data.Xml.Dom.IXmlNode[];
+        slice(start: number, end: number): Windows.Data.Xml.Dom.IXmlNode[];
+        sort(): Windows.Data.Xml.Dom.IXmlNode[];
+        sort(compareFn: (a: Windows.Data.Xml.Dom.IXmlNode, b: Windows.Data.Xml.Dom.IXmlNode) => number): Windows.Data.Xml.Dom.IXmlNode[];
+        splice(start: number): Windows.Data.Xml.Dom.IXmlNode[];
+        splice(start: number, deleteCount: number, ...items: Windows.Data.Xml.Dom.IXmlNode[]): Windows.Data.Xml.Dom.IXmlNode[];
+        unshift(...items: Windows.Data.Xml.Dom.IXmlNode[]): number;
+        lastIndexOf(searchElement: Windows.Data.Xml.Dom.IXmlNode): number;
+        lastIndexOf(searchElement: Windows.Data.Xml.Dom.IXmlNode, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any): any[];
+        map(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean): Windows.Data.Xml.Dom.IXmlNode[];
+        filter(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean, thisArg: any): Windows.Data.Xml.Dom.IXmlNode[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any, initialValue: any): any;
     }
 
     interface XmlNamedNodeMap_indexOf_OUT {
@@ -2489,6 +2724,39 @@ declare module Windows.Data.Xml.Dom {
         first(): Windows.Foundation.Collections.IIterator<Windows.Data.Xml.Dom.IXmlNode>;
         length: number;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Data.Xml.Dom.IXmlNode[][]): Windows.Data.Xml.Dom.IXmlNode[];
+        join(seperator: string): string;
+        pop(): Windows.Data.Xml.Dom.IXmlNode;
+        push(...items: Windows.Data.Xml.Dom.IXmlNode[]): void;
+        reverse(): Windows.Data.Xml.Dom.IXmlNode[];
+        shift(): Windows.Data.Xml.Dom.IXmlNode;
+        slice(start: number): Windows.Data.Xml.Dom.IXmlNode[];
+        slice(start: number, end: number): Windows.Data.Xml.Dom.IXmlNode[];
+        sort(): Windows.Data.Xml.Dom.IXmlNode[];
+        sort(compareFn: (a: Windows.Data.Xml.Dom.IXmlNode, b: Windows.Data.Xml.Dom.IXmlNode) => number): Windows.Data.Xml.Dom.IXmlNode[];
+        splice(start: number): Windows.Data.Xml.Dom.IXmlNode[];
+        splice(start: number, deleteCount: number, ...items: Windows.Data.Xml.Dom.IXmlNode[]): Windows.Data.Xml.Dom.IXmlNode[];
+        unshift(...items: Windows.Data.Xml.Dom.IXmlNode[]): number;
+        lastIndexOf(searchElement: Windows.Data.Xml.Dom.IXmlNode): number;
+        lastIndexOf(searchElement: Windows.Data.Xml.Dom.IXmlNode, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any): any[];
+        map(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean): Windows.Data.Xml.Dom.IXmlNode[];
+        filter(callbackfn: (value: Windows.Data.Xml.Dom.IXmlNode, index: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => boolean, thisArg: any): Windows.Data.Xml.Dom.IXmlNode[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Data.Xml.Dom.IXmlNode[]) => any, initialValue: any): any;
     }
 
     interface XmlNodeList_indexOf_OUT {
@@ -2622,6 +2890,40 @@ declare module Windows.Devices.Enumeration {
         getMany(startIndex: number): DeviceInformationCollection_getMany_OUT;
         first(): Windows.Foundation.Collections.IIterator<Windows.Devices.Enumeration.DeviceInformation>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Devices.Enumeration.DeviceInformation[][]): Windows.Devices.Enumeration.DeviceInformation[];
+        join(seperator: string): string;
+        pop(): Windows.Devices.Enumeration.DeviceInformation;
+        push(...items: Windows.Devices.Enumeration.DeviceInformation[]): void;
+        reverse(): Windows.Devices.Enumeration.DeviceInformation[];
+        shift(): Windows.Devices.Enumeration.DeviceInformation;
+        slice(start: number): Windows.Devices.Enumeration.DeviceInformation[];
+        slice(start: number, end: number): Windows.Devices.Enumeration.DeviceInformation[];
+        sort(): Windows.Devices.Enumeration.DeviceInformation[];
+        sort(compareFn: (a: Windows.Devices.Enumeration.DeviceInformation, b: Windows.Devices.Enumeration.DeviceInformation) => number): Windows.Devices.Enumeration.DeviceInformation[];
+        splice(start: number): Windows.Devices.Enumeration.DeviceInformation[];
+        splice(start: number, deleteCount: number, ...items: Windows.Devices.Enumeration.DeviceInformation[]): Windows.Devices.Enumeration.DeviceInformation[];
+        unshift(...items: Windows.Devices.Enumeration.DeviceInformation[]): number;
+        lastIndexOf(searchElement: Windows.Devices.Enumeration.DeviceInformation): number;
+        lastIndexOf(searchElement: Windows.Devices.Enumeration.DeviceInformation, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Devices.Enumeration.DeviceInformation, index: number, array: Windows.Devices.Enumeration.DeviceInformation[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Devices.Enumeration.DeviceInformation, index: number, array: Windows.Devices.Enumeration.DeviceInformation[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Devices.Enumeration.DeviceInformation, index: number, array: Windows.Devices.Enumeration.DeviceInformation[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Devices.Enumeration.DeviceInformation, index: number, array: Windows.Devices.Enumeration.DeviceInformation[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Devices.Enumeration.DeviceInformation, index: number, array: Windows.Devices.Enumeration.DeviceInformation[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Devices.Enumeration.DeviceInformation, index: number, array: Windows.Devices.Enumeration.DeviceInformation[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Devices.Enumeration.DeviceInformation, index: number, array: Windows.Devices.Enumeration.DeviceInformation[]) => any): any[];
+        map(callbackfn: (value: Windows.Devices.Enumeration.DeviceInformation, index: number, array: Windows.Devices.Enumeration.DeviceInformation[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Devices.Enumeration.DeviceInformation, index: number, array: Windows.Devices.Enumeration.DeviceInformation[]) => boolean): Windows.Devices.Enumeration.DeviceInformation[];
+        filter(callbackfn: (value: Windows.Devices.Enumeration.DeviceInformation, index: number, array: Windows.Devices.Enumeration.DeviceInformation[]) => boolean, thisArg: any): Windows.Devices.Enumeration.DeviceInformation[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Devices.Enumeration.DeviceInformation[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Devices.Enumeration.DeviceInformation[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Devices.Enumeration.DeviceInformation[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Devices.Enumeration.DeviceInformation[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface DeviceInformationCollection_indexOf_OUT {
@@ -2812,6 +3114,40 @@ declare module Windows.Devices.Enumeration.Pnp {
         getMany(startIndex: number): PnpObjectCollection_getMany_OUT;
         first(): Windows.Foundation.Collections.IIterator<Windows.Devices.Enumeration.Pnp.PnpObject>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Devices.Enumeration.Pnp.PnpObject[][]): Windows.Devices.Enumeration.Pnp.PnpObject[];
+        join(seperator: string): string;
+        pop(): Windows.Devices.Enumeration.Pnp.PnpObject;
+        push(...items: Windows.Devices.Enumeration.Pnp.PnpObject[]): void;
+        reverse(): Windows.Devices.Enumeration.Pnp.PnpObject[];
+        shift(): Windows.Devices.Enumeration.Pnp.PnpObject;
+        slice(start: number): Windows.Devices.Enumeration.Pnp.PnpObject[];
+        slice(start: number, end: number): Windows.Devices.Enumeration.Pnp.PnpObject[];
+        sort(): Windows.Devices.Enumeration.Pnp.PnpObject[];
+        sort(compareFn: (a: Windows.Devices.Enumeration.Pnp.PnpObject, b: Windows.Devices.Enumeration.Pnp.PnpObject) => number): Windows.Devices.Enumeration.Pnp.PnpObject[];
+        splice(start: number): Windows.Devices.Enumeration.Pnp.PnpObject[];
+        splice(start: number, deleteCount: number, ...items: Windows.Devices.Enumeration.Pnp.PnpObject[]): Windows.Devices.Enumeration.Pnp.PnpObject[];
+        unshift(...items: Windows.Devices.Enumeration.Pnp.PnpObject[]): number;
+        lastIndexOf(searchElement: Windows.Devices.Enumeration.Pnp.PnpObject): number;
+        lastIndexOf(searchElement: Windows.Devices.Enumeration.Pnp.PnpObject, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Devices.Enumeration.Pnp.PnpObject, index: number, array: Windows.Devices.Enumeration.Pnp.PnpObject[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Devices.Enumeration.Pnp.PnpObject, index: number, array: Windows.Devices.Enumeration.Pnp.PnpObject[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Devices.Enumeration.Pnp.PnpObject, index: number, array: Windows.Devices.Enumeration.Pnp.PnpObject[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Devices.Enumeration.Pnp.PnpObject, index: number, array: Windows.Devices.Enumeration.Pnp.PnpObject[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Devices.Enumeration.Pnp.PnpObject, index: number, array: Windows.Devices.Enumeration.Pnp.PnpObject[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Devices.Enumeration.Pnp.PnpObject, index: number, array: Windows.Devices.Enumeration.Pnp.PnpObject[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Devices.Enumeration.Pnp.PnpObject, index: number, array: Windows.Devices.Enumeration.Pnp.PnpObject[]) => any): any[];
+        map(callbackfn: (value: Windows.Devices.Enumeration.Pnp.PnpObject, index: number, array: Windows.Devices.Enumeration.Pnp.PnpObject[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Devices.Enumeration.Pnp.PnpObject, index: number, array: Windows.Devices.Enumeration.Pnp.PnpObject[]) => boolean): Windows.Devices.Enumeration.Pnp.PnpObject[];
+        filter(callbackfn: (value: Windows.Devices.Enumeration.Pnp.PnpObject, index: number, array: Windows.Devices.Enumeration.Pnp.PnpObject[]) => boolean, thisArg: any): Windows.Devices.Enumeration.Pnp.PnpObject[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Devices.Enumeration.Pnp.PnpObject[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Devices.Enumeration.Pnp.PnpObject[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Devices.Enumeration.Pnp.PnpObject[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Devices.Enumeration.Pnp.PnpObject[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface PnpObjectCollection_indexOf_OUT {
@@ -4128,6 +4464,40 @@ declare module Windows.Foundation {
 
     export interface IWwwFormUrlDecoderRuntimeClass extends Windows.Foundation.Collections.IIterable<Windows.Foundation.IWwwFormUrlDecoderEntry>, Windows.Foundation.Collections.IVectorView<Windows.Foundation.IWwwFormUrlDecoderEntry> {
         getFirstValueByName(name: string): string;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Foundation.IWwwFormUrlDecoderEntry[][]): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        join(seperator: string): string;
+        pop(): Windows.Foundation.IWwwFormUrlDecoderEntry;
+        push(...items: Windows.Foundation.IWwwFormUrlDecoderEntry[]): void;
+        reverse(): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        shift(): Windows.Foundation.IWwwFormUrlDecoderEntry;
+        slice(start: number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        slice(start: number, end: number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        sort(): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        sort(compareFn: (a: Windows.Foundation.IWwwFormUrlDecoderEntry, b: Windows.Foundation.IWwwFormUrlDecoderEntry) => number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        splice(start: number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        splice(start: number, deleteCount: number, ...items: Windows.Foundation.IWwwFormUrlDecoderEntry[]): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        unshift(...items: Windows.Foundation.IWwwFormUrlDecoderEntry[]): number;
+        lastIndexOf(searchElement: Windows.Foundation.IWwwFormUrlDecoderEntry): number;
+        lastIndexOf(searchElement: Windows.Foundation.IWwwFormUrlDecoderEntry, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any): any[];
+        map(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        filter(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean, thisArg: any): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any, initialValue: any): any;
+        length: number;
     }
 
     export class Point {
@@ -4277,6 +4647,40 @@ declare module Windows.Foundation {
         indexOf(value: Windows.Foundation.IWwwFormUrlDecoderEntry): WwwFormUrlDecoder_indexOf_OUT;
         getMany(startIndex: number): WwwFormUrlDecoder_getMany_OUT;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Foundation.IWwwFormUrlDecoderEntry[][]): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        join(seperator: string): string;
+        pop(): Windows.Foundation.IWwwFormUrlDecoderEntry;
+        push(...items: Windows.Foundation.IWwwFormUrlDecoderEntry[]): void;
+        reverse(): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        shift(): Windows.Foundation.IWwwFormUrlDecoderEntry;
+        slice(start: number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        slice(start: number, end: number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        sort(): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        sort(compareFn: (a: Windows.Foundation.IWwwFormUrlDecoderEntry, b: Windows.Foundation.IWwwFormUrlDecoderEntry) => number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        splice(start: number): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        splice(start: number, deleteCount: number, ...items: Windows.Foundation.IWwwFormUrlDecoderEntry[]): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        unshift(...items: Windows.Foundation.IWwwFormUrlDecoderEntry[]): number;
+        lastIndexOf(searchElement: Windows.Foundation.IWwwFormUrlDecoderEntry): number;
+        lastIndexOf(searchElement: Windows.Foundation.IWwwFormUrlDecoderEntry, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any): any[];
+        map(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        filter(callbackfn: (value: Windows.Foundation.IWwwFormUrlDecoderEntry, index: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => boolean, thisArg: any): Windows.Foundation.IWwwFormUrlDecoderEntry[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface WwwFormUrlDecoder_indexOf_OUT {
@@ -4365,6 +4769,40 @@ declare module Windows.Foundation.Collections {
         removeEventListener(eventName: "vectorchanged", listener: Windows.Foundation.Collections.VectorChangedEventHandler<T>): void;
         onvectorchanged: (ev: Windows.Foundation.Collections.VectorChangedEventHandler<T>) => void;
 
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: T[][]): T[];
+        join(seperator: string): string;
+        pop(): T;
+        push(...items: T[]): void;
+        reverse(): T[];
+        shift(): T;
+        slice(start: number): T[];
+        slice(start: number, end: number): T[];
+        sort(): T[];
+        sort(compareFn: (a: T, b: T) => number): T[];
+        splice(start: number): T[];
+        splice(start: number, deleteCount: number, ...items: T[]): T[];
+        unshift(...items: T[]): number;
+        lastIndexOf(searchElement: T): number;
+        lastIndexOf(searchElement: T, fromIndex: number): number;
+        every(callbackfn: (value: T, index: number, array: T[]) => boolean): boolean;
+        every(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: T, index: number, array: T[]) => boolean): boolean;
+        some(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: T, index: number, array: T[]) => void ): void;
+        forEach(callbackfn: (value: T, index: number, array: T[]) => void , thisArg: any): void;
+        map(callbackfn: (value: T, index: number, array: T[]) => any): any[];
+        map(callbackfn: (value: T, index: number, array: T[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: T, index: number, array: T[]) => boolean): T[];
+        filter(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): T[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any, initialValue: any): any;
+        length: number;
     }
 
     export interface IPropertySet extends Windows.Foundation.Collections.IObservableMap<string,any>, Windows.Foundation.Collections.IMap<string,any>, Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<string,any>> {
@@ -4383,6 +4821,40 @@ declare module Windows.Foundation.Collections {
         getMany(startIndex: number): IVector_getMany_OUT<T>;
         replaceAll(items: T[]): void;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: T[][]): T[];
+        join(seperator: string): string;
+        pop(): T;
+        push(...items: T[]): void;
+        reverse(): T[];
+        shift(): T;
+        slice(start: number): T[];
+        slice(start: number, end: number): T[];
+        sort(): T[];
+        sort(compareFn: (a: T, b: T) => number): T[];
+        splice(start: number): T[];
+        splice(start: number, deleteCount: number, ...items: T[]): T[];
+        unshift(...items: T[]): number;
+        lastIndexOf(searchElement: T): number;
+        lastIndexOf(searchElement: T, fromIndex: number): number;
+        every(callbackfn: (value: T, index: number, array: T[]) => boolean): boolean;
+        every(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: T, index: number, array: T[]) => boolean): boolean;
+        some(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: T, index: number, array: T[]) => void ): void;
+        forEach(callbackfn: (value: T, index: number, array: T[]) => void , thisArg: any): void;
+        map(callbackfn: (value: T, index: number, array: T[]) => any): any[];
+        map(callbackfn: (value: T, index: number, array: T[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: T, index: number, array: T[]) => boolean): T[];
+        filter(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): T[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface IVector_indexOf_OUT<T> {
@@ -4405,6 +4877,40 @@ declare module Windows.Foundation.Collections {
         indexOf(value: T): IVectorView_indexOf_OUT<T>;
         getMany(startIndex: number): IVectorView_getMany_OUT<T>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: T[][]): T[];
+        join(seperator: string): string;
+        pop(): T;
+        push(...items: T[]): void;
+        reverse(): T[];
+        shift(): T;
+        slice(start: number): T[];
+        slice(start: number, end: number): T[];
+        sort(): T[];
+        sort(compareFn: (a: T, b: T) => number): T[];
+        splice(start: number): T[];
+        splice(start: number, deleteCount: number, ...items: T[]): T[];
+        unshift(...items: T[]): number;
+        lastIndexOf(searchElement: T): number;
+        lastIndexOf(searchElement: T, fromIndex: number): number;
+        every(callbackfn: (value: T, index: number, array: T[]) => boolean): boolean;
+        every(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: T, index: number, array: T[]) => boolean): boolean;
+        some(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: T, index: number, array: T[]) => void ): void;
+        forEach(callbackfn: (value: T, index: number, array: T[]) => void , thisArg: any): void;
+        map(callbackfn: (value: T, index: number, array: T[]) => any): any[];
+        map(callbackfn: (value: T, index: number, array: T[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: T, index: number, array: T[]) => boolean): T[];
+        filter(callbackfn: (value: T, index: number, array: T[]) => boolean, thisArg: any): T[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: T[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface IVectorView_indexOf_OUT<T> {
@@ -4886,6 +5392,40 @@ declare module Windows.Globalization.Collation {
         getMany(startIndex: number): CharacterGroupings_getMany_OUT;
         first(): Windows.Foundation.Collections.IIterator<Windows.Globalization.Collation.CharacterGrouping>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Globalization.Collation.CharacterGrouping[][]): Windows.Globalization.Collation.CharacterGrouping[];
+        join(seperator: string): string;
+        pop(): Windows.Globalization.Collation.CharacterGrouping;
+        push(...items: Windows.Globalization.Collation.CharacterGrouping[]): void;
+        reverse(): Windows.Globalization.Collation.CharacterGrouping[];
+        shift(): Windows.Globalization.Collation.CharacterGrouping;
+        slice(start: number): Windows.Globalization.Collation.CharacterGrouping[];
+        slice(start: number, end: number): Windows.Globalization.Collation.CharacterGrouping[];
+        sort(): Windows.Globalization.Collation.CharacterGrouping[];
+        sort(compareFn: (a: Windows.Globalization.Collation.CharacterGrouping, b: Windows.Globalization.Collation.CharacterGrouping) => number): Windows.Globalization.Collation.CharacterGrouping[];
+        splice(start: number): Windows.Globalization.Collation.CharacterGrouping[];
+        splice(start: number, deleteCount: number, ...items: Windows.Globalization.Collation.CharacterGrouping[]): Windows.Globalization.Collation.CharacterGrouping[];
+        unshift(...items: Windows.Globalization.Collation.CharacterGrouping[]): number;
+        lastIndexOf(searchElement: Windows.Globalization.Collation.CharacterGrouping): number;
+        lastIndexOf(searchElement: Windows.Globalization.Collation.CharacterGrouping, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => any): any[];
+        map(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => boolean): Windows.Globalization.Collation.CharacterGrouping[];
+        filter(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => boolean, thisArg: any): Windows.Globalization.Collation.CharacterGrouping[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface CharacterGroupings_indexOf_OUT {
@@ -4905,6 +5445,40 @@ declare module Windows.Globalization.Collation {
 
     export interface ICharacterGroupings extends Windows.Foundation.Collections.IVectorView<Windows.Globalization.Collation.CharacterGrouping>, Windows.Foundation.Collections.IIterable<Windows.Globalization.Collation.CharacterGrouping> {
         lookup(text: string): string;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Globalization.Collation.CharacterGrouping[][]): Windows.Globalization.Collation.CharacterGrouping[];
+        join(seperator: string): string;
+        pop(): Windows.Globalization.Collation.CharacterGrouping;
+        push(...items: Windows.Globalization.Collation.CharacterGrouping[]): void;
+        reverse(): Windows.Globalization.Collation.CharacterGrouping[];
+        shift(): Windows.Globalization.Collation.CharacterGrouping;
+        slice(start: number): Windows.Globalization.Collation.CharacterGrouping[];
+        slice(start: number, end: number): Windows.Globalization.Collation.CharacterGrouping[];
+        sort(): Windows.Globalization.Collation.CharacterGrouping[];
+        sort(compareFn: (a: Windows.Globalization.Collation.CharacterGrouping, b: Windows.Globalization.Collation.CharacterGrouping) => number): Windows.Globalization.Collation.CharacterGrouping[];
+        splice(start: number): Windows.Globalization.Collation.CharacterGrouping[];
+        splice(start: number, deleteCount: number, ...items: Windows.Globalization.Collation.CharacterGrouping[]): Windows.Globalization.Collation.CharacterGrouping[];
+        unshift(...items: Windows.Globalization.Collation.CharacterGrouping[]): number;
+        lastIndexOf(searchElement: Windows.Globalization.Collation.CharacterGrouping): number;
+        lastIndexOf(searchElement: Windows.Globalization.Collation.CharacterGrouping, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => any): any[];
+        map(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => boolean): Windows.Globalization.Collation.CharacterGrouping[];
+        filter(callbackfn: (value: Windows.Globalization.Collation.CharacterGrouping, index: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => boolean, thisArg: any): Windows.Globalization.Collation.CharacterGrouping[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Globalization.Collation.CharacterGrouping[]) => any, initialValue: any): any;
+        length: number;
     }
 
 }
@@ -10074,6 +10648,40 @@ declare module Windows.Storage.AccessCache {
         getMany(startIndex: number): AccessListEntryView_getMany_OUT;
         first(): Windows.Foundation.Collections.IIterator<Windows.Storage.AccessCache.AccessListEntry>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Storage.AccessCache.AccessListEntry[][]): Windows.Storage.AccessCache.AccessListEntry[];
+        join(seperator: string): string;
+        pop(): Windows.Storage.AccessCache.AccessListEntry;
+        push(...items: Windows.Storage.AccessCache.AccessListEntry[]): void;
+        reverse(): Windows.Storage.AccessCache.AccessListEntry[];
+        shift(): Windows.Storage.AccessCache.AccessListEntry;
+        slice(start: number): Windows.Storage.AccessCache.AccessListEntry[];
+        slice(start: number, end: number): Windows.Storage.AccessCache.AccessListEntry[];
+        sort(): Windows.Storage.AccessCache.AccessListEntry[];
+        sort(compareFn: (a: Windows.Storage.AccessCache.AccessListEntry, b: Windows.Storage.AccessCache.AccessListEntry) => number): Windows.Storage.AccessCache.AccessListEntry[];
+        splice(start: number): Windows.Storage.AccessCache.AccessListEntry[];
+        splice(start: number, deleteCount: number, ...items: Windows.Storage.AccessCache.AccessListEntry[]): Windows.Storage.AccessCache.AccessListEntry[];
+        unshift(...items: Windows.Storage.AccessCache.AccessListEntry[]): number;
+        lastIndexOf(searchElement: Windows.Storage.AccessCache.AccessListEntry): number;
+        lastIndexOf(searchElement: Windows.Storage.AccessCache.AccessListEntry, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Storage.AccessCache.AccessListEntry, index: number, array: Windows.Storage.AccessCache.AccessListEntry[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Storage.AccessCache.AccessListEntry, index: number, array: Windows.Storage.AccessCache.AccessListEntry[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Storage.AccessCache.AccessListEntry, index: number, array: Windows.Storage.AccessCache.AccessListEntry[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Storage.AccessCache.AccessListEntry, index: number, array: Windows.Storage.AccessCache.AccessListEntry[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Storage.AccessCache.AccessListEntry, index: number, array: Windows.Storage.AccessCache.AccessListEntry[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Storage.AccessCache.AccessListEntry, index: number, array: Windows.Storage.AccessCache.AccessListEntry[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Storage.AccessCache.AccessListEntry, index: number, array: Windows.Storage.AccessCache.AccessListEntry[]) => any): any[];
+        map(callbackfn: (value: Windows.Storage.AccessCache.AccessListEntry, index: number, array: Windows.Storage.AccessCache.AccessListEntry[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Storage.AccessCache.AccessListEntry, index: number, array: Windows.Storage.AccessCache.AccessListEntry[]) => boolean): Windows.Storage.AccessCache.AccessListEntry[];
+        filter(callbackfn: (value: Windows.Storage.AccessCache.AccessListEntry, index: number, array: Windows.Storage.AccessCache.AccessListEntry[]) => boolean, thisArg: any): Windows.Storage.AccessCache.AccessListEntry[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Storage.AccessCache.AccessListEntry[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Storage.AccessCache.AccessListEntry[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Storage.AccessCache.AccessListEntry[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Storage.AccessCache.AccessListEntry[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface AccessListEntryView_indexOf_OUT {
@@ -11046,6 +11654,40 @@ declare module Windows.Storage.Pickers {
         replaceAll(items: string[]): void;
         first(): Windows.Foundation.Collections.IIterator<string>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: string[][]): string[];
+        join(seperator: string): string;
+        pop(): string;
+        push(...items: string[]): void;
+        reverse(): string[];
+        shift(): string;
+        slice(start: number): string[];
+        slice(start: number, end: number): string[];
+        sort(): string[];
+        sort(compareFn: (a: string, b: string) => number): string[];
+        splice(start: number): string[];
+        splice(start: number, deleteCount: number, ...items: string[]): string[];
+        unshift(...items: string[]): number;
+        lastIndexOf(searchElement: string): number;
+        lastIndexOf(searchElement: string, fromIndex: number): number;
+        every(callbackfn: (value: string, index: number, array: string[]) => boolean): boolean;
+        every(callbackfn: (value: string, index: number, array: string[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: string, index: number, array: string[]) => boolean): boolean;
+        some(callbackfn: (value: string, index: number, array: string[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: string, index: number, array: string[]) => void ): void;
+        forEach(callbackfn: (value: string, index: number, array: string[]) => void , thisArg: any): void;
+        map(callbackfn: (value: string, index: number, array: string[]) => any): any[];
+        map(callbackfn: (value: string, index: number, array: string[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: string, index: number, array: string[]) => boolean): string[];
+        filter(callbackfn: (value: string, index: number, array: string[]) => boolean, thisArg: any): string[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: string[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: string[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: string[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: string[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface FileExtensionVector_indexOf_OUT {
@@ -11086,6 +11728,40 @@ declare module Windows.Storage.Pickers {
         getMany(startIndex: number): FilePickerSelectedFilesArray_getMany_OUT;
         first(): Windows.Foundation.Collections.IIterator<Windows.Storage.StorageFile>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Storage.StorageFile[][]): Windows.Storage.StorageFile[];
+        join(seperator: string): string;
+        pop(): Windows.Storage.StorageFile;
+        push(...items: Windows.Storage.StorageFile[]): void;
+        reverse(): Windows.Storage.StorageFile[];
+        shift(): Windows.Storage.StorageFile;
+        slice(start: number): Windows.Storage.StorageFile[];
+        slice(start: number, end: number): Windows.Storage.StorageFile[];
+        sort(): Windows.Storage.StorageFile[];
+        sort(compareFn: (a: Windows.Storage.StorageFile, b: Windows.Storage.StorageFile) => number): Windows.Storage.StorageFile[];
+        splice(start: number): Windows.Storage.StorageFile[];
+        splice(start: number, deleteCount: number, ...items: Windows.Storage.StorageFile[]): Windows.Storage.StorageFile[];
+        unshift(...items: Windows.Storage.StorageFile[]): number;
+        lastIndexOf(searchElement: Windows.Storage.StorageFile): number;
+        lastIndexOf(searchElement: Windows.Storage.StorageFile, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Storage.StorageFile, index: number, array: Windows.Storage.StorageFile[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Storage.StorageFile, index: number, array: Windows.Storage.StorageFile[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Storage.StorageFile, index: number, array: Windows.Storage.StorageFile[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Storage.StorageFile, index: number, array: Windows.Storage.StorageFile[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Storage.StorageFile, index: number, array: Windows.Storage.StorageFile[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Storage.StorageFile, index: number, array: Windows.Storage.StorageFile[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Storage.StorageFile, index: number, array: Windows.Storage.StorageFile[]) => any): any[];
+        map(callbackfn: (value: Windows.Storage.StorageFile, index: number, array: Windows.Storage.StorageFile[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Storage.StorageFile, index: number, array: Windows.Storage.StorageFile[]) => boolean): Windows.Storage.StorageFile[];
+        filter(callbackfn: (value: Windows.Storage.StorageFile, index: number, array: Windows.Storage.StorageFile[]) => boolean, thisArg: any): Windows.Storage.StorageFile[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Storage.StorageFile[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Storage.StorageFile[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Storage.StorageFile[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Storage.StorageFile[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface FilePickerSelectedFilesArray_indexOf_OUT {
@@ -11596,6 +12272,40 @@ declare module Windows.Storage.Search {
         replaceAll(items: Windows.Storage.Search.SortEntry[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.Storage.Search.SortEntry>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Storage.Search.SortEntry[][]): Windows.Storage.Search.SortEntry[];
+        join(seperator: string): string;
+        pop(): Windows.Storage.Search.SortEntry;
+        push(...items: Windows.Storage.Search.SortEntry[]): void;
+        reverse(): Windows.Storage.Search.SortEntry[];
+        shift(): Windows.Storage.Search.SortEntry;
+        slice(start: number): Windows.Storage.Search.SortEntry[];
+        slice(start: number, end: number): Windows.Storage.Search.SortEntry[];
+        sort(): Windows.Storage.Search.SortEntry[];
+        sort(compareFn: (a: Windows.Storage.Search.SortEntry, b: Windows.Storage.Search.SortEntry) => number): Windows.Storage.Search.SortEntry[];
+        splice(start: number): Windows.Storage.Search.SortEntry[];
+        splice(start: number, deleteCount: number, ...items: Windows.Storage.Search.SortEntry[]): Windows.Storage.Search.SortEntry[];
+        unshift(...items: Windows.Storage.Search.SortEntry[]): number;
+        lastIndexOf(searchElement: Windows.Storage.Search.SortEntry): number;
+        lastIndexOf(searchElement: Windows.Storage.Search.SortEntry, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Storage.Search.SortEntry, index: number, array: Windows.Storage.Search.SortEntry[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Storage.Search.SortEntry, index: number, array: Windows.Storage.Search.SortEntry[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Storage.Search.SortEntry, index: number, array: Windows.Storage.Search.SortEntry[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Storage.Search.SortEntry, index: number, array: Windows.Storage.Search.SortEntry[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Storage.Search.SortEntry, index: number, array: Windows.Storage.Search.SortEntry[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Storage.Search.SortEntry, index: number, array: Windows.Storage.Search.SortEntry[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Storage.Search.SortEntry, index: number, array: Windows.Storage.Search.SortEntry[]) => any): any[];
+        map(callbackfn: (value: Windows.Storage.Search.SortEntry, index: number, array: Windows.Storage.Search.SortEntry[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Storage.Search.SortEntry, index: number, array: Windows.Storage.Search.SortEntry[]) => boolean): Windows.Storage.Search.SortEntry[];
+        filter(callbackfn: (value: Windows.Storage.Search.SortEntry, index: number, array: Windows.Storage.Search.SortEntry[]) => boolean, thisArg: any): Windows.Storage.Search.SortEntry[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Storage.Search.SortEntry[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Storage.Search.SortEntry[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Storage.Search.SortEntry[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Storage.Search.SortEntry[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface SortEntryVector_indexOf_OUT {
@@ -15662,6 +16372,40 @@ declare module Windows.UI.Xaml {
 
     export interface ISetterBaseCollection extends Windows.Foundation.Collections.IVector<Windows.UI.Xaml.SetterBase>, Windows.Foundation.Collections.IIterable<Windows.UI.Xaml.SetterBase> {
         isSealed: boolean;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.SetterBase[][]): Windows.UI.Xaml.SetterBase[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.SetterBase;
+        push(...items: Windows.UI.Xaml.SetterBase[]): void;
+        reverse(): Windows.UI.Xaml.SetterBase[];
+        shift(): Windows.UI.Xaml.SetterBase;
+        slice(start: number): Windows.UI.Xaml.SetterBase[];
+        slice(start: number, end: number): Windows.UI.Xaml.SetterBase[];
+        sort(): Windows.UI.Xaml.SetterBase[];
+        sort(compareFn: (a: Windows.UI.Xaml.SetterBase, b: Windows.UI.Xaml.SetterBase) => number): Windows.UI.Xaml.SetterBase[];
+        splice(start: number): Windows.UI.Xaml.SetterBase[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.SetterBase[]): Windows.UI.Xaml.SetterBase[];
+        unshift(...items: Windows.UI.Xaml.SetterBase[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.SetterBase): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.SetterBase, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => boolean): Windows.UI.Xaml.SetterBase[];
+        filter(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => boolean, thisArg: any): Windows.UI.Xaml.SetterBase[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.SetterBase[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.SetterBase[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.SetterBase[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.SetterBase[]) => any, initialValue: any): any;
+        length: number;
     }
 
     export interface ISizeChangedEventArgs {
@@ -16000,6 +16744,40 @@ declare module Windows.UI.Xaml {
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.SetterBase>;
         isSealed: boolean;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.SetterBase[][]): Windows.UI.Xaml.SetterBase[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.SetterBase;
+        push(...items: Windows.UI.Xaml.SetterBase[]): void;
+        reverse(): Windows.UI.Xaml.SetterBase[];
+        shift(): Windows.UI.Xaml.SetterBase;
+        slice(start: number): Windows.UI.Xaml.SetterBase[];
+        slice(start: number, end: number): Windows.UI.Xaml.SetterBase[];
+        sort(): Windows.UI.Xaml.SetterBase[];
+        sort(compareFn: (a: Windows.UI.Xaml.SetterBase, b: Windows.UI.Xaml.SetterBase) => number): Windows.UI.Xaml.SetterBase[];
+        splice(start: number): Windows.UI.Xaml.SetterBase[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.SetterBase[]): Windows.UI.Xaml.SetterBase[];
+        unshift(...items: Windows.UI.Xaml.SetterBase[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.SetterBase): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.SetterBase, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => boolean): Windows.UI.Xaml.SetterBase[];
+        filter(callbackfn: (value: Windows.UI.Xaml.SetterBase, index: number, array: Windows.UI.Xaml.SetterBase[]) => boolean, thisArg: any): Windows.UI.Xaml.SetterBase[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.SetterBase[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.SetterBase[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.SetterBase[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.SetterBase[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface SetterBaseCollection_indexOf_OUT {
@@ -16111,6 +16889,40 @@ declare module Windows.UI.Xaml {
         replaceAll(items: Windows.UI.Xaml.TriggerAction[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.TriggerAction>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.TriggerAction[][]): Windows.UI.Xaml.TriggerAction[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.TriggerAction;
+        push(...items: Windows.UI.Xaml.TriggerAction[]): void;
+        reverse(): Windows.UI.Xaml.TriggerAction[];
+        shift(): Windows.UI.Xaml.TriggerAction;
+        slice(start: number): Windows.UI.Xaml.TriggerAction[];
+        slice(start: number, end: number): Windows.UI.Xaml.TriggerAction[];
+        sort(): Windows.UI.Xaml.TriggerAction[];
+        sort(compareFn: (a: Windows.UI.Xaml.TriggerAction, b: Windows.UI.Xaml.TriggerAction) => number): Windows.UI.Xaml.TriggerAction[];
+        splice(start: number): Windows.UI.Xaml.TriggerAction[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.TriggerAction[]): Windows.UI.Xaml.TriggerAction[];
+        unshift(...items: Windows.UI.Xaml.TriggerAction[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.TriggerAction): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.TriggerAction, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.TriggerAction, index: number, array: Windows.UI.Xaml.TriggerAction[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.TriggerAction, index: number, array: Windows.UI.Xaml.TriggerAction[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.TriggerAction, index: number, array: Windows.UI.Xaml.TriggerAction[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.TriggerAction, index: number, array: Windows.UI.Xaml.TriggerAction[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.TriggerAction, index: number, array: Windows.UI.Xaml.TriggerAction[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.TriggerAction, index: number, array: Windows.UI.Xaml.TriggerAction[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.TriggerAction, index: number, array: Windows.UI.Xaml.TriggerAction[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.TriggerAction, index: number, array: Windows.UI.Xaml.TriggerAction[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.TriggerAction, index: number, array: Windows.UI.Xaml.TriggerAction[]) => boolean): Windows.UI.Xaml.TriggerAction[];
+        filter(callbackfn: (value: Windows.UI.Xaml.TriggerAction, index: number, array: Windows.UI.Xaml.TriggerAction[]) => boolean, thisArg: any): Windows.UI.Xaml.TriggerAction[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.TriggerAction[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.TriggerAction[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.TriggerAction[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.TriggerAction[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface TriggerActionCollection_indexOf_OUT {
@@ -16140,6 +16952,40 @@ declare module Windows.UI.Xaml {
         replaceAll(items: Windows.UI.Xaml.TriggerBase[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.TriggerBase>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.TriggerBase[][]): Windows.UI.Xaml.TriggerBase[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.TriggerBase;
+        push(...items: Windows.UI.Xaml.TriggerBase[]): void;
+        reverse(): Windows.UI.Xaml.TriggerBase[];
+        shift(): Windows.UI.Xaml.TriggerBase;
+        slice(start: number): Windows.UI.Xaml.TriggerBase[];
+        slice(start: number, end: number): Windows.UI.Xaml.TriggerBase[];
+        sort(): Windows.UI.Xaml.TriggerBase[];
+        sort(compareFn: (a: Windows.UI.Xaml.TriggerBase, b: Windows.UI.Xaml.TriggerBase) => number): Windows.UI.Xaml.TriggerBase[];
+        splice(start: number): Windows.UI.Xaml.TriggerBase[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.TriggerBase[]): Windows.UI.Xaml.TriggerBase[];
+        unshift(...items: Windows.UI.Xaml.TriggerBase[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.TriggerBase): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.TriggerBase, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.TriggerBase, index: number, array: Windows.UI.Xaml.TriggerBase[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.TriggerBase, index: number, array: Windows.UI.Xaml.TriggerBase[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.TriggerBase, index: number, array: Windows.UI.Xaml.TriggerBase[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.TriggerBase, index: number, array: Windows.UI.Xaml.TriggerBase[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.TriggerBase, index: number, array: Windows.UI.Xaml.TriggerBase[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.TriggerBase, index: number, array: Windows.UI.Xaml.TriggerBase[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.TriggerBase, index: number, array: Windows.UI.Xaml.TriggerBase[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.TriggerBase, index: number, array: Windows.UI.Xaml.TriggerBase[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.TriggerBase, index: number, array: Windows.UI.Xaml.TriggerBase[]) => boolean): Windows.UI.Xaml.TriggerBase[];
+        filter(callbackfn: (value: Windows.UI.Xaml.TriggerBase, index: number, array: Windows.UI.Xaml.TriggerBase[]) => boolean, thisArg: any): Windows.UI.Xaml.TriggerBase[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.TriggerBase[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.TriggerBase[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.TriggerBase[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.TriggerBase[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface TriggerCollection_indexOf_OUT {
@@ -17719,6 +18565,40 @@ declare module Windows.UI.Xaml.Controls {
         replaceAll(items: Windows.UI.Xaml.Controls.ColumnDefinition[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Controls.ColumnDefinition>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Controls.ColumnDefinition[][]): Windows.UI.Xaml.Controls.ColumnDefinition[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Controls.ColumnDefinition;
+        push(...items: Windows.UI.Xaml.Controls.ColumnDefinition[]): void;
+        reverse(): Windows.UI.Xaml.Controls.ColumnDefinition[];
+        shift(): Windows.UI.Xaml.Controls.ColumnDefinition;
+        slice(start: number): Windows.UI.Xaml.Controls.ColumnDefinition[];
+        slice(start: number, end: number): Windows.UI.Xaml.Controls.ColumnDefinition[];
+        sort(): Windows.UI.Xaml.Controls.ColumnDefinition[];
+        sort(compareFn: (a: Windows.UI.Xaml.Controls.ColumnDefinition, b: Windows.UI.Xaml.Controls.ColumnDefinition) => number): Windows.UI.Xaml.Controls.ColumnDefinition[];
+        splice(start: number): Windows.UI.Xaml.Controls.ColumnDefinition[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Controls.ColumnDefinition[]): Windows.UI.Xaml.Controls.ColumnDefinition[];
+        unshift(...items: Windows.UI.Xaml.Controls.ColumnDefinition[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Controls.ColumnDefinition): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Controls.ColumnDefinition, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Controls.ColumnDefinition, index: number, array: Windows.UI.Xaml.Controls.ColumnDefinition[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Controls.ColumnDefinition, index: number, array: Windows.UI.Xaml.Controls.ColumnDefinition[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Controls.ColumnDefinition, index: number, array: Windows.UI.Xaml.Controls.ColumnDefinition[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Controls.ColumnDefinition, index: number, array: Windows.UI.Xaml.Controls.ColumnDefinition[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Controls.ColumnDefinition, index: number, array: Windows.UI.Xaml.Controls.ColumnDefinition[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Controls.ColumnDefinition, index: number, array: Windows.UI.Xaml.Controls.ColumnDefinition[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Controls.ColumnDefinition, index: number, array: Windows.UI.Xaml.Controls.ColumnDefinition[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Controls.ColumnDefinition, index: number, array: Windows.UI.Xaml.Controls.ColumnDefinition[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Controls.ColumnDefinition, index: number, array: Windows.UI.Xaml.Controls.ColumnDefinition[]) => boolean): Windows.UI.Xaml.Controls.ColumnDefinition[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Controls.ColumnDefinition, index: number, array: Windows.UI.Xaml.Controls.ColumnDefinition[]) => boolean, thisArg: any): Windows.UI.Xaml.Controls.ColumnDefinition[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Controls.ColumnDefinition[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Controls.ColumnDefinition[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Controls.ColumnDefinition[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Controls.ColumnDefinition[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface ColumnDefinitionCollection_indexOf_OUT {
@@ -18875,6 +19755,40 @@ declare module Windows.UI.Xaml.Controls {
         removeEventListener(eventName: "vectorchanged", listener: Windows.Foundation.Collections.VectorChangedEventHandler<any>): void;
         onvectorchanged: (ev: Windows.Foundation.Collections.VectorChangedEventHandler<any>) => void;
 
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: any[][]): any[];
+        join(seperator: string): string;
+        pop(): any;
+        push(...items: any[]): void;
+        reverse(): any[];
+        shift(): any;
+        slice(start: number): any[];
+        slice(start: number, end: number): any[];
+        sort(): any[];
+        sort(compareFn: (a: any, b: any) => number): any[];
+        splice(start: number): any[];
+        splice(start: number, deleteCount: number, ...items: any[]): any[];
+        unshift(...items: any[]): number;
+        lastIndexOf(searchElement: any): number;
+        lastIndexOf(searchElement: any, fromIndex: number): number;
+        every(callbackfn: (value: any, index: number, array: any[]) => boolean): boolean;
+        every(callbackfn: (value: any, index: number, array: any[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: any, index: number, array: any[]) => boolean): boolean;
+        some(callbackfn: (value: any, index: number, array: any[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: any, index: number, array: any[]) => void ): void;
+        forEach(callbackfn: (value: any, index: number, array: any[]) => void , thisArg: any): void;
+        map(callbackfn: (value: any, index: number, array: any[]) => any): any[];
+        map(callbackfn: (value: any, index: number, array: any[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: any, index: number, array: any[]) => boolean): any[];
+        filter(callbackfn: (value: any, index: number, array: any[]) => boolean, thisArg: any): any[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: any[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: any[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: any[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: any[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface ItemCollection_indexOf_OUT {
@@ -19619,6 +20533,40 @@ declare module Windows.UI.Xaml.Controls {
         replaceAll(items: Windows.UI.Xaml.Controls.RowDefinition[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Controls.RowDefinition>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Controls.RowDefinition[][]): Windows.UI.Xaml.Controls.RowDefinition[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Controls.RowDefinition;
+        push(...items: Windows.UI.Xaml.Controls.RowDefinition[]): void;
+        reverse(): Windows.UI.Xaml.Controls.RowDefinition[];
+        shift(): Windows.UI.Xaml.Controls.RowDefinition;
+        slice(start: number): Windows.UI.Xaml.Controls.RowDefinition[];
+        slice(start: number, end: number): Windows.UI.Xaml.Controls.RowDefinition[];
+        sort(): Windows.UI.Xaml.Controls.RowDefinition[];
+        sort(compareFn: (a: Windows.UI.Xaml.Controls.RowDefinition, b: Windows.UI.Xaml.Controls.RowDefinition) => number): Windows.UI.Xaml.Controls.RowDefinition[];
+        splice(start: number): Windows.UI.Xaml.Controls.RowDefinition[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Controls.RowDefinition[]): Windows.UI.Xaml.Controls.RowDefinition[];
+        unshift(...items: Windows.UI.Xaml.Controls.RowDefinition[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Controls.RowDefinition): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Controls.RowDefinition, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Controls.RowDefinition, index: number, array: Windows.UI.Xaml.Controls.RowDefinition[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Controls.RowDefinition, index: number, array: Windows.UI.Xaml.Controls.RowDefinition[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Controls.RowDefinition, index: number, array: Windows.UI.Xaml.Controls.RowDefinition[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Controls.RowDefinition, index: number, array: Windows.UI.Xaml.Controls.RowDefinition[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Controls.RowDefinition, index: number, array: Windows.UI.Xaml.Controls.RowDefinition[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Controls.RowDefinition, index: number, array: Windows.UI.Xaml.Controls.RowDefinition[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Controls.RowDefinition, index: number, array: Windows.UI.Xaml.Controls.RowDefinition[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Controls.RowDefinition, index: number, array: Windows.UI.Xaml.Controls.RowDefinition[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Controls.RowDefinition, index: number, array: Windows.UI.Xaml.Controls.RowDefinition[]) => boolean): Windows.UI.Xaml.Controls.RowDefinition[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Controls.RowDefinition, index: number, array: Windows.UI.Xaml.Controls.RowDefinition[]) => boolean, thisArg: any): Windows.UI.Xaml.Controls.RowDefinition[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Controls.RowDefinition[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Controls.RowDefinition[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Controls.RowDefinition[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Controls.RowDefinition[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface RowDefinitionCollection_indexOf_OUT {
@@ -20112,6 +21060,40 @@ declare module Windows.UI.Xaml.Controls {
         replaceAll(items: Windows.UI.Xaml.UIElement[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.UIElement>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.UIElement[][]): Windows.UI.Xaml.UIElement[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.UIElement;
+        push(...items: Windows.UI.Xaml.UIElement[]): void;
+        reverse(): Windows.UI.Xaml.UIElement[];
+        shift(): Windows.UI.Xaml.UIElement;
+        slice(start: number): Windows.UI.Xaml.UIElement[];
+        slice(start: number, end: number): Windows.UI.Xaml.UIElement[];
+        sort(): Windows.UI.Xaml.UIElement[];
+        sort(compareFn: (a: Windows.UI.Xaml.UIElement, b: Windows.UI.Xaml.UIElement) => number): Windows.UI.Xaml.UIElement[];
+        splice(start: number): Windows.UI.Xaml.UIElement[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.UIElement[]): Windows.UI.Xaml.UIElement[];
+        unshift(...items: Windows.UI.Xaml.UIElement[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.UIElement): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.UIElement, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.UIElement, index: number, array: Windows.UI.Xaml.UIElement[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.UIElement, index: number, array: Windows.UI.Xaml.UIElement[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.UIElement, index: number, array: Windows.UI.Xaml.UIElement[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.UIElement, index: number, array: Windows.UI.Xaml.UIElement[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.UIElement, index: number, array: Windows.UI.Xaml.UIElement[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.UIElement, index: number, array: Windows.UI.Xaml.UIElement[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.UIElement, index: number, array: Windows.UI.Xaml.UIElement[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.UIElement, index: number, array: Windows.UI.Xaml.UIElement[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.UIElement, index: number, array: Windows.UI.Xaml.UIElement[]) => boolean): Windows.UI.Xaml.UIElement[];
+        filter(callbackfn: (value: Windows.UI.Xaml.UIElement, index: number, array: Windows.UI.Xaml.UIElement[]) => boolean, thisArg: any): Windows.UI.Xaml.UIElement[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.UIElement[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.UIElement[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.UIElement[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.UIElement[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface UIElementCollection_indexOf_OUT {
@@ -21133,6 +22115,40 @@ declare module Windows.UI.Xaml.Data {
         removeEventListener(eventName: "currentchanging", listener: Windows.UI.Xaml.Data.CurrentChangingEventHandler): void;
         oncurrentchanging: (ev: Windows.UI.Xaml.Data.CurrentChangingEventHandler) => void;
 
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: any[][]): any[];
+        join(seperator: string): string;
+        pop(): any;
+        push(...items: any[]): void;
+        reverse(): any[];
+        shift(): any;
+        slice(start: number): any[];
+        slice(start: number, end: number): any[];
+        sort(): any[];
+        sort(compareFn: (a: any, b: any) => number): any[];
+        splice(start: number): any[];
+        splice(start: number, deleteCount: number, ...items: any[]): any[];
+        unshift(...items: any[]): number;
+        lastIndexOf(searchElement: any): number;
+        lastIndexOf(searchElement: any, fromIndex: number): number;
+        every(callbackfn: (value: any, index: number, array: any[]) => boolean): boolean;
+        every(callbackfn: (value: any, index: number, array: any[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: any, index: number, array: any[]) => boolean): boolean;
+        some(callbackfn: (value: any, index: number, array: any[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: any, index: number, array: any[]) => void ): void;
+        forEach(callbackfn: (value: any, index: number, array: any[]) => void , thisArg: any): void;
+        map(callbackfn: (value: any, index: number, array: any[]) => any): any[];
+        map(callbackfn: (value: any, index: number, array: any[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: any, index: number, array: any[]) => boolean): any[];
+        filter(callbackfn: (value: any, index: number, array: any[]) => boolean, thisArg: any): any[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: any[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: any[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: any[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: any[]) => any, initialValue: any): any;
+        length: number;
     }
 
     export interface ICollectionViewFactory {
@@ -21257,6 +22273,40 @@ declare module Windows.UI.Xaml.Documents {
         replaceAll(items: Windows.UI.Xaml.Documents.Block[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Documents.Block>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Documents.Block[][]): Windows.UI.Xaml.Documents.Block[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Documents.Block;
+        push(...items: Windows.UI.Xaml.Documents.Block[]): void;
+        reverse(): Windows.UI.Xaml.Documents.Block[];
+        shift(): Windows.UI.Xaml.Documents.Block;
+        slice(start: number): Windows.UI.Xaml.Documents.Block[];
+        slice(start: number, end: number): Windows.UI.Xaml.Documents.Block[];
+        sort(): Windows.UI.Xaml.Documents.Block[];
+        sort(compareFn: (a: Windows.UI.Xaml.Documents.Block, b: Windows.UI.Xaml.Documents.Block) => number): Windows.UI.Xaml.Documents.Block[];
+        splice(start: number): Windows.UI.Xaml.Documents.Block[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Documents.Block[]): Windows.UI.Xaml.Documents.Block[];
+        unshift(...items: Windows.UI.Xaml.Documents.Block[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Documents.Block): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Documents.Block, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Documents.Block, index: number, array: Windows.UI.Xaml.Documents.Block[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Documents.Block, index: number, array: Windows.UI.Xaml.Documents.Block[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Documents.Block, index: number, array: Windows.UI.Xaml.Documents.Block[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Documents.Block, index: number, array: Windows.UI.Xaml.Documents.Block[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Documents.Block, index: number, array: Windows.UI.Xaml.Documents.Block[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Documents.Block, index: number, array: Windows.UI.Xaml.Documents.Block[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Documents.Block, index: number, array: Windows.UI.Xaml.Documents.Block[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Documents.Block, index: number, array: Windows.UI.Xaml.Documents.Block[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Documents.Block, index: number, array: Windows.UI.Xaml.Documents.Block[]) => boolean): Windows.UI.Xaml.Documents.Block[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Documents.Block, index: number, array: Windows.UI.Xaml.Documents.Block[]) => boolean, thisArg: any): Windows.UI.Xaml.Documents.Block[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Documents.Block[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Documents.Block[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Documents.Block[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Documents.Block[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface BlockCollection_indexOf_OUT {
@@ -21345,6 +22395,40 @@ declare module Windows.UI.Xaml.Documents {
         replaceAll(items: Windows.UI.Xaml.Documents.Inline[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Documents.Inline>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Documents.Inline[][]): Windows.UI.Xaml.Documents.Inline[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Documents.Inline;
+        push(...items: Windows.UI.Xaml.Documents.Inline[]): void;
+        reverse(): Windows.UI.Xaml.Documents.Inline[];
+        shift(): Windows.UI.Xaml.Documents.Inline;
+        slice(start: number): Windows.UI.Xaml.Documents.Inline[];
+        slice(start: number, end: number): Windows.UI.Xaml.Documents.Inline[];
+        sort(): Windows.UI.Xaml.Documents.Inline[];
+        sort(compareFn: (a: Windows.UI.Xaml.Documents.Inline, b: Windows.UI.Xaml.Documents.Inline) => number): Windows.UI.Xaml.Documents.Inline[];
+        splice(start: number): Windows.UI.Xaml.Documents.Inline[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Documents.Inline[]): Windows.UI.Xaml.Documents.Inline[];
+        unshift(...items: Windows.UI.Xaml.Documents.Inline[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Documents.Inline): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Documents.Inline, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Documents.Inline, index: number, array: Windows.UI.Xaml.Documents.Inline[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Documents.Inline, index: number, array: Windows.UI.Xaml.Documents.Inline[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Documents.Inline, index: number, array: Windows.UI.Xaml.Documents.Inline[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Documents.Inline, index: number, array: Windows.UI.Xaml.Documents.Inline[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Documents.Inline, index: number, array: Windows.UI.Xaml.Documents.Inline[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Documents.Inline, index: number, array: Windows.UI.Xaml.Documents.Inline[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Documents.Inline, index: number, array: Windows.UI.Xaml.Documents.Inline[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Documents.Inline, index: number, array: Windows.UI.Xaml.Documents.Inline[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Documents.Inline, index: number, array: Windows.UI.Xaml.Documents.Inline[]) => boolean): Windows.UI.Xaml.Documents.Inline[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Documents.Inline, index: number, array: Windows.UI.Xaml.Documents.Inline[]) => boolean, thisArg: any): Windows.UI.Xaml.Documents.Inline[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Documents.Inline[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Documents.Inline[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Documents.Inline[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Documents.Inline[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface InlineCollection_indexOf_OUT {
@@ -22342,6 +23426,40 @@ declare module Windows.UI.Xaml.Media {
         replaceAll(items: number[]): void;
         first(): Windows.Foundation.Collections.IIterator<number>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: number[][]): number[];
+        join(seperator: string): string;
+        pop(): number;
+        push(...items: number[]): void;
+        reverse(): number[];
+        shift(): number;
+        slice(start: number): number[];
+        slice(start: number, end: number): number[];
+        sort(): number[];
+        sort(compareFn: (a: number, b: number) => number): number[];
+        splice(start: number): number[];
+        splice(start: number, deleteCount: number, ...items: number[]): number[];
+        unshift(...items: number[]): number;
+        lastIndexOf(searchElement: number): number;
+        lastIndexOf(searchElement: number, fromIndex: number): number;
+        every(callbackfn: (value: number, index: number, array: number[]) => boolean): boolean;
+        every(callbackfn: (value: number, index: number, array: number[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: number, index: number, array: number[]) => boolean): boolean;
+        some(callbackfn: (value: number, index: number, array: number[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: number, index: number, array: number[]) => void ): void;
+        forEach(callbackfn: (value: number, index: number, array: number[]) => void , thisArg: any): void;
+        map(callbackfn: (value: number, index: number, array: number[]) => any): any[];
+        map(callbackfn: (value: number, index: number, array: number[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: number, index: number, array: number[]) => boolean): number[];
+        filter(callbackfn: (value: number, index: number, array: number[]) => boolean, thisArg: any): number[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: number[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: number[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: number[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: number[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface DoubleCollection_indexOf_OUT {
@@ -22418,6 +23536,40 @@ declare module Windows.UI.Xaml.Media {
         replaceAll(items: Windows.UI.Xaml.Media.Geometry[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Media.Geometry>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Media.Geometry[][]): Windows.UI.Xaml.Media.Geometry[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Media.Geometry;
+        push(...items: Windows.UI.Xaml.Media.Geometry[]): void;
+        reverse(): Windows.UI.Xaml.Media.Geometry[];
+        shift(): Windows.UI.Xaml.Media.Geometry;
+        slice(start: number): Windows.UI.Xaml.Media.Geometry[];
+        slice(start: number, end: number): Windows.UI.Xaml.Media.Geometry[];
+        sort(): Windows.UI.Xaml.Media.Geometry[];
+        sort(compareFn: (a: Windows.UI.Xaml.Media.Geometry, b: Windows.UI.Xaml.Media.Geometry) => number): Windows.UI.Xaml.Media.Geometry[];
+        splice(start: number): Windows.UI.Xaml.Media.Geometry[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Media.Geometry[]): Windows.UI.Xaml.Media.Geometry[];
+        unshift(...items: Windows.UI.Xaml.Media.Geometry[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Geometry): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Geometry, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Geometry, index: number, array: Windows.UI.Xaml.Media.Geometry[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Geometry, index: number, array: Windows.UI.Xaml.Media.Geometry[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Geometry, index: number, array: Windows.UI.Xaml.Media.Geometry[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Geometry, index: number, array: Windows.UI.Xaml.Media.Geometry[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Geometry, index: number, array: Windows.UI.Xaml.Media.Geometry[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Geometry, index: number, array: Windows.UI.Xaml.Media.Geometry[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Geometry, index: number, array: Windows.UI.Xaml.Media.Geometry[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Geometry, index: number, array: Windows.UI.Xaml.Media.Geometry[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Geometry, index: number, array: Windows.UI.Xaml.Media.Geometry[]) => boolean): Windows.UI.Xaml.Media.Geometry[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Geometry, index: number, array: Windows.UI.Xaml.Media.Geometry[]) => boolean, thisArg: any): Windows.UI.Xaml.Media.Geometry[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Geometry[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Geometry[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Geometry[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Geometry[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface GeometryCollection_indexOf_OUT {
@@ -22479,6 +23631,40 @@ declare module Windows.UI.Xaml.Media {
         replaceAll(items: Windows.UI.Xaml.Media.GradientStop[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Media.GradientStop>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Media.GradientStop[][]): Windows.UI.Xaml.Media.GradientStop[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Media.GradientStop;
+        push(...items: Windows.UI.Xaml.Media.GradientStop[]): void;
+        reverse(): Windows.UI.Xaml.Media.GradientStop[];
+        shift(): Windows.UI.Xaml.Media.GradientStop;
+        slice(start: number): Windows.UI.Xaml.Media.GradientStop[];
+        slice(start: number, end: number): Windows.UI.Xaml.Media.GradientStop[];
+        sort(): Windows.UI.Xaml.Media.GradientStop[];
+        sort(compareFn: (a: Windows.UI.Xaml.Media.GradientStop, b: Windows.UI.Xaml.Media.GradientStop) => number): Windows.UI.Xaml.Media.GradientStop[];
+        splice(start: number): Windows.UI.Xaml.Media.GradientStop[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Media.GradientStop[]): Windows.UI.Xaml.Media.GradientStop[];
+        unshift(...items: Windows.UI.Xaml.Media.GradientStop[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.GradientStop): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.GradientStop, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.GradientStop, index: number, array: Windows.UI.Xaml.Media.GradientStop[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.GradientStop, index: number, array: Windows.UI.Xaml.Media.GradientStop[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.GradientStop, index: number, array: Windows.UI.Xaml.Media.GradientStop[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.GradientStop, index: number, array: Windows.UI.Xaml.Media.GradientStop[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.GradientStop, index: number, array: Windows.UI.Xaml.Media.GradientStop[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.GradientStop, index: number, array: Windows.UI.Xaml.Media.GradientStop[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Media.GradientStop, index: number, array: Windows.UI.Xaml.Media.GradientStop[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Media.GradientStop, index: number, array: Windows.UI.Xaml.Media.GradientStop[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.GradientStop, index: number, array: Windows.UI.Xaml.Media.GradientStop[]) => boolean): Windows.UI.Xaml.Media.GradientStop[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.GradientStop, index: number, array: Windows.UI.Xaml.Media.GradientStop[]) => boolean, thisArg: any): Windows.UI.Xaml.Media.GradientStop[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.GradientStop[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.GradientStop[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.GradientStop[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.GradientStop[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface GradientStopCollection_indexOf_OUT {
@@ -22859,6 +24045,40 @@ declare module Windows.UI.Xaml.Media {
         replaceAll(items: Windows.UI.Xaml.Media.PathFigure[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Media.PathFigure>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Media.PathFigure[][]): Windows.UI.Xaml.Media.PathFigure[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Media.PathFigure;
+        push(...items: Windows.UI.Xaml.Media.PathFigure[]): void;
+        reverse(): Windows.UI.Xaml.Media.PathFigure[];
+        shift(): Windows.UI.Xaml.Media.PathFigure;
+        slice(start: number): Windows.UI.Xaml.Media.PathFigure[];
+        slice(start: number, end: number): Windows.UI.Xaml.Media.PathFigure[];
+        sort(): Windows.UI.Xaml.Media.PathFigure[];
+        sort(compareFn: (a: Windows.UI.Xaml.Media.PathFigure, b: Windows.UI.Xaml.Media.PathFigure) => number): Windows.UI.Xaml.Media.PathFigure[];
+        splice(start: number): Windows.UI.Xaml.Media.PathFigure[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Media.PathFigure[]): Windows.UI.Xaml.Media.PathFigure[];
+        unshift(...items: Windows.UI.Xaml.Media.PathFigure[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.PathFigure): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.PathFigure, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.PathFigure, index: number, array: Windows.UI.Xaml.Media.PathFigure[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.PathFigure, index: number, array: Windows.UI.Xaml.Media.PathFigure[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.PathFigure, index: number, array: Windows.UI.Xaml.Media.PathFigure[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.PathFigure, index: number, array: Windows.UI.Xaml.Media.PathFigure[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.PathFigure, index: number, array: Windows.UI.Xaml.Media.PathFigure[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.PathFigure, index: number, array: Windows.UI.Xaml.Media.PathFigure[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Media.PathFigure, index: number, array: Windows.UI.Xaml.Media.PathFigure[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Media.PathFigure, index: number, array: Windows.UI.Xaml.Media.PathFigure[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.PathFigure, index: number, array: Windows.UI.Xaml.Media.PathFigure[]) => boolean): Windows.UI.Xaml.Media.PathFigure[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.PathFigure, index: number, array: Windows.UI.Xaml.Media.PathFigure[]) => boolean, thisArg: any): Windows.UI.Xaml.Media.PathFigure[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.PathFigure[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.PathFigure[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.PathFigure[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.PathFigure[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface PathFigureCollection_indexOf_OUT {
@@ -22897,6 +24117,40 @@ declare module Windows.UI.Xaml.Media {
         replaceAll(items: Windows.UI.Xaml.Media.PathSegment[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Media.PathSegment>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Media.PathSegment[][]): Windows.UI.Xaml.Media.PathSegment[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Media.PathSegment;
+        push(...items: Windows.UI.Xaml.Media.PathSegment[]): void;
+        reverse(): Windows.UI.Xaml.Media.PathSegment[];
+        shift(): Windows.UI.Xaml.Media.PathSegment;
+        slice(start: number): Windows.UI.Xaml.Media.PathSegment[];
+        slice(start: number, end: number): Windows.UI.Xaml.Media.PathSegment[];
+        sort(): Windows.UI.Xaml.Media.PathSegment[];
+        sort(compareFn: (a: Windows.UI.Xaml.Media.PathSegment, b: Windows.UI.Xaml.Media.PathSegment) => number): Windows.UI.Xaml.Media.PathSegment[];
+        splice(start: number): Windows.UI.Xaml.Media.PathSegment[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Media.PathSegment[]): Windows.UI.Xaml.Media.PathSegment[];
+        unshift(...items: Windows.UI.Xaml.Media.PathSegment[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.PathSegment): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.PathSegment, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.PathSegment, index: number, array: Windows.UI.Xaml.Media.PathSegment[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.PathSegment, index: number, array: Windows.UI.Xaml.Media.PathSegment[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.PathSegment, index: number, array: Windows.UI.Xaml.Media.PathSegment[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.PathSegment, index: number, array: Windows.UI.Xaml.Media.PathSegment[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.PathSegment, index: number, array: Windows.UI.Xaml.Media.PathSegment[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.PathSegment, index: number, array: Windows.UI.Xaml.Media.PathSegment[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Media.PathSegment, index: number, array: Windows.UI.Xaml.Media.PathSegment[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Media.PathSegment, index: number, array: Windows.UI.Xaml.Media.PathSegment[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.PathSegment, index: number, array: Windows.UI.Xaml.Media.PathSegment[]) => boolean): Windows.UI.Xaml.Media.PathSegment[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.PathSegment, index: number, array: Windows.UI.Xaml.Media.PathSegment[]) => boolean, thisArg: any): Windows.UI.Xaml.Media.PathSegment[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.PathSegment[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.PathSegment[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.PathSegment[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.PathSegment[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface PathSegmentCollection_indexOf_OUT {
@@ -22967,6 +24221,40 @@ declare module Windows.UI.Xaml.Media {
         replaceAll(items: Windows.Foundation.Point[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.Foundation.Point>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.Foundation.Point[][]): Windows.Foundation.Point[];
+        join(seperator: string): string;
+        pop(): Windows.Foundation.Point;
+        push(...items: Windows.Foundation.Point[]): void;
+        reverse(): Windows.Foundation.Point[];
+        shift(): Windows.Foundation.Point;
+        slice(start: number): Windows.Foundation.Point[];
+        slice(start: number, end: number): Windows.Foundation.Point[];
+        sort(): Windows.Foundation.Point[];
+        sort(compareFn: (a: Windows.Foundation.Point, b: Windows.Foundation.Point) => number): Windows.Foundation.Point[];
+        splice(start: number): Windows.Foundation.Point[];
+        splice(start: number, deleteCount: number, ...items: Windows.Foundation.Point[]): Windows.Foundation.Point[];
+        unshift(...items: Windows.Foundation.Point[]): number;
+        lastIndexOf(searchElement: Windows.Foundation.Point): number;
+        lastIndexOf(searchElement: Windows.Foundation.Point, fromIndex: number): number;
+        every(callbackfn: (value: Windows.Foundation.Point, index: number, array: Windows.Foundation.Point[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.Foundation.Point, index: number, array: Windows.Foundation.Point[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.Foundation.Point, index: number, array: Windows.Foundation.Point[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.Foundation.Point, index: number, array: Windows.Foundation.Point[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.Foundation.Point, index: number, array: Windows.Foundation.Point[]) => void ): void;
+        forEach(callbackfn: (value: Windows.Foundation.Point, index: number, array: Windows.Foundation.Point[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.Foundation.Point, index: number, array: Windows.Foundation.Point[]) => any): any[];
+        map(callbackfn: (value: Windows.Foundation.Point, index: number, array: Windows.Foundation.Point[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.Foundation.Point, index: number, array: Windows.Foundation.Point[]) => boolean): Windows.Foundation.Point[];
+        filter(callbackfn: (value: Windows.Foundation.Point, index: number, array: Windows.Foundation.Point[]) => boolean, thisArg: any): Windows.Foundation.Point[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.Point[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.Point[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.Point[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.Point[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface PointCollection_indexOf_OUT {
@@ -23135,6 +24423,40 @@ declare module Windows.UI.Xaml.Media {
         replaceAll(items: Windows.UI.Xaml.Media.TimelineMarker[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Media.TimelineMarker>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Media.TimelineMarker[][]): Windows.UI.Xaml.Media.TimelineMarker[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Media.TimelineMarker;
+        push(...items: Windows.UI.Xaml.Media.TimelineMarker[]): void;
+        reverse(): Windows.UI.Xaml.Media.TimelineMarker[];
+        shift(): Windows.UI.Xaml.Media.TimelineMarker;
+        slice(start: number): Windows.UI.Xaml.Media.TimelineMarker[];
+        slice(start: number, end: number): Windows.UI.Xaml.Media.TimelineMarker[];
+        sort(): Windows.UI.Xaml.Media.TimelineMarker[];
+        sort(compareFn: (a: Windows.UI.Xaml.Media.TimelineMarker, b: Windows.UI.Xaml.Media.TimelineMarker) => number): Windows.UI.Xaml.Media.TimelineMarker[];
+        splice(start: number): Windows.UI.Xaml.Media.TimelineMarker[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Media.TimelineMarker[]): Windows.UI.Xaml.Media.TimelineMarker[];
+        unshift(...items: Windows.UI.Xaml.Media.TimelineMarker[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.TimelineMarker): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.TimelineMarker, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.TimelineMarker, index: number, array: Windows.UI.Xaml.Media.TimelineMarker[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.TimelineMarker, index: number, array: Windows.UI.Xaml.Media.TimelineMarker[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.TimelineMarker, index: number, array: Windows.UI.Xaml.Media.TimelineMarker[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.TimelineMarker, index: number, array: Windows.UI.Xaml.Media.TimelineMarker[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.TimelineMarker, index: number, array: Windows.UI.Xaml.Media.TimelineMarker[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.TimelineMarker, index: number, array: Windows.UI.Xaml.Media.TimelineMarker[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Media.TimelineMarker, index: number, array: Windows.UI.Xaml.Media.TimelineMarker[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Media.TimelineMarker, index: number, array: Windows.UI.Xaml.Media.TimelineMarker[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.TimelineMarker, index: number, array: Windows.UI.Xaml.Media.TimelineMarker[]) => boolean): Windows.UI.Xaml.Media.TimelineMarker[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.TimelineMarker, index: number, array: Windows.UI.Xaml.Media.TimelineMarker[]) => boolean, thisArg: any): Windows.UI.Xaml.Media.TimelineMarker[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.TimelineMarker[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.TimelineMarker[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.TimelineMarker[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.TimelineMarker[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface TimelineMarkerCollection_indexOf_OUT {
@@ -23176,6 +24498,40 @@ declare module Windows.UI.Xaml.Media {
         replaceAll(items: Windows.UI.Xaml.Media.Transform[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Media.Transform>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Media.Transform[][]): Windows.UI.Xaml.Media.Transform[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Media.Transform;
+        push(...items: Windows.UI.Xaml.Media.Transform[]): void;
+        reverse(): Windows.UI.Xaml.Media.Transform[];
+        shift(): Windows.UI.Xaml.Media.Transform;
+        slice(start: number): Windows.UI.Xaml.Media.Transform[];
+        slice(start: number, end: number): Windows.UI.Xaml.Media.Transform[];
+        sort(): Windows.UI.Xaml.Media.Transform[];
+        sort(compareFn: (a: Windows.UI.Xaml.Media.Transform, b: Windows.UI.Xaml.Media.Transform) => number): Windows.UI.Xaml.Media.Transform[];
+        splice(start: number): Windows.UI.Xaml.Media.Transform[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Media.Transform[]): Windows.UI.Xaml.Media.Transform[];
+        unshift(...items: Windows.UI.Xaml.Media.Transform[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Transform): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Transform, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Transform, index: number, array: Windows.UI.Xaml.Media.Transform[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Transform, index: number, array: Windows.UI.Xaml.Media.Transform[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Transform, index: number, array: Windows.UI.Xaml.Media.Transform[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Transform, index: number, array: Windows.UI.Xaml.Media.Transform[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Transform, index: number, array: Windows.UI.Xaml.Media.Transform[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Transform, index: number, array: Windows.UI.Xaml.Media.Transform[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Transform, index: number, array: Windows.UI.Xaml.Media.Transform[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Transform, index: number, array: Windows.UI.Xaml.Media.Transform[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Transform, index: number, array: Windows.UI.Xaml.Media.Transform[]) => boolean): Windows.UI.Xaml.Media.Transform[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Transform, index: number, array: Windows.UI.Xaml.Media.Transform[]) => boolean, thisArg: any): Windows.UI.Xaml.Media.Transform[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Transform[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Transform[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Transform[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Transform[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface TransformCollection_indexOf_OUT {
@@ -23295,6 +24651,40 @@ declare module Windows.UI.Xaml.Media.Animation {
         replaceAll(items: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Media.Animation.ColorKeyFrame>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[][]): Windows.UI.Xaml.Media.Animation.ColorKeyFrame[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Media.Animation.ColorKeyFrame;
+        push(...items: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]): void;
+        reverse(): Windows.UI.Xaml.Media.Animation.ColorKeyFrame[];
+        shift(): Windows.UI.Xaml.Media.Animation.ColorKeyFrame;
+        slice(start: number): Windows.UI.Xaml.Media.Animation.ColorKeyFrame[];
+        slice(start: number, end: number): Windows.UI.Xaml.Media.Animation.ColorKeyFrame[];
+        sort(): Windows.UI.Xaml.Media.Animation.ColorKeyFrame[];
+        sort(compareFn: (a: Windows.UI.Xaml.Media.Animation.ColorKeyFrame, b: Windows.UI.Xaml.Media.Animation.ColorKeyFrame) => number): Windows.UI.Xaml.Media.Animation.ColorKeyFrame[];
+        splice(start: number): Windows.UI.Xaml.Media.Animation.ColorKeyFrame[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]): Windows.UI.Xaml.Media.Animation.ColorKeyFrame[];
+        unshift(...items: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Animation.ColorKeyFrame): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Animation.ColorKeyFrame, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ColorKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ColorKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ColorKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ColorKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ColorKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ColorKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ColorKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ColorKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ColorKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]) => boolean): Windows.UI.Xaml.Media.Animation.ColorKeyFrame[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ColorKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]) => boolean, thisArg: any): Windows.UI.Xaml.Media.Animation.ColorKeyFrame[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.ColorKeyFrame[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface ColorKeyFrameCollection_indexOf_OUT {
@@ -23383,6 +24773,40 @@ declare module Windows.UI.Xaml.Media.Animation {
         replaceAll(items: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Media.Animation.DoubleKeyFrame>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[][]): Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Media.Animation.DoubleKeyFrame;
+        push(...items: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]): void;
+        reverse(): Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[];
+        shift(): Windows.UI.Xaml.Media.Animation.DoubleKeyFrame;
+        slice(start: number): Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[];
+        slice(start: number, end: number): Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[];
+        sort(): Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[];
+        sort(compareFn: (a: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame, b: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame) => number): Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[];
+        splice(start: number): Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]): Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[];
+        unshift(...items: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]) => boolean): Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]) => boolean, thisArg: any): Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.DoubleKeyFrame[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface DoubleKeyFrameCollection_indexOf_OUT {
@@ -23874,6 +25298,40 @@ declare module Windows.UI.Xaml.Media.Animation {
         replaceAll(items: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Media.Animation.ObjectKeyFrame>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[][]): Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Media.Animation.ObjectKeyFrame;
+        push(...items: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]): void;
+        reverse(): Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[];
+        shift(): Windows.UI.Xaml.Media.Animation.ObjectKeyFrame;
+        slice(start: number): Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[];
+        slice(start: number, end: number): Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[];
+        sort(): Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[];
+        sort(compareFn: (a: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame, b: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame) => number): Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[];
+        splice(start: number): Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]): Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[];
+        unshift(...items: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]) => boolean): Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]) => boolean, thisArg: any): Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.ObjectKeyFrame[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface ObjectKeyFrameCollection_indexOf_OUT {
@@ -23948,6 +25406,40 @@ declare module Windows.UI.Xaml.Media.Animation {
         replaceAll(items: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Media.Animation.PointKeyFrame>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Media.Animation.PointKeyFrame[][]): Windows.UI.Xaml.Media.Animation.PointKeyFrame[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Media.Animation.PointKeyFrame;
+        push(...items: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]): void;
+        reverse(): Windows.UI.Xaml.Media.Animation.PointKeyFrame[];
+        shift(): Windows.UI.Xaml.Media.Animation.PointKeyFrame;
+        slice(start: number): Windows.UI.Xaml.Media.Animation.PointKeyFrame[];
+        slice(start: number, end: number): Windows.UI.Xaml.Media.Animation.PointKeyFrame[];
+        sort(): Windows.UI.Xaml.Media.Animation.PointKeyFrame[];
+        sort(compareFn: (a: Windows.UI.Xaml.Media.Animation.PointKeyFrame, b: Windows.UI.Xaml.Media.Animation.PointKeyFrame) => number): Windows.UI.Xaml.Media.Animation.PointKeyFrame[];
+        splice(start: number): Windows.UI.Xaml.Media.Animation.PointKeyFrame[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]): Windows.UI.Xaml.Media.Animation.PointKeyFrame[];
+        unshift(...items: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Animation.PointKeyFrame): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Animation.PointKeyFrame, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Animation.PointKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Animation.PointKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Animation.PointKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Animation.PointKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Animation.PointKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Animation.PointKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Animation.PointKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Animation.PointKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Animation.PointKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]) => boolean): Windows.UI.Xaml.Media.Animation.PointKeyFrame[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Animation.PointKeyFrame, index: number, array: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]) => boolean, thisArg: any): Windows.UI.Xaml.Media.Animation.PointKeyFrame[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.PointKeyFrame[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface PointKeyFrameCollection_indexOf_OUT {
@@ -24195,6 +25687,40 @@ declare module Windows.UI.Xaml.Media.Animation {
         replaceAll(items: Windows.UI.Xaml.Media.Animation.Timeline[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Media.Animation.Timeline>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Media.Animation.Timeline[][]): Windows.UI.Xaml.Media.Animation.Timeline[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Media.Animation.Timeline;
+        push(...items: Windows.UI.Xaml.Media.Animation.Timeline[]): void;
+        reverse(): Windows.UI.Xaml.Media.Animation.Timeline[];
+        shift(): Windows.UI.Xaml.Media.Animation.Timeline;
+        slice(start: number): Windows.UI.Xaml.Media.Animation.Timeline[];
+        slice(start: number, end: number): Windows.UI.Xaml.Media.Animation.Timeline[];
+        sort(): Windows.UI.Xaml.Media.Animation.Timeline[];
+        sort(compareFn: (a: Windows.UI.Xaml.Media.Animation.Timeline, b: Windows.UI.Xaml.Media.Animation.Timeline) => number): Windows.UI.Xaml.Media.Animation.Timeline[];
+        splice(start: number): Windows.UI.Xaml.Media.Animation.Timeline[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Media.Animation.Timeline[]): Windows.UI.Xaml.Media.Animation.Timeline[];
+        unshift(...items: Windows.UI.Xaml.Media.Animation.Timeline[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Animation.Timeline): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Animation.Timeline, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Timeline, index: number, array: Windows.UI.Xaml.Media.Animation.Timeline[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Timeline, index: number, array: Windows.UI.Xaml.Media.Animation.Timeline[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Timeline, index: number, array: Windows.UI.Xaml.Media.Animation.Timeline[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Timeline, index: number, array: Windows.UI.Xaml.Media.Animation.Timeline[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Timeline, index: number, array: Windows.UI.Xaml.Media.Animation.Timeline[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Timeline, index: number, array: Windows.UI.Xaml.Media.Animation.Timeline[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Timeline, index: number, array: Windows.UI.Xaml.Media.Animation.Timeline[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Timeline, index: number, array: Windows.UI.Xaml.Media.Animation.Timeline[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Timeline, index: number, array: Windows.UI.Xaml.Media.Animation.Timeline[]) => boolean): Windows.UI.Xaml.Media.Animation.Timeline[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Timeline, index: number, array: Windows.UI.Xaml.Media.Animation.Timeline[]) => boolean, thisArg: any): Windows.UI.Xaml.Media.Animation.Timeline[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.Timeline[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.Timeline[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.Timeline[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.Timeline[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface TimelineCollection_indexOf_OUT {
@@ -24225,6 +25751,40 @@ declare module Windows.UI.Xaml.Media.Animation {
         replaceAll(items: Windows.UI.Xaml.Media.Animation.Transition[]): void;
         first(): Windows.Foundation.Collections.IIterator<Windows.UI.Xaml.Media.Animation.Transition>;
         size: number;
+
+        // Array.prototype extensions
+        toString(): string;
+        toLocaleString(): string;
+        concat(...items: Windows.UI.Xaml.Media.Animation.Transition[][]): Windows.UI.Xaml.Media.Animation.Transition[];
+        join(seperator: string): string;
+        pop(): Windows.UI.Xaml.Media.Animation.Transition;
+        push(...items: Windows.UI.Xaml.Media.Animation.Transition[]): void;
+        reverse(): Windows.UI.Xaml.Media.Animation.Transition[];
+        shift(): Windows.UI.Xaml.Media.Animation.Transition;
+        slice(start: number): Windows.UI.Xaml.Media.Animation.Transition[];
+        slice(start: number, end: number): Windows.UI.Xaml.Media.Animation.Transition[];
+        sort(): Windows.UI.Xaml.Media.Animation.Transition[];
+        sort(compareFn: (a: Windows.UI.Xaml.Media.Animation.Transition, b: Windows.UI.Xaml.Media.Animation.Transition) => number): Windows.UI.Xaml.Media.Animation.Transition[];
+        splice(start: number): Windows.UI.Xaml.Media.Animation.Transition[];
+        splice(start: number, deleteCount: number, ...items: Windows.UI.Xaml.Media.Animation.Transition[]): Windows.UI.Xaml.Media.Animation.Transition[];
+        unshift(...items: Windows.UI.Xaml.Media.Animation.Transition[]): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Animation.Transition): number;
+        lastIndexOf(searchElement: Windows.UI.Xaml.Media.Animation.Transition, fromIndex: number): number;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Transition, index: number, array: Windows.UI.Xaml.Media.Animation.Transition[]) => boolean): boolean;
+        every(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Transition, index: number, array: Windows.UI.Xaml.Media.Animation.Transition[]) => boolean, thisArg: any): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Transition, index: number, array: Windows.UI.Xaml.Media.Animation.Transition[]) => boolean): boolean;
+        some(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Transition, index: number, array: Windows.UI.Xaml.Media.Animation.Transition[]) => boolean, thisArg: any): boolean;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Transition, index: number, array: Windows.UI.Xaml.Media.Animation.Transition[]) => void ): void;
+        forEach(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Transition, index: number, array: Windows.UI.Xaml.Media.Animation.Transition[]) => void , thisArg: any): void;
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Transition, index: number, array: Windows.UI.Xaml.Media.Animation.Transition[]) => any): any[];
+        map(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Transition, index: number, array: Windows.UI.Xaml.Media.Animation.Transition[]) => any, thisArg: any): any[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Transition, index: number, array: Windows.UI.Xaml.Media.Animation.Transition[]) => boolean): Windows.UI.Xaml.Media.Animation.Transition[];
+        filter(callbackfn: (value: Windows.UI.Xaml.Media.Animation.Transition, index: number, array: Windows.UI.Xaml.Media.Animation.Transition[]) => boolean, thisArg: any): Windows.UI.Xaml.Media.Animation.Transition[];
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.Transition[]) => any): any;
+        reduce(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.Transition[]) => any, initialValue: any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.Transition[]) => any): any;
+        reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.UI.Xaml.Media.Animation.Transition[]) => any, initialValue: any): any;
+        length: number;
     }
 
     interface TransitionCollection_indexOf_OUT {
