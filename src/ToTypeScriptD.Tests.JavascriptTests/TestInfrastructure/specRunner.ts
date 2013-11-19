@@ -9,13 +9,13 @@ module Tests {
         helperFolder: string;
         srcFolder: string;
         appFolder: Windows.Storage.StorageFolder;
-        errorHandler: (error)=> void;
+        errorHandler: (error) => void;
 
         constructor(options: any) {
             this.specFolder = options.specs || "specs";
             this.helperFolder = options.helpers || "helpers";
             this.srcFolder = options.src || "src";
-            this.errorHandler = options.errorHandler || () => { };
+            this.errorHandler = options.errorHandler || function(error){ };
         }
 
         // We're using the [bdd syntax][1] for Mocha, and

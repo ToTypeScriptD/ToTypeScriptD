@@ -143,11 +143,11 @@ declare module chai {
 
     interface Keys {
         (...keys: string[]): Expect;
-        (keys: Array): Expect;
+        (keys: Array<string>): Expect;
     }
 
     interface Members {
-        (set: Array, message?: string): Expect;
+        (set: Array<string>, message?: string): Expect;
     }
 
     interface Throw {
