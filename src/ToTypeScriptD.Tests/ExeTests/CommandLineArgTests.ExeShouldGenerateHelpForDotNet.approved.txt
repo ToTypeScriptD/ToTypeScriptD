@@ -3,15 +3,15 @@ Copyright (C) 2013 Jason Jarrett
 
 Usage: ToTypeScriptD dotnet [--specialTypes] [File1.dll]...[FileN.dll]
 
+  -p, --camelCase       (Default: True) Changes properties from .Net name to 
+                        camel cased names. EX: (Foo: string) becomes (foo: 
+                        string)
+
   -s, --specialTypes    Writes the ToTypeScriptD special types to standard out
 
   -i, --indentWith      Override default indentation of SpaceX4 (four spaces). 
                         Possible options: [None, TabX1, TabX2, 
                         SpaceX1,...SpaceX8]
-
-  -p, --camelCase       (Default: True) Changes properties from .Net name to 
-                        camel cased names. EX: (Foo: string) becomes (foo: 
-                        string)
 
   -r, --regexFilter     A .net regular expression that can be used to filter 
                         the FullName of types exported. Picture this taking the
