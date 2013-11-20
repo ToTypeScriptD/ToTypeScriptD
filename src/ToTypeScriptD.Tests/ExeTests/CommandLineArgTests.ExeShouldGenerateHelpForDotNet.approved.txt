@@ -1,6 +1,8 @@
 ﻿ToTypeScriptD v0.0.0000.0000 SHA1:0000000 - Debug
 Copyright (C) 2013 Jason Jarrett
 
+Usage: ToTypeScriptD dotnet [--specialTypes] [File1.dll]...[FileN.dll]
+
   -s, --specialTypes    Writes the ToTypeScriptD special types to standard out
 
   -i, --indentWith      Override default indentation of SpaceX4 (four spaces). 

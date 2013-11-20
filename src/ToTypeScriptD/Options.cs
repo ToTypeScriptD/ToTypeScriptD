@@ -1,5 +1,6 @@
 ﻿using CommandLine;
 using CommandLine.Text;
+using System;
 using System.Collections.Generic;
 using ToTypeScriptD.Core;
 using ToTypeScriptD.Core.Config;
@@ -17,11 +18,40 @@ namespace ToTypeScriptD
         [VerbOption(Options.WinmdCommandName, HelpText = "Generate .d.ts based on WinJS/WinMD conventions")]
         public WinmdSubOptions WinMD { get; set; }
 
-
         [HelpVerbOption]
         public string GetUsage(string verb)
         {
-            return HelpText.AutoBuild(this, verb);
+            var help = new HelpText
+            {
+                Heading = HeadingInfo.Default,
+                Copyright = CopyrightInfo.Default,
+                AdditionalNewLineAfterOption = true,
+                AddDashesToOption = true
+            };
+
+            object optionsObject = null;
+            if (verb == DotNetCommandName)
+            {
+                help.AddPreOptionsLine(Environment.NewLine + "Usage: ToTypeScriptD dotnet [--specialTypes] [File1.dll]...[FileN.dll]");
+                optionsObject = new DotNetSubOptions();
+            }
+            else if (verb == WinmdCommandName)
+            {
+                help.AddPreOptionsLine(Environment.NewLine + "Usage: ToTypeScriptD winmd [--specialTypes] [File1.winmd]...[FileN.winmd]");
+                optionsObject = new WinmdSubOptions();
+            }
+
+            if (optionsObject != null)
+            {
+                help.AddOptions(optionsObject); ;
+            }
+            else
+            {
+                help.AddDashesToOption = false;
+                help.AddOptions(this);
+            }
+
+            return help;
         }
     }
 
