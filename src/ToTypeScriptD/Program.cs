@@ -17,7 +17,7 @@ namespace ToTypeScriptD
             {
                 verb = (verb ?? "").ToLowerInvariant();
                 verbInvoked = verb;
-                if (verb == "dotnet")
+                if (verb == Options.DotNetCommandName)
                 {
                     var dotNetSubOptions = (DotNetSubOptions)subOptions;
                     config = new ToTypeScriptD.Core.DotNet.DotNetConfig
@@ -30,7 +30,7 @@ namespace ToTypeScriptD
                         TypeNotFoundErrorHandler = new ConsoleErrorTypeNotFoundErrorHandler(),
                     };
                 }
-                else if (verb == "winmd")
+                else if (verb == Options.WinmdCommandName)
                 {
                     var winmdSubOptions = (WinmdSubOptions)subOptions;
                     config = new ToTypeScriptD.Core.WinMD.WinmdConfig

@@ -8,10 +8,13 @@ namespace ToTypeScriptD
 {
     public class Options
     {
-        [VerbOption("dotnet", HelpText = "Generate .d.ts based on .Net conventions")]
+        public const string DotNetCommandName = "dotnet";
+        public const string WinmdCommandName = "winmd";
+
+        [VerbOption(Options.DotNetCommandName, HelpText = "Generate .d.ts based on .Net conventions")]
         public DotNetSubOptions DotNet { get; set; }
 
-        [VerbOption("winmd", HelpText = "Generate .d.ts based on WinJS/WinMD conventions")]
+        [VerbOption(Options.WinmdCommandName, HelpText = "Generate .d.ts based on WinJS/WinMD conventions")]
         public WinmdSubOptions WinMD { get; set; }
 
 

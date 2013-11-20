@@ -23,14 +23,14 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldGenerateHelpForDotNet()
         {
-            var result = Execute("dotnet").StdOut.StripVersionFromOutput();
+            var result = Execute(Options.DotNetCommandName).StdOut.StripVersionFromOutput();
             Approvals.Verify(result);
         }
 
         [Fact]
         public void ExeShouldGenerateHelpForWinMD()
         {
-            var result = Execute("winmd").StdOut.StripVersionFromOutput();
+            var result = Execute(Options.WinmdCommandName).StdOut.StripVersionFromOutput();
             Approvals.Verify(result);
         }
 
