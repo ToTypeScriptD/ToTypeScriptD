@@ -84,6 +84,12 @@ declare module ToTypeScriptD.TestAssembly.CSharp {
     export interface IAmAnotherInterfaceButGeneric3<T> extends ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterfaceButGeneric1<T>, ToTypeScriptD.TestAssembly.CSharp.IAmAnotherInterfaceButGeneric2<T> {
     }
 
+    export interface ReturnTypes {
+        AnInteger: number;
+        DateTimeProperty: Date;
+        StringProperty: string;
+    }
+
     export interface SomeClass extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface {
         SomeProperty: string;
         NullableProperty?: number;

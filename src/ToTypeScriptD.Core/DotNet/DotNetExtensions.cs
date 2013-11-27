@@ -19,7 +19,7 @@ namespace ToTypeScriptD.Core.DotNet
                 { "System.UInt32",               "number"},
                 { "System.UInt64",               "number"},
                 { "System.Object",               "any"},
-                { "Windows.Foundation.DateTime", "Date"},
+                { "System.DateTime", "Date"},
                 { "System.Void",                 "void"},
                 { "System.Boolean",              "boolean"},
                 { "System.IntPtr",               "number"},
