@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CollectionTypes.cs" />
     <Compile Include="CrazyAmountOfNestedClasses.cs" />
     <Compile Include="Generics.cs" />
     <Compile Include="Namespaces.cs" />

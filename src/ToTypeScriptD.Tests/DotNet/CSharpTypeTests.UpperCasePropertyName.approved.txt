@@ -13,6 +13,15 @@
 
 declare module ToTypeScriptD.TestAssembly.CSharp {
 
+    export interface CollectionTypes {
+        IntegerArray: number[];
+        IListOfIntegers: number[];
+        ListOfIntegers: number[];
+        ICollectionOfIntegers: number[];
+        CollectionOfIntegers: number[];
+        IEnumerableOfIntegers: number[];
+    }
+
     export interface CrazyAmountOfNestedClasses {
     }
 

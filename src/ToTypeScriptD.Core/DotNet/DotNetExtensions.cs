@@ -42,15 +42,6 @@ namespace ToTypeScriptD.Core.DotNet
 
         public static bool ShouldIgnoreTypeByName(this string name)
         {
-            if (name == "<Module>")
-                return true;
-
-            if (name.StartsWith("__I") && name.EndsWith("PublicNonVirtuals"))
-                return true;
-
-            if (name.StartsWith("__I") && name.EndsWith("ProtectedNonVirtuals"))
-                return true;
-
             return false;
         }
 
@@ -154,8 +145,59 @@ namespace ToTypeScriptD.Core.DotNet
                 fromName = fromName.Replace(item.Key, item.Value);
             });
 
+            // If it's an array type return it as such.
+            var genericTypeArgName = "";
+            if (IsTypeArray(typeReference, out genericTypeArgName))
+            {
+                return genericTypeArgName + "[]";
+            }
+
             // remove the generic bit
             return fromName;
+        }
+
+
+        private static bool IsTypeArray(TypeReference typeReference, out string genericTypeArgName)
+        {
+            genericTypeArgName = "";
+
+            if (!typeReference.IsGenericInstance)
+                return false;
+
+            if (IsTypeTypeArray(typeReference, out genericTypeArgName))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        private static bool IsTypeTypeArray(TypeReference typeReference, out string genericTypeArgName)
+        {
+            // This is horrendous and not generic enough
+            // TODO: figure out a generic way to detect if a type implements IEnumerable<T> or any subclass of it.
+            if (
+                typeReference.FullName.StartsWith("System.Collections.Generic.IEnumerable`1") ||
+                typeReference.FullName.StartsWith("System.Collections.Generic.IList`1") ||
+                typeReference.FullName.StartsWith("System.Collections.Generic.List`1") ||
+                typeReference.FullName.StartsWith("System.Collections.Generic.ICollection`1") ||
+                typeReference.FullName.StartsWith("System.Collections.ObjectModel.Collection`1") ||
+                false
+                )
+            {
+                var genericInstanceType = typeReference as GenericInstanceType;
+                if (genericInstanceType == null)
+                {
+                    genericTypeArgName = "T";
+                }
+                else
+                {
+                    genericTypeArgName = genericInstanceType.GenericArguments[0].ToTypeScriptType();
+                }
+                return true;
+            }
+
+            genericTypeArgName = "";
+            return false;
         }
     }
 }
