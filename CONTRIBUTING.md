@@ -20,6 +20,7 @@ Tools:
 
 - PowerShell
 - Visual Studio (or a tool to build a MSBuild based project (Xamarin Studio? - Send a pull request with updates to get it to play nice with that environment)
+- [TypeScript Visual Studio Extension](http://typescriptlang.org)
 - Something that will automatically install the NuGet dependencies (EX: Visual Studio)
 - Get the [psake](https://github.com/psake/psake) build tool: You can install [psake](https://github.com/psake/psake) easily with [Chocolatey](http://chocolatey.org)
 
