@@ -111,7 +111,7 @@ namespace ToTypeScriptD.Core.DotNet
         {
             TypeDefinition.Properties.Each(prop =>
             {
-                var propName = prop.Name.ToCamelCase(Config.CamelCase);
+                var propName = prop.Name.ToCamelCase(Config.CamelBackCase);
                 Indent(sb); Indent(sb); sb.AppendFormat("{0}{1}: {2};", propName, prop.PropertyType.ToTypeScriptNullable(), prop.PropertyType.ToTypeScriptType());
                 sb.AppendLine();
             });
@@ -122,7 +122,7 @@ namespace ToTypeScriptD.Core.DotNet
             TypeDefinition.Fields.Each(field =>
             {
                 if (!field.IsPublic) return;
-                var fieldName = field.Name.ToCamelCase(Config.CamelCase);
+                var fieldName = field.Name.ToCamelCase(Config.CamelBackCase);
                 Indent(sb); Indent(sb); sb.AppendFormat("{0}: {1};", fieldName, field.FieldType.ToTypeScriptType());
                 sb.AppendLine();
             });

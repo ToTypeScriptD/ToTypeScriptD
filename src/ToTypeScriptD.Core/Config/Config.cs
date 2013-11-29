@@ -11,7 +11,7 @@ namespace ToTypeScriptD.Core
             this.IndentationType = IndentationFormatting.SpaceX4;
         }
 
-        public abstract bool CamelCase { get; set; }
+        public abstract bool CamelBackCase { get; set; }
         public abstract TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector();
 
 

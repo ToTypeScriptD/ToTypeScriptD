@@ -8,7 +8,7 @@ namespace ToTypeScriptD.Core.WinMD
             return new WinMD.WinMDTypeWriterTypeSelector();
         }
 
-        public override bool CamelCase
+        public override bool CamelBackCase
         {
             get { return true; }
             set { throw new System.NotSupportedException(); }

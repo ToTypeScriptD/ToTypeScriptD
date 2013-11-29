@@ -98,8 +98,8 @@ namespace ToTypeScriptD
 
     public class DotNetSubOptions : BaseSubOption
     {
-        [Option('p', "camelCase", DefaultValue = true, HelpText = "Changes properties from .Net name to camel cased names. EX: (Foo: string) becomes (foo: string)")]
-        public bool CamelCase { get; set; }
+        [Option('c', "camelBack", HelpText = "CamelBack case (lower case first letter). EX: (SomeThing: string) becomes (someThing: string)")]
+        public bool CamelBackCase { get; set; }
     }
 
     public class WinmdSubOptions:  BaseSubOption

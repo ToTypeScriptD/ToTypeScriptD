@@ -6,10 +6,10 @@ namespace ToTypeScriptD.Core.DotNet
         public DotNetConfig()
             : base()
         {
-            CamelCase = true;
+            CamelBackCase = true;
         }
 
-        public override bool CamelCase { get; set; }
+        public override bool CamelBackCase { get; set; }
 
         public override TypeWriters.ITypeWriterTypeSelector GetTypeWriterTypeSelector()
         {

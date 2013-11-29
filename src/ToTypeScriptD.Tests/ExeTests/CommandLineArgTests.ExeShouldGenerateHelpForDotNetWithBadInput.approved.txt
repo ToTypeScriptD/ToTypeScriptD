@@ -3,9 +3,8 @@ Copyright (C) 2013 Jason Jarrett
 
 Usage: ToTypeScriptD dotnet [--specialTypes] [File1.dll]...[FileN.dll]
 
-  -p, --camelCase       (Default: True) Changes properties from .Net name to 
-                        camel cased names. EX: (Foo: string) becomes (foo: 
-                        string)
+  -c, --camelBack       CamelBack case (lower case first letter). EX: 
+                        (SomeThing: string) becomes (someThing: string)
 
   -s, --specialTypes    Writes the ToTypeScriptD special types to standard out
 

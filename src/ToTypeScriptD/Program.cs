@@ -25,7 +25,7 @@ namespace ToTypeScriptD
                         config = new ToTypeScriptD.Core.DotNet.DotNetConfig
                         {
                             AssemblyPaths = dotNetSubOptions.Files,
-                            CamelCase = dotNetSubOptions.CamelCase,
+                            CamelBackCase = dotNetSubOptions.CamelBackCase,
                             IncludeSpecialTypes = dotNetSubOptions.IncludeSpecialTypeDefinitions,
                             IndentationType = dotNetSubOptions.IndentationType,
                             RegexFilter = dotNetSubOptions.RegexFilter,

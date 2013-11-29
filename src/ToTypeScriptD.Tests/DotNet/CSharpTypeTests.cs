@@ -21,7 +21,7 @@ namespace ToTypeScriptD.Tests.DotNet
             var path = base.CSharpAssembly.ComponentPath;
             path.DumpDotNetAndVerify(config =>
             {
-                config.CamelCase = false;
+                config.CamelBackCase = false;
             });
         }
     }
