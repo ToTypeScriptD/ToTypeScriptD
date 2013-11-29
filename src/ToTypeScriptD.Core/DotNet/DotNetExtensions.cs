@@ -173,31 +173,68 @@ namespace ToTypeScriptD.Core.DotNet
         }
         private static bool IsTypeTypeArray(TypeReference typeReference, out string genericTypeArgName)
         {
-            // This is horrendous and not generic enough
-            // TODO: figure out a generic way to detect if a type implements IEnumerable<T> or any subclass of it.
-            if (
-                typeReference.FullName.StartsWith("System.Collections.Generic.IEnumerable`1") ||
-                typeReference.FullName.StartsWith("System.Collections.Generic.IList`1") ||
-                typeReference.FullName.StartsWith("System.Collections.Generic.List`1") ||
-                typeReference.FullName.StartsWith("System.Collections.Generic.ICollection`1") ||
-                typeReference.FullName.StartsWith("System.Collections.ObjectModel.Collection`1") ||
-                false
-                )
+            var genericTypeInstanceReference = typeReference as GenericInstanceType;
+            if (genericTypeInstanceReference != null)
             {
-                var genericInstanceType = typeReference as GenericInstanceType;
-                if (genericInstanceType == null)
+                if (genericTypeInstanceReference == null)
                 {
                     genericTypeArgName = "T";
                 }
                 else
                 {
-                    genericTypeArgName = genericInstanceType.GenericArguments[0].ToTypeScriptType();
+                    genericTypeArgName = genericTypeInstanceReference.GenericArguments[0].ToTypeScriptType();
                 }
-                return true;
+
+                var enumerableNamePrefix = "System.Collections.Generic.IEnumerable";
+
+                // is this IEnumerable?
+                if (typeReference.FullName.StartsWith(enumerableNamePrefix))
+                {
+                    return true;
+                }
+
+                // does it have an interface that implements IEnumerable?
+                var possibleListType = GetTypeDefinition(genericTypeInstanceReference.ElementType);
+                if (possibleListType != null)
+                {
+                    if (possibleListType.Interfaces.Any(x => x.FullName.StartsWith(enumerableNamePrefix)))
+                    {
+                        return true;
+                    }
+                }
+
+                // TODO: do we need to work harder at inspecting interface items?
+                // TODO: write tests to prove it..
             }
+
+
 
             genericTypeArgName = "";
             return false;
+        }
+
+        public static TypeDefinition GetTypeDefinition(TypeReference typeReference)
+        {
+            if (typeReference == null)
+                return null;
+
+            try
+            {
+                var resolver = new DefaultAssemblyResolver();
+                var ass = resolver.Resolve(typeReference.Scope.Name);
+
+                var result = ass.Modules
+                    .SelectMany(x => x.Types)
+                    .FirstOrDefault(td => td.FullName == typeReference.FullName);
+                return result;
+            }
+            catch (AssemblyResolutionException)
+            {
+                // for now ignore...
+                // TODO: figure out a better way to handle non-framework assemblies...
+            }
+
+            return null;
         }
     }
 }
