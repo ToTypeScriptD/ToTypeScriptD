@@ -35,6 +35,20 @@ namespace ToTypeScriptD.Tests.ExeTests
         }
 
         [Fact]
+        public void ExeShouldGenerateHelpForDotNetWithBadInput()
+        {
+            var result = Execute(Options.DotNetCommandName + " --nogohere").StdOut.StripVersionFromOutput();
+            Approvals.Verify(result);
+        }
+
+        [Fact]
+        public void ExeShouldGenerateHelpForWinMDWithBadInput()
+        {
+            var result = Execute(Options.WinmdCommandName + " --nogohere").StdOut.StripVersionFromOutput();
+            Approvals.Verify(result);
+        }
+
+        [Fact]
         public void ExeShouldGenerateOutputForMultipleWinmdFiles()
         {
             var result = Execute(@"winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Networking.winmd");

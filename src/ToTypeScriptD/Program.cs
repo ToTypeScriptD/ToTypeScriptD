@@ -19,28 +19,34 @@ namespace ToTypeScriptD
                 verbInvoked = verb;
                 if (verb == Options.DotNetCommandName)
                 {
-                    var dotNetSubOptions = (DotNetSubOptions)subOptions;
-                    config = new ToTypeScriptD.Core.DotNet.DotNetConfig
+                    var dotNetSubOptions = subOptions as DotNetSubOptions;
+                    if (dotNetSubOptions != null)
                     {
-                        AssemblyPaths = dotNetSubOptions.Files,
-                        CamelCase = dotNetSubOptions.CamelCase,
-                        IncludeSpecialTypes = dotNetSubOptions.IncludeSpecialTypeDefinitions,
-                        IndentationType = dotNetSubOptions.IndentationType,
-                        RegexFilter = dotNetSubOptions.RegexFilter,
-                        TypeNotFoundErrorHandler = new ConsoleErrorTypeNotFoundErrorHandler(),
-                    };
+                        config = new ToTypeScriptD.Core.DotNet.DotNetConfig
+                        {
+                            AssemblyPaths = dotNetSubOptions.Files,
+                            CamelCase = dotNetSubOptions.CamelCase,
+                            IncludeSpecialTypes = dotNetSubOptions.IncludeSpecialTypeDefinitions,
+                            IndentationType = dotNetSubOptions.IndentationType,
+                            RegexFilter = dotNetSubOptions.RegexFilter,
+                            TypeNotFoundErrorHandler = new ConsoleErrorTypeNotFoundErrorHandler(),
+                        };
+                    }
                 }
                 else if (verb == Options.WinmdCommandName)
                 {
-                    var winmdSubOptions = (WinmdSubOptions)subOptions;
-                    config = new ToTypeScriptD.Core.WinMD.WinmdConfig
+                    var winmdSubOptions = subOptions as WinmdSubOptions;
+                    if (winmdSubOptions != null)
                     {
-                        AssemblyPaths = winmdSubOptions.Files,
-                        IncludeSpecialTypes = winmdSubOptions.IncludeSpecialTypeDefinitions,
-                        IndentationType = winmdSubOptions.IndentationType,
-                        RegexFilter = winmdSubOptions.RegexFilter,
-                        TypeNotFoundErrorHandler = new ConsoleErrorTypeNotFoundErrorHandler(),
-                    };
+                        config = new ToTypeScriptD.Core.WinMD.WinmdConfig
+                        {
+                            AssemblyPaths = winmdSubOptions.Files,
+                            IncludeSpecialTypes = winmdSubOptions.IncludeSpecialTypeDefinitions,
+                            IndentationType = winmdSubOptions.IndentationType,
+                            RegexFilter = winmdSubOptions.RegexFilter,
+                            TypeNotFoundErrorHandler = new ConsoleErrorTypeNotFoundErrorHandler(),
+                        };
+                    }
                 }
             }))
             {
