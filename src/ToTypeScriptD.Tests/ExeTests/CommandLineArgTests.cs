@@ -111,7 +111,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldApplyRegexFilterOnTypes()
         {
-            var resultDup = Execute(@"DotNet ..\..\..\bin\ToTypeScriptD.TestAssembly.CSharp.dll --regexFilter 'ToTypeScriptD.TestAssembly.CSharp.NamespaceSample'");
+            var resultDup = Execute(@"DotNet ..\..\..\bin\ToTypeScriptD.TestAssembly.CSharp.dll --regexFilter 'ToTypeScriptD.TestAssembly.CSharp.NamespaceSample|CSharp.NamespaceSample'");
 
             resultDup.Verify();
         }
