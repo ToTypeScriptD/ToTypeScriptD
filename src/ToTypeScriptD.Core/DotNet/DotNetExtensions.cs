@@ -40,8 +40,11 @@ namespace ToTypeScriptD.Core.DotNet
             return false;
         }
 
-        public static bool ShouldIgnoreTypeByName(this string name)
+        public static bool ShouldIgnoreTypeByName(this TypeReference typeReference)
         {
+            if (typeReference.FullName == "System.Collections.IEnumerable")
+                return true;
+
             return false;
         }
 
@@ -185,7 +188,7 @@ namespace ToTypeScriptD.Core.DotNet
                     genericTypeArgName = genericTypeInstanceReference.GenericArguments[0].ToTypeScriptType();
                 }
 
-                var enumerableNamePrefix = "System.Collections.Generic.IEnumerable";
+                var enumerableNamePrefix = "System.Collections.IEnumerable";
 
                 // is this IEnumerable?
                 if (typeReference.FullName.StartsWith(enumerableNamePrefix))

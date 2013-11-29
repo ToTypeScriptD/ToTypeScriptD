@@ -132,14 +132,26 @@ namespace ToTypeScriptD.Core.DotNet
         {
             if (TypeDefinition.Interfaces.Any())
             {
-                var interfaceTypes = TypeDefinition.Interfaces.Where(w => !w.Name.ShouldIgnoreTypeByName());
+                var interfaceTypes = TypeDefinition.Interfaces.Where(w => !w.ShouldIgnoreTypeByName());
                 if (interfaceTypes.Any())
                 {
                     sb.Append(inheriterString);
+
+                    var distinctTypes = new HashSet<string>();
+
                     interfaceTypes.For((item, i, isLast) =>
                     {
-                        sb.AppendFormat(" {0}{1}", item.ToTypeScriptType(), isLast ? " " : ",");
+                        var typeString = item.ToTypeScriptType();
+                        if (distinctTypes.Contains(typeString))
+                            return;
+                        distinctTypes.Add(typeString);
                     });
+
+                    distinctTypes.For((item, i, isLast) =>
+                    {
+                        sb.AppendFormat(" {0}{1}",item, isLast ? " " : ",");
+                    });
+                    
                 }
             }
         }

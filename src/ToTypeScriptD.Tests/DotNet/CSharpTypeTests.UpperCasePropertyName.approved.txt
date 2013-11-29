@@ -90,6 +90,14 @@ declare module ToTypeScriptD.TestAssembly.CSharp {
         StringProperty: string;
     }
 
+    export interface SampleCollectionClass<T> extends T[] {
+        Count: number;
+        IsReadOnly: boolean;
+    }
+
+    export interface SampleEnumerableClass<T> extends T[] {
+    }
+
     export interface SomeClass extends ToTypeScriptD.TestAssembly.CSharp.IAmAnInterface {
         SomeProperty: string;
         NullableProperty?: number;
