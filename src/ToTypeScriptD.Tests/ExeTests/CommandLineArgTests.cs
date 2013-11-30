@@ -9,42 +9,42 @@ namespace ToTypeScriptD.Tests.ExeTests
         [Fact]
         public void ExeShouldGenerateHelpOnEmptyInput()
         {
-            var result = Execute("").StdOut.StripVersionFromOutput();
+            var result = Execute("").ToString().StripVersionFromOutput();
             Approvals.Verify(result);
         }
 
         [Fact]
         public void ExeShouldGenerateHelpWithHelpArgs()
         {
-            var result = Execute("--help").StdOut.StripVersionFromOutput();
+            var result = Execute("--help").ToString().StripVersionFromOutput();
             Approvals.Verify(result);
         }
 
         [Fact]
         public void ExeShouldGenerateHelpForDotNet()
         {
-            var result = Execute(Options.DotNetCommandName).StdOut.StripVersionFromOutput();
+            var result = Execute(Options.DotNetCommandName).ToString().StripVersionFromOutput();
             Approvals.Verify(result);
         }
 
         [Fact]
         public void ExeShouldGenerateHelpForWinMD()
         {
-            var result = Execute(Options.WinmdCommandName).StdOut.StripVersionFromOutput();
+            var result = Execute(Options.WinmdCommandName).ToString().StripVersionFromOutput();
             Approvals.Verify(result);
         }
 
         [Fact]
         public void ExeShouldGenerateHelpForDotNetWithBadInput()
         {
-            var result = Execute(Options.DotNetCommandName + " --nogohere").StdOut.StripVersionFromOutput();
+            var result = Execute(Options.DotNetCommandName + " --nogohere").ToString().StripVersionFromOutput();
             Approvals.Verify(result);
         }
 
         [Fact]
         public void ExeShouldGenerateHelpForWinMDWithBadInput()
         {
-            var result = Execute(Options.WinmdCommandName + " --nogohere").StdOut.StripVersionFromOutput();
+            var result = Execute(Options.WinmdCommandName + " --nogohere").ToString().StripVersionFromOutput();
             Approvals.Verify(result);
         }
 
@@ -53,7 +53,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         {
             var result = Execute(@"winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.Networking.winmd");
 
-            (result.StdOut.Length > 100).ShouldBeTrue(result.StdOut.Length + " should be greater than 100");
+            (result.ToString().Length > 100).ShouldBeTrue(result.ToString().Length + " should be greater than 100");
         }
 
         [Fact]
@@ -61,7 +61,7 @@ namespace ToTypeScriptD.Tests.ExeTests
         {
             var result = Execute(@"winmd C:\Windows\System32\WinMetadata\Windows.Foundation.winmd C:\Windows\System32\WinMetadata\Windows.System.winmd");
 
-            result.StdOut.Verify();
+            result.ToString().Verify();
         }
 
         [Fact]
