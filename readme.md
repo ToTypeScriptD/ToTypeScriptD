@@ -63,7 +63,8 @@ Checkout the [Contribution](CONTRIBUTING.md) guide.
 ## Thanks to!
 
 Partially sponsored by:  
-  ![Resgrid logo](http://resgrid.com/Images/Resgrid_JustText_small.png)
+[![Resgrid logo][2]][1]
+
 
 ## How does the magic happen?
 
@@ -72,3 +73,7 @@ which can read any [Ecma 355](http://www.ecma-international.org/publications/sta
 Common Language Infrastructure (CLI) file, we can generate a set of TypeScript definition 
 files that allow us to project the type system from these assemblies into TypeScript Definition files. Cool eh?
 
+
+
+  [1]: http://resgrid.com
+  [2]: http://resgrid.com/Images/Resgrid_JustText_small.png (hover text)
