@@ -60,6 +60,11 @@ Checkout the [project milestones](https://github.com/staxmanade/ToTypeScriptD/is
 
 Checkout the [Contribution](CONTRIBUTING.md) guide.
 
+## Thanks to!
+
+Partially sponsored by:  
+  ![Resgrid logo](http://resgrid.com/Images/Resgrid_JustText_small.png)
+
 ## How does the magic happen?
 
 By loading assembly metadata with [Mono.Cecil](http://www.mono-project.com/Cecil) 
