@@ -34,7 +34,7 @@ You can see the Chocolatey package here: [ToTypeScriptD package](https://chocola
 
 #### Print the short and sweet command line arguments: 
 
-    ToTypeScript --help
+    ToTypeScriptD --help
 
 #### Generate all types from Windows.winmd file:
 
