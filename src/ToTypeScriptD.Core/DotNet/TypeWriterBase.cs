@@ -112,6 +112,8 @@ namespace ToTypeScriptD.Core.DotNet
             TypeDefinition.Properties.Each(prop =>
             {
                 var propName = prop.Name.ToCamelCase(Config.CamelBackCase);
+                propName = propName.RenameInvalidNamesToSaveName();
+
                 Indent(sb); Indent(sb); sb.AppendFormat("{0}{1}: {2};", propName, prop.PropertyType.ToTypeScriptNullable(), prop.PropertyType.ToTypeScriptType());
                 sb.AppendLine();
             });

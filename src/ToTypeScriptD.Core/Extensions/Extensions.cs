@@ -193,5 +193,29 @@ namespace ToTypeScriptD
                 sb.AppendFormat(format, args);
             sb.AppendLine();
         }
+
+        public static string RenameInvalidNamesToSaveName(this string value)
+        {
+            if (value == "function")
+            {
+                return "function_";
+            }
+            if (value == "Function")
+            {
+                return "Function_";
+            }
+
+            if (value == "arguments")
+            {
+                return "arguments_";
+            }
+
+            if (value == "Arguments")
+            {
+                return "Arguments_";
+            }
+            return value;
+
+        }
     }
 }

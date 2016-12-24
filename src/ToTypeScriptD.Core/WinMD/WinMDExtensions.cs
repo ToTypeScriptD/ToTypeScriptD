@@ -109,6 +109,8 @@ namespace ToTypeScriptD.Core.WinMD
 
         public static string ToTypeScriptName(this string name)
         {
+            name = name.RenameInvalidNamesToSaveName();
+
             if (name.ToUpper() == name)
             {
                 return name.ToLower();

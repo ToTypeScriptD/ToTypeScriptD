@@ -311,9 +311,12 @@ namespace ToTypeScriptD.Core.WinMD
                 method.Parameters.Where(w => w.IsOut).Each(e => outTypes.Add(e));
                 method.Parameters.Where(w => !w.IsOut).For((parameter, i, isLast) =>
                 {
+                    var paramName = parameter.Name;
+                    paramName = paramName.RenameInvalidNamesToSaveName();
+
                     methodSb.AppendFormat("{0}{1}: {2}{3}",
                         (i == 0 ? "" : " "),                            // spacer
-                        parameter.Name,                                 // argument name
+                        paramName,                                 // argument name
                         parameter.ParameterType.ToTypeScriptType(),     // type
                         (isLast ? "" : ","));                           // last one gets a comma
                 });
@@ -365,7 +368,6 @@ namespace ToTypeScriptD.Core.WinMD
             TypeDefinition.Properties.Each(prop =>
             {
                 var propName = prop.Name.ToTypeScriptName();
-
 
                 if (propName == "length")
                 {
