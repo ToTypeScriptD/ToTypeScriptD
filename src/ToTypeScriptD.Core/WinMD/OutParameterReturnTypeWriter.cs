@@ -10,6 +10,9 @@ namespace ToTypeScriptD.Core.WinMD
 {
     public class OutParameterReturnTypeWriter : ITypeWriter
     {
+        static int versionCounter = 0;
+
+        private int version;
         private TypeReference ReturnTypeReference;
         private List<ParameterDefinition> OutTypes;
         private int IndentCount;
@@ -19,6 +22,7 @@ namespace ToTypeScriptD.Core.WinMD
 
         public OutParameterReturnTypeWriter(ConfigBase config, int indentCount, Mono.Cecil.TypeDefinition TypeDefinition, string methodName, TypeReference retrunTypeReference, List<ParameterDefinition> outTypes)
         {
+            this.version = ++versionCounter;
             this.config = config;
             this.IndentCount = indentCount;
             this.TypeDefinition = TypeDefinition;
@@ -61,7 +65,7 @@ namespace ToTypeScriptD.Core.WinMD
                 {
                     genericParams = "<" + TypeDefinition.GenericParameters.Select(s => s.FullName).Join(", ") + ">";
                 }
-                return TypeDefinition.ToTypeScriptItemName() + "_" + MethodName + "_OUT" + genericParams;
+                return TypeDefinition.ToTypeScriptItemName() + "_" + MethodName + "_OUT_" + this.version + genericParams;
             }
         }
 
