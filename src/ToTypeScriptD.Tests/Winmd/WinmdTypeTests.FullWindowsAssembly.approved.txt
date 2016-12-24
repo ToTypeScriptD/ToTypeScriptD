@@ -60,6 +60,18 @@ declare module Windows.Foundation {
         universalTime: number;
     }
 
+    export class Deferral implements Windows.Foundation.IDeferral, Windows.Foundation.IClosable {
+        constructor(handler: Windows.Foundation.DeferralCompletedHandler);
+        complete(): void;
+        close(): void;
+    }
+
+    export interface DeferralCompletedHandler {
+        target: any;
+        detail: any[];
+        type: string;
+    }
+
     export interface EventHandler<T> {
         target: any;
         detail: any[];
@@ -68,6 +80,9 @@ declare module Windows.Foundation {
 
     export class EventRegistrationToken {
         value: number;
+    }
+
+    export class FoundationContract {
     }
 
     export class HResult {
@@ -122,8 +137,27 @@ declare module Windows.Foundation {
         close(): void;
     }
 
+    export interface IDeferral extends Windows.Foundation.IClosable {
+        complete(): void;
+    }
+
     export interface IGetActivationFactory {
         getActivationFactory(activatableClassId: string): any;
+    }
+
+    export interface IMemoryBuffer extends Windows.Foundation.IClosable {
+        createReference(): Windows.Foundation.IMemoryBufferReference;
+    }
+
+    export interface IMemoryBufferReference extends Windows.Foundation.IClosable {
+        capacity: number;
+        // Events
+        addEventListener(eventName: string, listener: any): void;
+        removeEventListener(eventName: string, listener: any): void;
+        addEventListener(eventName: "closed", listener: Windows.Foundation.TypedEventHandler<Windows.Foundation.IMemoryBufferReference,any>): void;
+        removeEventListener(eventName: "closed", listener: Windows.Foundation.TypedEventHandler<Windows.Foundation.IMemoryBufferReference,any>): void;
+        onclosed: (ev: Windows.Foundation.TypedEventHandler<Windows.Foundation.IMemoryBufferReference,any>) => void;
+
     }
 
     export interface IPropertyValue {
@@ -145,102 +179,102 @@ declare module Windows.Foundation {
         getPoint(): Windows.Foundation.Point;
         getSize(): Windows.Foundation.Size;
         getRect(): Windows.Foundation.Rect;
-        getUInt8Array(): IPropertyValue_getUInt8Array_OUT;
-        getInt16Array(): IPropertyValue_getInt16Array_OUT;
-        getUInt16Array(): IPropertyValue_getUInt16Array_OUT;
-        getInt32Array(): IPropertyValue_getInt32Array_OUT;
-        getUInt32Array(): IPropertyValue_getUInt32Array_OUT;
-        getInt64Array(): IPropertyValue_getInt64Array_OUT;
-        getUInt64Array(): IPropertyValue_getUInt64Array_OUT;
-        getSingleArray(): IPropertyValue_getSingleArray_OUT;
-        getDoubleArray(): IPropertyValue_getDoubleArray_OUT;
-        getChar16Array(): IPropertyValue_getChar16Array_OUT;
-        getBooleanArray(): IPropertyValue_getBooleanArray_OUT;
-        getStringArray(): IPropertyValue_getStringArray_OUT;
-        getInspectableArray(): IPropertyValue_getInspectableArray_OUT;
-        getGuidArray(): IPropertyValue_getGuidArray_OUT;
-        getDateTimeArray(): IPropertyValue_getDateTimeArray_OUT;
-        getTimeSpanArray(): IPropertyValue_getTimeSpanArray_OUT;
-        getPointArray(): IPropertyValue_getPointArray_OUT;
-        getSizeArray(): IPropertyValue_getSizeArray_OUT;
-        getRectArray(): IPropertyValue_getRectArray_OUT;
+        getUInt8Array(): IPropertyValue_getUInt8Array_OUT_1;
+        getInt16Array(): IPropertyValue_getInt16Array_OUT_2;
+        getUInt16Array(): IPropertyValue_getUInt16Array_OUT_3;
+        getInt32Array(): IPropertyValue_getInt32Array_OUT_4;
+        getUInt32Array(): IPropertyValue_getUInt32Array_OUT_5;
+        getInt64Array(): IPropertyValue_getInt64Array_OUT_6;
+        getUInt64Array(): IPropertyValue_getUInt64Array_OUT_7;
+        getSingleArray(): IPropertyValue_getSingleArray_OUT_8;
+        getDoubleArray(): IPropertyValue_getDoubleArray_OUT_9;
+        getChar16Array(): IPropertyValue_getChar16Array_OUT_10;
+        getBooleanArray(): IPropertyValue_getBooleanArray_OUT_11;
+        getStringArray(): IPropertyValue_getStringArray_OUT_12;
+        getInspectableArray(): IPropertyValue_getInspectableArray_OUT_13;
+        getGuidArray(): IPropertyValue_getGuidArray_OUT_14;
+        getDateTimeArray(): IPropertyValue_getDateTimeArray_OUT_15;
+        getTimeSpanArray(): IPropertyValue_getTimeSpanArray_OUT_16;
+        getPointArray(): IPropertyValue_getPointArray_OUT_17;
+        getSizeArray(): IPropertyValue_getSizeArray_OUT_18;
+        getRectArray(): IPropertyValue_getRectArray_OUT_19;
         isNumericScalar: boolean;
         type: Windows.Foundation.PropertyType;
     }
 
-    interface IPropertyValue_getUInt8Array_OUT {
+    interface IPropertyValue_getUInt8Array_OUT_1 {
         value: number[];
     }
 
-    interface IPropertyValue_getInt16Array_OUT {
+    interface IPropertyValue_getInt16Array_OUT_2 {
         value: number[];
     }
 
-    interface IPropertyValue_getUInt16Array_OUT {
+    interface IPropertyValue_getUInt16Array_OUT_3 {
         value: number[];
     }
 
-    interface IPropertyValue_getInt32Array_OUT {
+    interface IPropertyValue_getInt32Array_OUT_4 {
         value: number[];
     }
 
-    interface IPropertyValue_getUInt32Array_OUT {
+    interface IPropertyValue_getUInt32Array_OUT_5 {
         value: number[];
     }
 
-    interface IPropertyValue_getInt64Array_OUT {
+    interface IPropertyValue_getInt64Array_OUT_6 {
         value: number[];
     }
 
-    interface IPropertyValue_getUInt64Array_OUT {
+    interface IPropertyValue_getUInt64Array_OUT_7 {
         value: number[];
     }
 
-    interface IPropertyValue_getSingleArray_OUT {
+    interface IPropertyValue_getSingleArray_OUT_8 {
         value: number[];
     }
 
-    interface IPropertyValue_getDoubleArray_OUT {
+    interface IPropertyValue_getDoubleArray_OUT_9 {
         value: number[];
     }
 
-    interface IPropertyValue_getChar16Array_OUT {
+    interface IPropertyValue_getChar16Array_OUT_10 {
         value: number[];
     }
 
-    interface IPropertyValue_getBooleanArray_OUT {
+    interface IPropertyValue_getBooleanArray_OUT_11 {
         value: boolean[];
     }
 
-    interface IPropertyValue_getStringArray_OUT {
+    interface IPropertyValue_getStringArray_OUT_12 {
         value: string[];
     }
 
-    interface IPropertyValue_getInspectableArray_OUT {
+    interface IPropertyValue_getInspectableArray_OUT_13 {
         value: any[];
     }
 
-    interface IPropertyValue_getGuidArray_OUT {
+    interface IPropertyValue_getGuidArray_OUT_14 {
         value: string[];
     }
 
-    interface IPropertyValue_getDateTimeArray_OUT {
+    interface IPropertyValue_getDateTimeArray_OUT_15 {
         value: Date[];
     }
 
-    interface IPropertyValue_getTimeSpanArray_OUT {
+    interface IPropertyValue_getTimeSpanArray_OUT_16 {
         value: Windows.Foundation.TimeSpan[];
     }
 
-    interface IPropertyValue_getPointArray_OUT {
+    interface IPropertyValue_getPointArray_OUT_17 {
         value: Windows.Foundation.Point[];
     }
 
-    interface IPropertyValue_getSizeArray_OUT {
+    interface IPropertyValue_getSizeArray_OUT_18 {
         value: Windows.Foundation.Size[];
     }
 
-    interface IPropertyValue_getRectArray_OUT {
+    interface IPropertyValue_getRectArray_OUT_19 {
         value: Windows.Foundation.Rect[];
     }
 
@@ -250,6 +284,10 @@ declare module Windows.Foundation {
 
     export interface IReferenceArray<T> extends Windows.Foundation.IPropertyValue {
         value: T[];
+    }
+
+    export interface IStringable {
+        toString(): string;
     }
 
     export interface IUriRuntimeClass {
@@ -318,6 +356,12 @@ declare module Windows.Foundation {
         reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any): any;
         reduceRight(callbackfn: (previousValue: any, currentValue: any, currentIndex: number, array: Windows.Foundation.IWwwFormUrlDecoderEntry[]) => any, initialValue: any): any;
         length: number;
+    }
+
+    export class MemoryBuffer implements Windows.Foundation.IMemoryBuffer, Windows.Foundation.IClosable {
+        constructor(capacity: number);
+        createReference(): Windows.Foundation.IMemoryBufferReference;
+        close(): void;
     }
 
     export class Point {
@@ -433,11 +477,15 @@ declare module Windows.Foundation {
         type: string;
     }
 
-    export class Uri implements Windows.Foundation.IUriRuntimeClass, Windows.Foundation.IUriRuntimeClassWithAbsoluteCanonicalUri {
+    export class UniversalApiContract {
+    }
+
+    export class Uri implements Windows.Foundation.IUriRuntimeClass, Windows.Foundation.IUriRuntimeClassWithAbsoluteCanonicalUri, Windows.Foundation.IStringable {
         constructor(uri: string);
         constructor(baseUri: string, relativeUri: string);
         equals(pUri: Windows.Foundation.Uri): boolean;
         combineUri(relativeUri: string): Windows.Foundation.Uri;
+        toString(): string;
         static unescapeComponent(toUnescape: string): string;
         static escapeComponent(toEscape: string): string;
         absoluteUri: string;
@@ -459,13 +507,13 @@ declare module Windows.Foundation {
         displayIri: string;
     }
 
-    export class WwwFormUrlDecoder implements Windows.Foundation.IWwwFormUrlDecoderRuntimeClass, Windows.Foundation.Collections.IIterable<Windows.Foundation.IWwwFormUrlDecoderEntry>, Windows.Foundation.Collections.IVectorView<Windows.Foundation.IWwwFormUrlDecoderEntry> {
+    export class WwwFormUrlDecoder implements Windows.Foundation.IWwwFormUrlDecoderRuntimeClass, Windows.Foundation.Collections.IVectorView<Windows.Foundation.IWwwFormUrlDecoderEntry>, Windows.Foundation.Collections.IIterable<Windows.Foundation.IWwwFormUrlDecoderEntry> {
         constructor(query: string);
         getFirstValueByName(name: string): string;
         first(): Windows.Foundation.Collections.IIterator<Windows.Foundation.IWwwFormUrlDecoderEntry>;
         getAt(index: number): Windows.Foundation.IWwwFormUrlDecoderEntry;
-        indexOf(value: Windows.Foundation.IWwwFormUrlDecoderEntry): WwwFormUrlDecoder_indexOf_OUT;
-        getMany(startIndex: number): WwwFormUrlDecoder_getMany_OUT;
+        indexOf(value: Windows.Foundation.IWwwFormUrlDecoderEntry): WwwFormUrlDecoder_indexOf_OUT_20;
+        getMany(startIndex: number): WwwFormUrlDecoder_getMany_OUT_21;
         size: number;
 
         // Array.prototype extensions
@@ -503,14 +551,19 @@ declare module Windows.Foundation {
         length: number;
     }
 
-    interface WwwFormUrlDecoder_indexOf_OUT {
+    interface WwwFormUrlDecoder_indexOf_OUT_20 {
         __returnValue: boolean;
         index: number;
     }
 
-    interface WwwFormUrlDecoder_getMany_OUT {
+    interface WwwFormUrlDecoder_getMany_OUT_21 {
         __returnValue: number;
         items: Windows.Foundation.IWwwFormUrlDecoderEntry[];
+    }
+
+    export class WwwFormUrlDecoderEntry implements Windows.Foundation.IWwwFormUrlDecoderEntry {
+        name: string;
+        value: string;
     }
 
 }
@@ -529,12 +582,12 @@ declare module Windows.Foundation.Collections {
 
     export interface IIterator<T> {
         moveNext(): boolean;
-        getMany(): IIterator_getMany_OUT<T>;
+        getMany(): IIterator_getMany_OUT_22<T>;
         current: T;
         hasCurrent: boolean;
     }
 
-    interface IIterator_getMany_OUT<T> {
+    interface IIterator_getMany_OUT_22<T> {
         __returnValue: number;
         items: T[];
     }
@@ -562,11 +615,11 @@ declare module Windows.Foundation.Collections {
     export interface IMapView<K, V> extends Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<K,V>> {
         lookup(key: K): V;
         hasKey(key: K): boolean;
-        split(): IMapView_split_OUT<K, V>;
+        split(): IMapView_split_OUT_23<K, V>;
         size: number;
     }
 
-    interface IMapView_split_OUT<K, V> {
+    interface IMapView_split_OUT_23<K, V> {
         first: Windows.Foundation.Collections.IMapView<K,V>;
         second: Windows.Foundation.Collections.IMapView<K,V>;
     }
@@ -631,14 +684,14 @@ declare module Windows.Foundation.Collections {
     export interface IVector<T> extends Windows.Foundation.Collections.IIterable<T> {
         getAt(index: number): T;
         getView(): Windows.Foundation.Collections.IVectorView<T>;
-        indexOf(value: T): IVector_indexOf_OUT<T>;
+        indexOf(value: T): IVector_indexOf_OUT_24<T>;
         setAt(index: number, value: T): void;
         insertAt(index: number, value: T): void;
         removeAt(index: number): void;
         append(value: T): void;
         removeAtEnd(): void;
         clear(): void;
-        getMany(startIndex: number): IVector_getMany_OUT<T>;
+        getMany(startIndex: number): IVector_getMany_OUT_25<T>;
         replaceAll(items: T[]): void;
         size: number;
 
@@ -677,12 +730,12 @@ declare module Windows.Foundation.Collections {
         length: number;
     }
 
-    interface IVector_indexOf_OUT<T> {
+    interface IVector_indexOf_OUT_24<T> {
         __returnValue: boolean;
         index: number;
     }
 
-    interface IVector_getMany_OUT<T> {
+    interface IVector_getMany_OUT_25<T> {
         __returnValue: number;
         items: T[];
     }
@@ -694,8 +747,8 @@ declare module Windows.Foundation.Collections {
 
     export interface IVectorView<T> extends Windows.Foundation.Collections.IIterable<T> {
         getAt(index: number): T;
-        indexOf(value: T): IVectorView_indexOf_OUT<T>;
-        getMany(startIndex: number): IVectorView_getMany_OUT<T>;
+        indexOf(value: T): IVectorView_indexOf_OUT_26<T>;
+        getMany(startIndex: number): IVectorView_getMany_OUT_27<T>;
         size: number;
 
         // Array.prototype extensions
@@ -733,12 +786,12 @@ declare module Windows.Foundation.Collections {
         length: number;
     }
 
-    interface IVectorView_indexOf_OUT<T> {
+    interface IVectorView_indexOf_OUT_26<T> {
         __returnValue: boolean;
         index: number;
     }
 
-    interface IVectorView_getMany_OUT<T> {
+    interface IVectorView_getMany_OUT_27<T> {
         __returnValue: number;
         items: T[];
     }
@@ -768,6 +821,44 @@ declare module Windows.Foundation.Collections {
 
     }
 
+    export class StringMap implements Windows.Foundation.Collections.IMap<string,string>, Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<string,string>>, Windows.Foundation.Collections.IObservableMap<string,string> {
+        constructor();
+        lookup(key: string): string;
+        hasKey(key: string): boolean;
+        getView(): Windows.Foundation.Collections.IMapView<string,string>;
+        insert(key: string, value: string): boolean;
+        remove(key: string): void;
+        clear(): void;
+        first(): Windows.Foundation.Collections.IIterator<Windows.Foundation.Collections.IKeyValuePair<string,string>>;
+        size: number;
+        // Events
+        addEventListener(eventName: string, listener: any): void;
+        removeEventListener(eventName: string, listener: any): void;
+        addEventListener(eventName: "mapchanged", listener: Windows.Foundation.Collections.MapChangedEventHandler<string,string>): void;
+        removeEventListener(eventName: "mapchanged", listener: Windows.Foundation.Collections.MapChangedEventHandler<string,string>): void;
+        onmapchanged: (ev: Windows.Foundation.Collections.MapChangedEventHandler<string,string>) => void;
+
+    }
+
+    export class ValueSet implements Windows.Foundation.Collections.IPropertySet, Windows.Foundation.Collections.IObservableMap<string,any>, Windows.Foundation.Collections.IMap<string,any>, Windows.Foundation.Collections.IIterable<Windows.Foundation.Collections.IKeyValuePair<string,any>> {
+        constructor();
+        lookup(key: string): any;
+        hasKey(key: string): boolean;
+        getView(): Windows.Foundation.Collections.IMapView<string,any>;
+        insert(key: string, value: any): boolean;
+        remove(key: string): void;
+        clear(): void;
+        first(): Windows.Foundation.Collections.IIterator<Windows.Foundation.Collections.IKeyValuePair<string,any>>;
+        size: number;
+        // Events
+        addEventListener(eventName: string, listener: any): void;
+        removeEventListener(eventName: string, listener: any): void;
+        addEventListener(eventName: "mapchanged", listener: Windows.Foundation.Collections.MapChangedEventHandler<string,any>): void;
+        removeEventListener(eventName: "mapchanged", listener: Windows.Foundation.Collections.MapChangedEventHandler<string,any>): void;
+        onmapchanged: (ev: Windows.Foundation.Collections.MapChangedEventHandler<string,any>) => void;
+
+    }
+
     export interface VectorChangedEventHandler<T> {
         target: Windows.Foundation.Collections.IObservableVector<T>;
         detail: any[];
@@ -777,6 +868,54 @@ declare module Windows.Foundation.Collections {
 }
 declare module Windows.Foundation.Diagnostics {
 
+    export class AsyncCausalityTracer {
+        static traceOperationCreation(traceLevel: Windows.Foundation.Diagnostics.CausalityTraceLevel, source: Windows.Foundation.Diagnostics.CausalitySource, platformId: string, operationId: number, operationName: string, relatedContext: number): void;
+        static traceOperationCompletion(traceLevel: Windows.Foundation.Diagnostics.CausalityTraceLevel, source: Windows.Foundation.Diagnostics.CausalitySource, platformId: string, operationId: number, status: Windows.Foundation.AsyncStatus): void;
+        static traceOperationRelation(traceLevel: Windows.Foundation.Diagnostics.CausalityTraceLevel, source: Windows.Foundation.Diagnostics.CausalitySource, platformId: string, operationId: number, relation: Windows.Foundation.Diagnostics.CausalityRelation): void;
+        static traceSynchronousWorkStart(traceLevel: Windows.Foundation.Diagnostics.CausalityTraceLevel, source: Windows.Foundation.Diagnostics.CausalitySource, platformId: string, operationId: number, work: Windows.Foundation.Diagnostics.CausalitySynchronousWork): void;
+        static traceSynchronousWorkCompletion(traceLevel: Windows.Foundation.Diagnostics.CausalityTraceLevel, source: Windows.Foundation.Diagnostics.CausalitySource, work: Windows.Foundation.Diagnostics.CausalitySynchronousWork): void;
+        // Events
+        addEventListener(eventName: string, listener: any): void;
+        removeEventListener(eventName: string, listener: any): void;
+        addEventListener(eventName: "tracingstatuschanged", listener: Windows.Foundation.EventHandler<Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs>): void;
+        removeEventListener(eventName: "tracingstatuschanged", listener: Windows.Foundation.EventHandler<Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs>): void;
+        ontracingstatuschanged: (ev: Windows.Foundation.EventHandler<Windows.Foundation.Diagnostics.TracingStatusChangedEventArgs>) => void;
+
+    }
+
+    enum CausalityRelation {
+        assignDelegate,
+        join,
+        choice,
+        cancel,
+        error
+    }
+
+    enum CausalitySource {
+        application,
+        library,
+        system
+    }
+
+    enum CausalitySynchronousWork {
+        completionNotification,
+        progressNotification,
+        execution
+    }
+
+    enum CausalityTraceLevel {
+        required,
+        important,
+        verbose
+    }
+
+    export class ErrorDetails implements Windows.Foundation.Diagnostics.IErrorDetails {
+        static createFromHResultAsync(errorCode: number): Windows.Foundation.IAsyncOperation<Windows.Foundation.Diagnostics.ErrorDetails>;
+        description: string;
+        helpUri: Windows.Foundation.Uri;
+        longDescription: string;
+    }
+
     enum ErrorOptions {
         none,
         suppressExceptions,
@@ -785,9 +924,488 @@ declare module Windows.Foundation.Diagnostics {
         suppressSetErrorInfo
     }
 
+    export class FileLoggingSession implements Windows.Foundation.Diagnostics.IFileLoggingSession, Windows.Foundation.IClosable {
+        constructor(name: string);
+        addLoggingChannel(loggingChannel: Windows.Foundation.Diagnostics.ILoggingChannel): void;
+        addLoggingChannel(loggingChannel: Windows.Foundation.Diagnostics.ILoggingChannel, maxLevel: Windows.Foundation.Diagnostics.LoggingLevel): void;
+        removeLoggingChannel(loggingChannel: Windows.Foundation.Diagnostics.ILoggingChannel): void;
+        closeAndSaveToFileAsync(): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
+        close(): void;
+        name: string;
+        // Events
+        addEventListener(eventName: string, listener: any): void;
+        removeEventListener(eventName: string, listener: any): void;
+        addEventListener(eventName: "logfilegenerated", listener: Windows.Foundation.TypedEventHandler<Windows.Foundation.Diagnostics.IFileLoggingSession,Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs>): void;
+        removeEventListener(eventName: "logfilegenerated", listener: Windows.Foundation.TypedEventHandler<Windows.Foundation.Diagnostics.IFileLoggingSession,Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs>): void;
+        onlogfilegenerated: (ev: Windows.Foundation.TypedEventHandler<Windows.Foundation.Diagnostics.IFileLoggingSession,Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs>) => void;
+
+    }
+
+    export interface IErrorDetails {
+        description: string;
+        helpUri: Windows.Foundation.Uri;
+        longDescription: string;
+    }
+
     export interface IErrorReportingSettings {
         setErrorOptions(value: Windows.Foundation.Diagnostics.ErrorOptions): void;
         getErrorOptions(): Windows.Foundation.Diagnostics.ErrorOptions;
+    }
+
+    export interface IFileLoggingSession extends Windows.Foundation.IClosable {
+        addLoggingChannel(loggingChannel: Windows.Foundation.Diagnostics.ILoggingChannel): void;
+        addLoggingChannel(loggingChannel: Windows.Foundation.Diagnostics.ILoggingChannel, maxLevel: Windows.Foundation.Diagnostics.LoggingLevel): void;
+        removeLoggingChannel(loggingChannel: Windows.Foundation.Diagnostics.ILoggingChannel): void;
+        closeAndSaveToFileAsync(): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
+        name: string;
+        // Events
+        addEventListener(eventName: string, listener: any): void;
+        removeEventListener(eventName: string, listener: any): void;
+        addEventListener(eventName: "logfilegenerated", listener: Windows.Foundation.TypedEventHandler<Windows.Foundation.Diagnostics.IFileLoggingSession,Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs>): void;
+        removeEventListener(eventName: "logfilegenerated", listener: Windows.Foundation.TypedEventHandler<Windows.Foundation.Diagnostics.IFileLoggingSession,Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs>): void;
+        onlogfilegenerated: (ev: Windows.Foundation.TypedEventHandler<Windows.Foundation.Diagnostics.IFileLoggingSession,Windows.Foundation.Diagnostics.LogFileGeneratedEventArgs>) => void;
+
+    }
+
+    export interface ILogFileGeneratedEventArgs {
+        file: Windows.Storage.StorageFile;
+    }
+
+    export interface ILoggingActivity extends Windows.Foundation.IClosable {
+        id: string;
+        name: string;
+    }
+
+    export interface ILoggingActivity2 extends Windows.Foundation.Diagnostics.ILoggingActivity, Windows.Foundation.IClosable, Windows.Foundation.Diagnostics.ILoggingTarget {
+        stopActivity(stopEventName: string): void;
+        stopActivity(stopEventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields): void;
+        stopActivity(stopEventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields, options: Windows.Foundation.Diagnostics.LoggingOptions): void;
+        channel: Windows.Foundation.Diagnostics.LoggingChannel;
+    }
+
+    export interface ILoggingChannel extends Windows.Foundation.IClosable {
+        logMessage(eventString: string): void;
+        logMessage(eventString: string, level: Windows.Foundation.Diagnostics.LoggingLevel): void;
+        logValuePair(value1: string, value2: number): void;
+        logValuePair(value1: string, value2: number, level: Windows.Foundation.Diagnostics.LoggingLevel): void;
+        enabled: boolean;
+        level: Windows.Foundation.Diagnostics.LoggingLevel;
+        name: string;
+        // Events
+        addEventListener(eventName: string, listener: any): void;
+        removeEventListener(eventName: string, listener: any): void;
+        addEventListener(eventName: "loggingenabled", listener: Windows.Foundation.TypedEventHandler<Windows.Foundation.Diagnostics.ILoggingChannel,any>): void;
+        removeEventListener(eventName: "loggingenabled", listener: Windows.Foundation.TypedEventHandler<Windows.Foundation.Diagnostics.ILoggingChannel,any>): void;
+        onloggingenabled: (ev: Windows.Foundation.TypedEventHandler<Windows.Foundation.Diagnostics.ILoggingChannel,any>) => void;
+
+    }
+
+    export interface ILoggingChannel2 extends Windows.Foundation.Diagnostics.ILoggingChannel, Windows.Foundation.IClosable, Windows.Foundation.Diagnostics.ILoggingTarget {
+        id: string;
+    }
+
+    export interface ILoggingChannelOptions {
+        group: string;
+    }
+
+    export interface ILoggingFields {
+        clear(): void;
+        beginStruct(name: string): void;
+        beginStruct(name: string, tags: number): void;
+        endStruct(): void;
+        addEmpty(name: string): void;
+        addEmpty(name: string, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addEmpty(name: string, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt8(name: string, value: number): void;
+        addUInt8(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt8(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt8Array(name: string, value: any): void;
+        addUInt8Array(name: string, value: any, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt8Array(name: string, value: any, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addInt16(name: string, value: number): void;
+        addInt16(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addInt16(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addInt16Array(name: string, value: number[]): void;
+        addInt16Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addInt16Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt16(name: string, value: number): void;
+        addUInt16(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt16(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt16Array(name: string, value: number[]): void;
+        addUInt16Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt16Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addInt32(name: string, value: number): void;
+        addInt32(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addInt32(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addInt32Array(name: string, value: number[]): void;
+        addInt32Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addInt32Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt32(name: string, value: number): void;
+        addUInt32(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt32(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt32Array(name: string, value: number[]): void;
+        addUInt32Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt32Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addInt64(name: string, value: number): void;
+        addInt64(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addInt64(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addInt64Array(name: string, value: number[]): void;
+        addInt64Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addInt64Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt64(name: string, value: number): void;
+        addUInt64(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt64(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt64Array(name: string, value: number[]): void;
+        addUInt64Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt64Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addSingle(name: string, value: number): void;
+        addSingle(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addSingle(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addSingleArray(name: string, value: number[]): void;
+        addSingleArray(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addSingleArray(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addDouble(name: string, value: number): void;
+        addDouble(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addDouble(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addDoubleArray(name: string, value: number[]): void;
+        addDoubleArray(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addDoubleArray(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addChar16(name: string, value: number): void;
+        addChar16(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addChar16(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addChar16Array(name: string, value: number[]): void;
+        addChar16Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addChar16Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addBoolean(name: string, value: boolean): void;
+        addBoolean(name: string, value: boolean, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addBoolean(name: string, value: boolean, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addBooleanArray(name: string, value: boolean[]): void;
+        addBooleanArray(name: string, value: boolean[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addBooleanArray(name: string, value: boolean[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addString(name: string, value: string): void;
+        addString(name: string, value: string, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addString(name: string, value: string, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addStringArray(name: string, value: string[]): void;
+        addStringArray(name: string, value: string[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addStringArray(name: string, value: string[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addGuid(name: string, value: string): void;
+        addGuid(name: string, value: string, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addGuid(name: string, value: string, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addGuidArray(name: string, value: string[]): void;
+        addGuidArray(name: string, value: string[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addGuidArray(name: string, value: string[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addDateTime(name: string, value: Date): void;
+        addDateTime(name: string, value: Date, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addDateTime(name: string, value: Date, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addDateTimeArray(name: string, value: Date[]): void;
+        addDateTimeArray(name: string, value: Date[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addDateTimeArray(name: string, value: Date[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addTimeSpan(name: string, value: Windows.Foundation.TimeSpan): void;
+        addTimeSpan(name: string, value: Windows.Foundation.TimeSpan, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addTimeSpan(name: string, value: Windows.Foundation.TimeSpan, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addTimeSpanArray(name: string, value: Windows.Foundation.TimeSpan[]): void;
+        addTimeSpanArray(name: string, value: Windows.Foundation.TimeSpan[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addTimeSpanArray(name: string, value: Windows.Foundation.TimeSpan[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addPoint(name: string, value: Windows.Foundation.Point): void;
+        addPoint(name: string, value: Windows.Foundation.Point, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addPoint(name: string, value: Windows.Foundation.Point, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addPointArray(name: string, value: Windows.Foundation.Point[]): void;
+        addPointArray(name: string, value: Windows.Foundation.Point[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addPointArray(name: string, value: Windows.Foundation.Point[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addSize(name: string, value: Windows.Foundation.Size): void;
+        addSize(name: string, value: Windows.Foundation.Size, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addSize(name: string, value: Windows.Foundation.Size, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addSizeArray(name: string, value: Windows.Foundation.Size[]): void;
+        addSizeArray(name: string, value: Windows.Foundation.Size[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addSizeArray(name: string, value: Windows.Foundation.Size[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addRect(name: string, value: Windows.Foundation.Rect): void;
+        addRect(name: string, value: Windows.Foundation.Rect, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addRect(name: string, value: Windows.Foundation.Rect, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addRectArray(name: string, value: Windows.Foundation.Rect[]): void;
+        addRectArray(name: string, value: Windows.Foundation.Rect[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addRectArray(name: string, value: Windows.Foundation.Rect[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+    }
+
+    export interface ILoggingOptions {
+        activityId: string;
+        keywords: number;
+        opcode: Windows.Foundation.Diagnostics.LoggingOpcode;
+        relatedActivityId: string;
+        tags: number;
+        task: number;
+    }
+
+    export interface ILoggingSession extends Windows.Foundation.IClosable {
+        saveToFileAsync(folder: Windows.Storage.IStorageFolder, fileName: string): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
+        addLoggingChannel(loggingChannel: Windows.Foundation.Diagnostics.ILoggingChannel): void;
+        addLoggingChannel(loggingChannel: Windows.Foundation.Diagnostics.ILoggingChannel, maxLevel: Windows.Foundation.Diagnostics.LoggingLevel): void;
+        removeLoggingChannel(loggingChannel: Windows.Foundation.Diagnostics.ILoggingChannel): void;
+        name: string;
+    }
+
+    export interface ILoggingTarget {
+        isEnabled(): boolean;
+        isEnabled(level: Windows.Foundation.Diagnostics.LoggingLevel): boolean;
+        isEnabled(level: Windows.Foundation.Diagnostics.LoggingLevel, keywords: number): boolean;
+        logEvent(eventName: string): void;
+        logEvent(eventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields): void;
+        logEvent(eventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields, level: Windows.Foundation.Diagnostics.LoggingLevel): void;
+        logEvent(eventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields, level: Windows.Foundation.Diagnostics.LoggingLevel, options: Windows.Foundation.Diagnostics.LoggingOptions): void;
+        startActivity(startEventName: string): Windows.Foundation.Diagnostics.LoggingActivity;
+        startActivity(startEventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields): Windows.Foundation.Diagnostics.LoggingActivity;
+        startActivity(startEventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields, level: Windows.Foundation.Diagnostics.LoggingLevel): Windows.Foundation.Diagnostics.LoggingActivity;
+        startActivity(startEventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields, level: Windows.Foundation.Diagnostics.LoggingLevel, options: Windows.Foundation.Diagnostics.LoggingOptions): Windows.Foundation.Diagnostics.LoggingActivity;
+    }
+
+    export interface ITracingStatusChangedEventArgs {
+        enabled: boolean;
+        traceLevel: Windows.Foundation.Diagnostics.CausalityTraceLevel;
+    }
+
+    export class LogFileGeneratedEventArgs implements Windows.Foundation.Diagnostics.ILogFileGeneratedEventArgs {
+        file: Windows.Storage.StorageFile;
+    }
+
+    export class LoggingActivity implements Windows.Foundation.Diagnostics.ILoggingActivity, Windows.Foundation.IClosable, Windows.Foundation.Diagnostics.ILoggingActivity2, Windows.Foundation.Diagnostics.ILoggingTarget {
+        constructor(activityName: string, loggingChannel: Windows.Foundation.Diagnostics.ILoggingChannel);
+        constructor(activityName: string, loggingChannel: Windows.Foundation.Diagnostics.ILoggingChannel, level: Windows.Foundation.Diagnostics.LoggingLevel);
+        close(): void;
+        stopActivity(stopEventName: string): void;
+        stopActivity(stopEventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields): void;
+        stopActivity(stopEventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields, options: Windows.Foundation.Diagnostics.LoggingOptions): void;
+        isEnabled(): boolean;
+        isEnabled(level: Windows.Foundation.Diagnostics.LoggingLevel): boolean;
+        isEnabled(level: Windows.Foundation.Diagnostics.LoggingLevel, keywords: number): boolean;
+        logEvent(eventName: string): void;
+        logEvent(eventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields): void;
+        logEvent(eventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields, level: Windows.Foundation.Diagnostics.LoggingLevel): void;
+        logEvent(eventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields, level: Windows.Foundation.Diagnostics.LoggingLevel, options: Windows.Foundation.Diagnostics.LoggingOptions): void;
+        startActivity(startEventName: string): Windows.Foundation.Diagnostics.LoggingActivity;
+        startActivity(startEventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields): Windows.Foundation.Diagnostics.LoggingActivity;
+        startActivity(startEventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields, level: Windows.Foundation.Diagnostics.LoggingLevel): Windows.Foundation.Diagnostics.LoggingActivity;
+        startActivity(startEventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields, level: Windows.Foundation.Diagnostics.LoggingLevel, options: Windows.Foundation.Diagnostics.LoggingOptions): Windows.Foundation.Diagnostics.LoggingActivity;
+        id: string;
+        name: string;
+        channel: Windows.Foundation.Diagnostics.LoggingChannel;
+    }
+
+    export class LoggingChannel implements Windows.Foundation.Diagnostics.ILoggingChannel, Windows.Foundation.IClosable, Windows.Foundation.Diagnostics.ILoggingChannel2, Windows.Foundation.Diagnostics.ILoggingTarget {
+        constructor(name: string, options: Windows.Foundation.Diagnostics.LoggingChannelOptions);
+        constructor(name: string, options: Windows.Foundation.Diagnostics.LoggingChannelOptions, id: string);
+        constructor(name: string);
+        logMessage(eventString: string): void;
+        logMessage(eventString: string, level: Windows.Foundation.Diagnostics.LoggingLevel): void;
+        logValuePair(value1: string, value2: number): void;
+        logValuePair(value1: string, value2: number, level: Windows.Foundation.Diagnostics.LoggingLevel): void;
+        close(): void;
+        isEnabled(): boolean;
+        isEnabled(level: Windows.Foundation.Diagnostics.LoggingLevel): boolean;
+        isEnabled(level: Windows.Foundation.Diagnostics.LoggingLevel, keywords: number): boolean;
+        logEvent(eventName: string): void;
+        logEvent(eventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields): void;
+        logEvent(eventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields, level: Windows.Foundation.Diagnostics.LoggingLevel): void;
+        logEvent(eventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields, level: Windows.Foundation.Diagnostics.LoggingLevel, options: Windows.Foundation.Diagnostics.LoggingOptions): void;
+        startActivity(startEventName: string): Windows.Foundation.Diagnostics.LoggingActivity;
+        startActivity(startEventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields): Windows.Foundation.Diagnostics.LoggingActivity;
+        startActivity(startEventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields, level: Windows.Foundation.Diagnostics.LoggingLevel): Windows.Foundation.Diagnostics.LoggingActivity;
+        startActivity(startEventName: string, fields: Windows.Foundation.Diagnostics.LoggingFields, level: Windows.Foundation.Diagnostics.LoggingLevel, options: Windows.Foundation.Diagnostics.LoggingOptions): Windows.Foundation.Diagnostics.LoggingActivity;
+        enabled: boolean;
+        level: Windows.Foundation.Diagnostics.LoggingLevel;
+        name: string;
+        id: string;
+        // Events
+        addEventListener(eventName: string, listener: any): void;
+        removeEventListener(eventName: string, listener: any): void;
+        addEventListener(eventName: "loggingenabled", listener: Windows.Foundation.TypedEventHandler<Windows.Foundation.Diagnostics.ILoggingChannel,any>): void;
+        removeEventListener(eventName: "loggingenabled", listener: Windows.Foundation.TypedEventHandler<Windows.Foundation.Diagnostics.ILoggingChannel,any>): void;
+        onloggingenabled: (ev: Windows.Foundation.TypedEventHandler<Windows.Foundation.Diagnostics.ILoggingChannel,any>) => void;
+
+    }
+
+    export class LoggingChannelOptions implements Windows.Foundation.Diagnostics.ILoggingChannelOptions {
+        constructor();
+        constructor(group: string);
+        group: string;
+    }
+
+    enum LoggingFieldFormat {
+        default,
+        hidden,
+        string,
+        boolean,
+        hexadecimal,
+        processId,
+        threadId,
+        port,
+        ipv4Address,
+        ipv6Address,
+        socketAddress,
+        xml,
+        json,
+        win32Error,
+        ntStatus,
+        hResult,
+        fileTime,
+        signed,
+        unsigned
+    }
+
+    export class LoggingFields implements Windows.Foundation.Diagnostics.ILoggingFields {
+        constructor();
+        clear(): void;
+        beginStruct(name: string): void;
+        beginStruct(name: string, tags: number): void;
+        endStruct(): void;
+        addEmpty(name: string): void;
+        addEmpty(name: string, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addEmpty(name: string, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt8(name: string, value: number): void;
+        addUInt8(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt8(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt8Array(name: string, value: any): void;
+        addUInt8Array(name: string, value: any, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt8Array(name: string, value: any, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addInt16(name: string, value: number): void;
+        addInt16(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addInt16(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addInt16Array(name: string, value: number[]): void;
+        addInt16Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addInt16Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt16(name: string, value: number): void;
+        addUInt16(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt16(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt16Array(name: string, value: number[]): void;
+        addUInt16Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt16Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addInt32(name: string, value: number): void;
+        addInt32(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addInt32(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addInt32Array(name: string, value: number[]): void;
+        addInt32Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addInt32Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt32(name: string, value: number): void;
+        addUInt32(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt32(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt32Array(name: string, value: number[]): void;
+        addUInt32Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt32Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addInt64(name: string, value: number): void;
+        addInt64(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addInt64(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addInt64Array(name: string, value: number[]): void;
+        addInt64Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addInt64Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt64(name: string, value: number): void;
+        addUInt64(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt64(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addUInt64Array(name: string, value: number[]): void;
+        addUInt64Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addUInt64Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addSingle(name: string, value: number): void;
+        addSingle(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addSingle(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addSingleArray(name: string, value: number[]): void;
+        addSingleArray(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addSingleArray(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addDouble(name: string, value: number): void;
+        addDouble(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addDouble(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addDoubleArray(name: string, value: number[]): void;
+        addDoubleArray(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addDoubleArray(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addChar16(name: string, value: number): void;
+        addChar16(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addChar16(name: string, value: number, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addChar16Array(name: string, value: number[]): void;
+        addChar16Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addChar16Array(name: string, value: number[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addBoolean(name: string, value: boolean): void;
+        addBoolean(name: string, value: boolean, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addBoolean(name: string, value: boolean, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addBooleanArray(name: string, value: boolean[]): void;
+        addBooleanArray(name: string, value: boolean[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addBooleanArray(name: string, value: boolean[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addString(name: string, value: string): void;
+        addString(name: string, value: string, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addString(name: string, value: string, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addStringArray(name: string, value: string[]): void;
+        addStringArray(name: string, value: string[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addStringArray(name: string, value: string[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addGuid(name: string, value: string): void;
+        addGuid(name: string, value: string, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addGuid(name: string, value: string, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addGuidArray(name: string, value: string[]): void;
+        addGuidArray(name: string, value: string[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addGuidArray(name: string, value: string[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addDateTime(name: string, value: Date): void;
+        addDateTime(name: string, value: Date, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addDateTime(name: string, value: Date, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addDateTimeArray(name: string, value: Date[]): void;
+        addDateTimeArray(name: string, value: Date[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addDateTimeArray(name: string, value: Date[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addTimeSpan(name: string, value: Windows.Foundation.TimeSpan): void;
+        addTimeSpan(name: string, value: Windows.Foundation.TimeSpan, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addTimeSpan(name: string, value: Windows.Foundation.TimeSpan, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addTimeSpanArray(name: string, value: Windows.Foundation.TimeSpan[]): void;
+        addTimeSpanArray(name: string, value: Windows.Foundation.TimeSpan[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addTimeSpanArray(name: string, value: Windows.Foundation.TimeSpan[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addPoint(name: string, value: Windows.Foundation.Point): void;
+        addPoint(name: string, value: Windows.Foundation.Point, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addPoint(name: string, value: Windows.Foundation.Point, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addPointArray(name: string, value: Windows.Foundation.Point[]): void;
+        addPointArray(name: string, value: Windows.Foundation.Point[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addPointArray(name: string, value: Windows.Foundation.Point[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addSize(name: string, value: Windows.Foundation.Size): void;
+        addSize(name: string, value: Windows.Foundation.Size, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addSize(name: string, value: Windows.Foundation.Size, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addSizeArray(name: string, value: Windows.Foundation.Size[]): void;
+        addSizeArray(name: string, value: Windows.Foundation.Size[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addSizeArray(name: string, value: Windows.Foundation.Size[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addRect(name: string, value: Windows.Foundation.Rect): void;
+        addRect(name: string, value: Windows.Foundation.Rect, format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addRect(name: string, value: Windows.Foundation.Rect, format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+        addRectArray(name: string, value: Windows.Foundation.Rect[]): void;
+        addRectArray(name: string, value: Windows.Foundation.Rect[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat): void;
+        addRectArray(name: string, value: Windows.Foundation.Rect[], format: Windows.Foundation.Diagnostics.LoggingFieldFormat, tags: number): void;
+    }
+
+    enum LoggingLevel {
+        verbose,
+        information,
+        warning,
+        error,
+        critical
+    }
+
+    enum LoggingOpcode {
+        info,
+        start,
+        stop,
+        reply,
+        resume,
+        suspend,
+        send
+    }
+
+    export class LoggingOptions implements Windows.Foundation.Diagnostics.ILoggingOptions {
+        constructor();
+        constructor(keywords: number);
+        task: number;
+        tags: number;
+        relatedActivityId: string;
+        opcode: Windows.Foundation.Diagnostics.LoggingOpcode;
+        keywords: number;
+        activityId: string;
+    }
+
+    export class LoggingSession implements Windows.Foundation.Diagnostics.ILoggingSession, Windows.Foundation.IClosable {
+        constructor(name: string);
+        saveToFileAsync(folder: Windows.Storage.IStorageFolder, fileName: string): Windows.Foundation.IAsyncOperation<Windows.Storage.StorageFile>;
+        addLoggingChannel(loggingChannel: Windows.Foundation.Diagnostics.ILoggingChannel): void;
+        addLoggingChannel(loggingChannel: Windows.Foundation.Diagnostics.ILoggingChannel, maxLevel: Windows.Foundation.Diagnostics.LoggingLevel): void;
+        removeLoggingChannel(loggingChannel: Windows.Foundation.Diagnostics.ILoggingChannel): void;
+        close(): void;
+        name: string;
     }
 
     export class RuntimeBrokerErrorSettings implements Windows.Foundation.Diagnostics.IErrorReportingSettings {
@@ -796,16 +1414,46 @@ declare module Windows.Foundation.Diagnostics {
         getErrorOptions(): Windows.Foundation.Diagnostics.ErrorOptions;
     }
 
+    export class TracingStatusChangedEventArgs implements Windows.Foundation.Diagnostics.ITracingStatusChangedEventArgs {
+        enabled: boolean;
+        traceLevel: Windows.Foundation.Diagnostics.CausalityTraceLevel;
+    }
+
 }
 declare module Windows.Foundation.Metadata {
 
     export class ActivatableAttribute {
         constructor(version: number);
+        constructor(version: number, type: string);
+        constructor(version: number, platform: Windows.Foundation.Metadata.Platform);
         constructor(type: string /*System.Type?*/, version: number);
+        constructor(type: string /*System.Type?*/, version: number, contractName: string);
+        constructor(type: string /*System.Type?*/, version: number, platform: Windows.Foundation.Metadata.Platform);
+    }
+
+    export class AllowForWebAttribute {
+        constructor();
     }
 
     export class AllowMultipleAttribute {
         constructor();
+    }
+
+    export class ApiContractAttribute {
+        constructor();
+    }
+
+    export class ApiInformation {
+        static isTypePresent(typeName: string): boolean;
+        static isMethodPresent(typeName: string, methodName: string): boolean;
+        static isMethodPresent(typeName: string, methodName: string, inputParameterCount: number): boolean;
+        static isEventPresent(typeName: string, eventName: string): boolean;
+        static isPropertyPresent(typeName: string, propertyName: string): boolean;
+        static isReadOnlyPropertyPresent(typeName: string, propertyName: string): boolean;
+        static isWriteablePropertyPresent(typeName: string, propertyName: string): boolean;
+        static isEnumNamedValuePresent(enumTypeName: string, valueName: string): boolean;
+        static isApiContractPresent(contractName: string, majorVersion: number): boolean;
+        static isApiContractPresent(contractName: string, majorVersion: number, minorVersion: number): boolean;
     }
 
     enum AttributeTargets {
@@ -820,20 +1468,34 @@ declare module Windows.Foundation.Metadata {
         runtimeClass,
         struct,
         interfaceImpl,
+        apiContract,
         all
     }
 
     export class AttributeUsageAttribute {
-        constructor(targets: Windows.Foundation.Metadata.AttributeTargets);
+        constructor(A_0: Windows.Foundation.Metadata.AttributeTargets);
     }
 
     export class ComposableAttribute {
         constructor(type: string /*System.Type?*/, compositionType: Windows.Foundation.Metadata.CompositionType, version: number);
+        constructor(type: string /*System.Type?*/, compositionType: Windows.Foundation.Metadata.CompositionType, version: number, platform: Windows.Foundation.Metadata.Platform);
+        constructor(type: string /*System.Type?*/, compositionType: Windows.Foundation.Metadata.CompositionType, version: number, contract: string);
     }
 
     enum CompositionType {
         protected,
         public
+    }
+
+    export class ContractVersionAttribute {
+        constructor(version: number);
+        constructor(contract: string /*System.Type?*/, version: number);
+        constructor(contract: string, version: number);
+    }
+
+    export class CreateFromStringAttribute {
+        constructor();
+        methodName: string;
     }
 
     export class DefaultAttribute {
@@ -844,6 +1506,17 @@ declare module Windows.Foundation.Metadata {
         constructor();
     }
 
+    export class DeprecatedAttribute {
+        constructor(message: string, type: Windows.Foundation.Metadata.DeprecationType, version: number);
+        constructor(message: string, type: Windows.Foundation.Metadata.DeprecationType, version: number, platform: Windows.Foundation.Metadata.Platform);
+        constructor(message: string, type: Windows.Foundation.Metadata.DeprecationType, version: number, contract: string);
+    }
+
+    enum DeprecationType {
+        deprecate,
+        remove
+    }
+
     export class DualApiPartitionAttribute {
         constructor();
         version: number;
@@ -851,6 +1524,10 @@ declare module Windows.Foundation.Metadata {
 
     export class ExclusiveToAttribute {
         constructor(typeName: string /*System.Type?*/);
+    }
+
+    export class ExperimentalAttribute {
+        constructor();
     }
 
     enum GCPressureAmount {
@@ -872,6 +1549,10 @@ declare module Windows.Foundation.Metadata {
         constructor();
     }
 
+    export class InternalAttribute {
+        constructor();
+    }
+
     export class LengthIsAttribute {
         constructor(indexLengthParameter: number);
     }
@@ -887,6 +1568,10 @@ declare module Windows.Foundation.Metadata {
         standard
     }
 
+    export class MetadataMarshalAttribute {
+        constructor();
+    }
+
     export class MuseAttribute {
         constructor();
         version: number;
@@ -900,6 +1585,20 @@ declare module Windows.Foundation.Metadata {
         constructor();
     }
 
+    enum Platform {
+        windows,
+        windowsPhone
+    }
+
+    export class PlatformAttribute {
+        constructor(platform: Windows.Foundation.Metadata.Platform);
+    }
+
+    export class PreviousContractVersionAttribute {
+        constructor(contract: string, versionLow: number, versionHigh: number, newContract: string);
+        constructor(contract: string, versionLow: number, versionHigh: number);
+    }
+
     export class ProtectedAttribute {
         constructor();
     }
@@ -908,8 +1607,14 @@ declare module Windows.Foundation.Metadata {
         constructor(minValue: number, maxValue: number);
     }
 
+    export class RemoteAsyncAttribute {
+        constructor();
+    }
+
     export class StaticAttribute {
         constructor(type: string /*System.Type?*/, version: number);
+        constructor(type: string /*System.Type?*/, version: number, platform: Windows.Foundation.Metadata.Platform);
+        constructor(type: string /*System.Type?*/, version: number, contractName: string);
     }
 
     export class ThreadingAttribute {
@@ -929,10 +1634,72 @@ declare module Windows.Foundation.Metadata {
 
     export class VersionAttribute {
         constructor(version: number);
+        constructor(version: number, platform: Windows.Foundation.Metadata.Platform);
     }
 
     export class WebHostHiddenAttribute {
         constructor();
+    }
+
+}
+declare module Windows.Foundation.Numerics {
+
+    export class Matrix3x2 {
+        m11: number;
+        m12: number;
+        m21: number;
+        m22: number;
+        m31: number;
+        m32: number;
+    }
+
+    export class Matrix4x4 {
+        m11: number;
+        m12: number;
+        m13: number;
+        m14: number;
+        m21: number;
+        m22: number;
+        m23: number;
+        m24: number;
+        m31: number;
+        m32: number;
+        m33: number;
+        m34: number;
+        m41: number;
+        m42: number;
+        m43: number;
+        m44: number;
+    }
+
+    export class Plane {
+        normal: Windows.Foundation.Numerics.Vector3;
+        d: number;
+    }
+
+    export class Quaternion {
+        x: number;
+        y: number;
+        z: number;
+        w: number;
+    }
+
+    export class Vector2 {
+        x: number;
+        y: number;
+    }
+
+    export class Vector3 {
+        x: number;
+        y: number;
+        z: number;
+    }
+
+    export class Vector4 {
+        x: number;
+        y: number;
+        z: number;
+        w: number;
     }
 
 }

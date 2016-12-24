@@ -32,6 +32,10 @@ namespace ToTypeScriptD.TestAssembly.CSharp
         {
         }
 
+        public void MethodWithStrangeParameterNames(Action function)
+        {
+        }
+
         public string SomeProperty { get; set; }
 
 

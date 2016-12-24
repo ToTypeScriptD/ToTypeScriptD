@@ -28,9 +28,6 @@ declare module ToTypeScriptD.Native {
         addEventListener(eventName: "somethinghappened", listener: ToTypeScriptD.Native.SomethingHappenedEventHandler): void;
         removeEventListener(eventName: "somethinghappened", listener: ToTypeScriptD.Native.SomethingHappenedEventHandler): void;
         onsomethinghappened: (ev: ToTypeScriptD.Native.SomethingHappenedEventHandler) => void;
-        addEventListener(eventName: "sampletyped", listener: Windows.Foundation.TypedEventHandler<ToTypeScriptD.Native.ClassWithEventHandler,ToTypeScriptD.Native.SampleEnum>): void;
-        removeEventListener(eventName: "sampletyped", listener: Windows.Foundation.TypedEventHandler<ToTypeScriptD.Native.ClassWithEventHandler,ToTypeScriptD.Native.SampleEnum>): void;
-        onsampletyped: (ev: Windows.Foundation.TypedEventHandler<ToTypeScriptD.Native.ClassWithEventHandler,ToTypeScriptD.Native.SampleEnum>) => void;
 
     }
 
@@ -43,20 +40,20 @@ declare module ToTypeScriptD.Native {
         getByte(): number;
         getBytes(): any;
         getBoolean(): boolean;
-        methodWithSomeOutParameters(in1: number, in2: string): CXReturnTypes_methodWithSomeOutParameters_OUT;
-        methodWithSomeOutParametersButVoidResult(in1: number, in2: string): CXReturnTypes_methodWithSomeOutParametersButVoidResult_OUT;
+        methodWithSomeOutParameters(in1: number, in2: string): CXReturnTypes_methodWithSomeOutParameters_OUT_356;
+        methodWithSomeOutParametersButVoidResult(in1: number, in2: string): CXReturnTypes_methodWithSomeOutParametersButVoidResult_OUT_357;
         overloadedMethodWithNumberTypeParams(value: number): string;
         getIterableOfInts(): Windows.Foundation.Collections.IIterable<number>;
     }
 
-    interface CXReturnTypes_methodWithSomeOutParameters_OUT {
+    interface CXReturnTypes_methodWithSomeOutParameters_OUT_356 {
         __returnValue: number;
         out1: number;
         out2: string;
         out3: number[];
     }
 
-    interface CXReturnTypes_methodWithSomeOutParametersButVoidResult_OUT {
+    interface CXReturnTypes_methodWithSomeOutParametersButVoidResult_OUT_357 {
         out1: number;
         out2: string;
         out3: number[];
