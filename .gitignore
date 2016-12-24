@@ -85,3 +85,6 @@ Temp/
 #
 # CUSTOM PROJECT IGNORE
 #
+
+*.VC.db
+*.VC.opendb
